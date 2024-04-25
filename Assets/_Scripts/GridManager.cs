@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Basic GridManager to handle the grid of the game.
+/// </summary>
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private int width, height;

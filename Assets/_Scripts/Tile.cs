@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Tile of the grid. 
+/// Instantiated by the GridManager from the Tile prefab.
+/// </summary>
 public class Tile : MonoBehaviour
 {
     [SerializeField] private Color baseColor, hoverColor;
