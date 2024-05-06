@@ -8,11 +8,11 @@ public class GameManager : SingletonPersistent<GameManager>
 {
     public static event Action<GameState> OnBeforeGameStateChanged;
     public static event Action<GameState> OnAfterGameStateChanged;
+    [SerializeField]
     public GameState State { get; private set; }
 
     private void Start()
     {
-        ChangeGameState(GameState.MainMenu);
 
     }
 

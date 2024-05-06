@@ -9,24 +9,51 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private Color baseColor, hoverColor;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    /// <summary>
+    /// Enemies can (theoretically) walk on this tile.
+    /// Use the public method IsWalkable() to check if the tile is currently walkable.
+    /// </summary>
+    [SerializeField] private bool isWalkable;
+    /// <summary>
+    /// Towers can (theoretically) be built on this tile.
+    /// Use the public method IsBuildable() to check if the tile is currently buildable.
+    /// </summary>
+    [SerializeField] private bool isBuildable;
 
-
+    [SerializeField] private bool hasBuilding;
+    [SerializeField]
+    public List<Enemy> enemies = new List<Enemy>();
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = baseColor;
 
     }
-    private void OnMouseEnter()
+
+    public bool IsWalkable()
     {
-        Debug.Log("Mouse entered");
-        // Change the color of the tile when the mouse hovers over it
-        spriteRenderer.color = hoverColor;
+        if (isBuildable && hasBuilding)
+        {
+            return false;
+        }
+        return isWalkable;
     }
 
-    private void OnMouseExit()
+    public bool IsBuildable()
     {
-        // Change the color of the tile back to the base color when the mouse exits
-        spriteRenderer.color = baseColor;
+        return isBuildable && !hasBuilding;
     }
+
+
+    public void RegisterEnemy(Enemy enemy)
+    {
+        Debug.Log("Registering enemy at tile" + this.name);
+        enemies.Add(enemy);
+    }
+    public void UnregisterEnemy(Enemy enemy)
+    {
+        enemies.Remove(enemy);
+    }
+
+
 }
