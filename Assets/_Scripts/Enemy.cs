@@ -53,10 +53,14 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        GameObject roundManagerObject = GameObject.Find("RoundManager");
+        RoundManager damageEnemy = roundManagerObject.GetComponent<RoundManager>();
         health -= damage;
         if (health <= 0)
+
         {
             currentTile.UnregisterEnemy(this);
+            damageEnemy.DefeatEnemy();
             Destroy(gameObject);
         }
     }
