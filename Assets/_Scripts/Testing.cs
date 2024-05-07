@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using com.cyborgAssets.inspectorButtonPro;
 public class Testing : MonoBehaviour
 {
-    public Enemy testEnemy;
+    public GameObject testEnemy;
 
-
-    private void Start()
+    [ProButton]
+    public void SpawnRandomTestEnemies(int amount)
     {
-        //Move enemy to the right
-        testEnemy.MoveTowards(new Vector3(5, 4, 0), 1);
+        int width = GridManager.WIDTH;
+        int height = GridManager.HEIGHT;
 
-
-
-    }
-    private void Update()
-    {
-        testEnemy.MoveTowards(new Vector3(5, 4, 0), 1);
-        // Debug.Log(GridManager.Instance.FindClosestEnemy(0, 0));
+        for (int i = 0; i < amount; i++)
+        {
+            Vector3 randomPos = new Vector3(Random.Range(0, width), Random.Range(0, height), 0);
+            Instantiate(testEnemy, randomPos, Quaternion.identity);
+        }
     }
 }

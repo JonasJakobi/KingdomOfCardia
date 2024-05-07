@@ -10,25 +10,46 @@ public class Enemy : MonoBehaviour
     public int attackDamage = 10;
     [SerializeField] private float scale;
 
+    [SerializeField]
+    Tile currentTile;
+
     private void Start()
     {
         this.transform.localScale = new Vector3(scale, scale, scale);
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
+        currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
 
     }
-    public void MoveTowards(Vector3 target, float speed)
+    private void Update()
+    {
+        var vector = currentTile.GetEnemyMovementVector();
+        if (vector == Vector3.zero)
+        {
+            //Attack
+        }
+        else
+        {
+            MoveInDirection(currentTile.GetEnemyMovementVector(), movementSpeed);
+        }
+
+
+    }
+    public void MoveInDirection(Vector3 direction, float speed)
     {
         Vector3 pos = transform.position;
-        Vector3 direction = target - pos;
-        direction.Normalize();
-        pos += direction * speed * movementSpeed * Time.deltaTime;
+        pos += direction * speed * Time.deltaTime;
 
         // Check if we entered a new tile, if so, register the enemy at the new tile and unregister at the old tile
-        if (Mathf.FloorToInt(pos.x) != Mathf.FloorToInt(transform.position.x) || Mathf.FloorToInt(pos.y) != Mathf.FloorToInt(transform.position.y))
+        if (Mathf.RoundToInt(pos.x) != Mathf.RoundToInt(transform.position.x) || Mathf.RoundToInt(pos.y) != Mathf.RoundToInt(transform.position.y))
         {
-            GridManager.Instance.UnregisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
-            GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y));
+            GridManager.Instance.UnregisterEnemyAtTile(this, Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+            GridManager.Instance.RegisterEnemyAtTile(this, Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y));
+
+
         }
         transform.position = pos;
+        currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
     }
+
+
 }

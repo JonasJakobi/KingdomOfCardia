@@ -33,16 +33,7 @@ public class Tile : MonoBehaviour
         spriteRenderer.color = baseColor;
 
     }
-    private void Update()
-    {
-        if (enemies.Count > 0)
-        {
-            foreach (Enemy enemy in enemies)
-            {
-                enemy.MoveTowards(enemyMovementVector, 1);
-            }
-        }
-    }
+
 
     public bool IsWalkable()
     {
@@ -71,6 +62,10 @@ public class Tile : MonoBehaviour
     public void SetEnemyMovementVector(Vector3 vector)
     {
         enemyMovementVector = vector;
+    }
+    public Vector3 GetEnemyMovementVector()
+    {
+        return enemyMovementVector;
     }
 
 

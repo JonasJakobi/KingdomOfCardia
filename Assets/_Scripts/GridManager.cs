@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 /// <summary>
 /// Basic GridManager to handle the grid of the game.
 /// </summary>
@@ -9,7 +10,8 @@ public class GridManager : Singleton<GridManager>
 
 {
     [SerializeField] private int startX, startY;
-    [SerializeField] private int width, height;
+    public const int WIDTH = 16;
+    public const int HEIGHT = 9;
     [SerializeField] private Tile tilePrefab;
     [SerializeField] private Tile mountainTilePrefab;
 
@@ -23,10 +25,10 @@ public class GridManager : Singleton<GridManager>
     }
     void GenerateGrid()
     {
-        grid = new Tile[width, height];
-        for (int x = 0; x < width; x++)
+        grid = new Tile[WIDTH, HEIGHT];
+        for (int x = 0; x < WIDTH; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < HEIGHT; y++)
             {
                 //Small chance for mountain, otherwise normal tile
                 if (Random.Range(0, 100) < 5)
@@ -44,7 +46,7 @@ public class GridManager : Singleton<GridManager>
 
             }
         }
-        camera.position = new Vector3(width / 2, height / 2, -10);
+        camera.position = new Vector3(WIDTH / 2, HEIGHT / 2, -10);
 
     }
 
@@ -52,10 +54,10 @@ public class GridManager : Singleton<GridManager>
 
     public Tile GetTileAtPosition(Vector3 pos)
     {
-        int x = Mathf.FloorToInt((pos.x - startX));
-        int y = Mathf.FloorToInt((pos.y - startY));
+        int x = Mathf.RoundToInt((pos.x - startX));
+        int y = Mathf.RoundToInt((pos.y - startY));
 
-        if (x < 0 || x >= width || y < 0 || y >= height)
+        if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
             Debug.LogError("Tile out of bounds");
             return null;
@@ -76,7 +78,7 @@ public class GridManager : Singleton<GridManager>
 
     public void UnregisterEnemyAtTile(Enemy enemy, int x, int y)
     {
-        if (x < 0 || x >= width || y < 0 || y >= height)
+        if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
             Debug.LogError("Cant UnRegister Enemy at " + x + y + " , Tile out of bounds");
             return;
@@ -90,7 +92,7 @@ public class GridManager : Singleton<GridManager>
 
     public void RegisterEnemyAtTile(Enemy enemy, int x, int y)
     {
-        if (x < 0 || x >= width || y < 0 || y >= height)
+        if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
             Debug.LogError("Cant register enemy at " + x + y + " , Tile out of bounds");
             return;
@@ -103,7 +105,7 @@ public class GridManager : Singleton<GridManager>
 
     public Enemy FindClosestEnemy(int x, int y)
     {
-        int maxDistance = Mathf.Max(width, height);
+        int maxDistance = Mathf.Max(WIDTH, HEIGHT);
         for (int d = 0; d < maxDistance; d++)
         {
             for (int i = -d; i <= d; i++)
@@ -113,7 +115,7 @@ public class GridManager : Singleton<GridManager>
                     if (i != -d && i != d && j != -d && j != d) continue; // Skip tiles inside the square
                     int checkX = x + i;
                     int checkY = y + j;
-                    if (checkX < 0 || checkX >= width || checkY < 0 || checkY >= height) continue; // Skip out-of-bounds tiles
+                    if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
                     if (grid[checkX, checkY].enemies.Count > 0)
                     {
                         // Return the closest enemy in that tile.
@@ -128,13 +130,13 @@ public class GridManager : Singleton<GridManager>
     public List<Tile> GetNeighbours(Tile tile)
     {
         List<Tile> neighbours = new List<Tile>();
-        int x = Mathf.FloorToInt(tile.transform.position.x - startX);
-        int y = Mathf.FloorToInt(tile.transform.position.y - startY);
+        int x = Mathf.RoundToInt(tile.transform.position.x - startX);
+        int y = Mathf.RoundToInt(tile.transform.position.y - startY);
         if (x > 0)
         {
             neighbours.Add(grid[x - 1, y]);
         }
-        if (x < width - 1)
+        if (x < WIDTH - 1)
         {
             neighbours.Add(grid[x + 1, y]);
         }
@@ -142,7 +144,7 @@ public class GridManager : Singleton<GridManager>
         {
             neighbours.Add(grid[x, y - 1]);
         }
-        if (y < height - 1)
+        if (y < HEIGHT - 1)
         {
             neighbours.Add(grid[x, y + 1]);
         }
