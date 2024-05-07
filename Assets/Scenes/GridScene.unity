@@ -268,12 +268,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 2.43
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 2.59
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.z
@@ -308,9 +320,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: range
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: attackDelay
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: projectileSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 4109092055971077752, guid: 4318b0e5b8b11f84e9516433380e549a, type: 3}
+      objectReference: {fileID: 4109092055971077752, guid: 63491e07022bf064ea1b3fdffa20b338, type: 3}
     - target: {fileID: 6619158480864369419, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_Name
       value: Turret (3)
@@ -434,13 +462,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4901494387940505509, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ddd517629cd23534cbff5751ff0715fe, type: 3}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5741
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5741
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5741
+      objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 4.68
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.z
@@ -475,9 +519,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: range
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: damage
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: attackDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: projectileSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 4109092055971077752, guid: 4318b0e5b8b11f84e9516433380e549a, type: 3}
+      objectReference: {fileID: 4109092055971077752, guid: deb6722a4513bb84e861bde14b5d85d2, type: 3}
     - target: {fileID: 6619158480864369419, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_Name
       value: Turret (1)
@@ -679,9 +739,18 @@ MonoBehaviour:
   roundValue: 1
   roundValueLeft: 1
   enemyCount: 0
+  enemiesSpawned: 0
+  enemiesDefeated: 0
   EnemyType1: {fileID: 2142602162031666653, guid: ed170d7169f36cc4ea3e5ffd50afff1a, type: 3}
-  EnemyType2: {fileID: 2142602162031666653, guid: ed170d7169f36cc4ea3e5ffd50afff1a, type: 3}
+  EnemyType2: {fileID: 8937360665854073709, guid: 28cfbaab706d43e47b5ff7b0908e1cca, type: 3}
   EnemyType3: {fileID: 4665688116233777606, guid: 03fe9624e26e50f438a09b6dd38ebc7d, type: 3}
+  minSpawnTime: 1
+  maxSpawnTime: 10
+  waveStart: 6
+  waveChance: 25
+  waveQueued: 0
+  activeWave: 0
+  waveValue: 0
 --- !u!1 &1651207540
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,12 +804,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6448
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6448
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6448
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 6.84
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 2.26
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.z
@@ -775,9 +856,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: range
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: attackDelay
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: projectileSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 4109092055971077752, guid: 4318b0e5b8b11f84e9516433380e549a, type: 3}
+      objectReference: {fileID: 4109092055971077752, guid: 63491e07022bf064ea1b3fdffa20b338, type: 3}
     - target: {fileID: 6619158480864369419, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_Name
       value: Turret (2)
@@ -970,13 +1067,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4901494387940505509, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c159d226e43acb488ea628a8ded4756, type: 3}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6307
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6307
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6307
+      objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 4.87
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1009,6 +1122,10 @@ PrefabInstance:
     - target: {fileID: 5334108959036339679, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
+      propertyPath: range
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5460041654243871326, guid: db68d888eaadfc34ca100f98ede0a358, type: 3}
       propertyPath: projectilePrefab

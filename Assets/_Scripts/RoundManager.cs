@@ -11,12 +11,23 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private int roundValue = 1;
     [SerializeField] private int roundValueLeft = 1;
     [SerializeField] private int enemyCount = 0;
-    private int enemiesSpawned;
-    private int enemiesDefeated;
+    [SerializeField] private int enemiesSpawned;
+    [SerializeField] private int enemiesDefeated;
 
     [SerializeField] private GameObject EnemyType1;
     [SerializeField] private GameObject EnemyType2;
     [SerializeField] private GameObject EnemyType3;
+
+    [Header("Spawn behaviour")]
+    public float minSpawnTime = 1.0f;
+    public float maxSpawnTime = 5.0f;
+
+    [Header("Waves")]
+    public int waveStart = 5;
+    public float waveChance = 25.0f;
+    [SerializeField] private bool waveQueued = false;
+    [SerializeField] bool activeWave = false;
+    [SerializeField] private int waveValue = 0;
 
     private void Start()
     {
@@ -25,29 +36,34 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
-
         if (roundValueLeft >= 3)
         {
             int randVal = Random.Range(1, 4);
-            SpawnEnemy(randVal);
+            StartCoroutine(SpawnDelayCoroutine(randVal));
             roundValueLeft = roundValueLeft - randVal;
         }
 
         else if (roundValueLeft >= 2)
         {
             int randVal = Random.Range(1, 3);
-            SpawnEnemy(randVal);
+            StartCoroutine(SpawnDelayCoroutine(randVal));
             roundValueLeft = roundValueLeft - randVal;
         }
 
         else if (roundValueLeft >= 1)
         {
             int randVal = 1;
-            SpawnEnemy(randVal);
+            StartCoroutine(SpawnDelayCoroutine(randVal));
             roundValueLeft = roundValueLeft - randVal;
         }
 
-        if ((enemyCount <= 0) && (roundValueLeft <= 0))
+        if ((enemyCount <= 0) && (roundValueLeft <= 0) && (activeWave == false) && (waveQueued == true))
+        {
+            Debug.Log("Welle geht gleich los!");
+            StartCoroutine(WaveDelayCoroutine());
+        }
+
+        if ((enemyCount <= 0) && (roundValueLeft <= 0) && (waveQueued == false))
         {
             NextRound();
         }
@@ -81,32 +97,61 @@ public class RoundManager : MonoBehaviour
         }
 
         Vector3 randomPos = new Vector3(randomWidth, Random.Range(0, height), 0);
-        //Instantiate(testEnemy, randomPos, Quaternion.identity);
-
-        //Vector3 spawnPosition = transform.position + Random.insideUnitSphere * 2.0f;
         GameObject newEnemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
-
-        enemyCount++;
-
-        float spawnDelay = Random.Range(1.0f, 2.0f);
-
-        StartCoroutine(SpawnDelayCoroutine(spawnDelay));
     }
 
-    private IEnumerator SpawnDelayCoroutine(float delay)
+    private void QueueWave()
     {
-        yield return new WaitForSeconds(delay);
+        waveQueued = true;
+        waveValue = Random.Range((roundValue / 3), (roundValue / 2));
+        roundValueLeft -= waveValue;
     }
 
+    //Start next round and decide if a wave will be present.
     private void NextRound()
     {
+        activeWave = false;
         round++;
+        enemyCount = 0;
         roundValue = roundValue * 2;
         roundValueLeft = roundValue;
+        if (waveChance >= Random.Range(1.0f, 100.0f) && (round >= waveStart))
+        {
+            QueueWave();
+        }
     }
 
     public void DefeatEnemy()
     {
         enemyCount--;
+        enemiesDefeated++;
     }
+
+    private IEnumerator SpawnDelayCoroutine(int randVal)
+    {
+        float maxDelay = maxSpawnTime;
+        enemyCount++;
+
+        if (round <= 2 || activeWave)
+        {
+            maxDelay = 2.0f;
+        }
+
+        float delay = Random.Range(minSpawnTime, maxDelay);
+
+        yield return new WaitForSeconds(delay);
+        SpawnEnemy(randVal);
+        enemiesSpawned++;
+    }
+
+    private IEnumerator WaveDelayCoroutine()
+    {
+        activeWave = true;
+        yield return new WaitForSeconds(3);
+        Debug.Log("Welle geht los!");
+        enemyCount = 0;
+        roundValueLeft = waveValue;
+        waveQueued = false;
+    }
+
 }
