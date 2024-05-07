@@ -23,11 +23,25 @@ public class Tile : MonoBehaviour
     [SerializeField] private bool hasBuilding;
     [SerializeField]
     public List<Enemy> enemies = new List<Enemy>();
+
+
+    [SerializeField]
+    private Vector3 enemyMovementVector;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = baseColor;
 
+    }
+    private void Update()
+    {
+        if (enemies.Count > 0)
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.MoveTowards(enemyMovementVector, 1);
+            }
+        }
     }
 
     public bool IsWalkable()
@@ -54,6 +68,12 @@ public class Tile : MonoBehaviour
     {
         enemies.Remove(enemy);
     }
+    public void SetEnemyMovementVector(Vector3 vector)
+    {
+        enemyMovementVector = vector;
+    }
+
+
 
 
 }

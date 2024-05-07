@@ -125,5 +125,29 @@ public class GridManager : Singleton<GridManager>
         return null;
     }
 
+    public List<Tile> GetNeighbours(Tile tile)
+    {
+        List<Tile> neighbours = new List<Tile>();
+        int x = Mathf.FloorToInt(tile.transform.position.x - startX);
+        int y = Mathf.FloorToInt(tile.transform.position.y - startY);
+        if (x > 0)
+        {
+            neighbours.Add(grid[x - 1, y]);
+        }
+        if (x < width - 1)
+        {
+            neighbours.Add(grid[x + 1, y]);
+        }
+        if (y > 0)
+        {
+            neighbours.Add(grid[x, y - 1]);
+        }
+        if (y < height - 1)
+        {
+            neighbours.Add(grid[x, y + 1]);
+        }
+        return neighbours;
+    }
+
 
 }

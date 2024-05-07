@@ -18,6 +18,6 @@ public class Testing : MonoBehaviour
     private void Update()
     {
         testEnemy.MoveTowards(new Vector3(5, 4, 0), 1);
-        Debug.Log(GridManager.Instance.FindClosestEnemy(0, 0));
+        // Debug.Log(GridManager.Instance.FindClosestEnemy(0, 0));
     }
 }

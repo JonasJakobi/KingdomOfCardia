@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int health = 100;
     public int attackSpeed = 1;
+    public float movementSpeed = 1;
     public int attackDamage = 10;
     [SerializeField] private float scale;
 
@@ -20,7 +21,7 @@ public class Enemy : MonoBehaviour
         Vector3 pos = transform.position;
         Vector3 direction = target - pos;
         direction.Normalize();
-        pos += direction * speed * Time.deltaTime;
+        pos += direction * speed * movementSpeed * Time.deltaTime;
 
         // Check if we entered a new tile, if so, register the enemy at the new tile and unregister at the old tile
         if (Mathf.FloorToInt(pos.x) != Mathf.FloorToInt(transform.position.x) || Mathf.FloorToInt(pos.y) != Mathf.FloorToInt(transform.position.y))
