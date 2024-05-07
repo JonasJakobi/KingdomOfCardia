@@ -59,8 +59,8 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
 
         {
-            currentTile.UnregisterEnemy(this);
             damageEnemy.DefeatEnemy();
+            currentTile.UnregisterEnemy(this);
             Destroy(gameObject);
         }
     }

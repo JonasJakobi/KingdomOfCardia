@@ -675,13 +675,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f33c29da23a4af43a424b02665540e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wave: 1
-  waveValue: 1
-  waveValueLeft: 1
+  round: 1
+  roundValue: 1
+  roundValueLeft: 1
   enemyCount: 0
-  TestObject1: {fileID: 4109092055971077752, guid: ce9453ab52e79b24881528cdfbc96d65, type: 3}
-  TestObject2: {fileID: 4109092055971077752, guid: f5d366405af22bf45a565b5fa6e48bcb, type: 3}
-  TestObject3: {fileID: 4109092055971077752, guid: ee3ecc9da6f15864bbe7b2045eade02d, type: 3}
+  EnemyType1: {fileID: 2142602162031666653, guid: ed170d7169f36cc4ea3e5ffd50afff1a, type: 3}
+  EnemyType2: {fileID: 2142602162031666653, guid: ed170d7169f36cc4ea3e5ffd50afff1a, type: 3}
+  EnemyType3: {fileID: 4665688116233777606, guid: 03fe9624e26e50f438a09b6dd38ebc7d, type: 3}
 --- !u!1 &1651207540
 GameObject:
   m_ObjectHideFlags: 0

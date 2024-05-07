@@ -14,9 +14,9 @@ public class RoundManager : MonoBehaviour
     private int enemiesSpawned;
     private int enemiesDefeated;
 
-    [SerializeField] private GameObject TestObject1;
-    [SerializeField] private GameObject TestObject2;
-    [SerializeField] private GameObject TestObject3;
+    [SerializeField] private GameObject EnemyType1;
+    [SerializeField] private GameObject EnemyType2;
+    [SerializeField] private GameObject EnemyType3;
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class RoundManager : MonoBehaviour
             roundValueLeft = roundValueLeft - randVal;
         }
 
-        if ((enemyCount <= 0) && (roundValueLeft == 0))
+        if ((enemyCount <= 0) && (roundValueLeft <= 0))
         {
             NextRound();
         }
@@ -67,13 +67,13 @@ public class RoundManager : MonoBehaviour
         switch (enemyValue)
         {
             case 1:
-                enemyPrefab = TestObject1;
+                enemyPrefab = EnemyType1;
                 break;
             case 2:
-                enemyPrefab = TestObject2;
+                enemyPrefab = EnemyType2;
                 break;
             case 3:
-                enemyPrefab = TestObject3;
+                enemyPrefab = EnemyType3;
                 break;
             default:
                 Debug.LogError("False enemyValue!");
@@ -88,7 +88,7 @@ public class RoundManager : MonoBehaviour
 
         enemyCount++;
 
-        float spawnDelay = Random.Range(1.0f, 3.0f);
+        float spawnDelay = Random.Range(1.0f, 2.0f);
 
         StartCoroutine(SpawnDelayCoroutine(spawnDelay));
     }
