@@ -381,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &823897532
 Transform:
   m_ObjectHideFlags: 0
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89d11e07c3a2c841bfd252990bfc5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testEnemy: {fileID: 0}
+  testEnemy: {fileID: 4109092055971077752, guid: ce9453ab52e79b24881528cdfbc96d65, type: 3}
 --- !u!1 &934569156
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,8 +677,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startX: 0
   startY: 0
-  width: 16
-  height: 9
   tilePrefab: {fileID: 7558562331473169665, guid: 551a0aa137e86f24ab7e24274bd2300b, type: 3}
   mountainTilePrefab: {fileID: 7558562331473169665, guid: 585227563f246c942a3b6c0285c795ba, type: 3}
   camera: {fileID: 78671822}
