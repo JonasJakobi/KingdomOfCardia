@@ -4,9 +4,8 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
-public class FlowFieldGenerator : MonoBehaviour
+public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
 {
-
     List<FlowFieldTile> flowFieldTiles = new List<FlowFieldTile>();
     FlowFieldTile goalTile;
     // Start is called before the first frame update
@@ -18,15 +17,15 @@ public class FlowFieldGenerator : MonoBehaviour
         {
             flowFieldTiles.Add(tile);
         }
-        goalTile = GridManager.Instance.GetTileAtPosition(GameObject.FindGameObjectWithTag("Goal").transform.position).GetComponent<FlowFieldTile>();
-
         GenerateFlowField();
-        GenerateMovementVectors();
+
     }
 
 
     private void GenerateFlowField()
     {
+        goalTile = GridManager.Instance.GetTileAtPosition(GameObject.FindGameObjectWithTag("Goal").transform.position).GetComponent<FlowFieldTile>();
+
         // Set the assigned cost of all tiles to 0
         foreach (FlowFieldTile tile in flowFieldTiles)
         {
@@ -45,7 +44,7 @@ public class FlowFieldGenerator : MonoBehaviour
             openList.Remove(currentTile);
             closedList.Add(currentTile);
 
-            List<FlowFieldTile> neighbours = GetNeighbours(currentTile);
+            List<FlowFieldTile> neighbours = GetWalkableNeighbours(currentTile);
             foreach (FlowFieldTile neighbour in neighbours)
             {
                 if (closedList.Contains(neighbour))
@@ -64,12 +63,13 @@ public class FlowFieldGenerator : MonoBehaviour
                 }
             }
         }
+        GenerateMovementVectors();
     }
     private void GenerateMovementVectors()
     {
         foreach (FlowFieldTile tile in flowFieldTiles)
         {
-            List<FlowFieldTile> neighbours = GetNeighbours(tile);
+            List<FlowFieldTile> neighbours = GetWalkableNeighbours(tile);
             FlowFieldTile bestNeighbour = null;
             int bestCost = tile.GetAssignedCost();
             foreach (FlowFieldTile neighbour in neighbours)
@@ -89,20 +89,30 @@ public class FlowFieldGenerator : MonoBehaviour
             }
             else
             {
-                tile.transform.GetChild(1).gameObject.SetActive(false);
+                try { Destroy(tile.transform.GetChild(1).gameObject); } catch { }
+
             }
         }
     }
 
 
-    private List<FlowFieldTile> GetNeighbours(FlowFieldTile tile)
+    private List<FlowFieldTile> GetWalkableNeighbours(FlowFieldTile tile)
     {
         if (tile == null)
         {
             Debug.LogError("Trying to get Neighbours: Tile is null though");
             return new List<FlowFieldTile>();
         }
-        return GridManager.Instance.GetNeighbours(tile.tile).Select(t => t.GetComponent<FlowFieldTile>()).ToList();
+        //Return the FlowField Component of all walkable neighbours
+        return GridManager.Instance.GetNeighbours(tile.tile)
+            .Where(t => t.IsWalkable())
+            .Select(t => t.GetComponent<FlowFieldTile>())
+            .ToList();
+    }
+
+    public void RequestFlowFieldRecalculation()
+    {
+        GenerateFlowField();
     }
 
 

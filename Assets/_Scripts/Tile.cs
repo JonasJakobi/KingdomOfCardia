@@ -43,6 +43,11 @@ public class Tile : MonoBehaviour
         }
         return isWalkable;
     }
+    public void SetIsWalkable(bool value)
+    {
+        isWalkable = value;
+        FlowFieldGenerator.Instance.RequestFlowFieldRecalculation();
+    }
 
     public bool IsBuildable()
     {
@@ -67,6 +72,12 @@ public class Tile : MonoBehaviour
     {
         return enemyMovementVector;
     }
+    public void SetHasBuilding(bool value)
+    {
+        hasBuilding = value;
+        FlowFieldGenerator.Instance.RequestFlowFieldRecalculation();
+    }
+
 
 
 

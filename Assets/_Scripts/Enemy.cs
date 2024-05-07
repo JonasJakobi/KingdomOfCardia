@@ -51,5 +51,15 @@ public class Enemy : MonoBehaviour
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
     }
 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            currentTile.UnregisterEnemy(this);
+            Destroy(gameObject);
+        }
+    }
+
 
 }

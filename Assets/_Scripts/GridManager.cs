@@ -70,10 +70,7 @@ public class GridManager : Singleton<GridManager>
         return grid[x, y];
     }
 
-    public Vector3 GetCenterOfTile(Tile tile)
-    {
-        return new Vector3(tile.transform.position.x + 0.5f, tile.transform.position.y + 0.5f, 0);
-    }
+
 
 
     public void UnregisterEnemyAtTile(Enemy enemy, int x, int y)
@@ -103,9 +100,8 @@ public class GridManager : Singleton<GridManager>
 
     }
 
-    public Enemy FindClosestEnemy(int x, int y)
+    public Enemy FindClosestEnemy(int x, int y, int maxDistance)
     {
-        int maxDistance = Mathf.Max(WIDTH, HEIGHT);
         for (int d = 0; d < maxDistance; d++)
         {
             for (int i = -d; i <= d; i++)
@@ -118,8 +114,8 @@ public class GridManager : Singleton<GridManager>
                     if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
                     if (grid[checkX, checkY].enemies.Count > 0)
                     {
-                        // Return the closest enemy in that tile.
                         return grid[checkX, checkY].enemies.OrderBy(enemy => Vector2.Distance(new Vector2(x, y), new Vector2(enemy.transform.position.x, enemy.transform.position.y))).FirstOrDefault();
+
                     }
                 }
             }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6344763285927604246}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: DebuggingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 5767907596398414352}
   m_Layer: 0
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: DebuggingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
