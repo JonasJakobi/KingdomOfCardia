@@ -24,6 +24,10 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
 
     private void GenerateFlowField()
     {
+        if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.General))
+        {
+            Debug.Log("Regenerating Flow Field...");
+        }
         goalTile = GridManager.Instance.GetTileAtPosition(GameObject.FindGameObjectWithTag("Goal").transform.position).GetComponent<FlowFieldTile>();
 
         // Set the assigned cost of all tiles to 0

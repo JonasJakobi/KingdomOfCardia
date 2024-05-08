@@ -26,6 +26,10 @@ public class GridManager : Singleton<GridManager>
     }
     void GenerateGrid()
     {
+        if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.General))
+        {
+            Debug.Log("Generating Grid...");
+        }
         grid = new Tile[WIDTH, HEIGHT];
         for (int x = 0; x < WIDTH; x++)
         {

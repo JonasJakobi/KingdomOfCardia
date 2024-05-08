@@ -19,12 +19,16 @@ public class GameManager : SingletonPersistent<GameManager>
 
     public void ChangeGameState(GameState gameState)
     {
+
         if (State == gameState)
         {
             Debug.LogError("Duplicate GameState call, Game State is already " + gameState);
             return;
         }
-
+        if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.GameFlow))
+        {
+            Debug.Log("GameState changed to " + gameState + " from " + State + " by " + Time.time + " seconds.");
+        }
         OnBeforeGameStateChanged?.Invoke(gameState);
         State = gameState;
 

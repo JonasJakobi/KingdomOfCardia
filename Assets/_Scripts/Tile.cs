@@ -77,7 +77,10 @@ public class Tile : MonoBehaviour
         hasBuilding = value;
         FlowFieldGenerator.Instance.RequestFlowFieldRecalculation();
     }
-
+    public bool HasBuilding()
+    {
+        return hasBuilding;
+    }
 
 
 
