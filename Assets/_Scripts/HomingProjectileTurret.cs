@@ -20,22 +20,25 @@ public class HomingProjectileTurret : BaseTurret
     private int projectileSpeed = 15;
 
     private bool canAttack = true;
+    [SerializeField]
+    private TargetingType targetingType;
 
     // Update is called once per frame
     void Update()
     {
-        if (currentTarget == null)
+        if (canAttack)
         {
             FindNewTarget();
-        }
-        else if (canAttack)
-        {
-            ShootAtCurrentTarget();
+            if (currentTarget != null)
+            {
+                ShootAtCurrentTarget();
+            }
         }
     }
+
     private void FindNewTarget()
     {
-        Enemy e = GridManager.Instance.FindClosestEnemy(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), range);
+        Enemy e = GridManager.Instance.FindEnemy(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), range, targetingType);
         if (e != null)
         {
             currentTarget = e;

@@ -22,6 +22,10 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        if (currentTile == null)
+        {
+            currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
+        }
         var vector = currentTile.GetEnemyMovementVector();
         if (vector == Vector3.zero)
         {
@@ -60,6 +64,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
 
 }

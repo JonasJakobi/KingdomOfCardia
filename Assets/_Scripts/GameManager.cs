@@ -57,4 +57,5 @@ public enum GameState
     Starting = 1,
     BuildMode = 2,
     PlayMode = 3,
+    GameOver = 4,
 }
