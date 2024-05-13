@@ -46,7 +46,6 @@ public class DebugManager : Singleton<DebugManager>
 
     public bool IsDebugModeActive(DebugModes mode)
     {
-        Debug.Log((activeConsoleDebugModes & mode) != 0);
         return (activeConsoleDebugModes & mode) != 0;
     }
 }

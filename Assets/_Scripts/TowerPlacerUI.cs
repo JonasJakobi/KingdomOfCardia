@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TowerPlacerUI : MonoBehaviour
 {
-    private bool isPlacingTowerClick = false;
-    private bool isPlacingTowerDrag = false;
+    private bool stillOnUI = false;
+
     [SerializeField]
     GameObject towerPreviewPrefab;
 
@@ -17,23 +17,37 @@ public class TowerPlacerUI : MonoBehaviour
     private Color placeableColor = new Color(0, 1, 0, 0.5f);
     [SerializeField]
     private Color notPlaceableColor = new Color(1, 0, 0, 0.5f);
+    [Header("Visible for debugging:")]
+    [SerializeField]
+    private bool isPlacingTowerClick = false;
+    [SerializeField]
+    private bool isPlacingTowerDrag = false;
 
     // Update is called once per frame
     void Update()
     {
 
-        if (!(isPlacingTowerClick || isPlacingTowerDrag))
+        if (!(isPlacingTowerClick || isPlacingTowerDrag) || stillOnUI)
         {
             return;
         }
-        //from this point on user is still in the process of placing a tower
 
         Vector3 mousePos = GetMousePosition();
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
-        towerPreview.transform.position = tile.transform.position;
+        if (tile == null)
+        {
+            towerPreview.SetActive(false);
+            if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))
+            {
+                Debug.Log("Currently not hovering over a tile so we are not doing anything here");
+            }
+            return;
+        }
+
         bool isBuildable = !tile.HasBuilding() && tile.IsBuildable();
-        towerPreview.GetComponent<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
-        towerPreview.transform.position = tile.transform.position;
+
+        UpdatePreview(mousePos, tile, isBuildable);
+
         //we try to place the tower but we cant:
         if (!isBuildable && UserTryingToPlace())
         {
@@ -47,8 +61,21 @@ public class TowerPlacerUI : MonoBehaviour
         else if (UserTryingToPlace())
         {
             PlaceTower();
+            StopPlacingTower();
         }
 
+    }
+
+    private void UpdatePreview(Vector3 mousePos, Tile tile, bool isBuildable)
+    {
+        if (towerPreview.activeSelf == false)
+        {
+            towerPreview.SetActive(true);
+        }
+        towerPreview.transform.position = tile.transform.position;
+
+        towerPreview.GetComponent<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
+        towerPreview.transform.position = tile.transform.position;
     }
 
 
@@ -72,7 +99,7 @@ public class TowerPlacerUI : MonoBehaviour
     }
     private bool UserTryingToPlace()
     {
-        return (isPlacingTowerClick && Input.GetMouseButtonDown(0)) || (isPlacingTowerDrag && Input.GetMouseButtonUp(0));
+        return isPlacingTowerClick && Input.GetMouseButtonDown(0);
     }
 
     private void StopPlacingTower()
@@ -93,19 +120,48 @@ public class TowerPlacerUI : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        //If the user clicked and released the mouse button, we are placing a tower
-        if (isPlacingTowerDrag)
+
+        if (!isPlacingTowerDrag)
         {
-            isPlacingTowerDrag = false;
-            isPlacingTowerClick = true;
-            if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))
-            {
-                Debug.Log("Placing Tower with Click now");
-            }
+            return;
+
         }
+
+        Vector3 mousePos = GetMousePosition();
+        Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
+        //If we are not hovering over a tile, we let go of the mouse on the UI so we placing tower with click
+        if (tile == null)
+        {
+            if (stillOnUI)
+            {
+                isPlacingTowerDrag = false;
+                isPlacingTowerClick = true;
+                if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))
+                {
+                    Debug.Log("Placing Tower with Click now");
+                }
+            }
+            //not hovering over the UI but also not on tile, so we stop placing tower
+            else
+            {
+                StopPlacingTower();
+            }
+
+        }
+        else
+        {
+            if (tile.IsBuildable())
+            {
+                PlaceTower();
+            }
+            StopPlacingTower();
+        }
+
     }
+
     private void OnMouseExit()
     {
+        stillOnUI = false;
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))
         {
             Debug.Log("Mouse left tower placer");
@@ -117,6 +173,7 @@ public class TowerPlacerUI : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        stillOnUI = true;
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))
         {
             Debug.Log("Mouse entered tower placer");

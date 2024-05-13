@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomingProjectileTurret : BaseTurret
+public class HomingProjectileTower : BaseTower
 {
     [SerializeField]
     GameObject projectilePrefab;
 
     Enemy currentTarget;
-    [Tooltip("The range in which the turret can detect enemies in grid squares")]
+    [Tooltip("The range in which the tower can detect enemies in grid squares")]
     public int range = 5;
     [Tooltip("The delay between attacks in seconds")]
     [SerializeField]

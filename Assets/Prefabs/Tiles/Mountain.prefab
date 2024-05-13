@@ -189,7 +189,7 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 1, b: 1, a: 0.41960785}
   spriteRenderer: {fileID: 0}
   isWalkable: 1
-  isBuildable: 1
+  isBuildable: 0
   hasBuilding: 0
   enemies: []
   enemyMovementVector: {x: 0, y: 0, z: 0}
