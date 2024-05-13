@@ -4,10 +4,14 @@ using System.Linq;
 using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
 using UnityEditor.UIElements;
-
+/// <summary>
+/// Enable or disable debugging UI elements. And Control the modes for printing debug messages.
+/// </summary>
 public class DebugManager : Singleton<DebugManager>
 {
+
     HashSet<GameObject> debugObjects;
+
     [System.Flags]
     public enum DebugModes
     {
@@ -15,8 +19,11 @@ public class DebugManager : Singleton<DebugManager>
         UI = 1 << 0,
         General = 1 << 1,
         GameFlow = 1 << 2,
+        Enemies = 1 << 3,
+        Towers = 1 << 4,
         // Add more modes here...
     }
+    [Header("What kind of debug messages should be printed?")]
 
     [SerializeField]
     private DebugModes activeConsoleDebugModes = DebugModes.None;

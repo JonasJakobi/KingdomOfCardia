@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Attached to sprite of a tower and allows the player to place towers on the grid. by dragging or clicking onto the grid.
+/// </summary>
 public class TowerPlacerUI : MonoBehaviour
 {
     private bool stillOnUI = false;
@@ -83,7 +85,6 @@ public class TowerPlacerUI : MonoBehaviour
     private void PlaceTower()
     {
         Tile tile = GridManager.Instance.GetTileAtPosition(GetMousePosition());
-        tile.SetHasBuilding(true);
         Instantiate(towerPrefab, tile.transform.position, Quaternion.identity);
 
     }

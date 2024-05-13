@@ -4,8 +4,9 @@ using UnityEngine;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 /// <summary>
-/// Basic GridManager to handle the grid of the game.
+/// Basic GridManager to handle the grid of the game. Can be used to get tiles at positions, register and unregister enemies and find enemies.
 /// </summary>
 public class GridManager : Singleton<GridManager>
 
@@ -239,6 +240,29 @@ public class GridManager : Singleton<GridManager>
             }
         }
         return strongestEnemy;
+    }
+
+    public BaseTower FindNearestBuilding(int x, int y)
+    {
+        int maxDistance = 2; // Should be enough to cover all towers as this shouldnt ever be >1, as enemies only search when they are on a tile next to a tower
+        for (int d = 0; d < maxDistance; d++)
+        {
+            for (int i = -d; i <= d; i++)
+            {
+                for (int j = -d; j <= d; j++)
+                {
+                    if (i != -d && i != d && j != -d && j != d) continue; // Skip tiles inside the square
+                    int checkX = x + i;
+                    int checkY = y + j;
+                    if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
+                    if (grid[checkX, checkY].HasBuilding())
+                    {
+                        return grid[checkX, checkY].GetBuilding().GetComponent<BaseTower>();
+                    }
+                }
+            }
+        }
+        return null;
     }
 
 
