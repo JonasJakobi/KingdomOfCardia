@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// A tower that shoots homing projectiles at enemies. Projectiles will follow the enemy until it hits it and despawn on death.
 /// </summary>
-public class HomingProjectileTower : BaseTower
+public class ProjectileTower : BaseTower
 {
     [SerializeField]
     GameObject projectilePrefab;
@@ -20,6 +20,9 @@ public class HomingProjectileTower : BaseTower
     private int damage = 15;
     [SerializeField]
     private int projectileSpeed = 15;
+
+    [SerializeField]
+    private float projectileLifetime = 2f;
 
     private bool canAttack = true;
     [SerializeField]
@@ -50,7 +53,17 @@ public class HomingProjectileTower : BaseTower
     private void ShootAtCurrentTarget()
     {
         var m = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        m.GetComponent<HomingProjectile>().SetValues(currentTarget, projectileSpeed, damage);
+        if (m.GetComponent<HomingProjectile>() != null)
+        {
+            m.GetComponent<HomingProjectile>().SetValues(currentTarget, projectileSpeed, damage);
+        }
+        else if (m.GetComponent<CollidingProjectile>() != null)
+        {
+            var rot = Quaternion.LookRotation(Vector3.forward, currentTarget.transform.position - transform.position);
+            m.GetComponent<CollidingProjectile>().SetValues(projectileSpeed, damage, projectileLifetime, rot);
+        }
+
+
 
         StartCoroutine(AttackCooldown());
     }
