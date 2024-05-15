@@ -188,7 +188,7 @@ MonoBehaviour:
   baseColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0.5058824}
   hoverColor: {r: 1, g: 1, b: 1, a: 0.41960785}
   spriteRenderer: {fileID: 0}
-  isWalkable: 0
+  isWalkable: 1
   isBuildable: 0
   hasBuilding: 0
   enemies: []
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b0f053b0870bd418dd81a70d709438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCost: 5
+  baseCost: 2
   tile: {fileID: 7558562331473169665}
 --- !u!1 &6817642616695283981
 GameObject:

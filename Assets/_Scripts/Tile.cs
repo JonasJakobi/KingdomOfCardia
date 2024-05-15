@@ -4,6 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Tile of the grid. 
 /// Instantiated by the GridManager from the Tile prefab.
+/// Holds information about walkability and towers and enemies on it.
 /// </summary>
 public class Tile : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private bool isBuildable;
 
     [SerializeField] private bool hasBuilding;
+    [SerializeField] private GameObject building;
     [SerializeField]
     public List<Enemy> enemies = new List<Enemy>();
 
@@ -57,7 +59,6 @@ public class Tile : MonoBehaviour
 
     public void RegisterEnemy(Enemy enemy)
     {
-        Debug.Log("Registering enemy at tile" + this.name);
         enemies.Add(enemy);
     }
     public void UnregisterEnemy(Enemy enemy)
@@ -72,12 +73,32 @@ public class Tile : MonoBehaviour
     {
         return enemyMovementVector;
     }
-    public void SetHasBuilding(bool value)
+    public void SetHasBuilding(bool value, GameObject building)
     {
         hasBuilding = value;
+        if (value)
+        {
+            this.building = building;
+        }
+        else
+        {
+            this.building = null;
+        }
         FlowFieldGenerator.Instance.RequestFlowFieldRecalculation();
     }
+    public bool HasBuilding()
+    {
+        return hasBuilding;
 
+    }
+    /// <summary>
+    /// Get a reference to the building gameobject on this tile.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetBuilding()
+    {
+        return building;
+    }
 
 
 

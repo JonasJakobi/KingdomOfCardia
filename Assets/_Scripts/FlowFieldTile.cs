@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Attached to a tile of the grid. Holds information about the cost of the tile for the flow field.
+/// </summary>
 public class FlowFieldTile : MonoBehaviour
 {
     [SerializeField]

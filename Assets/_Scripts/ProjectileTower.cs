@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class HomingProjectileTurret : BaseTurret
+/// <summary>
+/// A tower that shoots homing projectiles at enemies. Projectiles will follow the enemy until it hits it and despawn on death.
+/// </summary>
+public class ProjectileTower : BaseTower
 {
     [SerializeField]
     GameObject projectilePrefab;
 
     Enemy currentTarget;
-    [Tooltip("The range in which the turret can detect enemies in grid squares")]
+    [Tooltip("The range in which the tower can detect enemies in grid squares")]
     public int range = 5;
     [Tooltip("The delay between attacks in seconds")]
     [SerializeField]
@@ -19,23 +21,29 @@ public class HomingProjectileTurret : BaseTurret
     [SerializeField]
     private int projectileSpeed = 15;
 
+    [SerializeField]
+    private float projectileLifetime = 2f;
+
     private bool canAttack = true;
+    [SerializeField]
+    private TargetingType targetingType;
 
     // Update is called once per frame
     void Update()
     {
-        if (currentTarget == null)
+        if (canAttack)
         {
             FindNewTarget();
-        }
-        else if (canAttack)
-        {
-            ShootAtCurrentTarget();
+            if (currentTarget != null)
+            {
+                ShootAtCurrentTarget();
+            }
         }
     }
+
     private void FindNewTarget()
     {
-        Enemy e = GridManager.Instance.FindClosestEnemy(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), range);
+        Enemy e = GridManager.Instance.FindEnemy(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), range, targetingType);
         if (e != null)
         {
             currentTarget = e;
@@ -45,7 +53,17 @@ public class HomingProjectileTurret : BaseTurret
     private void ShootAtCurrentTarget()
     {
         var m = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        m.GetComponent<HomingProjectile>().SetValues(currentTarget, projectileSpeed, damage);
+        if (m.GetComponent<HomingProjectile>() != null)
+        {
+            m.GetComponent<HomingProjectile>().SetValues(currentTarget, projectileSpeed, damage);
+        }
+        else if (m.GetComponent<CollidingProjectile>() != null)
+        {
+            var rot = Quaternion.LookRotation(Vector3.forward, currentTarget.transform.position - transform.position);
+            m.GetComponent<CollidingProjectile>().SetValues(projectileSpeed, damage, projectileLifetime, rot);
+        }
+
+
 
         StartCoroutine(AttackCooldown());
     }
