@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: 0.3
   health: 100
-  movementSpeed: 1.6
+  movementSpeed: 1
   attackCooldown: 1
   attackDamage: 10
   attackRange: 0.4

@@ -39,6 +39,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
         // Set the assigned cost of all tiles to 0
         foreach (FlowFieldTile tile in flowFieldTiles)
         {
+            SetTileVector(tile, Vector3.zero, toGoal);
             tile.SetAssignedCost(10000);
             if (!toGoal && tile.tile.HasBuilding())
             {
@@ -67,7 +68,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
                 {
                     neighbour.SetAssignedCost(newCost);
                     neighbour.transform.GetChild(0).GetComponent<TextMeshPro>().text = newCost.ToString();
-                    if (!openList.Contains(neighbour))
+                    if (!openList.Contains(neighbour) && !neighbour.tile.HasBuilding())
                     {
                         openList.Add(neighbour);
                     }
@@ -80,7 +81,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
     {
         foreach (FlowFieldTile tile in flowFieldTiles)
         {
-            List<FlowFieldTile> neighbours = GetWalkableNeighbours(tile, !toGoal);
+            List<FlowFieldTile> neighbours = GetWalkableNeighbours(tile, false);
             FlowFieldTile bestNeighbour = null;
             int bestCost = tile.GetAssignedCost();
             foreach (FlowFieldTile neighbour in neighbours)
@@ -102,6 +103,14 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
                 SetTileVector(tile, Vector3.zero, toGoal);
                 // If there is no best neighbour, the tile is the goal tile
                 tile.transform.GetChild(1).gameObject.SetActive(false);
+            }
+        }
+
+        foreach (FlowFieldTile tile in flowFieldTiles)
+        {
+            if (!tile.tile.IsWalkable())
+            {
+                SetTileVector(tile, Vector3.zero, toGoal);
             }
         }
     }

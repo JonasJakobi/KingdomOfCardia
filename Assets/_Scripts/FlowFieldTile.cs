@@ -8,6 +8,7 @@ public class FlowFieldTile : MonoBehaviour
 {
     [SerializeField]
     private int baseCost = 1;
+    [SerializeField]
     private int assignedCost = 1;
     public Tile tile;
     [SerializeField]

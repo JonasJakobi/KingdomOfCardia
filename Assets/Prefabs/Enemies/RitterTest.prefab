@@ -373,15 +373,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 0.3
-  health: 150
+  maxHealth: 150
   movementSpeed: 2
   attackCooldown: 1
   attackDamage: 15
   attackRange: 0.4
+  health: 150
   currentTile: {fileID: 0}
   attacking: 0
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
+  damageValueRatio: 1
 --- !u!50 &4372734587073941741
 Rigidbody2D:
   serializedVersion: 4

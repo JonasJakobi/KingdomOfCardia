@@ -15,8 +15,11 @@ public class Enemy : MonoBehaviour
 
 
 
-    public int health = 100;
+
     [Header("Stats")]
+    public int maxHealth = 100;
+
+
     public float movementSpeed = 1;
     [Tooltip("How many seconds between each attack")]
     public int attackCooldown = 1;
@@ -25,6 +28,7 @@ public class Enemy : MonoBehaviour
     [Tooltip("How far the enemy can attack from (1 = 1 tile)")]
     public float attackRange = 0.1f;
     [Header("Debugging Info")]
+    [SerializeField] private int health = 100;
     [SerializeField] Tile currentTile;
 
     [SerializeField] private bool attacking = false;
@@ -32,10 +36,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool canAttack = true;
     [SerializeField] private BaseTower currentlyTargetedBuilding;
 
+    [SerializeField] private float damageValueRatio = 1.0f;
+
     private Animator animator;
 
     private void Start()
     {
+        health = maxHealth;
         this.transform.localScale = new Vector3(scale, scale, scale);
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
@@ -133,10 +140,10 @@ public class Enemy : MonoBehaviour
         RoundManager damageEnemy = roundManagerObject.GetComponent<RoundManager>();
         health -= damage;
         if (health <= 0)
-
         {
             damageEnemy.DefeatEnemy();
             currentTile.UnregisterEnemy(this);
+            MoneyManager.Instance.AddMoney(GetValue());
             Destroy(gameObject);
         }
     }
@@ -166,7 +173,17 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
+    /// <summary>
+    /// Generate and return the value of the enemy.
+    /// </summary>
+    /// <returns>The value / amount of money we get from this enemy.</returns>
+    public int GetValue()
+    {
+        float value = maxHealth * (damageValueRatio * attackDamage / attackCooldown);
+        value = value / 1000;
+        return Mathf.RoundToInt(value);
 
+    }
 
 
 }

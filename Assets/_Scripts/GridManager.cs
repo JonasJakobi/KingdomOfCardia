@@ -230,9 +230,9 @@ public class GridManager : Singleton<GridManager>
                     {
                         foreach (var enemy in grid[checkX, checkY].enemies)
                         {
-                            if (enemy.health > highestHealth)
+                            if (enemy.maxHealth > highestHealth)
                             {
-                                highestHealth = enemy.health;
+                                highestHealth = enemy.maxHealth;
                                 strongestEnemy = enemy;
                             }
                         }
