@@ -26,14 +26,20 @@ public class Enemy : MonoBehaviour
     public float attackRange = 0.1f;
     [Header("Debugging Info")]
     [SerializeField] Tile currentTile;
+
+    [SerializeField] private bool attacking = false;
+
     [SerializeField] private bool canAttack = true;
     [SerializeField] private BaseTower currentlyTargetedBuilding;
+
+    private Animator animator;
 
     private void Start()
     {
         this.transform.localScale = new Vector3(scale, scale, scale);
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
+        animator = GetComponent<Animator>();
 
     }
     private void Update()
@@ -44,14 +50,22 @@ public class Enemy : MonoBehaviour
             currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         }
         //Check if we Attack or Move.
-        var vector = currentTile.GetEnemyMovementVector();
-        if (vector == Vector3.zero) // No movement vector, so we are at the end of the path
+        var nexusVector = currentTile.flowFieldTile.GetNexusMovementVector();
+        var buildingVector = currentTile.flowFieldTile.GetTowerMovementVector();
+
+        if (nexusVector != Vector3.zero)//move towards nexus if possible
         {
-            MoveToOrAttackBuilding();
+            animator.SetBool("Attack", false);
+            MoveInDirection(nexusVector, movementSpeed);
+        }
+        else if (buildingVector != Vector3.zero)//move towards building if possible
+        {
+            animator.SetBool("Attack", false);
+            MoveInDirection(buildingVector, movementSpeed);
         }
         else
         {
-            MoveInDirection(currentTile.GetEnemyMovementVector(), movementSpeed);
+            MoveToOrAttackBuilding();
         }
 
 
@@ -75,11 +89,18 @@ public class Enemy : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, currentlyTargetedBuilding.transform.position) > attackRange)
             {
+                animator.SetBool("Attack", false);
                 MoveInDirection((currentlyTargetedBuilding.transform.position - transform.position).normalized, movementSpeed);
             }
-            else if (canAttack)
+            else
             {
-                Attack();
+                animator.SetBool("Attack", true);
+
+                if (canAttack)
+                {
+                    Attack();
+                }
+
             }
         }
     }
@@ -125,6 +146,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     protected virtual void Attack()
     {
+
 
         var building = currentTile.GetBuilding();
         if (building != null)

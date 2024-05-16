@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 /// <summary>
 /// A projectile that deals damage to enemies it collides with.
 /// </summary>
-public class CollidingProjectile : MonoBehaviour
+public class CollidingProjectile : MonoBehaviour, IProjectile
 {
     [SerializeField] private bool destroysOnImpact = true;
     public float movementSpeed = 5f;
@@ -50,5 +51,14 @@ public class CollidingProjectile : MonoBehaviour
             }
 
         }
+    }
+
+    public void SetValues(Enemy e, float speed, int damage, float lifetime, Quaternion rot)
+    {
+        movementSpeed = speed;
+        this.damage = damage;
+        this.lifetime = lifetime;
+        transform.rotation = rot;
+        StartCoroutine(DestroyAfterLifetime());
     }
 }

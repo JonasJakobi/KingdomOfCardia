@@ -237,6 +237,8 @@ GameObject:
   - component: {fileID: 2361596854586415411}
   - component: {fileID: 3780873946315514548}
   - component: {fileID: -7943478384116470799}
+  - component: {fileID: 2838586833150603475}
+  - component: {fileID: 4514918452723142463}
   m_Layer: 0
   m_Name: TrollTest
   m_TagString: Untagged
@@ -377,12 +379,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e202bc337416abc49aba124ef1028776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
-  attackSpeed: 2
-  movementSpeed: 0.65
-  attackDamage: 30
   scale: 0.35
+  health: 250
+  movementSpeed: 0.65
+  attackCooldown: 1
+  attackDamage: 30
+  attackRange: 0.6
   currentTile: {fileID: 0}
+  attacking: 0
+  canAttack: 1
+  currentlyTargetedBuilding: {fileID: 0}
+--- !u!61 &2838586833150603475
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4665688116233777606}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12653708, y: 2.0831645}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.26572832, y: 0.16395108}
+    oldSize: {x: 4.87, y: 5.51}
+    newSize: {x: 4.87, y: 5.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.1675487, y: 5.222911}
+  m_EdgeRadius: 0
+--- !u!50 &4514918452723142463
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4665688116233777606}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6307383370072014523
 GameObject:
   m_ObjectHideFlags: 0

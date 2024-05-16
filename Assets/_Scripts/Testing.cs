@@ -18,4 +18,10 @@ public class Testing : MonoBehaviour
             Instantiate(testEnemy, randomPos, Quaternion.identity);
         }
     }
+
+    [ProButton]
+    public void SetTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
+    }
 }

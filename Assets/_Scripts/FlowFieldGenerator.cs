@@ -17,29 +17,36 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
         {
             flowFieldTiles.Add(tile);
         }
-        GenerateFlowField();
+        GenerateFlowField(false);
+        GenerateFlowField(true);
+
 
     }
 
 
-    private void GenerateFlowField()
+    private void GenerateFlowField(bool toGoal = true)
     {
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.General))
         {
             Debug.Log("Regenerating Flow Field...");
         }
         goalTile = GridManager.Instance.GetTileAtPosition(GameObject.FindGameObjectWithTag("Goal").transform.position).GetComponent<FlowFieldTile>();
+        List<FlowFieldTile> openList = new List<FlowFieldTile>();
+        List<FlowFieldTile> closedList = new List<FlowFieldTile>();
+
+
 
         // Set the assigned cost of all tiles to 0
         foreach (FlowFieldTile tile in flowFieldTiles)
         {
             tile.SetAssignedCost(10000);
+            if (!toGoal && tile.tile.HasBuilding())
+            {
+                tile.SetAssignedCost(0);
+                openList.Add(tile);
+            }
         }
         goalTile.SetAssignedCost(0);
-
-        List<FlowFieldTile> openList = new List<FlowFieldTile>();
-        List<FlowFieldTile> closedList = new List<FlowFieldTile>();
-
         openList.Add(goalTile);
 
         while (openList.Count > 0)
@@ -48,7 +55,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
             openList.Remove(currentTile);
             closedList.Add(currentTile);
 
-            List<FlowFieldTile> neighbours = GetWalkableNeighbours(currentTile);
+            List<FlowFieldTile> neighbours = GetWalkableNeighbours(currentTile, !toGoal);
             foreach (FlowFieldTile neighbour in neighbours)
             {
                 if (closedList.Contains(neighbour))
@@ -67,13 +74,13 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
                 }
             }
         }
-        GenerateMovementVectors();
+        GenerateMovementVectors(toGoal);
     }
-    private void GenerateMovementVectors()
+    private void GenerateMovementVectors(bool toGoal = true)
     {
         foreach (FlowFieldTile tile in flowFieldTiles)
         {
-            List<FlowFieldTile> neighbours = GetWalkableNeighbours(tile);
+            List<FlowFieldTile> neighbours = GetWalkableNeighbours(tile, !toGoal);
             FlowFieldTile bestNeighbour = null;
             int bestCost = tile.GetAssignedCost();
             foreach (FlowFieldTile neighbour in neighbours)
@@ -88,19 +95,29 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
             {
                 Vector3 direction = bestNeighbour.transform.position - tile.transform.position;
                 direction = direction.normalized;
-                tile.tile.SetEnemyMovementVector(direction);
-                tile.transform.GetChild(1).transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+                SetTileVector(tile, direction, toGoal);
             }
             else
             {
-                try { Destroy(tile.transform.GetChild(1).gameObject); } catch { }
-
+                SetTileVector(tile, Vector3.zero, toGoal);
+                // If there is no best neighbour, the tile is the goal tile
+                tile.transform.GetChild(1).gameObject.SetActive(false);
             }
         }
     }
 
-
-    private List<FlowFieldTile> GetWalkableNeighbours(FlowFieldTile tile)
+    private void SetTileVector(FlowFieldTile tile, Vector3 vector, bool toGoal)
+    {
+        if (toGoal)
+        {
+            tile.SetNexusMovementVector(vector);
+        }
+        else
+        {
+            tile.SetTowerMovementVector(vector);
+        }
+    }
+    private List<FlowFieldTile> GetWalkableNeighbours(FlowFieldTile tile, bool ignoreBuilding = false)
     {
         if (tile == null)
         {
@@ -109,14 +126,16 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
         }
         //Return the FlowField Component of all walkable neighbours
         return GridManager.Instance.GetNeighbours(tile.tile)
-            .Where(t => t.IsWalkable())
+            .Where(t => t.IsWalkable(ignoreBuilding))
             .Select(t => t.GetComponent<FlowFieldTile>())
             .ToList();
     }
 
     public void RequestFlowFieldRecalculation()
     {
-        GenerateFlowField();
+        GenerateFlowField(false);
+        GenerateFlowField(true);
+
     }
 
 

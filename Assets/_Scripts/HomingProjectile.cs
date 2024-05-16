@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Homing missile that follows its enemy target and deals damage to it once it reaches it.
 /// </summary>
-public class HomingProjectile : MonoBehaviour
+public class HomingProjectile : MonoBehaviour, IProjectile
 {
     Enemy target;
 
@@ -32,11 +32,12 @@ public class HomingProjectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SetValues(Enemy e, float speed, int damage)
+    public void SetValues(Enemy e, float speed, int damage, float lifetime, Quaternion rot)
     {
         target = e;
         movementSpeed = speed;
         this.damage = damage;
+        transform.rotation = rot;
     }
 
 }

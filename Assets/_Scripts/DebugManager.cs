@@ -4,11 +4,14 @@ using System.Linq;
 using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
 using UnityEditor.UIElements;
+using System.Runtime.InteropServices;
 /// <summary>
 /// Enable or disable debugging UI elements. And Control the modes for printing debug messages.
 /// </summary>
 public class DebugManager : Singleton<DebugManager>
 {
+    [Header("References")]
+    [SerializeField] GameObject arrowPrefab;
 
     HashSet<GameObject> debugObjects;
 
@@ -28,7 +31,11 @@ public class DebugManager : Singleton<DebugManager>
     [SerializeField]
     private DebugModes activeConsoleDebugModes = DebugModes.None;
 
+    private bool showingNexusArrows = false;
+    private bool showingTowerArrows = false;
 
+
+    List<GameObject> allArrows = new List<GameObject>();
     private void Start()
     {
 
@@ -55,4 +62,59 @@ public class DebugManager : Singleton<DebugManager>
     {
         return (activeConsoleDebugModes & mode) != 0;
     }
+
+    [ProButton]
+    public void ShowNexusArrows()
+    {
+        if (showingTowerArrows)
+        {
+            showingTowerArrows = false;
+            allArrows.ForEach(Destroy);
+
+        }
+        if (showingNexusArrows)
+        {
+            showingNexusArrows = false;
+            allArrows.ForEach(Destroy);
+            return;
+        }
+        var allTiles = FindObjectsOfType<FlowFieldTile>();
+        foreach (FlowFieldTile tile in allTiles)
+        {
+            if (tile.GetNexusMovementVector() != Vector3.zero)
+            {
+                GameObject arrow = Instantiate(arrowPrefab, tile.transform.position, Quaternion.identity);
+                allArrows.Add(arrow);
+                arrow.transform.up = tile.GetNexusMovementVector();
+            }
+        }
+        showingNexusArrows = true;
+    }
+    [ProButton]
+    public void ShowTowerArrows()
+    {
+        if (showingNexusArrows)
+        {
+            showingNexusArrows = false;
+            allArrows.ForEach(Destroy);
+        }
+        if (showingTowerArrows)
+        {
+            showingTowerArrows = false;
+            allArrows.ForEach(Destroy);
+            return;
+        }
+        var allTiles = FindObjectsOfType<FlowFieldTile>();
+        foreach (FlowFieldTile tile in allTiles)
+        {
+            if (tile.GetTowerMovementVector() != Vector3.zero)
+            {
+                GameObject arrow = Instantiate(arrowPrefab, tile.transform.position, Quaternion.identity);
+                allArrows.Add(arrow);
+                arrow.transform.up = tile.GetTowerMovementVector().normalized;
+            }
+        }
+        showingTowerArrows = true;
+    }
+
 }

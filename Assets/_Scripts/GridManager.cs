@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 public class GridManager : Singleton<GridManager>
 
 {
+    public float mountainChance = 0.12f;
     [SerializeField] private int startX, startY;
     public const int WIDTH = 16;
     public const int HEIGHT = 9;
@@ -37,7 +38,7 @@ public class GridManager : Singleton<GridManager>
             for (int y = 0; y < HEIGHT; y++)
             {
                 //Small chance for mountain, otherwise normal tile
-                if (Random.Range(0, 100) < 20)
+                if (Random.Range(0, 100) < mountainChance * 100)
                 {
                     grid[x, y] = Instantiate(mountainTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                     grid[x, y].name = $"Tile {x} {y}";
@@ -244,9 +245,12 @@ public class GridManager : Singleton<GridManager>
 
     public BaseTower FindNearestBuilding(int x, int y)
     {
-        int maxDistance = 2; // Should be enough to cover all towers as this shouldnt ever be >1, as enemies only search when they are on a tile next to a tower
+        List<BaseTower> towers = new List<BaseTower>();
+        int maxDistance = 12; // Should be enough to cover all towers as this shouldnt ever be >1, as enemies only search when they are on a tile next to a tower
         for (int d = 0; d < maxDistance; d++)
         {
+            towers.Clear();
+            // Loop through a square around the enemy (x,y)
             for (int i = -d; i <= d; i++)
             {
                 for (int j = -d; j <= d; j++)
@@ -254,15 +258,42 @@ public class GridManager : Singleton<GridManager>
                     if (i != -d && i != d && j != -d && j != d) continue; // Skip tiles inside the square
                     int checkX = x + i;
                     int checkY = y + j;
-                    if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
-                    if (grid[checkX, checkY].HasBuilding())
+                    if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles   
+                    else if (grid[checkX, checkY].HasBuilding())
                     {
-                        return grid[checkX, checkY].GetBuilding().GetComponent<BaseTower>();
+                        towers.Add(grid[checkX, checkY].GetBuilding().GetComponent<BaseTower>());
                     }
                 }
             }
+            if (towers.Count == 0)
+            {
+                continue;
+            }
+            // If we found any towers, return the closest one, prefer Nexus if its in the list
+            var nexus = Nexus.Instance.GetComponent<BaseTower>();
+            if (towers.Contains(nexus))
+            {
+                return nexus;
+            }
+            else
+            {
+                return towers.OrderBy(t => Vector3.Distance(t.transform.position, new Vector3(x, y, 0))).First();
+            }
         }
         return null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Draw a grid
+        Gizmos.color = Color.black;
+        for (int x = 0; x < WIDTH; x++)
+        {
+            for (int y = 0; y < HEIGHT; y++)
+            {
+                Gizmos.DrawWireCube(new Vector3(x + startX, y + startY, 0), Vector3.one);
+            }
+        }
     }
 
 

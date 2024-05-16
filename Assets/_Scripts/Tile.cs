@@ -25,21 +25,20 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject building;
     [SerializeField]
     public List<Enemy> enemies = new List<Enemy>();
+    public FlowFieldTile flowFieldTile;
 
 
-    [SerializeField]
-    private Vector3 enemyMovementVector;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = baseColor;
-
+        flowFieldTile = GetComponent<FlowFieldTile>();
     }
 
 
-    public bool IsWalkable()
+    public bool IsWalkable(bool ignoreBuilding = false)
     {
-        if (isBuildable && hasBuilding)
+        if (isBuildable && hasBuilding && !ignoreBuilding)
         {
             return false;
         }
@@ -65,14 +64,7 @@ public class Tile : MonoBehaviour
     {
         enemies.Remove(enemy);
     }
-    public void SetEnemyMovementVector(Vector3 vector)
-    {
-        enemyMovementVector = vector;
-    }
-    public Vector3 GetEnemyMovementVector()
-    {
-        return enemyMovementVector;
-    }
+
     public void SetHasBuilding(bool value, GameObject building)
     {
         hasBuilding = value;

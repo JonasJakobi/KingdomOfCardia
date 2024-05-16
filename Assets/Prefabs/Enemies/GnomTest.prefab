@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 5636165677224601072}
   - component: {fileID: 7589685628127430653}
   - component: {fileID: 3819670122638176236}
+  - component: {fileID: -7548727902778042931}
+  - component: {fileID: 1125625371500697595}
   m_Layer: 0
   m_Name: GnomTest
   m_TagString: Untagged
@@ -177,12 +179,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e202bc337416abc49aba124ef1028776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  attackSpeed: 1
-  movementSpeed: 1.6
-  attackDamage: 10
   scale: 0.3
+  health: 100
+  movementSpeed: 1.6
+  attackCooldown: 1
+  attackDamage: 10
+  attackRange: 0.4
   currentTile: {fileID: 0}
+  attacking: 0
+  canAttack: 1
+  currentlyTargetedBuilding: {fileID: 0}
+--- !u!61 &-7548727902778042931
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142602162031666653}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04929948, y: 0.96184206}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.22080062, y: 0.16621406}
+    oldSize: {x: 4.31, y: 2.72}
+    newSize: {x: 4.31, y: 2.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8077018, y: 2.6121116}
+  m_EdgeRadius: 0
+--- !u!50 &1125625371500697595
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142602162031666653}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2188227958430368930
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,13 +9,14 @@ public class ProjectileTower : BaseTower
 {
     [SerializeField]
     GameObject projectilePrefab;
-
+    [SerializeField]
+    GameObject projectileSpawnPoint;
     Enemy currentTarget;
     [Tooltip("The range in which the tower can detect enemies in grid squares")]
     public int range = 5;
     [Tooltip("The delay between attacks in seconds")]
     [SerializeField]
-    private float attackDelay = 0.2f;
+    private float attackSpeed = 0.2f;
     [SerializeField]
     private int damage = 15;
     [SerializeField]
@@ -23,6 +24,8 @@ public class ProjectileTower : BaseTower
 
     [SerializeField]
     private float projectileLifetime = 2f;
+
+    [SerializeField] private float attackDelayTimer = 0;
 
     private bool canAttack = true;
     [SerializeField]
@@ -52,20 +55,32 @@ public class ProjectileTower : BaseTower
 
     private void ShootAtCurrentTarget()
     {
-        var m = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        if (m.GetComponent<HomingProjectile>() != null)
-        {
-            m.GetComponent<HomingProjectile>().SetValues(currentTarget, projectileSpeed, damage);
-        }
-        else if (m.GetComponent<CollidingProjectile>() != null)
-        {
-            var rot = Quaternion.LookRotation(Vector3.forward, currentTarget.transform.position - transform.position);
-            m.GetComponent<CollidingProjectile>().SetValues(projectileSpeed, damage, projectileLifetime, rot);
-        }
-
-
-
+        GetComponent<Animator>().SetTrigger("Attack");
+        StartCoroutine(WaitAndSpawnProjectile());
         StartCoroutine(AttackCooldown());
+    }
+
+    /// <summary>
+    /// Waits for small delay to match animation, then spawns a projectile at the current target.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator WaitAndSpawnProjectile()
+    {
+        var pos = projectileSpawnPoint.transform.position;
+        //Wait first, then spawn
+        yield return new WaitForSeconds(attackDelayTimer);
+        //If the target is null, find a new one, if that fails, return
+        if (currentTarget == null)
+        {
+            FindNewTarget();
+            if (currentTarget == null)
+            {
+                yield break;
+            }
+        }
+        var m = Instantiate(projectilePrefab, pos, Quaternion.identity);
+        var rot = Quaternion.LookRotation(Vector3.forward, currentTarget.transform.position - projectileSpawnPoint.transform.position);
+        m.GetComponent<IProjectile>().SetValues(currentTarget, projectileSpeed, damage, projectileLifetime, rot);
     }
 
     private void OnDrawGizmos()
@@ -77,7 +92,7 @@ public class ProjectileTower : BaseTower
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(attackSpeed);
         canAttack = true;
     }
 

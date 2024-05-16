@@ -46,3 +46,6 @@ TagManager:
   - name: Units & Towers
     uniqueID: 3471295727
     locked: 0
+  - name: vfx
+    uniqueID: 3016366947
+    locked: 0

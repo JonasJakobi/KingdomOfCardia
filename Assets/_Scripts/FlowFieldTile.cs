@@ -10,6 +10,10 @@ public class FlowFieldTile : MonoBehaviour
     private int baseCost = 1;
     private int assignedCost = 1;
     public Tile tile;
+    [SerializeField]
+    private Vector3 towerMovementVector;
+    [SerializeField]
+    private Vector3 nexusMovementVector;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,24 @@ public class FlowFieldTile : MonoBehaviour
     {
         return assignedCost;
     }
+
+    public void SetNexusMovementVector(Vector3 vector)
+    {
+        nexusMovementVector = vector;
+    }
+    public Vector3 GetNexusMovementVector()
+    {
+        return nexusMovementVector;
+    }
+    public void SetTowerMovementVector(Vector3 vector)
+    {
+        towerMovementVector = vector;
+    }
+    public Vector3 GetTowerMovementVector()
+    {
+        return towerMovementVector;
+    }
+
 
 
 }
