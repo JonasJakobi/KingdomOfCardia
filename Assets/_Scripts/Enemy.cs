@@ -63,12 +63,12 @@ public class Enemy : MonoBehaviour
         if (nexusVector != Vector3.zero)//move towards nexus if possible
         {
             animator.SetBool("Attack", false);
-            MoveInDirection(nexusVector, movementSpeed);
+            MoveInDirection((nexusVector - transform.position).normalized, movementSpeed);
         }
         else if (buildingVector != Vector3.zero)//move towards building if possible
         {
             animator.SetBool("Attack", false);
-            MoveInDirection(buildingVector, movementSpeed);
+            MoveInDirection((buildingVector - transform.position).normalized, movementSpeed);
         }
         else
         {

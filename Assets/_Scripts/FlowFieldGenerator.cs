@@ -94,8 +94,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
             }
             if (bestNeighbour != null)
             {
-                Vector3 direction = bestNeighbour.transform.position - tile.transform.position;
-                direction = direction.normalized;
+                Vector3 direction = bestNeighbour.transform.position;
                 SetTileVector(tile, direction, toGoal);
             }
             else

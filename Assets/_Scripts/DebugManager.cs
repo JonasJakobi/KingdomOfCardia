@@ -85,7 +85,7 @@ public class DebugManager : Singleton<DebugManager>
             {
                 GameObject arrow = Instantiate(arrowPrefab, tile.transform.position, Quaternion.identity);
                 allArrows.Add(arrow);
-                arrow.transform.up = tile.GetNexusMovementVector();
+                arrow.transform.up = (tile.GetNexusMovementVector() - tile.transform.position).normalized;
             }
         }
         showingNexusArrows = true;
@@ -111,7 +111,7 @@ public class DebugManager : Singleton<DebugManager>
             {
                 GameObject arrow = Instantiate(arrowPrefab, tile.transform.position, Quaternion.identity);
                 allArrows.Add(arrow);
-                arrow.transform.up = tile.GetTowerMovementVector().normalized;
+                arrow.transform.up = (tile.GetTowerMovementVector() - tile.transform.position).normalized;
             }
         }
         showingTowerArrows = true;
