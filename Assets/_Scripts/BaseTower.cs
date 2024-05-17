@@ -16,10 +16,10 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected float attackSpeed = 0.2f;
     [SerializeField] protected int damage = 15;
 
-    [SerializeField]private int currentLevel = 0;
+    [SerializeField] private int currentLevel = 0;
 
-    [SerializeField]private TowerUpgrade currentUpgrade;
-    [SerializeField]private TowerUpgradePath upgradePath;
+    [SerializeField] private TowerUpgrade currentUpgrade;
+    [SerializeField] private TowerUpgradePath upgradePath;
 
     [SerializeField] private bool isNexus = false;
     // Start is called before the first frame update
@@ -68,7 +68,11 @@ public class BaseTower : MonoBehaviour
         damage = currentUpgrade.damage;
         range = currentUpgrade.range;
         attackSpeed = currentUpgrade.attackSpeed;
-
+        //Change the sprite if there is a new one.
+        if (currentUpgrade.upgradeSprite != null)
+        {
+            GetComponent<SpriteRenderer>().sprite = currentUpgrade.upgradeSprite;
+        }
 
     }
     /// <summary>
@@ -86,6 +90,11 @@ public class BaseTower : MonoBehaviour
             return -1; //Return -1 if we are at max level, so we can check for it
         }
     }
+    /// <summary>
+    /// Upgrades the tower to the next level in the upgrade path. If the tower is already at max level, logs an error.
+    /// Applies the upgrade to the tower.
+    /// Doesnt check for cost, so make sure to check that before calling this function, as well as reducing money.
+    /// </summary>
     public void Upgrade()
     {
         if (currentLevel + 1 < upgradePath.upgrades.Length)
@@ -95,7 +104,7 @@ public class BaseTower : MonoBehaviour
         }
         else
         {
-           //error log
+            //error log
             Debug.LogError("Tried to upgrade tower " + this.gameObject.name + " but it is already at max level (level " + currentLevel + ")");
         }
     }
