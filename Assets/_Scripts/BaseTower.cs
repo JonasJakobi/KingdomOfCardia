@@ -7,28 +7,24 @@ using UnityEngine;
 /// </summary>
 public class BaseTower : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
     [SerializeField] private int health = 100;
-
-    [Tooltip("The range in which the tower can detect enemies in grid squares")]
-    protected int range = 5;
-    [Tooltip("The delay between attacks in seconds")]
-    [SerializeField] protected float attackSpeed = 0.2f;
-    [SerializeField] protected int damage = 15;
-
     [SerializeField] private int currentLevel = 0;
 
-    [SerializeField] private TowerUpgrade currentUpgrade;
+    [SerializeField] protected TowerUpgrade currentUpgrade;
     [SerializeField] private TowerUpgradePath upgradePath;
 
     [SerializeField] private bool isNexus = false;
     // Start is called before the first frame update
     private void Start()
     {
-        health = maxHealth;
+        currentUpgrade = upgradePath.upgrades[currentLevel];
+        ApplyUpgrade();
+
+        health = currentUpgrade.health;
+
         var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
         tileHere.SetHasBuilding(true, this.gameObject);
-        ApplyUpgrade();
+
     }
 
     private void OnDestroy()
@@ -45,7 +41,7 @@ public class BaseTower : MonoBehaviour
         health -= damage;
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Towers))
         {
-            Debug.Log("Tower " + this.gameObject.name + ": " + health + "/" + maxHealth + " health left.");
+            Debug.Log("Tower " + this.gameObject.name + ": " + health + "/" + currentUpgrade.health + " health left.");
         }
         if (health <= 0)
         {
@@ -58,20 +54,23 @@ public class BaseTower : MonoBehaviour
     {
         return isNexus;
     }
-
+    /// <summary>
+    /// Applies the current upgrade to the tower. Changes the sprite if there is a new one.
+    /// </summary>
     private void ApplyUpgrade()
     {
+        var maxHealthBefore = currentUpgrade.health;
         currentUpgrade = upgradePath.upgrades[currentLevel];
-        var maxHealthDiff = currentUpgrade.health - maxHealth;
-        maxHealth = currentUpgrade.health;
+        var maxHealthDiff = currentUpgrade.health - maxHealthBefore;
         health += maxHealthDiff; //Only 'heal' our tower by the amount of health we gained
-        damage = currentUpgrade.damage;
-        range = currentUpgrade.range;
-        attackSpeed = currentUpgrade.attackSpeed;
         //Change the sprite if there is a new one.
         if (currentUpgrade.upgradeSprite != null)
         {
             GetComponent<SpriteRenderer>().sprite = currentUpgrade.upgradeSprite;
+        }
+        if (GetComponentInChildren<TowerStars>() != null)
+        {
+            GetComponentInChildren<TowerStars>().SetStars(currentUpgrade.starLevel, currentUpgrade.starColor);
         }
 
     }

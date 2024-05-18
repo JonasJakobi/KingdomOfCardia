@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f0a1edf4fa10844aefe4f5ba9187c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redLightningAnimation: {fileID: 9100000, guid: 12d3ebcde221051468789c787828769f, type: 2}
   delay: 0.08
   verticalDisplacement: 0.8
   movementSpeed: 5

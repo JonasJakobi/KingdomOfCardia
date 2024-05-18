@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05824dd6e3d81648a76f6aa29f318dc, type: 3}
+  m_Name: Nexus Upgrade Path
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 11400000, guid: a8ccead87f8c980448aacf8b893aca7b, type: 2}
+  - {fileID: 11400000, guid: eec78bd05e614514eaf38065d5563950, type: 2}
+  - {fileID: 11400000, guid: d6ec9539c4cb7a340ae817d364ccc840, type: 2}
+  - {fileID: 11400000, guid: 756ebd25149e4cd4584307bccb63066e, type: 2}
+  - {fileID: 11400000, guid: e2c6836bb5028ae4f8d2a815bfaf345b, type: 2}
+  - {fileID: 11400000, guid: ec053250f5e519d4e99508806b1a79b7, type: 2}
+  - {fileID: 11400000, guid: 9f20ff69d6ef09f4c9b0c1737c76b7ee, type: 2}
+  - {fileID: 11400000, guid: 96979face0bc667459c8b45e5f6b90f9, type: 2}
+  - {fileID: 11400000, guid: 6d162488a688c0141b95be85f8d6204c, type: 2}
+  - {fileID: 11400000, guid: 151dc0c50d143494d87135fed9a86f0a, type: 2}
+  - {fileID: 11400000, guid: bc9d9ad10a580a341831ea63485d50bd, type: 2}
+  - {fileID: 11400000, guid: 6dbe038ce3219a143bb0a05897722421, type: 2}

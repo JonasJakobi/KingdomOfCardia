@@ -12,18 +12,6 @@ public class ProjectileTower : BaseTower
     [SerializeField]
     GameObject projectileSpawnPoint;
     Enemy currentTarget;
-    [Tooltip("The range in which the tower can detect enemies in grid squares")]
-    public int range = 5;
-    [Tooltip("The delay between attacks in seconds")]
-    [SerializeField]
-    private float attackSpeed = 0.2f;
-    [SerializeField]
-    private int damage = 15;
-    [SerializeField]
-    private int projectileSpeed = 15;
-
-    [SerializeField]
-    private float projectileLifetime = 2f;
 
     [SerializeField] private float attackDelayTimer = 0;
 
@@ -46,7 +34,7 @@ public class ProjectileTower : BaseTower
 
     private void FindNewTarget()
     {
-        Enemy e = GridManager.Instance.FindEnemy(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), range, targetingType);
+        Enemy e = GridManager.Instance.FindEnemy(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), currentUpgrade.range, targetingType);
         if (e != null)
         {
             currentTarget = e;
@@ -80,19 +68,19 @@ public class ProjectileTower : BaseTower
         }
         var m = Instantiate(projectilePrefab, pos, Quaternion.identity);
         var rot = Quaternion.LookRotation(Vector3.forward, currentTarget.transform.position - projectileSpawnPoint.transform.position);
-        m.GetComponent<IProjectile>().SetValues(currentTarget, projectileSpeed, damage, projectileLifetime, rot);
+        m.GetComponent<IProjectile>().SetValues(currentTarget, rot, currentUpgrade);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector3(range, range, 0));
+        Gizmos.DrawWireCube(transform.position, new Vector3(currentUpgrade.range, currentUpgrade.range, 0));
     }
 
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
-        yield return new WaitForSeconds(attackSpeed);
+        yield return new WaitForSeconds(currentUpgrade.attackSpeed);
         canAttack = true;
     }
 
