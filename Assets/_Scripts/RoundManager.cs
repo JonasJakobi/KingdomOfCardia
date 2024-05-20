@@ -24,6 +24,7 @@ public class RoundManager : MonoBehaviour
 
     [Header("Waves")]
     public int waveStart = 5;
+    public int WaveDelay = 3;
     public float waveChance = 25.0f;
     [SerializeField] private bool waveQueued = false;
     [SerializeField] bool activeWave = false;
@@ -57,16 +58,27 @@ public class RoundManager : MonoBehaviour
             roundValueLeft = roundValueLeft - randVal;
         }
 
-        if ((enemyCount <= 0) && (roundValueLeft <= 0) && (activeWave == false) && (waveQueued == true))
+        if (enemyCount <= 0)
         {
-            Debug.Log("Welle geht gleich los!");
-            StartCoroutine(WaveDelayCoroutine());
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemies.Length != 0)
+            {
+                enemyCount = enemies.Length;
+            }
+
+            else if ((enemies.Length == 0) && (roundValueLeft <= 0) && (activeWave == false) && (waveQueued == true))
+            {
+                Debug.Log("Welle geht gleich los!");
+                StartCoroutine(WaveDelayCoroutine());
+            }
+
+            else if ((enemies.Length == 0) && (roundValueLeft <= 0) && (waveQueued == false))
+            {
+                NextRound();
+            }
         }
 
-        if ((enemyCount <= 0) && (roundValueLeft <= 0) && (waveQueued == false))
-        {
-            NextRound();
-        }
+
     }
 
     //Spawn an enemy
@@ -147,7 +159,7 @@ public class RoundManager : MonoBehaviour
     private IEnumerator WaveDelayCoroutine()
     {
         activeWave = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(WaveDelay);
         Debug.Log("Welle geht los!");
         enemyCount = 0;
         roundValueLeft = waveValue;

@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 8380546619323583141}
   - component: {fileID: 2799087173457575737}
   - component: {fileID: 2624215919919892339}
-  - component: {fileID: 10719639897697726}
-  - component: {fileID: 1976701189882797546}
-  - component: {fileID: 1487295857133229397}
+  - component: {fileID: -4683291291181032115}
+  - component: {fileID: 397722838265358562}
+  - component: {fileID: 2294611649126442287}
   m_Layer: 0
-  m_Name: GeierTest
-  m_TagString: Untagged
+  m_Name: GeierTestNew
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1461204693173145070}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.745452, y: -2.3977761, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -138,7 +138,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &10719639897697726
+--- !u!114 &-4683291291181032115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,17 +150,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e202bc337416abc49aba124ef1028776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 0.3
-  health: 150
-  movementSpeed: 1.9
+  scale: 0
+  maxHealth: 150
+  movementSpeed: 2
   attackCooldown: 1
   attackDamage: 15
-  attackRange: 0.1
+  attackRange: 0.4
+  health: 150
   currentTile: {fileID: 0}
   attacking: 0
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
---- !u!61 &1976701189882797546
+  damageValueRatio: 1
+--- !u!61 &397722838265358562
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +194,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0069162846, y: 0.77270544}
+  m_Offset: {x: -0.057184696, y: 0.6739646}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5197189, y: 0.31330618}
@@ -203,9 +205,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5835423, y: 2.1908429}
+  m_Size: {x: 2.9, y: 3.61}
   m_EdgeRadius: 0
---- !u!50 &1487295857133229397
+--- !u!50 &2294611649126442287
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

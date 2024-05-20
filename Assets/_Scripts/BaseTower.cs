@@ -65,7 +65,7 @@ public class BaseTower : MonoBehaviour
         var maxHealthDiff = currentUpgrade.health - maxHealth;
         maxHealth = currentUpgrade.health;
         health += maxHealthDiff; //Only 'heal' our tower by the amount of health we gained
-        damage = currentUpgrade.damage;
+        damage = (int)currentUpgrade.damage;
         range = currentUpgrade.range;
         attackSpeed = currentUpgrade.attackSpeed;
 
