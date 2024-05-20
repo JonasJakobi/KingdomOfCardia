@@ -2,18 +2,78 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CardEffect : ScriptableObject
+public enum DamageType
 {
-    public abstract void ApplyEffect(Enemy enemy);
+    Air,
+    Blunt,
+    Earth,
+    Electricity,
+    Fire,
+    Holy,
+    Ice,
+    Light,
+    Water,
+    Necrotic,
+    Piercing
 }
 
-[CreateAssetMenu(fileName = "DamageEffect", menuName = "CardEffect/Damage")]
-public class DamageEffect : CardEffect
+[CreateAssetMenu(fileName = "New CardEffect", menuName = "CardEffect/General")]
+public class CardEffect : ScriptableObject
 {
-    public int damageAmount;
+    public DamageType damageType;
+    public int multiplier = 1;
 
-    public override void ApplyEffect(Enemy enemy)
+    public void DealDamage(int damage)
     {
-        enemy.TakeDamage(damageAmount);
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.TakeDamage(damage * multiplier); // cardData.damageAmount sollte den Schaden der Karte enthalten
+            Debug.Log("Effekt und so");
+        }
+    }
+
+    public void HealBaseTowers(int healAmount)
+    {
+        BaseTower[] baseTowers = FindObjectsOfType<BaseTower>();
+        foreach (BaseTower baseTower in baseTowers)
+        {
+            int missingHealth = baseTower.GetMaxHealth() - baseTower.GetCurrentHealth();
+            int healFor = ((missingHealth / 100) * healAmount) * -1;
+            baseTower.TakeDamage(healFor);
+            Debug.Log("Healed base towers for " + healAmount + "% of their missing health!");
+        }
+    }
+
+    //Only looks at the first loaded BaseTower
+    public int ShieldBaseTowers(int shieldStrength, float duration)
+    {
+        /*BaseTower[] baseTowers = FindObjectsOfType<BaseTower>();
+        foreach (BaseTower baseTower in baseTowers)
+        {
+            int currentHealth = baseTower.GetCurrentHealth();
+            baseTower.TakeDamage(shieldStrength * -1);
+            StartCoroutine(WaitForNumberOfSeconds(duration));
+            int newCurrentHealth = baseTower.GetCurrentHealth();
+            if (currentHealth < newCurrentHealth)
+            {
+                baseTower.TakeDamage(newCurrentHealth - currentHealth);
+            }
+        }*/
+
+        BaseTower baseTower = FindObjectOfType<BaseTower>();
+        int currentHealth = baseTower.GetCurrentHealth();
+        baseTower.TakeDamage(shieldStrength * -1);
+        return currentHealth;
+    }
+
+    public void RemoveShieldBaseTowers(int formerHealth)
+    {
+        BaseTower baseTower = FindObjectOfType<BaseTower>();
+        int newCurrentHealth = baseTower.GetCurrentHealth();
+        if (formerHealth < newCurrentHealth)
+        {
+            baseTower.TakeDamage(newCurrentHealth - formerHealth);
+        }
     }
 }

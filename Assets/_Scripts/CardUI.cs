@@ -136,12 +136,26 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     //Beispielhafter Effekt einer Karte
     private void TriggerCardEffect()
     {
-        // Hier wird der Effekt der Karte ausgelöst
-        Debug.Log("Karte gespielt: " + cardData.cardName);
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
-        foreach (Enemy enemy in enemies)
+        if (cardData.cardType == CardType.Damage)
         {
-            enemy.TakeDamage(cardData.damageAmount); // cardData.damageAmount sollte den Schaden der Karte enthalten
+            cardData.effect.DealDamage(cardData.valueOfCard);
+        }
+
+        else if (cardData.cardType == CardType.Healing)
+        {
+            cardData.effect.HealBaseTowers(cardData.valueOfCard);
+        }
+
+        else if (cardData.cardType == CardType.Shields)
+        {
+            int currentHealth = cardData.effect.ShieldBaseTowers(cardData.valueOfCard, cardData.duration);
+            Debug.Log("StartSchild");
+            StartCoroutine(WaitForNumberOfSeconds(cardData.duration, currentHealth));
+        }
+
+        else
+        {
+            Debug.Log("Anderer Typ!");
         }
     }
 
@@ -183,5 +197,14 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         {
             transform.SetSiblingIndex(originalSiblingIndex);
         }
+    }
+
+    //Funktioniert nicht, keine Ahnung was das soll :(
+    private IEnumerator WaitForNumberOfSeconds(float duration, int currentHealth)
+    {
+        Debug.Log("Wo Log? " + duration);
+        yield return new WaitForSeconds(duration);
+        Debug.Log("EndeSchild");
+        cardData.effect.RemoveShieldBaseTowers(currentHealth);
     }
 }

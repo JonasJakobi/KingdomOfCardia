@@ -16,10 +16,10 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected float attackSpeed = 0.2f;
     [SerializeField] protected int damage = 15;
 
-    [SerializeField]private int currentLevel = 0;
+    [SerializeField] private int currentLevel = 0;
 
-    [SerializeField]private TowerUpgrade currentUpgrade;
-    [SerializeField]private TowerUpgradePath upgradePath;
+    [SerializeField] private TowerUpgrade currentUpgrade;
+    [SerializeField] private TowerUpgradePath upgradePath;
 
     [SerializeField] private bool isNexus = false;
     // Start is called before the first frame update
@@ -51,6 +51,16 @@ public class BaseTower : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public int GetCurrentHealth()
+    {
+        return health;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 
 
@@ -95,7 +105,7 @@ public class BaseTower : MonoBehaviour
         }
         else
         {
-           //error log
+            //error log
             Debug.LogError("Tried to upgrade tower " + this.gameObject.name + " but it is already at max level (level " + currentLevel + ")");
         }
     }
