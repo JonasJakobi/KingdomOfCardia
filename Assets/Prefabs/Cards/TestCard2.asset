@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ae010275c47a040a7079fb6239a04f, type: 3}
   m_Name: TestCard2
   m_EditorClassIdentifier: 
-  cardName: Test 2
-  description: Do Nothing atm
+  cardName: Die Entgnomung
+  description: "Regelt m\xF6gliche Streitereien mit Gnomen auf magische Weise."
   artwork: {fileID: 0}
   effect: {fileID: 0}
+  damageAmount: 100

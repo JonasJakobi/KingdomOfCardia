@@ -947,6 +947,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3cbf63a7d68330949a709fe673fca2ea, type: 2}
   - {fileID: 11400000, guid: 4fbe4e20c79274248b0d1eaaa0edf81d, type: 2}
   - {fileID: 11400000, guid: 48e998c9700163c4e868939e57d8bb9f, type: 2}
+  - {fileID: 11400000, guid: ccd8f0bbb444c364298498bfd660802e, type: 2}
+  - {fileID: 11400000, guid: ccd8f0bbb444c364298498bfd660802e, type: 2}
+  - {fileID: 11400000, guid: 3cbf63a7d68330949a709fe673fca2ea, type: 2}
+  - {fileID: 11400000, guid: 3cbf63a7d68330949a709fe673fca2ea, type: 2}
+  - {fileID: 11400000, guid: 3cbf63a7d68330949a709fe673fca2ea, type: 2}
+  - {fileID: 11400000, guid: 4fbe4e20c79274248b0d1eaaa0edf81d, type: 2}
+  - {fileID: 11400000, guid: 48e998c9700163c4e868939e57d8bb9f, type: 2}
+  - {fileID: 11400000, guid: 4fbe4e20c79274248b0d1eaaa0edf81d, type: 2}
+  - {fileID: 11400000, guid: 3cbf63a7d68330949a709fe673fca2ea, type: 2}
+  - {fileID: 11400000, guid: ccd8f0bbb444c364298498bfd660802e, type: 2}
   cardArea: {fileID: 6746439655830293997}
   drawCardButton: {fileID: 1642733079}
   positionDuration: 0.5

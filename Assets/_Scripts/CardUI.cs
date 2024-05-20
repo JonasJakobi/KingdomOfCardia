@@ -133,11 +133,16 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         Destroy(gameObject);
     }
 
+    //Beispielhafter Effekt einer Karte
     private void TriggerCardEffect()
     {
         // Hier wird der Effekt der Karte ausgelöst
         Debug.Log("Karte gespielt: " + cardData.cardName);
-        // Fügen Sie hier den spezifischen Code für den Effekt der Karte hinzu
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.TakeDamage(cardData.damageAmount); // cardData.damageAmount sollte den Schaden der Karte enthalten
+        }
     }
 
     private IEnumerator ScaleCard(Vector3 targetScale, float duration)

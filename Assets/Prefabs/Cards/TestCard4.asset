@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestCard4
   m_EditorClassIdentifier: 
   cardName: Vier
-  description: Vier gewinnt noch nicht
+  description: Vier gewinnt!
   artwork: {fileID: 0}
   effect: {fileID: 0}
+  damageAmount: 300

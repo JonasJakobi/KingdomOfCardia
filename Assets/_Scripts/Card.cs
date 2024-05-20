@@ -9,4 +9,5 @@ public class Card : ScriptableObject
     public string description;
     public Sprite artwork;
     public CardEffect effect;
+    public int damageAmount;
 }
