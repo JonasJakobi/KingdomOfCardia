@@ -23,6 +23,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private Coroutine moveCoroutine;
     private bool isHovered = false;
     private bool isPlayed = false;
+    private bool inSelection = false;
 
     public void Initialize(Card card, CardManager manager)
     {
@@ -47,7 +48,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isPlayed == false)
+        if (isPlayed == false && inSelection == false)
         {
             isHovered = true;
             transform.SetAsLastSibling(); // Bringt die Karte in den Vordergrund
@@ -66,11 +67,24 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             float additionalYOffset = (float)Screen.height / 10.0f + originalVerticalOffset;
             moveCoroutine = StartCoroutine(MoveCard(new Vector3(originalPosition.x, originalPosition.y + additionalYOffset, originalPosition.z), Quaternion.identity, 0.2f));
         }
+
+        else if (isPlayed == false && inSelection == true)
+        {
+            isHovered = true;
+
+            if (scaleCoroutine != null)
+            {
+                StopCoroutine(scaleCoroutine);
+            }
+            scaleCoroutine = StartCoroutine(ScaleCard(originalScale * 1.2f, 0.2f)); // Vergrößert die Karte
+        }
     }
+
+
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (isPlayed == false)
+        if (isPlayed == false && inSelection == false)
         {
             isHovered = false;
 
@@ -89,15 +103,42 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             // Verzögert das Zurücksetzen des Sibling Indexes, damit die Animation zuerst abgeschlossen wird
             StartCoroutine(ResetSiblingIndexAfterDelay(0.2f));
         }
+
+        else if (isPlayed == false && inSelection == true)
+        {
+            isHovered = false;
+
+            if (scaleCoroutine != null)
+            {
+                StopCoroutine(scaleCoroutine);
+            }
+            scaleCoroutine = StartCoroutine(ScaleCard(originalScale, 0.2f)); // Setzt die Größe der Karte zurück
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (moveCoroutine != null)
+        if (inSelection == true)
         {
-            StopCoroutine(moveCoroutine);
+            changeCardSelection(false);
+            cardManager.SelectCard(this);
         }
-        StartCoroutine(PlayCard());
+
+        else
+        {
+            if (moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+            }
+            StartCoroutine(PlayCard());
+        }
+
+
+    }
+
+    public void changeCardSelection(bool state)
+    {
+        inSelection = state;
     }
 
     private IEnumerator PlayCard()

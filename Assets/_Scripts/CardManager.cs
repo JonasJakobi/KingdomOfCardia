@@ -7,17 +7,64 @@ using UnityEngine.UI;
 public class CardManager : MonoBehaviour
 {
     public GameObject cardUIPrefab;
+    public List<Card> allCards;
     public List<Card> deck;
     public RectTransform cardArea;
     public Button drawCardButton;
+    public Button selectCardButton;
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
 
     private List<GameObject> hand = new List<GameObject>();
+    [SerializeField] private List<CardUI> displayedCards = new List<CardUI>();
     private Coroutine positionCoroutine;
 
     void Start()
     {
         drawCardButton.onClick.AddListener(DrawCard);
+        selectCardButton.onClick.AddListener(DrawRandomCards);
+    }
+
+    public void DrawRandomCards()
+    {
+        if (displayedCards.Count > 0) return; // Verhindert das erneute Ziehen, wenn bereits Karten angezeigt werden
+
+        for (int i = 0; i < 3; i++)
+        {
+            Card randomCard = allCards[Random.Range(0, allCards.Count)];
+            GameObject cardObject = Instantiate(cardUIPrefab, cardArea);
+            CardUI cardUI = cardObject.GetComponent<CardUI>();
+            cardUI.changeCardSelection(true);
+            cardUI.Initialize(randomCard, this);
+
+            // Positionieren der Karten nebeneinander
+            RectTransform rectTransform = cardObject.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(i * 150f - 150f, 0); // Adjust the spacing as needed
+
+            displayedCards.Add(cardUI);
+        }
+    }
+
+    public void SelectCard(CardUI selectedCardUI)
+    {
+        // Karte zum Deck hinzufügen
+        AddCardToDeck(selectedCardUI.cardData);
+
+        // Entfernen der angezeigten Karten
+        foreach (var card in displayedCards)
+        {
+            Destroy(card.gameObject);
+        }
+        displayedCards.Clear();
+    }
+
+    public void AddCardToDeck(Card card)
+    {
+        deck.Add(card);
+        // Logik zum Hinzufügen der Karte zum Deck des Spielers
+        Debug.Log("Karte hinzugefügt: " + card.cardName);
+
+        //Add the following line to this function in order to remove the deck component.
+        //DrawCard();
     }
 
     void DrawCard()
