@@ -60,7 +60,7 @@ public class CardManager : MonoBehaviour
         float totalWidth = (cardWidth + spacing) * hand.Count - spacing; // Total width considering spacing
         float startX = (screenWidth - totalWidth) / 2;
 
-        float midX = screenWidth / 2f;
+        float midX = screenWidth - cardWidth / 2f;
 
         List<Vector3> targetPositions = new List<Vector3>();
         List<Quaternion> targetRotations = new List<Quaternion>();

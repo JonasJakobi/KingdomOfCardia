@@ -63,7 +63,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
                 StopCoroutine(moveCoroutine);
             }
 
-            float additionalYOffset = (float)GridManager.HEIGHT * 5.0f + originalVerticalOffset;
+            float additionalYOffset = (float)Screen.height / 10.0f + originalVerticalOffset;
             moveCoroutine = StartCoroutine(MoveCard(new Vector3(originalPosition.x, originalPosition.y + additionalYOffset, originalPosition.z), Quaternion.identity, 0.2f));
         }
     }
