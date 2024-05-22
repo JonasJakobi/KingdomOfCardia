@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Macht nichts. Wirklich.
   artwork: {fileID: 0}
   effect: {fileID: 11400000, guid: a4511ad898004014fa1e6bababc53d79, type: 2}
-  damageAmount: 0
-  healAmount: 0
+  valueOfCard: 0
+  duration: 0

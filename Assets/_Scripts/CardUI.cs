@@ -38,6 +38,15 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         originalSiblingIndex = transform.GetSiblingIndex();
     }
 
+    void Update()
+    {
+        if (isHovered)
+        {
+            transform.SetAsLastSibling();
+            cardManager.cardSpacer.transform.SetSiblingIndex(originalSiblingIndex);
+        }
+    }
+
     public void SaveOriginalTransform(float verticalOffset, int siblingIndex, Vector3 targetPosition, Quaternion targetRotation)
     {
         originalPosition = targetPosition;
@@ -233,6 +242,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     private IEnumerator ResetSiblingIndexAfterDelay(float delay)
     {
+        cardManager.cardSpacer.transform.SetAsLastSibling();
         yield return new WaitForSeconds(delay);
         if (!isHovered) // Verhindert das Zurücksetzen, falls die Karte erneut gehovered wird
         {

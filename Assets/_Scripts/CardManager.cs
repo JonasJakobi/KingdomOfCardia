@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     public Button drawCardButton;
     public Button selectCardButton;
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
+    public GameObject cardSpacer;
 
     private List<GameObject> hand = new List<GameObject>();
     [SerializeField] private List<CardUI> displayedCards = new List<CardUI>();
