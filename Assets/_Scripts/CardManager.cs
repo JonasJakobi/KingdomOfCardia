@@ -4,12 +4,14 @@ using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine.UI;
 
-public class CardManager : MonoBehaviour
+public class CardManager : Singleton<CardManager>
 {
     public GameObject cardUIPrefab;
     public List<Card> allCards;
     public List<Card> deck;
+    public List<Card> fullDeck;
     public RectTransform cardArea;
+    public RectTransform cardSelectionArea;
     public Button drawCardButton;
     public Button selectCardButton;
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
@@ -25,26 +27,33 @@ public class CardManager : MonoBehaviour
         selectCardButton.onClick.AddListener(DrawRandomCards);
     }
 
+    /// <summary>
+    /// Draw random cards from allCards and display them in the center of the screen
+    /// </summary>
     public void DrawRandomCards()
     {
-        if (displayedCards.Count > 0) return; // Verhindert das erneute Ziehen, wenn bereits Karten angezeigt werden
+        if (displayedCards.Count > 0) return; // Only one set of random card can be present at the same time
 
         for (int i = 0; i < 3; i++)
         {
             Card randomCard = allCards[Random.Range(0, allCards.Count)];
-            GameObject cardObject = Instantiate(cardUIPrefab, cardArea);
+            GameObject cardObject = Instantiate(cardUIPrefab, cardSelectionArea);
             CardUI cardUI = cardObject.GetComponent<CardUI>();
             cardUI.changeCardSelection(true);
             cardUI.Initialize(randomCard, this);
 
-            // Positionieren der Karten nebeneinander
+            // Position the cards next to eachother
             RectTransform rectTransform = cardObject.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(i * 150f - 150f, 0); // Adjust the spacing as needed
+            rectTransform.anchoredPosition = new Vector2(i * 150f - 150f, 0);
 
             displayedCards.Add(cardUI);
         }
     }
 
+    /// <summary>
+    /// Select one of the randomly drawn cards
+    /// </summary>
+    /// <param name="selectedCardUI">CardUI of the selected card</param>
     public void SelectCard(CardUI selectedCardUI)
     {
         // Karte zum Deck hinzufügen
@@ -58,17 +67,24 @@ public class CardManager : MonoBehaviour
         displayedCards.Clear();
     }
 
+    /// <summary>
+    /// Add a card to the players deck
+    /// </summary>
+    /// <param name="card">The card to add to the players deck</param>
     public void AddCardToDeck(Card card)
     {
-        deck.Add(card);
-        // Logik zum Hinzufügen der Karte zum Deck des Spielers
+        fullDeck.Add(card);
         Debug.Log("Karte hinzugefügt: " + card.cardName);
+        deck.Add(card);
 
         //Add the following line to this function in order to remove the deck component.
         //DrawCard();
     }
 
-    void DrawCard()
+    /// <summary>
+    /// Draw a card from the deck into the hand
+    /// </summary>
+    public void DrawCard()
     {
         if (deck.Count > 0)
         {
@@ -90,6 +106,10 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Remove a card from the hand
+    /// </summary>
+    /// <param name="card">The card to be removed from the hand</param>
     public void RemoveCardFromHand(GameObject card)
     {
         hand.Remove(card);
@@ -100,6 +120,10 @@ public class CardManager : MonoBehaviour
         positionCoroutine = StartCoroutine(PositionCards());
     }
 
+    /// <summary>
+    /// Update the position of all cards
+    /// </summary>
+    /// <returns></returns>
     IEnumerator PositionCards()
     {
         float screenWidth = GridManager.WIDTH;
@@ -172,6 +196,9 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Manually update the position of all cards (For debug purposes)
+    /// </summary>
     [ProButton]
     public void RePositionCards()
     {
@@ -180,5 +207,25 @@ public class CardManager : MonoBehaviour
             StopCoroutine(positionCoroutine);
         }
         positionCoroutine = StartCoroutine(PositionCards());
+    }
+
+    public void ClearHand()
+    {
+        Debug.Log("WHAT");
+        foreach (var card in hand)
+        {
+            Destroy(card.gameObject);
+        }
+        hand.Clear();
+    }
+
+    public void DrawNewCards(int amount)
+    {
+        deck.Clear();
+        deck.AddRange(fullDeck);
+        for (int i = 0; i < amount; i++)
+        {
+            DrawCard();
+        }
     }
 }

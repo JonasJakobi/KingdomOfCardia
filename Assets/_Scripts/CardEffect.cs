@@ -33,6 +33,10 @@ public class CardEffect : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Heal the base towers for percentage of its missing health
+    /// </summary>
+    /// <param name="healAmount">The amount of missing health restored</param>
     public void HealBaseTowers(int healAmount)
     {
         BaseTower[] baseTowers = FindObjectsOfType<BaseTower>();
@@ -67,6 +71,10 @@ public class CardEffect : ScriptableObject
         return currentHealth;
     }
 
+    /// <summary>
+    /// Remove the shield from a basetower
+    /// </summary>
+    /// <param name="formerHealth"></param>
     public void RemoveShieldBaseTowers(int formerHealth)
     {
         BaseTower baseTower = FindObjectOfType<BaseTower>();

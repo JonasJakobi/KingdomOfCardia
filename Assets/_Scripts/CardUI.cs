@@ -25,6 +25,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private bool isPlayed = false;
     private bool inSelection = false;
 
+    /// <summary>
+    /// Set the initial states of the card
+    /// </summary>
+    /// <param name="card">The card</param>
+    /// <param name="manager">The card manager</param>
     public void Initialize(Card card, CardManager manager)
     {
         cardData = card;
@@ -47,6 +52,13 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
     }
 
+    /// <summary>
+    /// Save the orginal state of the card
+    /// </summary>
+    /// <param name="verticalOffset">Vertical offset of the card depending on its distance to the center of the screen</param>
+    /// <param name="siblingIndex">Sibling index of the card</param>
+    /// <param name="targetPosition">Position of the card</param>
+    /// <param name="targetRotation">Rotation of the card</param>
     public void SaveOriginalTransform(float verticalOffset, int siblingIndex, Vector3 targetPosition, Quaternion targetRotation)
     {
         originalPosition = targetPosition;
@@ -55,6 +67,10 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         originalVerticalOffset = verticalOffset;
     }
 
+    /// <summary>
+    /// Move and or scale card and set its rotation to 0
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (isPlayed == false && inSelection == false)
@@ -90,7 +106,10 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     }
 
 
-
+    /// <summary>
+    /// Reset scale and position of this card
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         if (isPlayed == false && inSelection == false)
@@ -125,6 +144,10 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
     }
 
+    /// <summary>
+    /// Select this card or play this card, depending on the cards inSelection state
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (inSelection == true)
@@ -145,11 +168,19 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     }
 
+    /// <summary>
+    /// Changes whether the card is currently part of the selection process or the players hand
+    /// </summary>
+    /// <param name="state">Current state of this card</param>
     public void changeCardSelection(bool state)
     {
         inSelection = state;
     }
 
+    /// <summary>
+    /// Move this card to the middle of the screen, trigger its effect and remove the card from the hand
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator PlayCard()
     {
         isPlayed = true;
@@ -158,7 +189,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
         Vector3 targetPosition = screenCenter;
 
-        float duration = 1.1f; // Dauer der Animation
+        float duration = 1.1f; // Duration of the animation
         float time = 0f;
 
         while (time < duration)
@@ -172,18 +203,19 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         rectTransform.anchoredPosition = targetPosition;
         rectTransform.localScale = originalScale * 1.1f;
 
-        // Effekt der Karte ausführen
+        // Trigger the effect of the card
         TriggerCardEffect();
 
-        // Entferne die Karte aus der Hand im CardManager
+        // Remove the card from the players hand
         cardManager.RemoveCardFromHand(gameObject);
 
-        // Warte eine kurze Zeit und zerstöre dann die Karte
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
 
-    //Beispielhafter Effekt einer Karte
+    /// <summary>
+    /// Trigger the effect of a card depending on its card type
+    /// </summary>
     private void TriggerCardEffect()
     {
         if (cardData.cardType == CardType.Damage)
@@ -209,6 +241,12 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
     }
 
+    /// <summary>
+    /// Coroutine to scale the card
+    /// </summary>
+    /// <param name="targetScale">Target scale of the card</param>
+    /// <param name="duration">Duration of the animation</param>
+    /// <returns></returns>
     private IEnumerator ScaleCard(Vector3 targetScale, float duration)
     {
         Vector3 startScale = transform.localScale;
@@ -223,6 +261,13 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         transform.localScale = targetScale;
     }
 
+    /// <summary>
+    /// Coroutine to move the card to a target position within a set amount of time
+    /// </summary>
+    /// <param name="targetPosition">Target position of the card</param>
+    /// <param name="targetRotation">Target rotation of the card</param>
+    /// <param name="duration">Duration of the animation</param>
+    /// <returns></returns>
     private IEnumerator MoveCard(Vector3 targetPosition, Quaternion targetRotation, float duration)
     {
         Vector3 startPosition = transform.localPosition;
@@ -240,6 +285,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         transform.localRotation = targetRotation;
     }
 
+    /// <summary>
+    /// Reset the sibling index of this card to its original state
+    /// </summary>
+    /// <param name="delay">Delay before resetting the sibling index</param>
+    /// <returns></returns>
     private IEnumerator ResetSiblingIndexAfterDelay(float delay)
     {
         cardManager.cardSpacer.transform.SetAsLastSibling();
@@ -251,10 +301,16 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     }
 
     //Funktioniert nicht, keine Ahnung was das soll :(
-    private IEnumerator WaitForNumberOfSeconds(float duration, int currentHealth)
+    /// <summary>
+    /// Remove shield of basetower after specific delay
+    /// </summary>
+    /// <param name="delay">Duration of the wait</param>
+    /// <param name="currentHealth">Current health of the baseTower without the shield</param>
+    /// <returns></returns>
+    private IEnumerator WaitForNumberOfSeconds(float delay, int currentHealth)
     {
-        Debug.Log("Wo Log? " + duration);
-        yield return new WaitForSeconds(duration);
+        Debug.Log("Wo Log? " + delay);
+        yield return new WaitForSeconds(delay);
         Debug.Log("EndeSchild");
         cardData.effect.RemoveShieldBaseTowers(currentHealth);
     }

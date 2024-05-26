@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
+using UnityEngine.UI;
 //RoundManager to determine how many and which enemies are present in a round.
 
-public class RoundManager : MonoBehaviour
+public class RoundManager : Singleton<RoundManager>
 {
+    public Button startRoundButton;
     [Header("Round Statistics")]
     public int round = 1;
     [SerializeField] private int roundValue = 1;
-    [SerializeField] private int roundValueLeft = 1;
+    [SerializeField] private int roundValueLeft = 0;
     [SerializeField] private int enemyCount = 0;
     [SerializeField] private int enemiesSpawned;
     [SerializeField] private int enemiesDefeated;
@@ -32,7 +34,8 @@ public class RoundManager : MonoBehaviour
 
     private void Start()
     {
-
+        startRoundButton.onClick.AddListener(changeToPlayMode);
+        roundValueLeft = 0;
     }
 
     private void Update()
@@ -72,9 +75,9 @@ public class RoundManager : MonoBehaviour
                 StartCoroutine(WaveDelayCoroutine());
             }
 
-            else if ((enemies.Length == 0) && (roundValueLeft <= 0) && (waveQueued == false))
+            else if ((enemies.Length == 0) && (roundValueLeft <= 0) && (waveQueued == false) && (GameManager.Instance.State == GameState.PlayMode))
             {
-                NextRound();
+                GameManager.Instance.ChangeGameState(GameState.BuildMode);
             }
         }
 
@@ -120,12 +123,16 @@ public class RoundManager : MonoBehaviour
     }
 
     //Start next round and decide if a wave will be present.
-    private void NextRound()
+    public void NextRound()
     {
         activeWave = false;
         round++;
         enemyCount = 0;
         roundValue = roundValue * 2;
+    }
+
+    public void BeginNextRound()
+    {
         roundValueLeft = roundValue;
         if (waveChance >= Random.Range(1.0f, 100.0f) && (round >= waveStart))
         {
@@ -166,4 +173,12 @@ public class RoundManager : MonoBehaviour
         waveQueued = false;
     }
 
+    [ProButton]
+    private void changeToPlayMode()
+    {
+        roundValueLeft = roundValue;
+        GameManager.Instance.ChangeGameState(GameState.PlayMode);
+    }
+
 }
+
