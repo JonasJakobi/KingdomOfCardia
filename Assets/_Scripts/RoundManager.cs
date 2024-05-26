@@ -122,7 +122,7 @@ public class RoundManager : Singleton<RoundManager>
         roundValueLeft -= waveValue;
     }
 
-    //Start next round and decide if a wave will be present.
+    //Prepare the next wave
     public void NextRound()
     {
         activeWave = false;
@@ -131,6 +131,7 @@ public class RoundManager : Singleton<RoundManager>
         roundValue = roundValue * 2;
     }
 
+    //Start next round and decide if a wave will be present
     public void BeginNextRound()
     {
         roundValueLeft = roundValue;
@@ -167,7 +168,7 @@ public class RoundManager : Singleton<RoundManager>
     {
         activeWave = true;
         yield return new WaitForSeconds(WaveDelay);
-        Debug.Log("Welle geht los!");
+        Debug.Log("Wave!");
         enemyCount = 0;
         roundValueLeft = waveValue;
         waveQueued = false;

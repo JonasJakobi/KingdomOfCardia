@@ -211,7 +211,6 @@ public class CardManager : Singleton<CardManager>
 
     public void ClearHand()
     {
-        Debug.Log("WHAT");
         foreach (var card in hand)
         {
             Destroy(card.gameObject);

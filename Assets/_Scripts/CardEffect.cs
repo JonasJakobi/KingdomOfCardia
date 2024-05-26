@@ -29,7 +29,6 @@ public class CardEffect : ScriptableObject
         foreach (Enemy enemy in enemies)
         {
             enemy.TakeDamage(damage * multiplier); // cardData.damageAmount sollte den Schaden der Karte enthalten
-            Debug.Log("Effekt und so");
         }
     }
 
