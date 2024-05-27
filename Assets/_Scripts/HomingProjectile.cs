@@ -32,11 +32,11 @@ public class HomingProjectile : MonoBehaviour, IProjectile
             Destroy(gameObject);
         }
     }
-    public void SetValues(Enemy e, float speed, int damage, float lifetime, Quaternion rot)
+    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats)
     {
         target = e;
-        movementSpeed = speed;
-        this.damage = damage;
+        movementSpeed = towerStats.projectileSpeed;
+        this.damage = towerStats.damage;
         transform.rotation = rot;
     }
 

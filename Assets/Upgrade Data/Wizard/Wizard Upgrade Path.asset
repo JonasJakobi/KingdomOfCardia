@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05824dd6e3d81648a76f6aa29f318dc, type: 3}
+  m_Name: Wizard Upgrade Path
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 11400000, guid: 7181700b557d39d4e8b56df910eeb8dc, type: 2}
+  - {fileID: 11400000, guid: 618e449f411fda245b6a7a108227e42a, type: 2}
+  - {fileID: 11400000, guid: 234612a7f8afda54ba119fc90a6ae474, type: 2}
