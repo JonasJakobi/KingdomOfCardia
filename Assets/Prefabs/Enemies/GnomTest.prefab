@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 1125625371500697595}
   m_Layer: 0
   m_Name: GnomTest
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,15 +180,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 0.3
-  health: 100
+  maxHealth: 100
   movementSpeed: 1
   attackCooldown: 1
   attackDamage: 10
   attackRange: 0.4
+  health: 100
   currentTile: {fileID: 0}
   attacking: 0
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
+  damageValueRatio: 1
 --- !u!61 &-7548727902778042931
 BoxCollider2D:
   m_ObjectHideFlags: 0

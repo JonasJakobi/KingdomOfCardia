@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
+using UnityEngine.UI;
 //RoundManager to determine how many and which enemies are present in a round.
 
-public class RoundManager : MonoBehaviour
+public class RoundManager : Singleton<RoundManager>
 {
+    public Button startRoundButton;
     [Header("Round Statistics")]
     public int round = 1;
     [SerializeField] private int roundValue = 1;
-    [SerializeField] private int roundValueLeft = 1;
+    [SerializeField] private int roundValueLeft = 0;
     [SerializeField] private int enemyCount = 0;
     [SerializeField] private int enemiesSpawned;
     [SerializeField] private int enemiesDefeated;
@@ -24,6 +26,7 @@ public class RoundManager : MonoBehaviour
 
     [Header("Waves")]
     public int waveStart = 5;
+    public int WaveDelay = 3;
     public float waveChance = 25.0f;
     [SerializeField] private bool waveQueued = false;
     [SerializeField] bool activeWave = false;
@@ -31,7 +34,8 @@ public class RoundManager : MonoBehaviour
 
     private void Start()
     {
-
+        startRoundButton.onClick.AddListener(changeToPlayMode);
+        roundValueLeft = 0;
     }
 
     private void Update()
@@ -57,16 +61,27 @@ public class RoundManager : MonoBehaviour
             roundValueLeft = roundValueLeft - randVal;
         }
 
-        if ((enemyCount <= 0) && (roundValueLeft <= 0) && (activeWave == false) && (waveQueued == true))
+        if (enemyCount <= 0)
         {
-            Debug.Log("Welle geht gleich los!");
-            StartCoroutine(WaveDelayCoroutine());
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemies.Length != 0)
+            {
+                enemyCount = enemies.Length;
+            }
+
+            else if ((enemies.Length == 0) && (roundValueLeft <= 0) && (activeWave == false) && (waveQueued == true))
+            {
+                Debug.Log("Welle geht gleich los!");
+                StartCoroutine(WaveDelayCoroutine());
+            }
+
+            else if ((enemies.Length == 0) && (roundValueLeft <= 0) && (waveQueued == false) && (GameManager.Instance.State == GameState.PlayMode))
+            {
+                GameManager.Instance.ChangeGameState(GameState.BuildMode);
+            }
         }
 
-        if ((enemyCount <= 0) && (roundValueLeft <= 0) && (waveQueued == false))
-        {
-            NextRound();
-        }
+
     }
 
     //Spawn an enemy
@@ -107,13 +122,18 @@ public class RoundManager : MonoBehaviour
         roundValueLeft -= waveValue;
     }
 
-    //Start next round and decide if a wave will be present.
-    private void NextRound()
+    //Prepare the next wave
+    public void NextRound()
     {
         activeWave = false;
         round++;
         enemyCount = 0;
         roundValue = roundValue * 2;
+    }
+
+    //Start next round and decide if a wave will be present
+    public void BeginNextRound()
+    {
         roundValueLeft = roundValue;
         if (waveChance >= Random.Range(1.0f, 100.0f) && (round >= waveStart))
         {
@@ -147,11 +167,19 @@ public class RoundManager : MonoBehaviour
     private IEnumerator WaveDelayCoroutine()
     {
         activeWave = true;
-        yield return new WaitForSeconds(3);
-        Debug.Log("Welle geht los!");
+        yield return new WaitForSeconds(WaveDelay);
+        Debug.Log("Wave!");
         enemyCount = 0;
         roundValueLeft = waveValue;
         waveQueued = false;
     }
 
+    [ProButton]
+    private void changeToPlayMode()
+    {
+        roundValueLeft = roundValue;
+        GameManager.Instance.ChangeGameState(GameState.PlayMode);
+    }
+
 }
+

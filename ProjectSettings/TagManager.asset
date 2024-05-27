@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Goal
   - DebuggingUI
+  - Enemy
   layers:
   - Default
   - TransparentFX
