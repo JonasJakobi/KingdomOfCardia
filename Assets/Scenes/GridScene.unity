@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2124533079805306377, guid: 5b69a6a27b75de54aafbdf41e05d1f40, type: 3}
+      propertyPath: m_SortingOrder
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8986985184927539993, guid: 5b69a6a27b75de54aafbdf41e05d1f40, type: 3}
       propertyPath: m_Name
       value: Wizzard (1)
@@ -237,6 +241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f99b470205943d4cab5f55442137c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &46562359 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+  m_PrefabInstance: {fileID: 1437851278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &78671819
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +890,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 150010353}
+  - {fileID: 46562359}
   m_Father: {fileID: 2101207753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1018112988
@@ -895,8 +905,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4376f29eea6de5147b144ce35764888e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40557
   health: 100
+  currentLevel: 0
+  currentUpgrade: {fileID: 0}
+  upgradePath: {fileID: 11400000, guid: cfa58c4a500154f469b19ada4351e1b1, type: 2}
   isNexus: 0
 --- !u!114 &1018112989
 MonoBehaviour:
@@ -1169,6 +1181,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 111827f2c0a9d9842a4f6cbf830725e6, type: 3}
+--- !u!1001 &1437851278
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1018112987}
+    m_Modifications:
+    - target: {fileID: 3610999840433471555, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_Name
+      value: StarSpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0017
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2631
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025690197603692612, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f89a3a812ad7d842a21652bd6fe1a49, type: 3}
 --- !u!1 &1651207540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,16 +1808,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b566a1f2446b0f74683681ccf01b40c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   health: 100
+  currentLevel: 0
+  currentUpgrade: {fileID: 0}
+  upgradePath: {fileID: 0}
   isNexus: 0
   projectilePrefab: {fileID: 4109092055971077752, guid: deb6722a4513bb84e861bde14b5d85d2, type: 3}
   projectileSpawnPoint: {fileID: 0}
-  range: 7
-  attackSpeed: 0.2
-  damage: 12
-  projectileSpeed: 7
-  projectileLifetime: 2
   attackDelayTimer: 0
   targetingType: 0
 --- !u!1001 &6125605011987098016

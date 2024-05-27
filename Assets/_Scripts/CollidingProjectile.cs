@@ -11,21 +11,28 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
     [SerializeField] private bool destroysOnImpact = true;
     public float movementSpeed = 5f;
     public int damage = 10;
-
+    /// <summary>
+    /// After how many seconds the projectile will be destroyed.
+    /// </summary>
     public float lifetime = 2f;
+    /// <summary>
+    /// The maximum number of enemies this projectile can hit before being destroyed.
+    /// Gets set at start and then decremented each time an enemy is hit.
+    /// </summary>
+    public int maxEnemiesStillHitable = 1;
 
     private void Update()
     {
         transform.position += transform.up * movementSpeed * Time.deltaTime;
     }
 
-    public void SetValues(float speed, int damage, float lifetime, Quaternion rotation)
+    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats)
     {
-
-        movementSpeed = speed;
-        this.damage = damage;
-        this.lifetime = lifetime;
-        transform.rotation = rotation;
+        movementSpeed = towerStats.projectileSpeed;
+        damage = towerStats.damage;
+        lifetime = towerStats.projectileLifetime;
+        transform.rotation = rot;
+        maxEnemiesStillHitable = towerStats.maxEnemiesHittable;
         StartCoroutine(DestroyAfterLifetime());
     }
     private IEnumerator DestroyAfterLifetime()
@@ -49,16 +56,13 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
             {
                 Destroy(gameObject);
             }
+            maxEnemiesStillHitable--;
+            if (maxEnemiesStillHitable <= 0)
+            {
+                Destroy(gameObject);
+            }
 
         }
     }
 
-    public void SetValues(Enemy e, float speed, int damage, float lifetime, Quaternion rot)
-    {
-        movementSpeed = speed;
-        this.damage = damage;
-        this.lifetime = lifetime;
-        transform.rotation = rot;
-        StartCoroutine(DestroyAfterLifetime());
-    }
 }
