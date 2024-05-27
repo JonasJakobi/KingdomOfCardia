@@ -10,11 +10,8 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private int health = 100;
     [SerializeField] private int currentLevel = 0;
 
-
-    [SerializeField] private int currentLevel = 0;
-
     [SerializeField] protected TowerUpgrade currentUpgrade;
-    
+
     [SerializeField] private TowerUpgradePath upgradePath;
 
     [SerializeField] private bool isNexus = false;
@@ -60,7 +57,7 @@ public class BaseTower : MonoBehaviour
 
     public int GetMaxHealth()
     {
-        return maxHealth;
+        return currentUpgrade.health;
     }
 
 
@@ -77,9 +74,6 @@ public class BaseTower : MonoBehaviour
         currentUpgrade = upgradePath.upgrades[currentLevel];
         var maxHealthDiff = currentUpgrade.health - maxHealthBefore;
         health += maxHealthDiff; //Only 'heal' our tower by the amount of health we gained
-        damage = (int)currentUpgrade.damage;
-        range = currentUpgrade.range;
-        attackSpeed = currentUpgrade.attackSpeed;
 
         //Change the sprite if there is a new one.
         if (currentUpgrade.upgradeSprite != null)

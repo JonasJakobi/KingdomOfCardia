@@ -1585,13 +1585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4376f29eea6de5147b144ce35764888e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40557
   health: 100
-  attackSpeed: 0.2
-  damage: 15
   currentLevel: 0
-  currentUpgrade: {fileID: 0}
-  upgradePath: {fileID: 0}
+  currentUpgrade: {fileID: 11400000, guid: 10edde1aaae047b4f9b50e9d48773a17, type: 2}
+  upgradePath: {fileID: 11400000, guid: 1a0b0d0ee3404b14f8640b0645752e83, type: 2}
   isNexus: 0
 --- !u!114 &1018112989
 MonoBehaviour:
@@ -2983,21 +2980,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b566a1f2446b0f74683681ccf01b40c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   health: 100
-  attackSpeed: 0.2
-  damage: 12
   currentLevel: 0
   currentUpgrade: {fileID: 0}
   upgradePath: {fileID: 0}
   isNexus: 0
   projectilePrefab: {fileID: 4109092055971077752, guid: deb6722a4513bb84e861bde14b5d85d2, type: 3}
   projectileSpawnPoint: {fileID: 0}
-  range: 7
-  attackSpeed: 0.2
-  damage: 12
-  projectileSpeed: 7
-  projectileLifetime: 2
   attackDelayTimer: 0
   targetingType: 0
 --- !u!223 &5510707089713030461
