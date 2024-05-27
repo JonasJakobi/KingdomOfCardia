@@ -144,18 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b566a1f2446b0f74683681ccf01b40c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   health: 100
-  attackSpeed: 0.1
-  damage: 1
   currentLevel: 0
-  currentUpgrade: {fileID: 0}
-  upgradePath: {fileID: 0}
+  currentUpgrade: {fileID: 11400000, guid: 8ac3352e320e3f94a81c63173f923563, type: 2}
+  upgradePath: {fileID: 11400000, guid: 58dbc61bbf84d564f9f04e8bd57ea9f1, type: 2}
   isNexus: 0
   projectilePrefab: {fileID: 4109092055971077752, guid: 63491e07022bf064ea1b3fdffa20b338, type: 3}
   projectileSpawnPoint: {fileID: 1182784751760472730}
-  projectileSpeed: 10
-  projectileLifetime: 2.18
   attackDelayTimer: 0.05
   targetingType: 0
 --- !u!1 &1182784751760472730

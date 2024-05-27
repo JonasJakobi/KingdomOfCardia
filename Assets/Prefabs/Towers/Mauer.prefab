@@ -130,13 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4376f29eea6de5147b144ce35764888e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   health: 100
-  attackSpeed: 0.2
-  damage: 15
   currentLevel: 0
-  currentUpgrade: {fileID: 0}
-  upgradePath: {fileID: 0}
+  currentUpgrade: {fileID: 11400000, guid: 81f62e7e6b413b14592b21cb6a324ab8, type: 2}
+  upgradePath: {fileID: 11400000, guid: c6d7d2e4a604da447957b3c14219ce11, type: 2}
   isNexus: 0
 --- !u!1001 &3554146562703654506
 PrefabInstance:
