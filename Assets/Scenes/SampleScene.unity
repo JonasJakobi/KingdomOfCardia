@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e1a262a6f3e86468901f341156dc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowPrefab: {fileID: 0}
   activeConsoleDebugModes: 3
 --- !u!1001 &804360572
 PrefabInstance:
@@ -824,6 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8efeabcd2f507468796045ed040f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerPlaceUI: {fileID: 0}
 --- !u!1001 &1712140940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1053,6 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4d47f6eff6f704ca5d48c893c9d1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mountainChance: 0.12
   startX: 0
   startY: 0
   tilePrefab: {fileID: 7558562331473169665, guid: 551a0aa137e86f24ab7e24274bd2300b, type: 3}
