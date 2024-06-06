@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d320ba2bdf5bb4c49bf5f5c28d7230e0, type: 3}
   m_Name: Wizard0
   m_EditorClassIdentifier: 
-  upgradeSprite: {fileID: 0}
-  upgradeName: Base Wizard
   health: 100
   cost: 0
   damage: 15
   range: 10
   attackSpeed: 2
+  projectileSpeed: 0
+  projectileLifetime: 0
+  maxEnemiesHittable: 0
+  upgradeName: Base Wizard
+  upgradeSprite: {fileID: 0}
+  starLevel: 0
+  starColor: 0

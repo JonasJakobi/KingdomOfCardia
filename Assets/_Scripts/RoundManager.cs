@@ -127,6 +127,7 @@ public class RoundManager : Singleton<RoundManager>
     {
         activeWave = false;
         round++;
+        UIChangeManager.Instance.updateRound();
         enemyCount = 0;
         roundValue = roundValue * 2;
     }

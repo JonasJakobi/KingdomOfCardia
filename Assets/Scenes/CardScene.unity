@@ -936,6 +936,10 @@ PrefabInstance:
       value: Icetower PlaceUI
       objectReference: {fileID: 0}
     - target: {fileID: 2604157549067121217, guid: 111827f2c0a9d9842a4f6cbf830725e6, type: 3}
+      propertyPath: towerCost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604157549067121217, guid: 111827f2c0a9d9842a4f6cbf830725e6, type: 3}
       propertyPath: towerPrefab
       value: 
       objectReference: {fileID: 2667876061457046568, guid: 0c5636298cdeffb4a9408e0376dca758, type: 3}
@@ -1807,6 +1811,7 @@ Transform:
   - {fileID: 1265555234}
   - {fileID: 1322448030}
   - {fileID: 778521975}
+  - {fileID: 1073000485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1015066589
@@ -2073,6 +2078,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062487741}
   m_CullTransparentMesh: 1
+--- !u!1 &1073000484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073000485}
+  - component: {fileID: 1073000486}
+  m_Layer: 0
+  m_Name: UIChangeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073000485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073000484}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 934569157}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073000486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073000484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f008da7645c36674881e977c6df60028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoundText: {fileID: 332325585409830668}
+  MoneyText: {fileID: 4145664529855827095}
+  HPText: {fileID: 5484554287871681194}
 --- !u!1 &1084807589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,9 +2409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f008da7645c36674881e977c6df60028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIText: {fileID: 14414609}
-  roundManager: {fileID: 1265555235}
-  textBeforeNumber: Runde
+  RoundText: {fileID: 0}
+  MoneyText: {fileID: 0}
+  HPText: {fileID: 0}
 --- !u!1 &1097694567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,6 +2847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c108113961a5db644a8db0933faf6dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingMoney: 14
   money: 0
 --- !u!1001 &1397377206
 PrefabInstance:
@@ -3169,6 +3222,10 @@ PrefabInstance:
     - target: {fileID: 182213598742598454, guid: 111827f2c0a9d9842a4f6cbf830725e6, type: 3}
       propertyPath: m_Name
       value: lightTower Place UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604157549067121217, guid: 111827f2c0a9d9842a4f6cbf830725e6, type: 3}
+      propertyPath: towerCost
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2604157549067121217, guid: 111827f2c0a9d9842a4f6cbf830725e6, type: 3}
       propertyPath: towerPrefab
@@ -5369,7 +5426,6 @@ GameObject:
   - component: {fileID: 514549479850753330}
   - component: {fileID: 1789328151062144879}
   - component: {fileID: 741490143497796651}
-  - component: {fileID: 4422669633305832768}
   m_Layer: 5
   m_Name: UICanvas
   m_TagString: Untagged
@@ -5751,21 +5807,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &4422669633305832768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368633368592372557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f008da7645c36674881e977c6df60028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIText: {fileID: 332325585409830668}
-  roundManager: {fileID: 1265555235}
-  textBeforeNumber: Runde
 --- !u!114 &4641521295067094627
 MonoBehaviour:
   m_ObjectHideFlags: 0

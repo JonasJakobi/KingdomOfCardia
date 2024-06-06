@@ -22,7 +22,7 @@ public class BaseTower : MonoBehaviour
         ApplyUpgrade();
 
         health = currentUpgrade.health;
-
+        UIChangeManager.Instance.updateHP();
         var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
         tileHere.SetHasBuilding(true, this.gameObject);
 
@@ -40,6 +40,7 @@ public class BaseTower : MonoBehaviour
     {
 
         health -= damage;
+        UIChangeManager.Instance.updateHP();
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Towers))
         {
             Debug.Log("Tower " + this.gameObject.name + ": " + health + "/" + currentUpgrade.health + " health left.");
@@ -109,8 +110,18 @@ public class BaseTower : MonoBehaviour
     {
         if (currentLevel + 1 < upgradePath.upgrades.Length)
         {
-            currentLevel++;
-            ApplyUpgrade();
+            if (MoneyManager.Instance.CanAfford(upgradePath.upgrades[currentLevel + 1].cost))
+            {
+                MoneyManager.Instance.RemoveMoney(upgradePath.upgrades[currentLevel + 1].cost);
+                currentLevel++;
+                ApplyUpgrade();
+            }
+
+            else
+            {
+                Debug.LogError("Tried to upgrade tower " + this.gameObject.name + " but there is not enough money to upgrade it");
+            }
+
         }
         else
         {

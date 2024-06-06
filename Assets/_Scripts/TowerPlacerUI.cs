@@ -6,6 +6,9 @@ using UnityEngine;
 /// </summary>
 public class TowerPlacerUI : MonoBehaviour
 {
+    //temporary solution to tower costs
+    [SerializeField]
+    private int towerCost = 1;
     private bool stillOnUI = false;
 
     [SerializeField]
@@ -58,6 +61,7 @@ public class TowerPlacerUI : MonoBehaviour
                 Debug.Log("Trying to place tower but we cant");
             }
             StopPlacingTower();
+            MoneyManager.Instance.RemoveMoney(towerCost);
         }
         //We place the tower:
         else if (UserTryingToPlace())
@@ -117,7 +121,12 @@ public class TowerPlacerUI : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Clicked on tower placer");
-        isPlacingTowerDrag = true;
+        if (MoneyManager.Instance.CanAfford(towerCost))
+        {
+            MoneyManager.Instance.RemoveMoney(towerCost);
+            isPlacingTowerDrag = true;
+        }
+
     }
     private void OnMouseUp()
     {
@@ -146,6 +155,7 @@ public class TowerPlacerUI : MonoBehaviour
             else
             {
                 StopPlacingTower();
+                MoneyManager.Instance.AddMoney(towerCost);
             }
 
         }
