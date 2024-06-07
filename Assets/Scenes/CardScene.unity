@@ -2760,6 +2760,7 @@ MonoBehaviour:
   EnemyType1: {fileID: 2142602162031666653, guid: ed170d7169f36cc4ea3e5ffd50afff1a, type: 3}
   EnemyType2: {fileID: 8937360665854073709, guid: 28cfbaab706d43e47b5ff7b0908e1cca, type: 3}
   EnemyType3: {fileID: 4665688116233777606, guid: 03fe9624e26e50f438a09b6dd38ebc7d, type: 3}
+  maxSpawnPoints: 3
   minSpawnTime: 1
   maxSpawnTime: 10
   waveStart: 6
