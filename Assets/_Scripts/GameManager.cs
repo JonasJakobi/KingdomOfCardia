@@ -11,7 +11,6 @@ public class GameManager : SingletonPersistent<GameManager>
     [SerializeField]
     public GameState State { get; private set; }
     //For test purposes:
-    public GameObject towerPlaceUI;
     private void Start()
     {
         //Just for testing
@@ -41,16 +40,15 @@ public class GameManager : SingletonPersistent<GameManager>
             case GameState.Starting:
                 break;
             case GameState.BuildMode:
-                towerPlaceUI.SetActive(true);
+                UIChangeManager.Instance.showBuildModeUI();
                 RoundManager.Instance.NextRound();
                 CardManager.Instance.ClearHand();
                 CardManager.Instance.DrawRandomCards();
                 break;
             case GameState.PlayMode:
-                towerPlaceUI.SetActive(false);
+                UIChangeManager.Instance.removeBuildModeUI();
                 RoundManager.Instance.BeginNextRound();
                 CardManager.Instance.DrawNewCards(3);
-                UIChangeManager.Instance.removeAllWaveAlerts();
                 break;
             default:
                 break;

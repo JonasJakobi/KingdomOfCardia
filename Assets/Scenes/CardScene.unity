@@ -2126,6 +2126,7 @@ MonoBehaviour:
   MoneyText: {fileID: 4145664529855827095}
   HPText: {fileID: 5484554287871681194}
   WaveAlertPrefab: {fileID: 4446087087194784983, guid: 7908ff2026b9d704cae2e4251e5bff46, type: 3}
+  towerPlaceUI: {fileID: 3759204957986505296}
 --- !u!1 &1084807589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,6 +2415,7 @@ MonoBehaviour:
   MoneyText: {fileID: 0}
   HPText: {fileID: 0}
   WaveAlertPrefab: {fileID: 0}
+  towerPlaceUI: {fileID: 0}
 --- !u!1 &1097694567
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,7 +3215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8efeabcd2f507468796045ed040f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPlaceUI: {fileID: 3759204957986505296}
 --- !u!1001 &1708460620
 PrefabInstance:
   m_ObjectHideFlags: 0
