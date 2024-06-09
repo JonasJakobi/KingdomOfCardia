@@ -173,7 +173,8 @@ public class RoundManager : Singleton<RoundManager>
                 randomHeight = Random.Range(0, height);
             }
             spawnPoints.Add(new SpawnPoint(randomWidth, randomHeight, onFullWidth));
-            Debug.Log("Mit " + randomWidth + ", " + randomHeight + ", " + onFullWidth);
+            UIChangeManager.Instance.createWaveAlert(spawnPoints[i]);
+            Debug.Log("New SpawnPoint: " + randomWidth + ", " + randomHeight + ", " + onFullWidth);
         }
     }
 

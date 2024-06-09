@@ -50,6 +50,7 @@ public class GameManager : SingletonPersistent<GameManager>
                 towerPlaceUI.SetActive(false);
                 RoundManager.Instance.BeginNextRound();
                 CardManager.Instance.DrawNewCards(3);
+                UIChangeManager.Instance.removeAllWaveAlerts();
                 break;
             default:
                 break;

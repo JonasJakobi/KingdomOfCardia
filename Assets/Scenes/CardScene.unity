@@ -2125,6 +2125,7 @@ MonoBehaviour:
   RoundText: {fileID: 332325585409830668}
   MoneyText: {fileID: 4145664529855827095}
   HPText: {fileID: 5484554287871681194}
+  WaveAlertPrefab: {fileID: 4446087087194784983, guid: 7908ff2026b9d704cae2e4251e5bff46, type: 3}
 --- !u!1 &1084807589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,6 +2413,7 @@ MonoBehaviour:
   RoundText: {fileID: 0}
   MoneyText: {fileID: 0}
   HPText: {fileID: 0}
+  WaveAlertPrefab: {fileID: 0}
 --- !u!1 &1097694567
 GameObject:
   m_ObjectHideFlags: 0
