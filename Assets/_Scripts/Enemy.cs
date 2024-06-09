@@ -185,5 +185,18 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void SlowEnemy(int slow, float duration)
+    {
+        float slowMultiplicator = 1f / (float)slow;
+        StartCoroutine(SlowForSeconds(slowMultiplicator, duration));
+    }
+
+    public IEnumerator SlowForSeconds(float slowMultiplicator, float duration)
+    {
+        float originalMovementSpeed = movementSpeed;
+        movementSpeed = movementSpeed * slowMultiplicator;
+        yield return new WaitForSeconds(duration);
+        movementSpeed = originalMovementSpeed;
+    }
 
 }

@@ -14,7 +14,8 @@ public enum DamageType
     Light,
     Water,
     Necrotic,
-    Piercing
+    Piercing,
+    None
 }
 
 [CreateAssetMenu(fileName = "New CardEffect", menuName = "CardEffect/General")]
@@ -53,5 +54,14 @@ public class CardEffect : ScriptableObject
     {
         BaseTower baseTower = GameObject.FindWithTag("Goal").GetComponent<BaseTower>();
         baseTower.ShieldThisBaseTower(shieldStrength, duration);
+    }
+
+    public void SlowAllEnemies(int slow, float duration)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.SlowEnemy(slow, duration);
+        }
     }
 }

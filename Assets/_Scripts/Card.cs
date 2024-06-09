@@ -7,6 +7,7 @@ public enum CardType
     Damage,
     Healing,
     Shields,
+    Debuffs,
     Other
 }
 

@@ -233,6 +233,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.ShieldBaseTowers(cardData.valueOfCard, cardData.duration);
         }
 
+        else if (cardData.cardType == CardType.Debuffs)
+        {
+            cardData.effect.SlowAllEnemies(cardData.valueOfCard, cardData.duration);
+        }
+
         else
         {
             Debug.Log("Anderer Typ!");
