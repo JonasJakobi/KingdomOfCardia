@@ -51,7 +51,10 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
                 Debug.Log("Colliding projectile collided with enemy");
             }
 
+            //Only if all of these remain ice projectiles:
+            other.gameObject.GetComponent<Enemy>().SlowEnemy(3, 1.5f);
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+
             if (destroysOnImpact)
             {
                 Destroy(gameObject);

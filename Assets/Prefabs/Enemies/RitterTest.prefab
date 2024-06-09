@@ -373,7 +373,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 0.3
+  freezeColor: {r: 0, g: 0.74509805, b: 1, a: 1}
   maxHealth: 150
+  originalMovementSpeed: 1
   movementSpeed: 2
   attackCooldown: 1
   attackDamage: 15

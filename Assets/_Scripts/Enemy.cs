@@ -8,16 +8,20 @@ using UnityEngine;
 /// </summary>
 public class Enemy : MonoBehaviour
 {
-
+    public Renderer objectRenderer;
 
     [SerializeField] private float scale;
 
+    public Color originalColor = Color.white;
 
+    public Color freezeColor = Color.cyan;
 
+    public Color hitColor = Color.red;
 
 
     [Header("Stats")]
     public int maxHealth = 100;
+    public float originalMovementSpeed = 1;
 
 
     public float movementSpeed = 1;
@@ -42,7 +46,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        objectRenderer = GetComponent<Renderer>();
         health = maxHealth;
+        originalMovementSpeed = movementSpeed;
         this.transform.localScale = new Vector3(scale, scale, scale);
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
@@ -138,6 +144,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject roundManagerObject = GameObject.Find("RoundManager");
         RoundManager damageEnemy = roundManagerObject.GetComponent<RoundManager>();
+        StartCoroutine(changeColor(hitColor, true, 0.2f));
         health -= damage;
         if (health <= 0)
         {
@@ -193,10 +200,37 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator SlowForSeconds(float slowMultiplicator, float duration)
     {
-        float originalMovementSpeed = movementSpeed;
+
+        StartCoroutine(changeColor(freezeColor, false, 0.0f));
+
         movementSpeed = movementSpeed * slowMultiplicator;
         yield return new WaitForSeconds(duration);
         movementSpeed = originalMovementSpeed;
+        StartCoroutine(changeColor(originalColor, false, 0.0f));
+
+    }
+
+    public IEnumerator changeColor(Color color, bool revertColor, float duration)
+    {
+
+
+        Color savedColor = objectRenderer.material.color;
+        objectRenderer.material.color = color;
+
+        if (objectRenderer != null && revertColor)
+        {
+            yield return new WaitForSeconds(duration);
+            if (savedColor != hitColor)
+            {
+                objectRenderer.material.color = savedColor;
+            }
+            else
+            {
+                objectRenderer.material.color = originalColor;
+            }
+
+        }
+
     }
 
 }
