@@ -51,6 +51,24 @@ public class BaseTower : MonoBehaviour
         }
     }
 
+    public void ShieldThisBaseTower(int healthAmount, float duration)
+    {
+        StartCoroutine(GiveTemporaryHP(healthAmount, duration));
+    }
+
+    private IEnumerator GiveTemporaryHP(int healthAmount, float duration)
+    {
+        int currentHealth = health;
+        health += healthAmount;
+        UIChangeManager.Instance.updateHP();
+        yield return new WaitForSeconds(duration);
+        if (currentHealth <= health)
+        {
+            health = currentHealth;
+        }
+        UIChangeManager.Instance.updateHP();
+    }
+
     public int GetCurrentHealth()
     {
         return health;

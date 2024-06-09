@@ -230,9 +230,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
         else if (cardData.cardType == CardType.Shields)
         {
-            int currentHealth = cardData.effect.ShieldBaseTowers(cardData.valueOfCard, cardData.duration);
-            Debug.Log("StartSchild");
-            StartCoroutine(WaitForNumberOfSeconds(cardData.duration, currentHealth));
+            cardData.effect.ShieldBaseTowers(cardData.valueOfCard, cardData.duration);
         }
 
         else
@@ -298,20 +296,5 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         {
             transform.SetSiblingIndex(originalSiblingIndex);
         }
-    }
-
-    //Funktioniert nicht, keine Ahnung was das soll :(
-    /// <summary>
-    /// Remove shield of basetower after specific delay
-    /// </summary>
-    /// <param name="delay">Duration of the wait</param>
-    /// <param name="currentHealth">Current health of the baseTower without the shield</param>
-    /// <returns></returns>
-    private IEnumerator WaitForNumberOfSeconds(float delay, int currentHealth)
-    {
-        Debug.Log("Wo Log? " + delay);
-        yield return new WaitForSeconds(delay);
-        Debug.Log("EndeSchild");
-        cardData.effect.RemoveShieldBaseTowers(currentHealth);
     }
 }

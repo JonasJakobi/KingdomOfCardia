@@ -33,14 +33,12 @@ public class UIChangeManager : Singleton<UIChangeManager>
         MoneyText.text = MoneyManager.Instance.money.ToString() + " Gold";
     }
 
-    //Klappt noch nicht: CurrentHP und MaxHP sind immer 100.
+    //Update percentage of HP (rounded to 2 decimal points)
     public void updateHP()
     {
-        BaseTower baseTower = FindObjectOfType<BaseTower>();
-        float percentageHealth = ((baseTower.GetCurrentHealth() / baseTower.GetMaxHealth()) * 100);
+        BaseTower baseTower = GameObject.FindWithTag("Goal").GetComponent<BaseTower>();
+        float percentageHealth = Mathf.Round((((float)baseTower.GetCurrentHealth() / (float)baseTower.GetMaxHealth()) * 100.0f) * 100f) / 100f;
         HPText.text = percentageHealth.ToString() + " % HP";
-        Debug.Log("CurrentHealth: " + baseTower.GetCurrentHealth() + ", MaxHealth: " + baseTower.GetMaxHealth());
-        Debug.Log("Kann ich %? Das sind " + percentageHealth + "%!");
     }
 
     //Create GameObject to indicate the SpawnPoints in the following round

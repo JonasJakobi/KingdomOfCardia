@@ -49,38 +49,9 @@ public class CardEffect : ScriptableObject
     }
 
     //Only looks at the first loaded BaseTower
-    public int ShieldBaseTowers(int shieldStrength, float duration)
+    public void ShieldBaseTowers(int shieldStrength, float duration)
     {
-        /*BaseTower[] baseTowers = FindObjectsOfType<BaseTower>();
-        foreach (BaseTower baseTower in baseTowers)
-        {
-            int currentHealth = baseTower.GetCurrentHealth();
-            baseTower.TakeDamage(shieldStrength * -1);
-            StartCoroutine(WaitForNumberOfSeconds(duration));
-            int newCurrentHealth = baseTower.GetCurrentHealth();
-            if (currentHealth < newCurrentHealth)
-            {
-                baseTower.TakeDamage(newCurrentHealth - currentHealth);
-            }
-        }*/
-
-        BaseTower baseTower = FindObjectOfType<BaseTower>();
-        int currentHealth = baseTower.GetCurrentHealth();
-        baseTower.TakeDamage(shieldStrength * -1);
-        return currentHealth;
-    }
-
-    /// <summary>
-    /// Remove the shield from a basetower
-    /// </summary>
-    /// <param name="formerHealth"></param>
-    public void RemoveShieldBaseTowers(int formerHealth)
-    {
-        BaseTower baseTower = FindObjectOfType<BaseTower>();
-        int newCurrentHealth = baseTower.GetCurrentHealth();
-        if (formerHealth < newCurrentHealth)
-        {
-            baseTower.TakeDamage(newCurrentHealth - formerHealth);
-        }
+        BaseTower baseTower = GameObject.FindWithTag("Goal").GetComponent<BaseTower>();
+        baseTower.ShieldThisBaseTower(shieldStrength, duration);
     }
 }
