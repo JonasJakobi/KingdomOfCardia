@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ae010275c47a040a7079fb6239a04f, type: 3}
   m_Name: TestDefenceShield
   m_EditorClassIdentifier: 
-  cardType: 2
+  cardType: 4
   cardName: Schild
   description: "Besch\xFCtze deine Basis f\xFCr 10 Sekunden!"
   artwork: {fileID: 0}

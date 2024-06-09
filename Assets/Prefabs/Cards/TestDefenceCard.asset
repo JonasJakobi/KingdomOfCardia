@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ae010275c47a040a7079fb6239a04f, type: 3}
   m_Name: TestDefenceCard
   m_EditorClassIdentifier: 
-  cardType: 1
+  cardType: 3
   cardName: Repariere Nexus
   description: Heilt die Basetower ein wenig.
   artwork: {fileID: 0}

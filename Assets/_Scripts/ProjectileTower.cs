@@ -11,18 +11,18 @@ public class ProjectileTower : BaseTower
     GameObject projectilePrefab;
     [SerializeField]
     GameObject projectileSpawnPoint;
-    Enemy currentTarget;
+    [SerializeField] Enemy currentTarget;
 
     [SerializeField] private float attackDelayTimer = 0;
 
-    private bool canAttack = true;
+    [SerializeField] private bool canAttack = true;
     [SerializeField]
     private TargetingType targetingType;
 
     // Update is called once per frame
     void Update()
     {
-        if (canAttack)
+        if (canAttack && RoundManager.Instance.AttackableEnemiesAvailable())
         {
             FindNewTarget();
             if (currentTarget != null)

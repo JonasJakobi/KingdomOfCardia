@@ -100,6 +100,11 @@ public class RoundManager : Singleton<RoundManager>
 
     }
 
+    public bool AttackableEnemiesAvailable()
+    {
+        return enemyCount > 0;
+    }
+
     //Spawn an enemy
     private void SpawnEnemy(int enemyValue)
     {

@@ -238,6 +238,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.SlowAllEnemies(cardData.valueOfCard, cardData.duration);
         }
 
+        else if (cardData.cardType == CardType.Gold)
+        {
+            cardData.effect.MultiplyGold(cardData.valueOfCard);
+        }
+
         else
         {
             Debug.Log("Anderer Typ!");

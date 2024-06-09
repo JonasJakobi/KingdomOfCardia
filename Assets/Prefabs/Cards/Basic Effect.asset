@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea019799a4d830447a34f84dadc45233, type: 3}
-  m_Name: Basic Damage
+  m_Name: Basic Effect
   m_EditorClassIdentifier: 
-  damageType: 1
+  damageType: 11
   multiplier: 1

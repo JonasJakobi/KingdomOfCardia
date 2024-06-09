@@ -5,9 +5,10 @@ using UnityEngine;
 public enum CardType
 {
     Damage,
+    Debuffs,
+    Gold,
     Healing,
     Shields,
-    Debuffs,
     Other
 }
 

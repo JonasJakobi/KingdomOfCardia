@@ -64,4 +64,12 @@ public class CardEffect : ScriptableObject
             enemy.SlowEnemy(slow, duration);
         }
     }
+
+    //Multiply player gold by amount
+    public void MultiplyGold(int amount)
+    {
+        int moneyGain = MoneyManager.Instance.money * amount;
+        Debug.Log("So viel Geld: " + moneyGain);
+        MoneyManager.Instance.AddMoney(moneyGain);
+    }
 }

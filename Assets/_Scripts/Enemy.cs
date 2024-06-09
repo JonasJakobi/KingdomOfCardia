@@ -142,13 +142,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        GameObject roundManagerObject = GameObject.Find("RoundManager");
-        RoundManager damageEnemy = roundManagerObject.GetComponent<RoundManager>();
         StartCoroutine(changeColor(hitColor, true, 0.2f));
         health -= damage;
         if (health <= 0)
         {
-            damageEnemy.DefeatEnemy();
+            RoundManager.Instance.DefeatEnemy();
+            Debug.Log("Gegner besiegt!");
             currentTile.UnregisterEnemy(this);
             MoneyManager.Instance.AddMoney(GetValue());
             Destroy(gameObject);
