@@ -30,4 +30,13 @@ public class SceneChangeManager : Singleton<SceneChangeManager>
 
         }
     }
+
+    public void EndGame()
+    {
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
 }
