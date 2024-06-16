@@ -1332,7 +1332,7 @@ GameObject:
   - component: {fileID: 348017382}
   - component: {fileID: 348017381}
   m_Layer: 5
-  m_Name: TowePlaceUI
+  m_Name: TowerPlaceUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4456,12 +4456,13 @@ MonoBehaviour:
   RoundText: {fileID: 1892283154}
   MoneyText: {fileID: 1417797990}
   HPText: {fileID: 1449301378}
+  TowerMoney: {fileID: 0}
   WaveAlertPrefab: {fileID: 4446087087194784983, guid: 7908ff2026b9d704cae2e4251e5bff46, type: 3}
   towerPlaceUI:
-  - {fileID: 1619609267}
-  - {fileID: 1175993080}
-  - {fileID: 348017379}
-  - {fileID: 1300606378}
+  - {fileID: 1765696177}
+  - {fileID: 1713926503}
+  - {fileID: 1021502936}
+  - {fileID: 1166541885}
 --- !u!1 &1084807589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4749,6 +4750,7 @@ MonoBehaviour:
   RoundText: {fileID: 0}
   MoneyText: {fileID: 0}
   HPText: {fileID: 0}
+  TowerMoney: {fileID: 0}
   WaveAlertPrefab: {fileID: 0}
   towerPlaceUI: []
 --- !u!1 &1097694567
@@ -5269,7 +5271,7 @@ GameObject:
   - component: {fileID: 1175993083}
   - component: {fileID: 1175993082}
   m_Layer: 5
-  m_Name: TowePlaceUI
+  m_Name: TowerPlaceUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5891,7 +5893,7 @@ GameObject:
   - component: {fileID: 1300606381}
   - component: {fileID: 1300606380}
   m_Layer: 5
-  m_Name: TowePlaceUI
+  m_Name: TowerPlaceUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7681,7 +7683,7 @@ GameObject:
   - component: {fileID: 1619609270}
   - component: {fileID: 1619609269}
   m_Layer: 5
-  m_Name: TowePlaceUI
+  m_Name: TowerPlaceUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7720,7 +7722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerCost: 1
   towerPreviewPrefab: {fileID: 6619158480864369419, guid: c1a2140bb424b75449b8a41cef3f8f05, type: 3}
-  towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
+  towerPrefab: {fileID: 3617368672004125585, guid: 5729cef1f0ff56c47846eccad902a6e7, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   isPlacingTowerClick: 0
@@ -9507,7 +9509,7 @@ GameObject:
   - component: {fileID: 2025176040}
   - component: {fileID: 2025176039}
   m_Layer: 5
-  m_Name: WizardText
+  m_Name: IceTowerCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

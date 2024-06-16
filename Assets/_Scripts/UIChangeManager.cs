@@ -13,10 +13,12 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public TMP_Text HPText;
 
+    public TMP_Text TowerMoney;
+
     public GameObject WaveAlertPrefab;
 
     public List<GameObject> towerPlaceUI;
- 
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,12 @@ public class UIChangeManager : Singleton<UIChangeManager>
     {
         MoneyText.text = MoneyManager.Instance.money.ToString() + " Gold";
     }
+
+    // Update and Display cost of Towers
+    /* public void towerMoney()
+    {
+        TowerMoney.text = towerPlaceUI.Instance.towerCost.ToString() + "Gold";
+    } */
 
     //Update percentage of HP (rounded to 2 decimal points)
     public void updateHP()
@@ -67,10 +75,11 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public void showBuildModeUI()
     {
-        foreach(GameObject ob in towerPlaceUI) {
+        foreach (GameObject ob in towerPlaceUI)
+        {
             ob.SetActive(true);
         }
-        
+
     }
 
     public void removeBuildModeUI()
