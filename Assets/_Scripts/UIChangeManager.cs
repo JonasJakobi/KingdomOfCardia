@@ -15,7 +15,8 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public GameObject WaveAlertPrefab;
 
-    public GameObject towerPlaceUI;
+    public List<GameObject> towerPlaceUI;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -66,12 +67,18 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public void showBuildModeUI()
     {
-        towerPlaceUI.SetActive(true);
+        foreach(GameObject ob in towerPlaceUI) {
+            ob.SetActive(true);
+        }
+        
     }
 
     public void removeBuildModeUI()
     {
-        towerPlaceUI.SetActive(false);
+        foreach (GameObject ob in towerPlaceUI)
+        {
+            ob.SetActive(false);
+        }
         removeAllWaveAlerts();
     }
 }

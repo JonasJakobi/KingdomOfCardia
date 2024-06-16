@@ -3330,7 +3330,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 875967025}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1619609269}
+        m_TargetAssemblyTypeName: TowerPlacerUI, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &875967025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4441,11 +4453,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f008da7645c36674881e977c6df60028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoundText: {fileID: 332325585409830668}
-  MoneyText: {fileID: 4145664529855827095}
-  HPText: {fileID: 5484554287871681194}
+  RoundText: {fileID: 1892283154}
+  MoneyText: {fileID: 1417797990}
+  HPText: {fileID: 1449301378}
   WaveAlertPrefab: {fileID: 4446087087194784983, guid: 7908ff2026b9d704cae2e4251e5bff46, type: 3}
-  towerPlaceUI: {fileID: 3759204957986505296}
+  towerPlaceUI:
+  - {fileID: 1619609267}
+  - {fileID: 1175993080}
+  - {fileID: 348017379}
+  - {fileID: 1300606378}
 --- !u!1 &1084807589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,7 +4750,7 @@ MonoBehaviour:
   MoneyText: {fileID: 0}
   HPText: {fileID: 0}
   WaveAlertPrefab: {fileID: 0}
-  towerPlaceUI: {fileID: 0}
+  towerPlaceUI: []
 --- !u!1 &1097694567
 GameObject:
   m_ObjectHideFlags: 0
@@ -5593,7 +5609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f33c29da23a4af43a424b02665540e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoundButton: {fileID: 6259168983981161392}
+  startRoundButton: {fileID: 959245069}
   round: 1
   roundValue: 1
   roundValueLeft: 1
