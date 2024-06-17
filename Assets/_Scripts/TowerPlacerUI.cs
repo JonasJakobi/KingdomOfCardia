@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using TMPro;
+
 /// <summary>
 /// Attached to sprite of a tower and allows the player to place towers on the grid. by dragging or clicking onto the grid.
 /// </summary>
-public class TowerPlacerUI : MonoBehaviour
+public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
     //temporary solution to tower costs
     [SerializeField]
@@ -22,11 +25,19 @@ public class TowerPlacerUI : MonoBehaviour
     private Color placeableColor = new Color(0, 1, 0, 0.5f);
     [SerializeField]
     private Color notPlaceableColor = new Color(1, 0, 0, 0.5f);
+
+    [SerializeField]
+    private TextMeshProUGUI costText;
     [Header("Visible for debugging:")]
     [SerializeField]
     private bool isPlacingTowerClick = false;
     [SerializeField]
     private bool isPlacingTowerDrag = false;
+
+    void Start()
+    {
+        costText.text = towerCost.ToString();
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,6 +47,8 @@ public class TowerPlacerUI : MonoBehaviour
         {
             return;
         }
+        if(Input.GetMouseButtonUp(0))
+            OnMouseUp();
 
         Vector3 mousePos = GetMousePosition();
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
@@ -51,7 +64,8 @@ public class TowerPlacerUI : MonoBehaviour
 
         bool isBuildable = !tile.HasBuilding() && tile.IsBuildable();
 
-        UpdatePreview(mousePos, tile, isBuildable);
+        if(towerPreview != null)
+            UpdatePreview(mousePos, tile, isBuildable);
 
         //we try to place the tower but we cant:
         if (!isBuildable && UserTryingToPlace())
@@ -74,6 +88,7 @@ public class TowerPlacerUI : MonoBehaviour
 
     private void UpdatePreview(Vector3 mousePos, Tile tile, bool isBuildable)
     {
+        Debug.Log("In update");
         if (towerPreview.activeSelf == false)
         {
             towerPreview.SetActive(true);
@@ -130,7 +145,7 @@ public class TowerPlacerUI : MonoBehaviour
     }
     private void OnMouseUp()
     {
-
+        Debug.Log("Mouse up");
         if (!isPlacingTowerDrag)
         {
             return;
@@ -170,8 +185,9 @@ public class TowerPlacerUI : MonoBehaviour
 
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
+        Debug.Log("onmouseexit");
         stillOnUI = false;
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))
         {
@@ -179,10 +195,11 @@ public class TowerPlacerUI : MonoBehaviour
         }
         if (isPlacingTowerDrag || isPlacingTowerClick)
         {
+            Debug.Log("Spawn towerpreview");
             towerPreview = Instantiate(towerPreviewPrefab, GetMousePosition(), Quaternion.identity);
         }
     }
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
         stillOnUI = true;
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))

@@ -1374,6 +1374,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
+  costText: {fileID: 1021502938}
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
 --- !u!61 &348017382
@@ -2775,7 +2776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 8251890721739172685, guid: 00fc1a578406e08428434cd7abd8d865, type: 3}
-  activeConsoleDebugModes: 16
+  activeConsoleDebugModes: 17
 --- !u!4 &758437759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8717226996114295665, guid: 111827f2c0a9d9842a4f6cbf830725e6, type: 3}
@@ -5313,6 +5314,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
+  costText: {fileID: 1713926505}
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
 --- !u!61 &1175993083
@@ -5935,6 +5937,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
+  costText: {fileID: 1166541887}
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
 --- !u!61 &1300606381
@@ -7725,6 +7728,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 3617368672004125585, guid: 5729cef1f0ff56c47846eccad902a6e7, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
+  costText: {fileID: 1765696179}
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
 --- !u!61 &1619609270
@@ -7756,7 +7760,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -4.24527, y: -4.413206}
