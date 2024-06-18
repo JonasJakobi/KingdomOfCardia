@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine.UI;
+using System.Linq;
 //RoundManager to determine how many and which enemies are present in a round.
 
 public class SpawnPoint
@@ -30,6 +31,7 @@ public class RoundManager : Singleton<RoundManager>
     [SerializeField] private int enemiesSpawned;
     [SerializeField] private int enemiesDefeated;
 
+    [SerializeField] private GameObject[] EnemyPrefabs;
     [SerializeField] private GameObject EnemyType1;
     [SerializeField] private GameObject EnemyType2;
     [SerializeField] private GameObject EnemyType3;
@@ -52,27 +54,20 @@ public class RoundManager : Singleton<RoundManager>
         startRoundButton.onClick.AddListener(changeToPlayMode);
         roundValueLeft = 0;
         CreateSpawnPoints(1);
+        var enemies = EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue()));
+        foreach (var enemy in enemies)
+        {
+            Debug.Log(enemy.name + " ---  Value: " + enemy.GetComponentInChildren<Enemy>().GetValue());
+        }
+
     }
 
     private void Update()
     {
-        if (roundValueLeft >= 3)
+        if (roundValueLeft > 0)
         {
-            int randVal = Random.Range(1, 4);
-            StartCoroutine(SpawnDelayCoroutine(randVal));
-            roundValueLeft = roundValueLeft - randVal;
-        }
-
-        else if (roundValueLeft >= 2)
-        {
-            int randVal = Random.Range(1, 3);
-            StartCoroutine(SpawnDelayCoroutine(randVal));
-            roundValueLeft = roundValueLeft - randVal;
-        }
-
-        else if (roundValueLeft >= 1)
-        {
-            int randVal = 1;
+            int maxValue = (roundValueLeft <= 4) ? 1 : roundValueLeft / 4; //biggest enemy is quarter of the roundValue, but restrict bottom value to 1
+            int randVal = Random.Range(1, maxValue);
             StartCoroutine(SpawnDelayCoroutine(randVal));
             roundValueLeft = roundValueLeft - randVal;
         }
@@ -115,21 +110,7 @@ public class RoundManager : Singleton<RoundManager>
         int width = GridManager.WIDTH - 1;
         int height = GridManager.HEIGHT - 1;
 
-        switch (enemyValue)
-        {
-            case 1:
-                enemyPrefab = EnemyType1;
-                break;
-            case 2:
-                enemyPrefab = EnemyType2;
-                break;
-            case 3:
-                enemyPrefab = EnemyType3;
-                break;
-            default:
-                Debug.LogError("False enemyValue!");
-                return;
-        }
+        enemyPrefab = ChooseEnemeyPrefab(enemyValue);
 
         if (spawnPoint.isFullWidth)
         {
@@ -149,6 +130,11 @@ public class RoundManager : Singleton<RoundManager>
             Vector3 randomPos = new Vector3(spawnPoint.widthPosition, spawnPoint.heightPosition + randomDistance, 0);
             GameObject newEnemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
         }
+    }
+
+    private GameObject ChooseEnemeyPrefab(int enemyValue)
+    {
+        return EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue() - enemyValue)).First(); //closest value to our wanted value
     }
 
     private void CreateSpawnPoints(int amount)

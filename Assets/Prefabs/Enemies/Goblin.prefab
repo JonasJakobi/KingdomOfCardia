@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 250157262388220148}
   - component: {fileID: 3550331610588449972}
   - component: {fileID: 6137438044031111363}
+  - component: {fileID: 5134535132244922357}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -288,8 +289,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.388676, y: -1.3342208, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.18, y: 0.18, z: 0.25714287}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3210664364514093088}
   m_Father: {fileID: 0}
@@ -410,22 +411,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 0}
-  scale: 1
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
-  maxHealth: 100
+  maxHealth: 600
   originalMovementSpeed: 1
   movementSpeed: 1
-  attackCooldown: 1
-  attackDamage: 10
-  attackRange: 0.55
+  attackCooldown: 1.2
+  attackDamage: 50
+  attackRange: 0.37
   health: 100
   currentTile: {fileID: 0}
   attacking: 0
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
+--- !u!61 &5134535132244922357
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418927043878958977}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.059324384, y: 2.1284704}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.7048615, y: 0.15733148}
+    oldSize: {x: 8.06, y: 5.92}
+    newSize: {x: 8.06, y: 5.92}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.4738417, y: 4.833026}
+  m_EdgeRadius: 0
 --- !u!1 &5501879498669130744
 GameObject:
   m_ObjectHideFlags: 0

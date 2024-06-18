@@ -29,6 +29,16 @@ public class ProjectileTower : BaseTower
             {
                 ShootAtCurrentTarget();
             }
+            else
+            {
+                GetComponent<Animator>().SetBool("Attack", false);
+
+            }
+        }
+
+        if (!RoundManager.Instance.AttackableEnemiesAvailable())
+        {
+            GetComponent<Animator>().SetBool("Attack", false);
         }
     }
 
@@ -43,7 +53,7 @@ public class ProjectileTower : BaseTower
 
     private void ShootAtCurrentTarget()
     {
-        GetComponent<Animator>().SetTrigger("Attack");
+        GetComponent<Animator>().SetBool("Attack", true);
         StartCoroutine(WaitAndSpawnProjectile());
         StartCoroutine(AttackCooldown());
     }

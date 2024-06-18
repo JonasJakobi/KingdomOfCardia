@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 3049385354911471131}
   - component: {fileID: 4791963508658092814}
   - component: {fileID: 3529363184380325655}
+  - component: {fileID: 9146737547040252606}
   m_Layer: 0
   m_Name: Skelett
   m_TagString: Untagged
@@ -127,8 +128,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -27.751804, y: -3.143733, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4660692237604043248}
   m_Father: {fileID: 0}
@@ -247,15 +248,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 0}
-  scale: 1
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
-  maxHealth: 100
+  maxHealth: 400
   originalMovementSpeed: 1
-  movementSpeed: 1
-  attackCooldown: 1
-  attackDamage: 10
+  movementSpeed: 0.8
+  attackCooldown: 1.1
+  attackDamage: 800
   attackRange: 0.55
   health: 100
   currentTile: {fileID: 0}
@@ -263,6 +263,51 @@ MonoBehaviour:
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
+--- !u!61 &9146737547040252606
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142993940448108243}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06689763, y: 1.9297863}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5137386, y: 0.04690344}
+    oldSize: {x: 3.53, y: 4.26}
+    newSize: {x: 3.53, y: 4.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.005278, y: 4.2226315}
+  m_EdgeRadius: 0
 --- !u!1 &3768398903576980271
 GameObject:
   m_ObjectHideFlags: 0

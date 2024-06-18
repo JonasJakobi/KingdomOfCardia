@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 8251110664514800766}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.81956226, w: 0.5729902}
-  m_LocalPosition: {x: 1.4584022, y: 0.99436486, z: 0}
+  m_LocalPosition: {x: 0.13, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 8969095488055349962}
   - component: {fileID: 1491230150964943683}
   - component: {fileID: 6582364880586966808}
+  - component: {fileID: 1499018190243053946}
   m_Layer: 0
   m_Name: Vampier
   m_TagString: Untagged
@@ -253,7 +254,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29.396828, y: -5.896385, z: 0}
-  m_LocalScale: {x: 0.22, y: 0.22, z: 0.24444444}
+  m_LocalScale: {x: 0.120000005, y: 0.120000005, z: 0.13333334}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8147116208450259579}
@@ -371,19 +372,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 0}
-  scale: 1
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
-  maxHealth: 100
+  maxHealth: 5000
   originalMovementSpeed: 1
-  movementSpeed: 1
-  attackCooldown: 1
-  attackDamage: 10
-  attackRange: 0.55
+  movementSpeed: 0.9
+  attackCooldown: 1.2
+  attackDamage: 1500
+  attackRange: 0.67
   health: 100
   currentTile: {fileID: 0}
   attacking: 0
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
+--- !u!61 &1499018190243053946
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703079658779940387}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.11259091, y: 2.9801378}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5848316, y: 0.025273163}
+    oldSize: {x: 9.03, y: 6.47}
+    newSize: {x: 9.03, y: 6.47}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.079571, y: 7.1847496}
+  m_EdgeRadius: 0

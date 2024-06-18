@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
 {
     public Renderer objectRenderer;
 
-    [SerializeField] private float scale;
 
     public Color originalColor = Color.white;
 
@@ -26,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     public float movementSpeed = 1;
     [Tooltip("How many seconds between each attack")]
-    public int attackCooldown = 1;
+    public float attackCooldown = 1;
     [Tooltip("How much damage the enemy does per attack")]
     public int attackDamage = 10;
     [Tooltip("How far the enemy can attack from (1 = 1 tile)")]
@@ -49,7 +48,6 @@ public class Enemy : MonoBehaviour
         objectRenderer = GetComponent<Renderer>();
         health = maxHealth;
         originalMovementSpeed = movementSpeed;
-        this.transform.localScale = new Vector3(scale, scale, scale);
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
@@ -146,14 +144,17 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            RoundManager.Instance.DefeatEnemy();
-            Debug.Log("Gegner besiegt!");
-            currentTile.UnregisterEnemy(this);
-            MoneyManager.Instance.AddMoney(GetValue());
+
             Destroy(gameObject);
         }
     }
-
+    private void OnDestroy()
+    {
+        RoundManager.Instance.DefeatEnemy();
+        Debug.Log("Gegner besiegt!");
+        currentTile.UnregisterEnemy(this);
+        MoneyManager.Instance.AddMoney(GetValue());
+    }
     /// <summary>
     /// Tries to attack the building on the current tile.
     /// </summary>

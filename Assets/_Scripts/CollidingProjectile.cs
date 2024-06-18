@@ -44,7 +44,7 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<Enemy>() != null)
+        if (other.gameObject.GetComponentInChildren<Enemy>() != null)
         {
             if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Towers))
             {
@@ -52,8 +52,8 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
             }
 
             //Only if all of these remain ice projectiles:
-            other.gameObject.GetComponent<Enemy>().SlowEnemy(3, 1.5f);
-            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            other.gameObject.GetComponentInChildren<Enemy>().SlowEnemy(3, 1.5f);
+            other.gameObject.GetComponentInChildren<Enemy>().TakeDamage(damage);
 
             if (destroysOnImpact)
             {
