@@ -22,5 +22,5 @@ MonoBehaviour:
   maxEnemiesHittable: 0
   upgradeName: Base Upgrade
   upgradeSprite: {fileID: 0}
-  starLevel: 1
-  starColor: 1
+  starLevel: 0
+  starColor: 0

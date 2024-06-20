@@ -534,7 +534,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 32784669}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 348017381}
+        m_TargetAssemblyTypeName: TowerPlacerUI, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &32784669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,7 +2024,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 516914734}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1300606380}
+        m_TargetAssemblyTypeName: TowerPlacerUI, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &516914734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5309,9 +5333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749e36032f1c79a43bb0d08c700021d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 1
+  towerCost: 5
   towerPreviewPrefab: {fileID: 6619158480864369419, guid: c1a2140bb424b75449b8a41cef3f8f05, type: 3}
-  towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
+  towerPrefab: {fileID: 2667876061457046568, guid: 0c5636298cdeffb4a9408e0376dca758, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 1713926505}
@@ -5934,7 +5958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerCost: 1
   towerPreviewPrefab: {fileID: 6619158480864369419, guid: c1a2140bb424b75449b8a41cef3f8f05, type: 3}
-  towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
+  towerPrefab: {fileID: 8570863131761619502, guid: 6f040786a21abff40a0d3dcdb207bd8b, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 1166541887}
@@ -7377,7 +7401,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1542117755}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1175993082}
+        m_TargetAssemblyTypeName: TowerPlacerUI, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1542117755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7725,7 +7761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerCost: 1
   towerPreviewPrefab: {fileID: 6619158480864369419, guid: c1a2140bb424b75449b8a41cef3f8f05, type: 3}
-  towerPrefab: {fileID: 3617368672004125585, guid: 5729cef1f0ff56c47846eccad902a6e7, type: 3}
+  towerPrefab: {fileID: 8986985184927539993, guid: 5b69a6a27b75de54aafbdf41e05d1f40, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 1765696179}

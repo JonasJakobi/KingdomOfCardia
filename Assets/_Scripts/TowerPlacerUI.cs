@@ -47,7 +47,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
         {
             return;
         }
-        if(Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
             OnMouseUp();
 
         Vector3 mousePos = GetMousePosition();
@@ -64,7 +64,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
         bool isBuildable = !tile.HasBuilding() && tile.IsBuildable();
 
-        if(towerPreview != null)
+        if (towerPreview != null)
             UpdatePreview(mousePos, tile, isBuildable);
 
         //we try to place the tower but we cant:
@@ -133,7 +133,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
     }
     //The following methods check behavior around user input on the UI
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         Debug.Log("Clicked on tower placer");
         if (MoneyManager.Instance.CanAfford(towerCost))
