@@ -66,6 +66,7 @@ public class GridManager : Singleton<GridManager>
 
         if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
+            Debug.LogError("Tile out of bounds for pos: " + pos + " and x, y: " + x + "," + y);
             //Debug.LogError("Tile out of bounds");
             return null;
         }
