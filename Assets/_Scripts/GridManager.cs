@@ -66,7 +66,7 @@ public class GridManager : Singleton<GridManager>
 
         if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
-            Debug.LogError("Tile out of bounds");
+            //Debug.LogError("Tile out of bounds");
             return null;
         }
         return grid[x, y];
@@ -193,6 +193,10 @@ public class GridManager : Singleton<GridManager>
                     Tile tile = grid[checkX, checkY];
                     foreach (Enemy enemy in tile.enemies)
                     {
+                        if (enemy == null)
+                        {
+                            continue;
+                        }
                         float distance = Vector3.Distance(enemy.transform.position, nexusPosition);
                         if (distance < closestDistance)
                         {

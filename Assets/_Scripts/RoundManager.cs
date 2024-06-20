@@ -134,7 +134,7 @@ public class RoundManager : Singleton<RoundManager>
 
     private GameObject ChooseEnemeyPrefab(int enemyValue)
     {
-        return EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue() - enemyValue)).First(); //closest value to our wanted value
+        return EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue() - enemyValue)).First(); //closest value to our wanted value, shuffled randomly
     }
 
     private void CreateSpawnPoints(int amount)

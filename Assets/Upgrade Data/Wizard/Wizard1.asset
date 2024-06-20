@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Wizard1
   m_EditorClassIdentifier: 
   health: 150
-  cost: 10
+  cost: 2
   damage: 28
-  range: 11
+  range: 6
   attackSpeed: 1.8
   projectileSpeed: 0
   projectileLifetime: 0

@@ -19,7 +19,8 @@ MonoBehaviour:
   attackSpeed: 2
   projectileSpeed: 5
   projectileLifetime: 2
-  maxEnemiesHittable: 3
+  maxEnemiesHittable: 1
   upgradeName: Base Ice Tower
   upgradeSprite: {fileID: 0}
   starLevel: 0
+  starColor: 0

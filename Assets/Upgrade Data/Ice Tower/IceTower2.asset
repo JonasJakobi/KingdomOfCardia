@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IceTower2
   m_EditorClassIdentifier: 
   health: 200
-  cost: 50
+  cost: 20
   damage: 20
   range: 5
   attackSpeed: 1.8
@@ -23,3 +23,4 @@ MonoBehaviour:
   upgradeName: Base Ice Tower
   upgradeSprite: {fileID: 0}
   starLevel: 2
+  starColor: 0

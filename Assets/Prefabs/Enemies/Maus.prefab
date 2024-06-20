@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 7048663921335550022}
   - component: {fileID: 733085672269765912}
   - component: {fileID: 4595603155498883534}
+  - component: {fileID: 6633834526643717168}
   m_Layer: 0
   m_Name: Maus
   m_TagString: Untagged
@@ -438,6 +439,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.258916, y: 3.36}
   m_EdgeRadius: 0
+--- !u!50 &6633834526643717168
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4924595582389411743}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5180838280556464074
 GameObject:
   m_ObjectHideFlags: 0

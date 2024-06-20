@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: IceTower3
   m_EditorClassIdentifier: 
   health: 200
-  cost: 250
-  damage: 30
+  cost: 40
+  damage: 40
   range: 6
   attackSpeed: 1.7
-  projectileSpeed: 7
+  projectileSpeed: 8
   projectileLifetime: 2.4
   maxEnemiesHittable: 7
   upgradeName: Base Ice Tower
   upgradeSprite: {fileID: 0}
   starLevel: 3
+  starColor: 0
