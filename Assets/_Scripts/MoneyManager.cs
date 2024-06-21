@@ -31,6 +31,7 @@ public class MoneyManager : Singleton<MoneyManager>
 
     public bool CanAfford(int amount)
     {
+       
         return money >= amount;
     }
 }
