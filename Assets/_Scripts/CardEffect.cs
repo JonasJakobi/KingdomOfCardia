@@ -72,4 +72,13 @@ public class CardEffect : ScriptableObject
         Debug.Log("So viel Geld: " + moneyGain);
         MoneyManager.Instance.AddMoney(moneyGain);
     }
+
+    public void StartFireDamage(float duration, int damage)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.StartFireDamage(duration, damage);
+        }
+    }
 }

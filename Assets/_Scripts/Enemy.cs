@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float damageValueRatio = 1.0f;
 
+    [SerializeField] private ParticleSystem fireParticleSystem;
+
     private Animator animator;
 
     private void Start()
@@ -115,6 +117,31 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    public void StartFireDamage(float duration, int damage)
+    {
+        if (fireParticleSystem != null)
+            fireParticleSystem.Play();
+        StartCoroutine(TakeOverTimeDamage(duration, damage));
+
+    }
+
+    private IEnumerator TakeOverTimeDamage(float duration, int damage)
+    {
+        for (int i = 0; i < duration; i++)
+        {
+            TakeDamage(damage);
+            yield return new WaitForSeconds(1);
+        }
+        StopFireDamage();
+    }
+
+    private void StopFireDamage()
+    {
+
+        if (fireParticleSystem != null)
+            fireParticleSystem.Stop();
+    }
     /// <summary>
     /// Moves the enemy in the given direction (direction vector) with the given speed.
     /// Will only move for the current frame.
@@ -144,7 +171,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-
+            StopAllCoroutines();
             Destroy(gameObject);
         }
     }

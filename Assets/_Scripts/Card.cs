@@ -9,7 +9,8 @@ public enum CardType
     Gold,
     Healing,
     Shields,
-    Other
+    Other,
+    DamageOverTime
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]

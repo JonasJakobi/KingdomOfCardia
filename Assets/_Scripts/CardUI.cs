@@ -243,6 +243,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.MultiplyGold(cardData.valueOfCard);
         }
 
+        else if (cardData.cardType == CardType.DamageOverTime)
+        {
+            cardData.effect.StartFireDamage(cardData.duration, cardData.valueOfCard);
+        }
+
         else
         {
             Debug.Log("Anderer Typ!");
