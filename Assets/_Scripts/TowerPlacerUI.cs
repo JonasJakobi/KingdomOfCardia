@@ -33,6 +33,8 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
     private bool isPlacingTowerClick = false;
     [SerializeField]
     private bool isPlacingTowerDrag = false;
+    [SerializeField]
+    private TMP_Text money;
 
     void Start()
     {
@@ -86,6 +88,27 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
     }
 
+
+    public void ButtonClick()
+    {
+        Debug.Log("Clicked on tower placer");
+
+        print(MoneyManager.Instance.CanAfford(towerCost));
+        if (MoneyManager.Instance.CanAfford(towerCost))
+        {
+            MoneyManager.Instance.RemoveMoney(towerCost);
+            isPlacingTowerDrag = true;
+            money.color = Color.white;
+        }
+        else
+        {
+            money.color = Color.red;
+        }
+
+    }
+
+
+
     private void UpdatePreview(Vector3 mousePos, Tile tile, bool isBuildable)
     {
         Debug.Log("In update");
@@ -132,17 +155,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
         }
 
     }
-    //The following methods check behavior around user input on the UI
-    public void OnMouseDown()
-    {
-        Debug.Log("Clicked on tower placer");
-        if (MoneyManager.Instance.CanAfford(towerCost))
-        {
-            MoneyManager.Instance.RemoveMoney(towerCost);
-            isPlacingTowerDrag = true;
-        }
 
-    }
     private void OnMouseUp()
     {
         Debug.Log("Mouse up");

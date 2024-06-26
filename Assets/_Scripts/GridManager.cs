@@ -11,12 +11,12 @@ using System.Runtime.CompilerServices;
 public class GridManager : Singleton<GridManager>
 
 {
-    public float mountainChance = 0.12f;
+    public float mountainChance = 0.07f;
     [SerializeField] private int startX, startY;
-    public const int WIDTH = 16;
-    public const int HEIGHT = 9;
-    [SerializeField] private Tile tilePrefab;
-    [SerializeField] private Tile mountainTilePrefab;
+    public const int WIDTH = 32;
+    public const int HEIGHT = 18;
+    [SerializeField] private List<Tile> tilePrefab;
+    [SerializeField] private Tile mountainTilePrefab, forestTilePrefab;
 
     [SerializeField] private Transform camera;
 
@@ -37,6 +37,27 @@ public class GridManager : Singleton<GridManager>
         {
             for (int y = 0; y < HEIGHT; y++)
             {
+                Tile prefab = tilePrefab[3];
+                if(y % 2 == 0 && x % 2 == 0)
+                {
+                     prefab = tilePrefab[3];
+                }
+                else if (y % 2 == 0 && x % 2 != 0)
+                {
+                     prefab = tilePrefab[2];
+                }
+                else if (y % 2 != 0 && x % 2 == 0)
+                {
+                    prefab = tilePrefab[2];
+                }
+
+
+                grid[x, y] = Instantiate(prefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
+                grid[x, y].name = $"Tile {x} {y}";
+                grid[x, y].transform.parent = transform;
+                
+
+
                 //Small chance for mountain, otherwise normal tile
                 if (Random.Range(0, 100) < mountainChance * 100)
                 {
@@ -44,12 +65,14 @@ public class GridManager : Singleton<GridManager>
                     grid[x, y].name = $"Tile {x} {y}";
                     grid[x, y].transform.parent = transform;
                 }
-                else
+                else if (Random.Range(0, 100) < mountainChance * 100)
                 {
-                    grid[x, y] = Instantiate(tilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
+                    grid[x, y] = Instantiate(forestTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                     grid[x, y].name = $"Tile {x} {y}";
                     grid[x, y].transform.parent = transform;
                 }
+
+
 
             }
         }
@@ -66,7 +89,7 @@ public class GridManager : Singleton<GridManager>
 
         if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
-            Debug.LogError("Tile out of bounds for pos: " + pos + " and x, y: " + x + "," + y);
+            //Debug.LogError("Tile out of bounds for pos: " + pos + " and x, y: " + x + "," + y);
             //Debug.LogError("Tile out of bounds");
             return null;
         }

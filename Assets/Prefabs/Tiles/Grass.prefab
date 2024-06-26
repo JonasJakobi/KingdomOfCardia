@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 494588335, guid: a61857481aace234ebd6f5f60ceb1d0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6304339a9c605449598d4c6be5a7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseColor: {r: 0.5066305, g: 0.9339623, b: 0.50998217, a: 1}
+  baseColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 1, b: 1, a: 0.41960785}
   spriteRenderer: {fileID: 0}
   isWalkable: 1
@@ -110,7 +110,6 @@ MonoBehaviour:
   building: {fileID: 0}
   enemies: []
   flowFieldTile: {fileID: 0}
-  enemyMovementVector: {x: 0, y: 0, z: 0}
 --- !u!61 &-8614168291074592510
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,7 +146,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.016, y: 1.016}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -169,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseCost: 1
+  assignedCost: 1
   tile: {fileID: 7558562331473169665}
   towerMovementVector: {x: 0, y: 0, z: 0}
   nexusMovementVector: {x: 0, y: 0, z: 0}
