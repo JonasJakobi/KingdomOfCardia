@@ -38,13 +38,13 @@ public class GridManager : Singleton<GridManager>
             for (int y = 0; y < HEIGHT; y++)
             {
                 Tile prefab = tilePrefab[3];
-                if(y % 2 == 0 && x % 2 == 0)
+                if (y % 2 == 0 && x % 2 == 0)
                 {
-                     prefab = tilePrefab[3];
+                    prefab = tilePrefab[3];
                 }
                 else if (y % 2 == 0 && x % 2 != 0)
                 {
-                     prefab = tilePrefab[2];
+                    prefab = tilePrefab[2];
                 }
                 else if (y % 2 != 0 && x % 2 == 0)
                 {
@@ -55,11 +55,11 @@ public class GridManager : Singleton<GridManager>
                 grid[x, y] = Instantiate(prefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                 grid[x, y].name = $"Tile {x} {y}";
                 grid[x, y].transform.parent = transform;
-                
+
 
 
                 //Small chance for mountain, otherwise normal tile
-                if (Random.Range(0, 100) < mountainChance * 100)
+                if (Random.Range(0, 100) < mountainChance * 50)
                 {
                     grid[x, y] = Instantiate(mountainTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                     grid[x, y].name = $"Tile {x} {y}";
@@ -76,7 +76,7 @@ public class GridManager : Singleton<GridManager>
 
             }
         }
-        camera.position = new Vector3(WIDTH / 2, HEIGHT / 2, -10);
+        camera.position = new Vector3((WIDTH / 2) + 1, (HEIGHT / 2), -10);
 
     }
 
