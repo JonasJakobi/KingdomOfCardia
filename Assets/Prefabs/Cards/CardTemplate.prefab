@@ -550,3 +550,4 @@ MonoBehaviour:
   cardNameText: {fileID: 1642260774175069549}
   descriptionText: {fileID: 341860405743811541}
   artworkImage: {fileID: 2394894650800771593}
+  cardManager: {fileID: 0}
