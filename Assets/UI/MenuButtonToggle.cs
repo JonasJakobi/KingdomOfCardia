@@ -11,6 +11,7 @@ public class MenuButtonScript : MonoBehaviour
     {
         if (optionsWindow != null)
         {
+            AudioSystem.Instance.PlayMenuClickSound();
             bool isActive = optionsWindow.activeSelf;
             optionsWindow.SetActive(!isActive);
         }

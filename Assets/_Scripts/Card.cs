@@ -22,4 +22,5 @@ public class Card : ScriptableObject
     public CardEffect effect;
     public int valueOfCard;
     public float duration;
+    public AudioClip cardSound;
 }

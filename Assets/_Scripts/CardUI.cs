@@ -11,6 +11,9 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public TMP_Text descriptionText;
     public Image artworkImage;
     public CardManager cardManager;
+    public AudioClip cardPlaySound;
+    public AudioClip cardDrawSound;
+    public AudioClip cardSelectSound;
 
 
     private Vector3 originalScale;
@@ -32,6 +35,10 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     /// <param name="manager">The card manager</param>
     public void Initialize(Card card, CardManager manager)
     {
+        if (!inSelection)
+        {
+            AudioSystem.Instance.PlaySound(cardDrawSound);
+        }
         cardData = card;
         cardManager = manager;
         cardNameText.text = card.cardName;
@@ -73,6 +80,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioSystem.Instance.PlaySound(cardSelectSound);
         if (isPlayed == false && inSelection == false)
         {
             isHovered = true;
@@ -152,6 +160,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         if (inSelection == true)
         {
+            AudioSystem.Instance.PlaySound(cardPlaySound);
             changeCardSelection(false);
             cardManager.SelectCard(this);
         }
@@ -183,6 +192,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     /// <returns></returns>
     private IEnumerator PlayCard()
     {
+        AudioSystem.Instance.PlaySound(cardPlaySound);
         isPlayed = true;
         Vector3 screenCenter = new Vector3(GridManager.WIDTH / 2f, GridManager.HEIGHT / 2f, 0);
         RectTransform rectTransform = GetComponent<RectTransform>();
@@ -236,11 +246,13 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         else if (cardData.cardType == CardType.Debuffs)
         {
             cardData.effect.SlowAllEnemies(cardData.valueOfCard, cardData.duration);
+            AudioSystem.Instance.PlaySound(cardData.cardSound);
         }
 
         else if (cardData.cardType == CardType.Gold)
         {
             cardData.effect.MultiplyGold(cardData.valueOfCard);
+            AudioSystem.Instance.PlaySound(cardData.cardSound);
         }
 
         else

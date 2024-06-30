@@ -150,6 +150,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnDestroy()
     {
+        AudioSystem.Instance.PlaySplash();
         RoundManager.Instance.DefeatEnemy();
         Debug.Log("Gegner besiegt!");
         currentTile.UnregisterEnemy(this);

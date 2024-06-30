@@ -92,7 +92,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
     public void ButtonClick()
     {
         Debug.Log("Clicked on tower placer");
-
+        AudioSystem.Instance.PlayClickSound();
         print(MoneyManager.Instance.CanAfford(towerCost));
         if (MoneyManager.Instance.CanAfford(towerCost))
         {
@@ -128,7 +128,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
     {
         Tile tile = GridManager.Instance.GetTileAtPosition(GetMousePosition());
         Instantiate(towerPrefab, tile.transform.position, Quaternion.identity);
-
+        AudioSystem.Instance.PlayBonkSound();
     }
 
 
