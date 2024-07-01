@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     public Color reduceColor = Color.magenta;
 
+    public Color overallSlow = Color.grey;
+
 
     [Header("Stats")]
     public int maxHealth = 100;
@@ -50,6 +52,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
 
     private int originalAttackDamage;
+
 
     private void Start()
     {
@@ -331,6 +334,21 @@ public class Enemy : MonoBehaviour
         movementSpeed = originalMovementSpeed;
         StartCoroutine(changeColor(originalColor, false, 0.0f));
 
+    }
+
+    public void SlowMovementAndAttack(float slow, float duration)
+    {
+        float slowMultiplicator = 1f / (float)slow;
+        StartCoroutine(SlowForSeconds(slowMultiplicator, duration));
+        StartCoroutine(SlowAttackCooldown(duration));
+    }
+
+    private IEnumerator SlowAttackCooldown(float duration)
+    {
+        float originalCooldown = attackCooldown;
+        attackCooldown *= 2; //doubles AttackCooldown
+        yield return new WaitForSeconds(duration);
+        attackCooldown = originalCooldown;
     }
 
     public IEnumerator changeColor(Color color, bool revertColor, float duration)

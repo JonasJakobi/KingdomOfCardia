@@ -1395,6 +1395,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db38488553d10a542a7eca9b717e6cd4, type: 2}
   - {fileID: 11400000, guid: 660e89ff2e706c54b81fa78ca5a1b0b9, type: 2}
   - {fileID: 11400000, guid: 0576ecd085c32e44ab662256f6ee30d9, type: 2}
+  - {fileID: 11400000, guid: c61e0570ecc846b42a2d999e8669b47a, type: 2}
   deck: []
   fullDeck: []
   cardArea: {fileID: 6746439655830293997}

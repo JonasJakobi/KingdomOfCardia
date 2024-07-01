@@ -263,6 +263,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.ReduceDamage(cardData.valueOfCard, cardData.duration);
         }
 
+        else if (cardData.cardType == CardType.Debuffs && cardData.effect.damageType == DamageType.Air)
+        {
+            cardData.effect.OverallSlower(cardData.valueOfCard, cardData.duration);
+        }
+
         else
         {
             Debug.Log("Anderer Typ!");

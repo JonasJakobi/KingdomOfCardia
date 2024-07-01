@@ -104,6 +104,7 @@ public class CardEffect : ScriptableObject
         }
     }
 
+    //reduces damage that enemies do
     public void ReduceDamage(float reduce, float duration)
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
@@ -112,4 +113,15 @@ public class CardEffect : ScriptableObject
             enemy.ReduceDamage(reduce, duration);
         }
     }
+
+    //Movement and AttackSpeed is Slowed
+    public void OverallSlower(float slow, float duration)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.SlowMovementAndAttack(slow, duration);
+        }
+    }
+
 }
