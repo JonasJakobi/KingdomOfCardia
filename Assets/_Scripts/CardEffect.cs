@@ -103,4 +103,13 @@ public class CardEffect : ScriptableObject
             enemy.StartElectricDamage(duration, damage);
         }
     }
+
+    public void ReduceDamage(float reduce, float duration)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.ReduceDamage(reduce, duration);
+        }
+    }
 }

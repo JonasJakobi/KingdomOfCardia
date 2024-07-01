@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     public Color hitColor = Color.red;
 
+    public Color reduceColor = Color.magenta;
+
 
     [Header("Stats")]
     public int maxHealth = 100;
@@ -47,11 +49,14 @@ public class Enemy : MonoBehaviour
 
     private Animator animator;
 
+    private int originalAttackDamage;
+
     private void Start()
     {
         objectRenderer = GetComponent<Renderer>();
         health = maxHealth;
         originalMovementSpeed = movementSpeed;
+        originalAttackDamage = attackDamage;
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
@@ -180,6 +185,12 @@ public class Enemy : MonoBehaviour
             necroticParticleSystem.Stop();
     }
 
+    /// <summary>
+    /// Methods for starting electric damage and the corresponding particle system  
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="damage"></param>
+
     public void StartElectricDamage(float duration, int damage)
     {
         if (electricParticleSystem != null) ;
@@ -202,6 +213,28 @@ public class Enemy : MonoBehaviour
     {
         if (electricParticleSystem != null)
             electricParticleSystem.Stop();
+    }
+
+    public void ReduceDamage(float reduce, float duration)
+    {
+        StartCoroutine(ReduceDamageCoroutine(reduce, duration));
+    }
+
+    private IEnumerator ReduceDamageCoroutine(float reduce, float duration)
+    {
+        attackDamage = Mathf.RoundToInt(originalAttackDamage / reduce);
+        //Change Color to purple
+        StartCoroutine(changeColor(reduceColor, false, 0f));
+
+        yield return new WaitForSeconds(duration);
+
+        //restore original damage
+        attackDamage = originalAttackDamage;
+
+        //revert Color to normal
+        StartCoroutine(changeColor(originalColor, false, 0f));
+
+
     }
 
 

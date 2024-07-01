@@ -233,7 +233,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.ShieldBaseTowers(cardData.valueOfCard, cardData.duration);
         }
 
-        else if (cardData.cardType == CardType.Debuffs)
+        else if (cardData.cardType == CardType.Debuffs && cardData.effect.damageType == DamageType.Ice)
         {
             cardData.effect.SlowAllEnemies(cardData.valueOfCard, cardData.duration);
         }
@@ -256,6 +256,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Electricity)
         {
             cardData.effect.StartElectricDamage(cardData.duration, cardData.valueOfCard);
+        }
+
+        else if (cardData.cardType == CardType.Debuffs && cardData.effect.damageType == DamageType.Piercing)
+        {
+            cardData.effect.ReduceDamage(cardData.valueOfCard, cardData.duration);
         }
 
         else
