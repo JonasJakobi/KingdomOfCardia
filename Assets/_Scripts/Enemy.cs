@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damageValueRatio = 1.0f;
 
     [SerializeField] private ParticleSystem fireParticleSystem;
+    [SerializeField] private ParticleSystem necroticParticleSystem;
 
     private Animator animator;
 
@@ -118,6 +119,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Methods for starting fire damage and the corresponding particle system  
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="damage"></param>
     public void StartFireDamage(float duration, int damage)
     {
         if (fireParticleSystem != null)
@@ -141,6 +147,32 @@ public class Enemy : MonoBehaviour
 
         if (fireParticleSystem != null)
             fireParticleSystem.Stop();
+    }
+
+    public void StartNecroticDamage(float duration, int damage)
+    {
+        Debug.Log("Starting necrotic damage");
+        if (necroticParticleSystem != null)
+            necroticParticleSystem.Play();
+        StartCoroutine(TakeNecroticDamageOverTime(duration, damage));
+    }
+
+    private IEnumerator TakeNecroticDamageOverTime(float duration, int damage)
+    {
+        for (int i = 0; i < duration; i++)
+        {
+            int exponentialDamage = damage * (int)Mathf.Pow(2, i);
+            Debug.Log($"Necrotic damage tick {i + 1}: {exponentialDamage} damage");
+            TakeDamage(exponentialDamage);
+            yield return new WaitForSeconds(1);
+        }
+        StopNecroticDamage();
+    }
+
+    private void StopNecroticDamage()
+    {
+        if (necroticParticleSystem != null)
+            necroticParticleSystem.Stop();
     }
     /// <summary>
     /// Moves the enemy in the given direction (direction vector) with the given speed.

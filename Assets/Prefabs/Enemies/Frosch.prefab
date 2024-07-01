@@ -169,6 +169,7 @@ MonoBehaviour:
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
   fireParticleSystem: {fileID: 4101375913474296416}
+  necroticParticleSystem: {fileID: 8295589336983477314}
 --- !u!61 &8703071457098222711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -536,6 +537,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3962097516799162004}
     m_Modifications:
+    - target: {fileID: 640703474378860104, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -580,6 +585,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 6032962791360361284, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449163775830955006, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -593,5 +606,10 @@ Transform:
 --- !u!198 &4101375913474296416 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3212306618101073372, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+  m_PrefabInstance: {fileID: 1477009636299607996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8295589336983477314 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7449163775830955006, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
   m_PrefabInstance: {fileID: 1477009636299607996}
   m_PrefabAsset: {fileID: 0}

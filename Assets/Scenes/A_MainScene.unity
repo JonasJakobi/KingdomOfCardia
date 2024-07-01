@@ -1387,14 +1387,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardUIPrefab: {fileID: 6948449565007065714, guid: c37a22bd4ddbb684e93be82831958051, type: 3}
   allCards:
-  - {fileID: 11400000, guid: ccd8f0bbb444c364298498bfd660802e, type: 2}
-  - {fileID: 11400000, guid: 3cbf63a7d68330949a709fe673fca2ea, type: 2}
-  - {fileID: 11400000, guid: 4fbe4e20c79274248b0d1eaaa0edf81d, type: 2}
+  - {fileID: 11400000, guid: f84ff083ce696914fa3f68b57ff53f1d, type: 2}
+  - {fileID: 11400000, guid: 663166870cc3e4a4687cfab365f6faaa, type: 2}
   - {fileID: 11400000, guid: 48e998c9700163c4e868939e57d8bb9f, type: 2}
   - {fileID: 11400000, guid: db38488553d10a542a7eca9b717e6cd4, type: 2}
   - {fileID: 11400000, guid: 660e89ff2e706c54b81fa78ca5a1b0b9, type: 2}
   - {fileID: 11400000, guid: 0576ecd085c32e44ab662256f6ee30d9, type: 2}
-  - {fileID: 11400000, guid: 663166870cc3e4a4687cfab365f6faaa, type: 2}
   deck: []
   fullDeck: []
   cardArea: {fileID: 6746439655830293997}
@@ -6929,10 +6927,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -13.554007
       objectReference: {fileID: 0}
+    - target: {fileID: 5959256433645867623, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35.30005
+      objectReference: {fileID: 0}
     - target: {fileID: 6840061049235469057, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7111492955326007783}
+    - target: {fileID: 7133619635444040577, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -52.251953
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133619635444040577, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.5811768
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437286312072737457, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.099976
+      objectReference: {fileID: 0}
     - target: {fileID: 8395294698642407159, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_SizeDelta.x
       value: -21.132

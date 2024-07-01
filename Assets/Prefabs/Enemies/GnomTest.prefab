@@ -197,6 +197,7 @@ MonoBehaviour:
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
   fireParticleSystem: {fileID: 4042614034927678903}
+  necroticParticleSystem: {fileID: 0}
 --- !u!61 &-7548727902778042931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -426,6 +427,10 @@ PrefabInstance:
     - target: {fileID: 3212306618101073372, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449163775830955006, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28ae010275c47a040a7079fb6239a04f, type: 3}
-  m_Name: TestSlow
+  m_Name: TestNecrotic
   m_EditorClassIdentifier: 
-  cardType: 1
-  cardName: Langsamer
-  description: "Die Gegner sind langsamer! Sie m\xFCssen auspassen, dass sie nicht
-    ausrutschen."
-  artwork: {fileID: 21300000, guid: 9d6cba5fd901ed54789af289d42203af, type: 3}
-  effect: {fileID: 11400000, guid: e88c17eed92d15a4a85bad084f78ef78, type: 2}
-  valueOfCard: 4
+  cardType: 6
+  cardName: "Gr\xFCne TEilchen und so"
+  description: 
+  artwork: {fileID: 0}
+  effect: {fileID: 11400000, guid: c356f1f7ea07aa74ba447e4d760dc883, type: 2}
+  valueOfCard: 1
   duration: 5

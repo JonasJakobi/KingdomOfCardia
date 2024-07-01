@@ -243,9 +243,14 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.MultiplyGold(cardData.valueOfCard);
         }
 
-        else if (cardData.cardType == CardType.DamageOverTime)
+        else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Fire)
         {
             cardData.effect.StartFireDamage(cardData.duration, cardData.valueOfCard);
+        }
+
+        else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Necrotic)
+        {
+            cardData.effect.StartNecroticDamage(cardData.duration, cardData.valueOfCard);
         }
 
         else

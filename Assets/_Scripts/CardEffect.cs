@@ -73,12 +73,23 @@ public class CardEffect : ScriptableObject
         MoneyManager.Instance.AddMoney(moneyGain);
     }
 
+    // Starts Fire Damage
     public void StartFireDamage(float duration, int damage)
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
             enemy.StartFireDamage(duration, damage);
+        }
+    }
+
+    //Starts Necrotic Damage
+    public void StartNecroticDamage(float duration, int damage)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.StartNecroticDamage(duration, damage);
         }
     }
 }
