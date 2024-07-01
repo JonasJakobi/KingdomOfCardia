@@ -253,6 +253,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.StartNecroticDamage(cardData.duration, cardData.valueOfCard);
         }
 
+        else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Electricity)
+        {
+            cardData.effect.StartElectricDamage(cardData.duration, cardData.valueOfCard);
+        }
+
         else
         {
             Debug.Log("Anderer Typ!");

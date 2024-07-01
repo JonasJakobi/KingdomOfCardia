@@ -92,4 +92,15 @@ public class CardEffect : ScriptableObject
             enemy.StartNecroticDamage(duration, damage);
         }
     }
+
+    //Starts Electricity Damage
+
+    public void StartElectricDamage(float duration, int damage)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.StartElectricDamage(duration, damage);
+        }
+    }
 }

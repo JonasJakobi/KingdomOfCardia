@@ -1388,6 +1388,7 @@ MonoBehaviour:
   cardUIPrefab: {fileID: 6948449565007065714, guid: c37a22bd4ddbb684e93be82831958051, type: 3}
   allCards:
   - {fileID: 11400000, guid: f84ff083ce696914fa3f68b57ff53f1d, type: 2}
+  - {fileID: 11400000, guid: 8219333e95e199b4095dc3b0cdbed6b4, type: 2}
   - {fileID: 11400000, guid: 663166870cc3e4a4687cfab365f6faaa, type: 2}
   - {fileID: 11400000, guid: 48e998c9700163c4e868939e57d8bb9f, type: 2}
   - {fileID: 11400000, guid: db38488553d10a542a7eca9b717e6cd4, type: 2}

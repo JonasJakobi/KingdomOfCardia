@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private ParticleSystem fireParticleSystem;
     [SerializeField] private ParticleSystem necroticParticleSystem;
+    [SerializeField] private ParticleSystem electricParticleSystem;
 
     private Animator animator;
 
@@ -149,9 +150,14 @@ public class Enemy : MonoBehaviour
             fireParticleSystem.Stop();
     }
 
+    /// <summary>
+    /// Methods for starting necrotic damage and the corresponding particle system  
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="damage"></param>
+
     public void StartNecroticDamage(float duration, int damage)
     {
-        Debug.Log("Starting necrotic damage");
         if (necroticParticleSystem != null)
             necroticParticleSystem.Play();
         StartCoroutine(TakeNecroticDamageOverTime(duration, damage));
@@ -162,7 +168,6 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < duration; i++)
         {
             int exponentialDamage = damage * (int)Mathf.Pow(2, i);
-            Debug.Log($"Necrotic damage tick {i + 1}: {exponentialDamage} damage");
             TakeDamage(exponentialDamage);
             yield return new WaitForSeconds(1);
         }
@@ -174,6 +179,32 @@ public class Enemy : MonoBehaviour
         if (necroticParticleSystem != null)
             necroticParticleSystem.Stop();
     }
+
+    public void StartElectricDamage(float duration, int damage)
+    {
+        if (electricParticleSystem != null) ;
+        electricParticleSystem.Play();
+        StartCoroutine(TakeElectricDamageOverTime(duration, damage));
+    }
+
+    public IEnumerator TakeElectricDamageOverTime(float duration, int damage)
+    {
+        TakeDamage(damage * 5);
+        for (int i = 0; i < duration; i++)
+        {
+            TakeDamage(damage / 2);
+            yield return new WaitForSeconds(1);
+        }
+        StopElectricDamage();
+    }
+
+    private void StopElectricDamage()
+    {
+        if (electricParticleSystem != null)
+            electricParticleSystem.Stop();
+    }
+
+
     /// <summary>
     /// Moves the enemy in the given direction (direction vector) with the given speed.
     /// Will only move for the current frame.
