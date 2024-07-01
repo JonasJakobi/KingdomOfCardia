@@ -8,6 +8,9 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
 {
     [SerializeField] private AudioSource soundSource;
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioClip backgroundMusic;
+    [SerializeField] private AudioClip menuMusic;
+    [SerializeField] private AudioClip buildMusic;
     [SerializeField] private AudioClip menuClick;
     [SerializeField] private AudioClip basicClick;
     [SerializeField] private AudioClip bonkSound;
@@ -17,6 +20,21 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     {
         musicSource.clip = clip;
         musicSource.Play();
+    }
+
+    public void PlayBackgroundMusic()
+    {
+        PlayMusic(backgroundMusic);
+    }
+
+    public void PlayMenuMusic()
+    {
+        PlayMusic(menuMusic);
+    }
+
+    public void PlayBuildMusic()
+    {
+        PlayMusic(buildMusic);
     }
     public void PlaySound(AudioClip clip)
     {

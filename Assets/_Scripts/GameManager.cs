@@ -36,8 +36,11 @@ public class GameManager : SingletonPersistent<GameManager>
         switch (gameState)
         {
             case GameState.MainMenu:
+
                 break;
             case GameState.Starting:
+                //AudioSystem.Instance.PlayMenuMusic();
+                AudioSystem.Instance.PlayBackgroundMusic();
                 break;
             case GameState.BuildMode:
                 UIChangeManager.Instance.showBuildModeUI();
