@@ -268,6 +268,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.OverallSlower(cardData.valueOfCard, cardData.duration);
         }
 
+
+
         else
         {
             Debug.Log("Anderer Typ!");
