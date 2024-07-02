@@ -193,19 +193,31 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void SlowEnemy(int slow, float duration)
+    public void SlowEnemy(int slow, float duration, bool musicEffect)
     {
         float slowMultiplicator = 1f / (float)slow;
-        StartCoroutine(SlowForSeconds(slowMultiplicator, duration));
+        StartCoroutine(SlowForSeconds(slowMultiplicator, duration, musicEffect));
     }
 
-    public IEnumerator SlowForSeconds(float slowMultiplicator, float duration)
+    public IEnumerator SlowForSeconds(float slowMultiplicator, float duration, bool musicEffect)
     {
 
         StartCoroutine(changeColor(freezeColor, false, 0.0f));
 
+        if (musicEffect)
+        {
+            AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch - (0.75f * slowMultiplicator));
+        }
+
         movementSpeed = movementSpeed * slowMultiplicator;
+
         yield return new WaitForSeconds(duration);
+
+        if (musicEffect)
+        {
+            AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch);
+        }
+
         movementSpeed = originalMovementSpeed;
         StartCoroutine(changeColor(originalColor, false, 0.0f));
 

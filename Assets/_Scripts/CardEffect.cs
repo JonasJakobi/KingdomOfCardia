@@ -61,7 +61,7 @@ public class CardEffect : ScriptableObject
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
-            enemy.SlowEnemy(slow, duration);
+            enemy.SlowEnemy(slow, duration, true);
         }
     }
 

@@ -6,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class AudioSystem : SingletonPersistent<AudioSystem>
 {
+    [SerializeField] public float originalVolume;
+    [SerializeField] public float originalPitch;
     [SerializeField] private AudioSource soundSource;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClip backgroundMusic;
@@ -16,25 +18,60 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     [SerializeField] private AudioClip bonkSound;
     [SerializeField] private AudioClip basicSplash;
 
-    public void PlayMusic(AudioClip clip)
+    void Start()
     {
+        originalPitch = 0.8f;
+        originalVolume = 0.2f;
+        musicSource.volume = originalVolume;
+        musicSource.pitch = originalPitch;
+    }
+
+    public void ChangePitch(float pitch)
+    {
+        musicSource.pitch = pitch;
+    }
+
+    public IEnumerator FadeOutMusic(float fadeOutTime, AudioClip newMusic, bool randomPitch)
+    {
+        float duration = fadeOutTime; // Duration of the fade
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            musicSource.volume -= Time.deltaTime / fadeOutTime;
+
+            yield return null;
+        }
+        musicSource.volume = originalVolume;
+        PlayMusic(newMusic, randomPitch);
+    }
+
+    public void PlayMusic(AudioClip clip, bool randomPitch)
+    {
+        if (randomPitch)
+        {
+            float randVal = Random.Range(0.6f, 1.2f);
+            musicSource.pitch = randVal;
+            originalPitch = randVal;
+        }
         musicSource.clip = clip;
         musicSource.Play();
     }
 
     public void PlayBackgroundMusic()
     {
-        PlayMusic(backgroundMusic);
+        StartCoroutine(FadeOutMusic(1f, backgroundMusic, true));
     }
 
     public void PlayMenuMusic()
     {
-        PlayMusic(menuMusic);
+        PlayMusic(menuMusic, false);
     }
 
     public void PlayBuildMusic()
     {
-        PlayMusic(buildMusic);
+        StartCoroutine(FadeOutMusic(1f, buildMusic, true));
     }
     public void PlaySound(AudioClip clip)
     {
