@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Langsamer
   description: "Die Gegner sind langsamer! Sie m\xFCssen auspassen, dass sie nicht
     ausrutschen."
-  artwork: {fileID: 21300000, guid: 9d6cba5fd901ed54789af289d42203af, type: 3}
+  artwork: {fileID: 21300000, guid: 2fed1541413ac7145b4dbc2941a2ebd2, type: 3}
   effect: {fileID: 11400000, guid: e88c17eed92d15a4a85bad084f78ef78, type: 2}
   valueOfCard: 4
   duration: 5

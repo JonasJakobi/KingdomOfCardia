@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Exponentielles Geld
   description: Das Gold wurde verdoppelt! Scheinbar hatten die Zauberer ein paar
     erfolgreiche Experimente
-  artwork: {fileID: 21300000, guid: a68a754231f80614b9a3f64aef7e19ca, type: 3}
+  artwork: {fileID: 21300000, guid: f66de250661f8824492fda3e5e178e10, type: 3}
   effect: {fileID: 11400000, guid: 8b347d42944e91b4c9f360db124f91b3, type: 2}
   valueOfCard: 1
   duration: 0

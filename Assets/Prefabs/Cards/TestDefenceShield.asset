@@ -15,7 +15,7 @@ MonoBehaviour:
   cardType: 4
   cardName: Schild
   description: "F\xFCr 10 Sekunden hat der Base Tower ein \xFCberdimensionales Schild!"
-  artwork: {fileID: 21300000, guid: a7238d080d1ba3540a1b58f1ca872bba, type: 3}
+  artwork: {fileID: 21300000, guid: 40cfe30482158e142aa551aca4509d14, type: 3}
   effect: {fileID: 11400000, guid: 923922cea75fa714e9ffc5040350eb06, type: 2}
   valueOfCard: 10000
   duration: 10

@@ -15,7 +15,7 @@ MonoBehaviour:
   cardType: 6
   cardName: FIRE
   description: 
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: db4e04b32bc1aeb4d99c1ea5e7946dfe, type: 3}
   effect: {fileID: 11400000, guid: a1e2facf8f069c141bb8dfd74a288365, type: 2}
   valueOfCard: 4
   duration: 5
