@@ -16,6 +16,6 @@ MonoBehaviour:
   cardName: "Festgeschlammte F\xFC\xDFe"
   description: 
   artwork: {fileID: 0}
-  effect: {fileID: 11400000, guid: d6650070c5a7847429034b6d57c07c13, type: 2}
-  valueOfCard: 0
-  duration: 3
+  effect: {fileID: 11400000, guid: e88c17eed92d15a4a85bad084f78ef78, type: 2}
+  valueOfCard: 99
+  duration: 2
