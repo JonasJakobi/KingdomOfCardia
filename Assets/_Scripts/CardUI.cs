@@ -243,7 +243,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.ShieldBaseTowers(cardData.valueOfCard, cardData.duration);
         }
 
-        else if (cardData.cardType == CardType.Debuffs)
+        else if (cardData.cardType == CardType.Debuffs && cardData.effect.damageType == DamageType.Ice)
         {
             cardData.effect.SlowAllEnemies(cardData.valueOfCard, cardData.duration);
             AudioSystem.Instance.PlaySound(cardData.cardSound);
@@ -254,6 +254,33 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             cardData.effect.MultiplyGold(cardData.valueOfCard);
             AudioSystem.Instance.PlaySound(cardData.cardSound);
         }
+
+        else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Fire)
+        {
+            cardData.effect.StartFireDamage(cardData.duration, cardData.valueOfCard);
+        }
+
+        else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Necrotic)
+        {
+            cardData.effect.StartNecroticDamage(cardData.duration, cardData.valueOfCard);
+        }
+
+        else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Electricity)
+        {
+            cardData.effect.StartElectricDamage(cardData.duration, cardData.valueOfCard);
+        }
+
+        else if (cardData.cardType == CardType.Debuffs && cardData.effect.damageType == DamageType.Piercing)
+        {
+            cardData.effect.ReduceDamage(cardData.valueOfCard, cardData.duration);
+        }
+
+        else if (cardData.cardType == CardType.Debuffs && cardData.effect.damageType == DamageType.Air)
+        {
+            cardData.effect.OverallSlower(cardData.valueOfCard, cardData.duration);
+        }
+
+
 
         else
         {

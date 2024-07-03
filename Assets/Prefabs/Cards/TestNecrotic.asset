@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28ae010275c47a040a7079fb6239a04f, type: 3}
-  m_Name: TestDefenceShield
+  m_Name: TestNecrotic
   m_EditorClassIdentifier: 
-  cardType: 4
-  cardName: Schild
-  description: "F\xFCr 10 Sekunden hat der Base Tower ein \xFCberdimensionales Schild!"
-  artwork: {fileID: 21300000, guid: 40cfe30482158e142aa551aca4509d14, type: 3}
-  effect: {fileID: 11400000, guid: 923922cea75fa714e9ffc5040350eb06, type: 2}
-  valueOfCard: 10000
-  duration: 10
+  cardType: 6
+  cardName: "Gr\xFCne TEilchen und so"
+  description: 
+  artwork: {fileID: 0}
+  effect: {fileID: 11400000, guid: c356f1f7ea07aa74ba447e4d760dc883, type: 2}
+  valueOfCard: 1
+  duration: 5

@@ -17,6 +17,10 @@ public class Enemy : MonoBehaviour
 
     public Color hitColor = Color.red;
 
+    public Color reduceColor = Color.magenta;
+
+    public Color overallSlow = Color.grey;
+
 
     [Header("Stats")]
     public int maxHealth = 100;
@@ -41,13 +45,21 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float damageValueRatio = 1.0f;
 
+    [SerializeField] private ParticleSystem fireParticleSystem;
+    [SerializeField] private ParticleSystem necroticParticleSystem;
+    [SerializeField] private ParticleSystem electricParticleSystem;
+
     private Animator animator;
+
+    private int originalAttackDamage;
+
 
     private void Start()
     {
         objectRenderer = GetComponent<Renderer>();
         health = maxHealth;
         originalMovementSpeed = movementSpeed;
+        originalAttackDamage = attackDamage;
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
@@ -115,6 +127,120 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Methods for starting fire damage and the corresponding particle system  
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="damage"></param>
+    public void StartFireDamage(float duration, int damage)
+    {
+        if (fireParticleSystem != null)
+            fireParticleSystem.Play();
+        StartCoroutine(TakeOverTimeDamage(duration, damage));
+
+    }
+
+    private IEnumerator TakeOverTimeDamage(float duration, int damage)
+    {
+        for (int i = 0; i < duration; i++)
+        {
+            TakeDamage(damage);
+            yield return new WaitForSeconds(1);
+        }
+        StopFireDamage();
+    }
+
+    private void StopFireDamage()
+    {
+
+        if (fireParticleSystem != null)
+            fireParticleSystem.Stop();
+    }
+
+    /// <summary>
+    /// Methods for starting necrotic damage and the corresponding particle system  
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="damage"></param>
+
+    public void StartNecroticDamage(float duration, int damage)
+    {
+        if (necroticParticleSystem != null)
+            necroticParticleSystem.Play();
+        StartCoroutine(TakeNecroticDamageOverTime(duration, damage));
+    }
+
+    private IEnumerator TakeNecroticDamageOverTime(float duration, int damage)
+    {
+        for (int i = 0; i < duration; i++)
+        {
+            int exponentialDamage = damage * (int)Mathf.Pow(2, i);
+            TakeDamage(exponentialDamage);
+            yield return new WaitForSeconds(1);
+        }
+        StopNecroticDamage();
+    }
+
+    private void StopNecroticDamage()
+    {
+        if (necroticParticleSystem != null)
+            necroticParticleSystem.Stop();
+    }
+
+    /// <summary>
+    /// Methods for starting electric damage and the corresponding particle system  
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="damage"></param>
+
+    public void StartElectricDamage(float duration, int damage)
+    {
+        if (electricParticleSystem != null) ;
+        electricParticleSystem.Play();
+        StartCoroutine(TakeElectricDamageOverTime(duration, damage));
+    }
+
+    public IEnumerator TakeElectricDamageOverTime(float duration, int damage)
+    {
+        TakeDamage(damage * 5);
+        for (int i = 0; i < duration; i++)
+        {
+            TakeDamage(damage / 2);
+            yield return new WaitForSeconds(1);
+        }
+        StopElectricDamage();
+    }
+
+    private void StopElectricDamage()
+    {
+        if (electricParticleSystem != null)
+            electricParticleSystem.Stop();
+    }
+
+    public void ReduceDamage(float reduce, float duration)
+    {
+        StartCoroutine(ReduceDamageCoroutine(reduce, duration));
+    }
+
+    private IEnumerator ReduceDamageCoroutine(float reduce, float duration)
+    {
+        attackDamage = Mathf.RoundToInt(originalAttackDamage / reduce);
+        //Change Color to purple
+        StartCoroutine(changeColor(reduceColor, false, 0f));
+
+        yield return new WaitForSeconds(duration);
+
+        //restore original damage
+        attackDamage = originalAttackDamage;
+
+        //revert Color to normal
+        StartCoroutine(changeColor(originalColor, false, 0f));
+
+
+    }
+
+
     /// <summary>
     /// Moves the enemy in the given direction (direction vector) with the given speed.
     /// Will only move for the current frame.
@@ -144,7 +270,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-
+            StopAllCoroutines();
             Destroy(gameObject);
         }
     }
@@ -221,6 +347,21 @@ public class Enemy : MonoBehaviour
         movementSpeed = originalMovementSpeed;
         StartCoroutine(changeColor(originalColor, false, 0.0f));
 
+    }
+
+    public void SlowMovementAndAttack(float slow, float duration)
+    {
+        float slowMultiplicator = 1f / (float)slow;
+        StartCoroutine(SlowForSeconds(slowMultiplicator, duration));
+        StartCoroutine(SlowAttackCooldown(duration));
+    }
+
+    private IEnumerator SlowAttackCooldown(float duration)
+    {
+        float originalCooldown = attackCooldown;
+        attackCooldown *= 2; //doubles AttackCooldown
+        yield return new WaitForSeconds(duration);
+        attackCooldown = originalCooldown;
     }
 
     public IEnumerator changeColor(Color color, bool revertColor, float duration)

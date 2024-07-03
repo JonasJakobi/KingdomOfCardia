@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   cardName: Repariere Nexus
-  description: Heilt die Basetower ein wenig.
-  artwork: {fileID: 0}
+  description: "F\xFCr die Reparatur des Nexus m\xFCssen einfach nur ein paar Steine
+    wieder eingemauert werden."
+  artwork: {fileID: 21300000, guid: f147385577059d2449591378651fbae2, type: 3}
   effect: {fileID: 11400000, guid: 923922cea75fa714e9ffc5040350eb06, type: 2}
   valueOfCard: 25
   duration: 0

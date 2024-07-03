@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   cardName: Langsamer
-  description: Verlangsamt alle Gegner.
-  artwork: {fileID: 0}
+  description: "Die Gegner sind langsamer! Sie m\xFCssen auspassen, dass sie nicht
+    ausrutschen."
+  artwork: {fileID: 21300000, guid: 2fed1541413ac7145b4dbc2941a2ebd2, type: 3}
   effect: {fileID: 11400000, guid: e88c17eed92d15a4a85bad084f78ef78, type: 2}
   valueOfCard: 4
   duration: 5

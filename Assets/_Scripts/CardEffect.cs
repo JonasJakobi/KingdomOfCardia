@@ -72,4 +72,57 @@ public class CardEffect : ScriptableObject
         Debug.Log("So viel Geld: " + moneyGain);
         MoneyManager.Instance.AddMoney(moneyGain);
     }
+
+    // Starts Fire Damage
+    public void StartFireDamage(float duration, int damage)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.StartFireDamage(duration, damage);
+        }
+    }
+
+    //Starts Necrotic Damage
+    public void StartNecroticDamage(float duration, int damage)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.StartNecroticDamage(duration, damage);
+        }
+    }
+
+    //Starts Electricity Damage
+
+    public void StartElectricDamage(float duration, int damage)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.StartElectricDamage(duration, damage);
+        }
+    }
+
+    //reduces damage that enemies do
+    public void ReduceDamage(float reduce, float duration)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.ReduceDamage(reduce, duration);
+        }
+    }
+
+    //Movement and AttackSpeed is Slowed
+    public void OverallSlower(float slow, float duration)
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.SlowMovementAndAttack(slow, duration);
+        }
+    }
+
+
 }
