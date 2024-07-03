@@ -15,6 +15,7 @@ public class GridManager : Singleton<GridManager>
     [SerializeField] private int startX, startY;
     public const int WIDTH = 32;
     public const int HEIGHT = 18;
+    public GameObject mainTower;
     [SerializeField] private List<Tile> tilePrefab;
     [SerializeField] private Tile mountainTilePrefab, forestTilePrefab;
 
@@ -56,21 +57,25 @@ public class GridManager : Singleton<GridManager>
                 grid[x, y].name = $"Tile {x} {y}";
                 grid[x, y].transform.parent = transform;
 
-
-
-                //Small chance for mountain, otherwise normal tile
-                if (Random.Range(0, 100) < mountainChance * 50)
+                //Spownt aber spownt nichts auf dem Hauptturm
+                if(mainTower.transform.position.x != x || mainTower.transform.position.y != y)
                 {
-                    grid[x, y] = Instantiate(mountainTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
-                    grid[x, y].name = $"Tile {x} {y}";
-                    grid[x, y].transform.parent = transform;
+                    //Small chance for mountain, otherwise normal tile
+                    if (Random.Range(0, 100) < mountainChance * 30)
+                    {
+                        grid[x, y] = Instantiate(mountainTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
+                        grid[x, y].name = $"Tile {x} {y}";
+                        grid[x, y].transform.parent = transform;
+                    }
+                    else if (Random.Range(0, 100) < mountainChance * 100)
+                    {
+                        grid[x, y] = Instantiate(forestTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
+                        grid[x, y].name = $"Tile {x} {y}";
+                        grid[x, y].transform.parent = transform;
+                    }
                 }
-                else if (Random.Range(0, 100) < mountainChance * 100)
-                {
-                    grid[x, y] = Instantiate(forestTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
-                    grid[x, y].name = $"Tile {x} {y}";
-                    grid[x, y].transform.parent = transform;
-                }
+
+               
 
 
 

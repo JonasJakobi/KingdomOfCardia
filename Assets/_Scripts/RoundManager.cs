@@ -23,6 +23,7 @@ public class RoundManager : Singleton<RoundManager>
 {
     [SerializeField] private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     public Button startRoundButton;
+    
     [Header("Round Statistics")]
     public int round = 1;
     [SerializeField] private int roundValue = 1;
@@ -48,6 +49,8 @@ public class RoundManager : Singleton<RoundManager>
     [SerializeField] private bool waveQueued = false;
     [SerializeField] bool activeWave = false;
     [SerializeField] private int waveValue = 0;
+
+    public GameObject gridManager;
 
     private void Start()
     {
@@ -145,6 +148,7 @@ public class RoundManager : Singleton<RoundManager>
         int[] removeMiddleHeight = { 0, height };
 
         spawnPoints.Clear();
+        
 
         for (int i = 0; i < amount; i++)
         {
@@ -163,10 +167,39 @@ public class RoundManager : Singleton<RoundManager>
                 randomWidth = removeMiddleWidth[randomIndex];
                 randomHeight = Random.Range(0, height);
             }
-            spawnPoints.Add(new SpawnPoint(randomWidth, randomHeight, onFullWidth));
-            UIChangeManager.Instance.createWaveAlert(spawnPoints[i]);
-            Debug.Log("New SpawnPoint: " + randomWidth + ", " + randomHeight + ", " + onFullWidth);
+
+            if(CheckForTreesAndMountains(randomWidth, randomHeight))
+            {
+                spawnPoints.Add(new SpawnPoint(randomWidth, randomHeight, onFullWidth));
+                UIChangeManager.Instance.createWaveAlert(spawnPoints[i]);
+                Debug.Log("New SpawnPoint: " + randomWidth + ", " + randomHeight + ", " + onFullWidth);
+            }
+            else
+            {
+                i -= 1;
+            }
+
+            
         }
+    }
+
+    private bool CheckForTreesAndMountains(int x, int y)
+    {
+        foreach (Transform go in gridManager.transform)
+        {
+            if(go.transform.position.x == x && go.transform.position.y == y)
+            {
+                if(go.GetComponent<FlowFieldTile>().GetAssignedCost()==10000)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void QueueWave()
