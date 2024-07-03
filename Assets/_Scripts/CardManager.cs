@@ -17,6 +17,7 @@ public class CardManager : Singleton<CardManager>
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
     public GameObject cardSpacer;
 
+
     private List<GameObject> hand = new List<GameObject>();
     [SerializeField] private List<CardUI> displayedCards = new List<CardUI>();
     private Coroutine positionCoroutine;
@@ -27,6 +28,7 @@ public class CardManager : Singleton<CardManager>
         selectCardButton.onClick.AddListener(DrawRandomCards);
     }
 
+    [ProButton]
     /// <summary>
     /// Draw random cards from allCards and display them in the center of the screen
     /// </summary>
@@ -49,6 +51,7 @@ public class CardManager : Singleton<CardManager>
             displayedCards.Add(cardUI);
         }
     }
+
 
     /// <summary>
     /// Select one of the randomly drawn cards
@@ -81,6 +84,7 @@ public class CardManager : Singleton<CardManager>
         //DrawCard();
     }
 
+    [ProButton]
     /// <summary>
     /// Draw a card from the deck into the hand
     /// </summary>
@@ -96,6 +100,7 @@ public class CardManager : Singleton<CardManager>
             CardUI cardUI = cardUIInstance.GetComponent<CardUI>();
             cardUI.Initialize(drawnCard, this);
             hand.Add(cardUIInstance);
+
 
             // Starte die Positionierung der Karten
             if (positionCoroutine != null)
@@ -222,9 +227,18 @@ public class CardManager : Singleton<CardManager>
     {
         deck.Clear();
         deck.AddRange(fullDeck);
-        for (int i = 0; i < amount; i++)
+        for (float i = 0f; i < (float)amount; i++)
         {
-            DrawCard();
+            StartCoroutine(cardDrawDelay(i * 0.2f));
+
         }
+    }
+
+    private IEnumerator cardDrawDelay(float delay)
+    {
+        Debug.Log("Start der Coroutine mit delay: " + delay);
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Ende der Coroutine");
+        DrawCard();
     }
 }

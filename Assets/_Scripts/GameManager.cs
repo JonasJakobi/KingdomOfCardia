@@ -36,16 +36,21 @@ public class GameManager : SingletonPersistent<GameManager>
         switch (gameState)
         {
             case GameState.MainMenu:
+                AudioSystem.Instance.PlayMenuMusic();
                 break;
             case GameState.Starting:
+                AudioSystem.Instance.PlayMenuMusic();
+
                 break;
             case GameState.BuildMode:
+                AudioSystem.Instance.PlayBuildMusic();
                 UIChangeManager.Instance.showBuildModeUI();
                 RoundManager.Instance.NextRound();
                 CardManager.Instance.ClearHand();
                 CardManager.Instance.DrawRandomCards();
                 break;
             case GameState.PlayMode:
+                AudioSystem.Instance.PlayBackgroundMusic();
                 UIChangeManager.Instance.removeBuildModeUI();
                 RoundManager.Instance.BeginNextRound();
                 CardManager.Instance.DrawNewCards(3);

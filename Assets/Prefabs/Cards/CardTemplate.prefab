@@ -551,3 +551,6 @@ MonoBehaviour:
   descriptionText: {fileID: 341860405743811541}
   artworkImage: {fileID: 2394894650800771593}
   cardManager: {fileID: 0}
+  cardPlaySound: {fileID: 8300000, guid: c37c9003cd6df944fac8b0e6805621f9, type: 3}
+  cardDrawSound: {fileID: 8300000, guid: 4717be36e79b92341936636d4ee7355b, type: 3}
+  cardSelectSound: {fileID: 8300000, guid: af350405fe5944d4a8de3d7fa23e8f2c, type: 3}

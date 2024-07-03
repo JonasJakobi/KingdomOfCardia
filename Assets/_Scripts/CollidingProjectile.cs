@@ -52,7 +52,7 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
             }
 
             //Only if all of these remain ice projectiles:
-            other.gameObject.GetComponentInChildren<Enemy>().SlowEnemy(2, 1.5f);
+            other.gameObject.GetComponentInChildren<Enemy>().SlowEnemy(2, 1.5f, false);
             other.gameObject.GetComponentInChildren<Enemy>().TakeDamage(damage);
 
             if (destroysOnImpact)
