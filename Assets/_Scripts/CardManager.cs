@@ -14,8 +14,13 @@ public class CardManager : Singleton<CardManager>
     public RectTransform cardSelectionArea;
     public Button drawCardButton;
     public Button selectCardButton;
+    public GameObject skipCardButton;
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
     public GameObject cardSpacer;
+    public GameObject tutorialParent;
+    public GameObject cardSelectionBackground;
+    public Tutorial tutorialScript;
+
 
 
     private List<GameObject> hand = new List<GameObject>();
@@ -35,6 +40,9 @@ public class CardManager : Singleton<CardManager>
     public void DrawRandomCards()
     {
         if (displayedCards.Count > 0) return; // Only one set of random card can be present at the same time
+
+        cardSelectionBackground.SetActive(true);
+        skipCardButton.SetActive(true);
 
         for (int i = 0; i < 3; i++)
         {
@@ -62,12 +70,13 @@ public class CardManager : Singleton<CardManager>
         // Karte zum Deck hinzufügen
         AddCardToDeck(selectedCardUI.cardData);
 
-        // Entfernen der angezeigten Karten
-        foreach (var card in displayedCards)
+        if (tutorialScript.tutorialSkipped == false)
         {
-            Destroy(card.gameObject);
+            tutorialParent.SetActive(true);
         }
-        displayedCards.Clear();
+
+        // Entfernen der angezeigten Karten
+        DiscardSelection();
     }
 
     /// <summary>
@@ -223,6 +232,18 @@ public class CardManager : Singleton<CardManager>
         hand.Clear();
     }
 
+    public void DiscardSelection()
+    {
+        // Entfernen der angezeigten Karten
+        foreach (var card in displayedCards)
+        {
+            Destroy(card.gameObject);
+        }
+        displayedCards.Clear();
+        cardSelectionBackground.SetActive(false);
+        skipCardButton.SetActive(false);
+    }
+
     public void DrawNewCards(int amount)
     {
         deck.Clear();
@@ -236,9 +257,7 @@ public class CardManager : Singleton<CardManager>
 
     private IEnumerator cardDrawDelay(float delay)
     {
-        Debug.Log("Start der Coroutine mit delay: " + delay);
         yield return new WaitForSeconds(delay);
-        Debug.Log("Ende der Coroutine");
         DrawCard();
     }
 }
