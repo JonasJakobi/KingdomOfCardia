@@ -47,6 +47,8 @@ public class BaseTower : MonoBehaviour
         }
         if (health <= 0)
         {
+            GameManager.Instance.ChangeGameState(GameState.GameOver);
+            Debug.Log("Game Over BaseTower!");
             Destroy(this.gameObject);
         }
     }

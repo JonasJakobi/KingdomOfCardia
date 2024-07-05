@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CardManager : Singleton<CardManager>
 {
+    public int deckSize = 3;
+    public int cardsPlayed = 0;
     public GameObject cardUIPrefab;
     public List<Card> allCards;
     public List<Card> deck;
@@ -17,9 +19,8 @@ public class CardManager : Singleton<CardManager>
     public GameObject skipCardButton;
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
     public GameObject cardSpacer;
-    public GameObject tutorialParent;
     public GameObject cardSelectionBackground;
-    public Tutorial tutorialScript;
+
 
 
 
@@ -31,6 +32,7 @@ public class CardManager : Singleton<CardManager>
     {
         drawCardButton.onClick.AddListener(DrawCard);
         selectCardButton.onClick.AddListener(DrawRandomCards);
+        deckSize = 3;
     }
 
     [ProButton]
@@ -70,10 +72,7 @@ public class CardManager : Singleton<CardManager>
         // Karte zum Deck hinzufügen
         AddCardToDeck(selectedCardUI.cardData);
 
-        if (tutorialScript.tutorialSkipped == false)
-        {
-            tutorialParent.SetActive(true);
-        }
+        UIChangeManager.Instance.TutorialCheck();
 
         // Entfernen der angezeigten Karten
         DiscardSelection();
@@ -244,11 +243,11 @@ public class CardManager : Singleton<CardManager>
         skipCardButton.SetActive(false);
     }
 
-    public void DrawNewCards(int amount)
+    public void DrawNewCards()
     {
         deck.Clear();
         deck.AddRange(fullDeck);
-        for (float i = 0f; i < (float)amount; i++)
+        for (float i = 0f; i < (float)deckSize; i++)
         {
             StartCoroutine(cardDrawDelay(i * 0.2f));
 

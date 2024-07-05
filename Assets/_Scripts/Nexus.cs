@@ -18,6 +18,7 @@ public class Nexus : Singleton<Nexus>
         {
             // Game over
             GameManager.Instance.ChangeGameState(GameState.GameOver);
+            Debug.Log("Game Over Nexus!");
         }
     }
 }

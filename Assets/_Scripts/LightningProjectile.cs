@@ -14,6 +14,7 @@ public class LightningProjectile : MonoBehaviour, IProjectile
     Enemy enemy;
     public float movementSpeed = 5f;
     public int damage = 10;
+    [SerializeField] private AudioClip projectileHitSound;
 
     private void Update()
     {
@@ -48,6 +49,10 @@ public class LightningProjectile : MonoBehaviour, IProjectile
                 Debug.Log("Lightning projectile dealt damage to enemy");
             }
             enemy.TakeDamage(damage);
+            if (projectileHitSound != null)
+            {
+                AudioSystem.Instance.PlayProjectileSound(projectileHitSound);
+            }
         }
 
         yield return new WaitForSeconds(0.2f);

@@ -10,6 +10,7 @@ public class HomingProjectile : MonoBehaviour, IProjectile
 
     public float movementSpeed = 5f;
     public int damage = 10;
+    [SerializeField] private AudioClip projectileHitSound;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +25,10 @@ public class HomingProjectile : MonoBehaviour, IProjectile
             if (distance < 0.02f)
             {
                 target.TakeDamage(damage);
+                if (projectileHitSound != null)
+                {
+                    AudioSystem.Instance.PlayProjectileSound(projectileHitSound);
+                }
                 Destroy(gameObject);
             }
         }

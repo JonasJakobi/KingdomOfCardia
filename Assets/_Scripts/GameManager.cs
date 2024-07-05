@@ -53,7 +53,12 @@ public class GameManager : SingletonPersistent<GameManager>
                 AudioSystem.Instance.PlayBackgroundMusic();
                 UIChangeManager.Instance.removeBuildModeUI();
                 RoundManager.Instance.BeginNextRound();
-                CardManager.Instance.DrawNewCards(3);
+                CardManager.Instance.DrawNewCards();
+                break;
+            case GameState.GameOver:
+                AudioSystem.Instance.PlayGameOverMusic();
+                UIChangeManager.Instance.showGameOver();
+                CardManager.Instance.ClearHand();
                 break;
             default:
                 break;

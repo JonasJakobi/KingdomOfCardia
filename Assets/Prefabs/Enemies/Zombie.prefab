@@ -187,6 +187,10 @@ MonoBehaviour:
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  reduceColor: {r: 1, g: 0, b: 1, a: 1}
+  overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  enemySound: {fileID: 8300000, guid: 3efca52d626dec644a6fc61388aab7ad, type: 3}
+  enemySoundChance: 0.2
   maxHealth: 200
   originalMovementSpeed: 1
   movementSpeed: 1
@@ -199,6 +203,9 @@ MonoBehaviour:
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
+  fireParticleSystem: {fileID: 0}
+  necroticParticleSystem: {fileID: 0}
+  electricParticleSystem: {fileID: 0}
 --- !u!61 &3432086781191187101
 BoxCollider2D:
   m_ObjectHideFlags: 0

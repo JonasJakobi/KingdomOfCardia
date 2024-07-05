@@ -18,7 +18,8 @@ public class ProjectileTower : BaseTower
     [SerializeField] private bool canAttack = true;
     [SerializeField]
     private TargetingType targetingType;
-
+    [SerializeField] private AudioClip towerShootSound;
+    [SerializeField] private AudioClip towerWindupSound;
     // Update is called once per frame
     void Update()
     {
@@ -45,6 +46,10 @@ public class ProjectileTower : BaseTower
 
     private void ShootAtCurrentTarget()
     {
+        if (towerWindupSound != null)
+        {
+            AudioSystem.Instance.PlayTowerSound(towerWindupSound);
+        }
         GetComponent<Animator>().SetTrigger("Attack");
         StartCoroutine(WaitAndSpawnProjectile());
         StartCoroutine(AttackCooldown());
@@ -67,6 +72,10 @@ public class ProjectileTower : BaseTower
             {
                 yield break;
             }
+        }
+        if (towerShootSound != null)
+        {
+            AudioSystem.Instance.PlayTowerSound(towerShootSound);
         }
         var m = Instantiate(projectilePrefab, pos, Quaternion.identity);
         var rot = Quaternion.LookRotation(Vector3.forward, currentTarget.transform.position - projectileSpawnPoint.transform.position);

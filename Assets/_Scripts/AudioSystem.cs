@@ -10,13 +10,23 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     [SerializeField] public float originalPitch;
     [SerializeField] private AudioSource soundSource;
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource uiSoundSource;
+    [SerializeField] private AudioSource cardSoundSource;
+    [SerializeField] private AudioSource cardEffectSoundSource;
+    [SerializeField] private AudioSource enemySoundSource;
+    [SerializeField] private AudioSource enemySoundSource2;
+    [SerializeField] private AudioSource enemySoundSource3;
+    [SerializeField] private AudioSource towerSoundSource;
+    [SerializeField] private AudioSource projectileSoundSource;
     [SerializeField] private AudioClip backgroundMusic;
     [SerializeField] private AudioClip menuMusic;
     [SerializeField] private AudioClip buildMusic;
+    [SerializeField] private AudioClip gameOverMusic;
     [SerializeField] private AudioClip menuClick;
     [SerializeField] private AudioClip basicClick;
     [SerializeField] private AudioClip bonkSound;
     [SerializeField] private AudioClip basicSplash;
+    [SerializeField] private AudioClip dramaticBoom;
 
     void Start()
     {
@@ -73,28 +83,87 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     {
         StartCoroutine(FadeOutMusic(1f, buildMusic, true));
     }
+
+    public void PlayGameOverMusic()
+    {
+        ChangePitch(1.0f);
+        originalVolume = 1.0f;
+        StartCoroutine(FadeOutMusic(1f, gameOverMusic, false));
+    }
+
     public void PlaySound(AudioClip clip)
     {
         soundSource.clip = clip;
         soundSource.Play();
     }
 
+    public void PlayUISound(AudioClip clip)
+    {
+        uiSoundSource.clip = clip;
+        uiSoundSource.Play();
+    }
+
     public void PlayMenuClickSound()
     {
-        PlaySound(menuClick);
+        PlayUISound(menuClick);
     }
 
     public void PlayClickSound()
     {
-        PlaySound(basicClick);
+        PlayUISound(basicClick);
     }
 
     public void PlayBonkSound()
     {
-        PlaySound(bonkSound);
+        PlayUISound(bonkSound);
     }
     public void PlaySplash()
     {
         PlaySound(basicSplash);
     }
+
+    public void PlayDramaticBoom()
+    {
+        PlaySound(dramaticBoom);
+    }
+
+    public void PlayCardSound(AudioClip clip)
+    {
+        cardSoundSource.clip = clip;
+        cardSoundSource.Play();
+    }
+
+    public void PlayCardEffectSound(AudioClip clip)
+    {
+        cardEffectSoundSource.clip = clip;
+        cardEffectSoundSource.Play();
+    }
+
+    public void PlayEnemySound(AudioClip clip)
+    {
+        int randVal = Random.Range(1, 4);
+        AudioSource selectedSoundSource;
+
+        if (randVal == 1) selectedSoundSource = enemySoundSource;
+        else if (randVal == 2) selectedSoundSource = enemySoundSource2;
+        else selectedSoundSource = enemySoundSource3;
+        selectedSoundSource.pitch = Random.Range(0.6f, 1.2f);
+        selectedSoundSource.clip = clip;
+        selectedSoundSource.Play();
+    }
+
+    public void PlayTowerSound(AudioClip clip)
+    {
+        towerSoundSource.pitch = Random.Range(0.6f, 1.2f);
+        towerSoundSource.clip = clip;
+        towerSoundSource.Play();
+    }
+
+    public void PlayProjectileSound(AudioClip clip)
+    {
+        projectileSoundSource.pitch = Random.Range(0.6f, 1.2f);
+        projectileSoundSource.clip = clip;
+        projectileSoundSource.Play();
+    }
+
 }

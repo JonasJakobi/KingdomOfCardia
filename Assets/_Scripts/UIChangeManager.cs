@@ -12,16 +12,34 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public TMP_Text MoneyText;
 
     public TMP_Text HPText;
+    public TMP_Text Stat1;
+    public TMP_Text Stat2;
+    public TMP_Text Stat3;
+    public TMP_Text Stat4;
+    public TMP_Text Stat5;
+    public TMP_Text Stat6;
+    public TMP_Text Stat7;
 
     public GameObject WaveAlertPrefab;
 
     public GameObject towerPlaceUI;
+
+    public GameObject gameOverUI;
+
+    public GameObject tutorialUI;
+
+    public bool tutorialDisabledPermanently = false;
+    public GameObject tutorialParent;
+    public Tutorial tutorialScript;
+
+    public int damageDealt = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
         updateRound();
+        startTutorial();
     }
 
     public void updateRound()
@@ -75,5 +93,30 @@ public class UIChangeManager : Singleton<UIChangeManager>
     {
         towerPlaceUI.SetActive(false);
         removeAllWaveAlerts();
+    }
+
+    public void startTutorial()
+    {
+        if (tutorialDisabledPermanently != true) tutorialUI.SetActive(true);
+    }
+
+    public void TutorialCheck()
+    {
+        if (tutorialScript.tutorialSkipped == false && tutorialDisabledPermanently == false)
+        {
+            tutorialParent.SetActive(true);
+        }
+    }
+
+    public void showGameOver()
+    {
+        gameOverUI.SetActive(true);
+        Stat1.text = RoundManager.Instance.round.ToString();
+        Stat2.text = RoundManager.Instance.enemiesDefeated.ToString();
+        Stat3.text = damageDealt.ToString();
+        Stat4.text = 0.ToString(); //Noch nicht implementiert
+        Stat5.text = MoneyManager.Instance.moneyGained.ToString();
+        Stat6.text = MoneyManager.Instance.moneySpent.ToString();
+        Stat7.text = CardManager.Instance.cardsPlayed.ToString();
     }
 }

@@ -124,3 +124,4 @@ MonoBehaviour:
   verticalDisplacement: 0.8
   movementSpeed: 5
   damage: 10
+  projectileHitSound: {fileID: 8300000, guid: cc5b2a3d8fb051e42a662dda3eb6e773, type: 3}
