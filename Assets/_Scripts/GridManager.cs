@@ -12,6 +12,9 @@ public class GridManager : Singleton<GridManager>
 
 {
     public float mountainChance = 0.07f;
+    public float mountainChanceMultiplier = 200.0f;
+    public float forestChance = 0.12f;
+    public float forestChanceMultiplier = 100.0f;
     [SerializeField] private int startX, startY;
     public const int WIDTH = 32;
     public const int HEIGHT = 18;
@@ -58,24 +61,45 @@ public class GridManager : Singleton<GridManager>
                 grid[x, y].transform.parent = transform;
 
                 //Spownt aber spownt nichts auf dem Hauptturm
-                if(mainTower.transform.position.x != x || mainTower.transform.position.y != y)
+                if (mainTower.transform.position.x != x || mainTower.transform.position.y != y)
                 {
+                    bool hasNeighbouringMountain = false;
+                    bool hasNeighbouringForest = false;
+
+                    foreach (Tile tile in GetNeighbours(grid[x, y]))
+                    {
+                        if (tile != null && tile.Type == Tile.TileType.Mountain)
+                        {
+                            Debug.Log("tile: " + tile.Type);
+                            hasNeighbouringMountain = true;
+                            break;
+                        }
+                        else if (tile != null && tile.Type == Tile.TileType.Forest)
+                        {
+                            hasNeighbouringForest = true;
+                            break;
+                        }
+
+                    }
+
                     //Small chance for mountain, otherwise normal tile
-                    if (Random.Range(0, 100) < mountainChance * 30)
+                    if ((!hasNeighbouringMountain && Random.Range(0, 100) < mountainChance * 10) || (hasNeighbouringMountain && Random.Range(0, 100) < mountainChance * mountainChanceMultiplier))
                     {
                         grid[x, y] = Instantiate(mountainTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                         grid[x, y].name = $"Tile {x} {y}";
                         grid[x, y].transform.parent = transform;
+                        grid[x, y].Type = Tile.TileType.Mountain;
                     }
-                    else if (Random.Range(0, 100) < mountainChance * 100)
+                    else if ((!hasNeighbouringForest && Random.Range(0, 100) < forestChance * 10) || (hasNeighbouringForest && Random.Range(0, 100) < forestChance * forestChanceMultiplier))
                     {
                         grid[x, y] = Instantiate(forestTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                         grid[x, y].name = $"Tile {x} {y}";
                         grid[x, y].transform.parent = transform;
+                        grid[x, y].Type = Tile.TileType.Forest;
                     }
                 }
 
-               
+
 
 
 

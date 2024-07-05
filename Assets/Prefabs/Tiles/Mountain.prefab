@@ -194,6 +194,7 @@ MonoBehaviour:
   building: {fileID: 0}
   enemies: []
   flowFieldTile: {fileID: 0}
+  Type: 1
 --- !u!61 &-8614168291074592510
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -230,7 +231,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.83}
+    oldSize: {x: 1.116, y: 1.132}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

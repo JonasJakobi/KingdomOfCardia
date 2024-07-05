@@ -5736,7 +5736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4d47f6eff6f704ca5d48c893c9d1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mountainChance: 0.12
+  mountainChance: 0.2
+  forestChance: 0.35
   startX: 0
   startY: 0
   mainTower: {fileID: 1018112986}
