@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CardManager : Singleton<CardManager>
 {
-    public int deckSize = 3;
+    public int handSize = 3;
     public int cardsPlayed = 0;
     public GameObject cardUIPrefab;
     public List<Card> allCards;
@@ -32,7 +32,7 @@ public class CardManager : Singleton<CardManager>
     {
         drawCardButton.onClick.AddListener(DrawCard);
         selectCardButton.onClick.AddListener(DrawRandomCards);
-        deckSize = 3;
+        handSize = 3;
     }
 
     [ProButton]
@@ -247,11 +247,22 @@ public class CardManager : Singleton<CardManager>
     {
         deck.Clear();
         deck.AddRange(fullDeck);
-        for (float i = 0f; i < (float)deckSize; i++)
+        for (float i = 0f; i < (float)handSize; i++)
         {
             StartCoroutine(cardDrawDelay(i * 0.2f));
 
         }
+    }
+
+    [ProButton]
+    public void IncreaseHandSize()
+    {
+        if (MoneyManager.Instance.CanAfford(50))
+        {
+            MoneyManager.Instance.RemoveMoney(50);
+            handSize++;
+        }
+        else Debug.Log("Can't afford upgrade.");
     }
 
     private IEnumerator cardDrawDelay(float delay)

@@ -28,6 +28,8 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public GameObject tutorialUI;
 
+    public GameObject upgradeUI;
+
     public bool tutorialDisabledPermanently = false;
     public GameObject tutorialParent;
     public Tutorial tutorialScript;
@@ -38,38 +40,39 @@ public class UIChangeManager : Singleton<UIChangeManager>
     // Start is called before the first frame update
     void Start()
     {
-        updateRound();
-        startTutorial();
+        UpdateRound();
+        StartTutorial();
     }
 
-    public void updateRound()
+    public void UpdateRound()
     {
         RoundText.text = "Runde " + RoundManager.Instance.round.ToString();
     }
 
-    public void updateMoney()
+    public void UpdateMoney()
     {
         MoneyText.text = MoneyManager.Instance.money.ToString() + " Gold";
     }
 
     //Update percentage of HP (rounded to 2 decimal points)
-    public void updateHP()
+    public void UpdateHP()
     {
         BaseTower baseTower = GameObject.FindWithTag("Goal").GetComponent<BaseTower>();
         float percentageHealth = Mathf.Round((((float)baseTower.GetCurrentHealth() / (float)baseTower.GetMaxHealth()) * 100.0f) * 100f) / 100f;
-        HPText.text = percentageHealth.ToString() + " % HP";
+        if (percentageHealth >= 0f) HPText.text = percentageHealth.ToString() + " % HP";
+        else HPText.text = "0% HP";
     }
 
     //Create GameObject to indicate the SpawnPoints in the following round
     //param spawnPoint = The spawnPoint Object to indicate
-    public void createWaveAlert(SpawnPoint spawnPoint)
+    public void CreateWaveAlert(SpawnPoint spawnPoint)
     {
         Vector3 randomPos = new Vector3(spawnPoint.widthPosition, spawnPoint.heightPosition, 0);
         GameObject newWaveAlert = Instantiate(WaveAlertPrefab, randomPos, Quaternion.identity);
     }
 
     //Remove the SpawnPoint indicators
-    public void removeAllWaveAlerts()
+    public void RemoveAllWaveAlerts()
     {
         GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
 
@@ -83,19 +86,19 @@ public class UIChangeManager : Singleton<UIChangeManager>
         }
     }
 
-    public void showBuildModeUI()
+    public void ShowBuildModeUI()
     {
         towerPlaceUI.SetActive(true);
 
     }
 
-    public void removeBuildModeUI()
+    public void RemoveBuildModeUI()
     {
         towerPlaceUI.SetActive(false);
-        removeAllWaveAlerts();
+        RemoveAllWaveAlerts();
     }
 
-    public void startTutorial()
+    public void StartTutorial()
     {
         if (tutorialDisabledPermanently != true) tutorialUI.SetActive(true);
     }
@@ -108,7 +111,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
         }
     }
 
-    public void showGameOver()
+    public void ShowGameOver()
     {
         gameOverUI.SetActive(true);
         Stat1.text = RoundManager.Instance.round.ToString();
@@ -118,5 +121,15 @@ public class UIChangeManager : Singleton<UIChangeManager>
         Stat5.text = MoneyManager.Instance.moneyGained.ToString();
         Stat6.text = MoneyManager.Instance.moneySpent.ToString();
         Stat7.text = CardManager.Instance.cardsPlayed.ToString();
+    }
+
+    public void ShowUpgrades()
+    {
+        upgradeUI.SetActive(true);
+    }
+
+    public void HideUpgrades()
+    {
+        upgradeUI.SetActive(false);
     }
 }

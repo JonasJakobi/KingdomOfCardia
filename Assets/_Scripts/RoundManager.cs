@@ -171,7 +171,7 @@ public class RoundManager : Singleton<RoundManager>
             if (CheckForTreesAndMountains(randomWidth, randomHeight))
             {
                 spawnPoints.Add(new SpawnPoint(randomWidth, randomHeight, onFullWidth));
-                UIChangeManager.Instance.createWaveAlert(spawnPoints[i]);
+                UIChangeManager.Instance.CreateWaveAlert(spawnPoints[i]);
                 Debug.Log("New SpawnPoint: " + randomWidth + ", " + randomHeight + ", " + onFullWidth);
             }
             else
@@ -214,7 +214,7 @@ public class RoundManager : Singleton<RoundManager>
     {
         activeWave = false;
         round++;
-        UIChangeManager.Instance.updateRound();
+        UIChangeManager.Instance.UpdateRound();
         enemyCount = 0;
         roundValue = roundValue * 2;
         if (round <= 3)

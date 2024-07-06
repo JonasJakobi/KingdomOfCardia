@@ -44,20 +44,22 @@ public class GameManager : SingletonPersistent<GameManager>
                 break;
             case GameState.BuildMode:
                 AudioSystem.Instance.PlayBuildMusic();
-                UIChangeManager.Instance.showBuildModeUI();
+                UIChangeManager.Instance.ShowBuildModeUI();
+                UIChangeManager.Instance.ShowUpgrades();
                 RoundManager.Instance.NextRound();
                 CardManager.Instance.ClearHand();
                 CardManager.Instance.DrawRandomCards();
                 break;
             case GameState.PlayMode:
                 AudioSystem.Instance.PlayBackgroundMusic();
-                UIChangeManager.Instance.removeBuildModeUI();
+                UIChangeManager.Instance.RemoveBuildModeUI();
                 RoundManager.Instance.BeginNextRound();
                 CardManager.Instance.DrawNewCards();
+                UIChangeManager.Instance.HideUpgrades();
                 break;
             case GameState.GameOver:
                 AudioSystem.Instance.PlayGameOverMusic();
-                UIChangeManager.Instance.showGameOver();
+                UIChangeManager.Instance.ShowGameOver();
                 CardManager.Instance.ClearHand();
                 break;
             default:

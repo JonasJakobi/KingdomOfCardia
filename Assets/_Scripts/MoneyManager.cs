@@ -15,14 +15,14 @@ public class MoneyManager : Singleton<MoneyManager>
     void Start()
     {
         money = startingMoney;
-        UIChangeManager.Instance.updateMoney();
+        UIChangeManager.Instance.UpdateMoney();
     }
 
     public void AddMoney(int amount)
     {
         money += amount;
         moneyGained += amount;
-        UIChangeManager.Instance.updateMoney();
+        UIChangeManager.Instance.UpdateMoney();
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Enemies))
             Debug.Log("Added " + amount + " money. Total: " + money + " money.");
     }
@@ -31,7 +31,7 @@ public class MoneyManager : Singleton<MoneyManager>
     {
         money -= amount;
         moneySpent += amount;
-        UIChangeManager.Instance.updateMoney();
+        UIChangeManager.Instance.UpdateMoney();
         Debug.Log("Removed " + amount + " money. Total: " + money + " money.");
     }
 

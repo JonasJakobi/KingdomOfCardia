@@ -90,7 +90,7 @@ public class GridManager : Singleton<GridManager>
                         grid[x, y].transform.parent = transform;
                         grid[x, y].Type = Tile.TileType.Mountain;
                     }
-                    else if ((!hasNeighbouringForest && Random.Range(0, 100) < forestChance * 10) || (hasNeighbouringForest && Random.Range(0, 100) < forestChance * forestChanceMultiplier))
+                    else if ((!hasNeighbouringForest && Random.Range(0, 100) < forestChance * 10) || ((hasNeighbouringForest || hasNeighbouringMountain) && Random.Range(0, 100) < forestChance * forestChanceMultiplier))
                     {
                         grid[x, y] = Instantiate(forestTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                         grid[x, y].name = $"Tile {x} {y}";
