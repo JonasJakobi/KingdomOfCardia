@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TestFire
   m_EditorClassIdentifier: 
   cardType: 6
-  cardName: FIRE
-  description: 
-  artwork: {fileID: 21300000, guid: db4e04b32bc1aeb4d99c1ea5e7946dfe, type: 3}
+  cardName: Ups es brennt!
+  description: Ein bisschen Feuer schadet doch nicht
+  artwork: {fileID: 21300000, guid: c8a8c3909a496434bafd0bd1875b138b, type: 3}
   effect: {fileID: 11400000, guid: a1e2facf8f069c141bb8dfd74a288365, type: 2}
   valueOfCard: 4
   duration: 5
+  cardSound: {fileID: 0}

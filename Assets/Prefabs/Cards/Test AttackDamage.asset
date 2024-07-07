@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   cardName: Stumpfe Waffen
-  description: Alle Gegner machen kurz weniger Schaden!
+  description: Die Waffen sind kurz kaputt! Das bedeutet weniger Schaden!
   artwork: {fileID: 21300000, guid: 44d471c60734cc5438ede405cc025ea7, type: 3}
   effect: {fileID: 11400000, guid: fbd32a610c8509142993d574805bfe02, type: 2}
   valueOfCard: 2
   duration: 5
+  cardSound: {fileID: 0}

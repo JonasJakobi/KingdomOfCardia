@@ -15,7 +15,8 @@ MonoBehaviour:
   cardType: 1
   cardName: Achtung Wind
   description: Der Wind verlangsamt jede Gegnerbewegung!
-  artwork: {fileID: 21300000, guid: b25ba43f54bb68e4daee8457f2334415, type: 3}
+  artwork: {fileID: 21300000, guid: 0a047575095c27c42aed069231b206d4, type: 3}
   effect: {fileID: 11400000, guid: 172646dffba1d4c4db6d47b4919abf08, type: 2}
   valueOfCard: 4
   duration: 7
+  cardSound: {fileID: 0}
