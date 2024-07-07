@@ -8,16 +8,21 @@ public class MoneyManager : Singleton<MoneyManager>
     private int startingMoney = 1;
     public int money = 0;
 
+    public int moneyGained = 0;
+
+    public int moneySpent = 0;
+
     void Start()
     {
         money = startingMoney;
-        UIChangeManager.Instance.updateMoney();
+        UIChangeManager.Instance.UpdateMoney();
     }
 
     public void AddMoney(int amount)
     {
         money += amount;
-        UIChangeManager.Instance.updateMoney();
+        moneyGained += amount;
+        UIChangeManager.Instance.UpdateMoney();
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Enemies))
             Debug.Log("Added " + amount + " money. Total: " + money + " money.");
     }
@@ -25,13 +30,14 @@ public class MoneyManager : Singleton<MoneyManager>
     public void RemoveMoney(int amount)
     {
         money -= amount;
-        UIChangeManager.Instance.updateMoney();
+        moneySpent += amount;
+        UIChangeManager.Instance.UpdateMoney();
         Debug.Log("Removed " + amount + " money. Total: " + money + " money.");
     }
 
     public bool CanAfford(int amount)
     {
-       
+
         return money >= amount;
     }
 }

@@ -22,7 +22,7 @@ public class BaseTower : MonoBehaviour
         ApplyUpgrade();
 
         health = currentUpgrade.health;
-        UIChangeManager.Instance.updateHP();
+        UIChangeManager.Instance.UpdateHP();
         var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
         tileHere.SetHasBuilding(true, this.gameObject);
 
@@ -40,13 +40,15 @@ public class BaseTower : MonoBehaviour
     {
 
         health -= damage;
-        UIChangeManager.Instance.updateHP();
+        UIChangeManager.Instance.UpdateHP();
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Towers))
         {
             Debug.Log("Tower " + this.gameObject.name + ": " + health + "/" + currentUpgrade.health + " health left.");
         }
         if (health <= 0)
         {
+            GameManager.Instance.ChangeGameState(GameState.GameOver);
+            Debug.Log("Game Over BaseTower!");
             Destroy(this.gameObject);
         }
     }
@@ -60,13 +62,13 @@ public class BaseTower : MonoBehaviour
     {
         int currentHealth = health;
         health += healthAmount;
-        UIChangeManager.Instance.updateHP();
+        UIChangeManager.Instance.UpdateHP();
         yield return new WaitForSeconds(duration);
         if (currentHealth <= health)
         {
             health = currentHealth;
         }
-        UIChangeManager.Instance.updateHP();
+        UIChangeManager.Instance.UpdateHP();
     }
 
     public int GetCurrentHealth()

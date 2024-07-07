@@ -216,6 +216,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         // Trigger the effect of the card
         TriggerCardEffect();
 
+        CardManager.Instance.cardsPlayed++;
+
         // Remove the card from the players hand
         cardManager.RemoveCardFromHand(gameObject);
 
@@ -228,6 +230,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     /// </summary>
     private void TriggerCardEffect()
     {
+        if (cardData.cardSound != null)
+        {
+            AudioSystem.Instance.PlayCardEffectSound(cardData.cardSound);
+        }
+
         if (cardData.cardType == CardType.Damage)
         {
             cardData.effect.DealDamage(cardData.valueOfCard);
@@ -246,13 +253,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         else if (cardData.cardType == CardType.Debuffs && cardData.effect.damageType == DamageType.Ice)
         {
             cardData.effect.SlowAllEnemies(cardData.valueOfCard, cardData.duration);
-            AudioSystem.Instance.PlaySound(cardData.cardSound);
         }
 
         else if (cardData.cardType == CardType.Gold)
         {
             cardData.effect.MultiplyGold(cardData.valueOfCard);
-            AudioSystem.Instance.PlaySound(cardData.cardSound);
         }
 
         else if (cardData.cardType == CardType.DamageOverTime && cardData.effect.damageType == DamageType.Fire)

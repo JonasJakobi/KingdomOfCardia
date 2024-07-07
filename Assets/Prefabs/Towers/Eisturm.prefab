@@ -144,22 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b566a1f2446b0f74683681ccf01b40c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   health: 100
-  range: 5
-  attackSpeed: 1.8
-  damage: 86
-  maxEnemiesHittable: 1
   currentLevel: 0
   currentUpgrade: {fileID: 0}
   upgradePath: {fileID: 11400000, guid: 8fae6edea60378f41bad704b6e703198, type: 2}
   isNexus: 0
   projectilePrefab: {fileID: 4109092055971077752, guid: 4b9d8b66e29dc04418c0558086fd16ea, type: 3}
   projectileSpawnPoint: {fileID: 5661701368052581056}
-  projectileSpeed: 5
-  projectileLifetime: 2.5
+  currentTarget: {fileID: 0}
   attackDelayTimer: 0.9
+  canAttack: 1
   targetingType: 0
+  towerShootSound: {fileID: 8300000, guid: f74e788144e7b8644b28ee614226a3a7, type: 3}
 --- !u!1 &2919944348883373418
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,14 +33,14 @@ public class RoundManager : Singleton<RoundManager>
     [SerializeField] private int roundValueLeft = 0;
     [SerializeField] private int enemyCount = 0;
     [SerializeField] private int enemiesSpawned;
-    [SerializeField] private int enemiesDefeated;
+    public int enemiesDefeated;
 
     [SerializeField] private GameObject[] EnemyPrefabs;
     [SerializeField] private GameObject EnemyType1;
     [SerializeField] private GameObject EnemyType2;
     [SerializeField] private GameObject EnemyType3;
 
-   
+
 
     [Header("Spawn behaviour")]
     public int maxSpawnPoints = 3;
@@ -153,7 +153,7 @@ public class RoundManager : Singleton<RoundManager>
         int[] removeMiddleHeight = { 0, height };
 
         spawnPoints.Clear();
-        
+
 
         for (int i = 0; i < amount; i++)
         {
@@ -173,10 +173,10 @@ public class RoundManager : Singleton<RoundManager>
                 randomHeight = Random.Range(0, height);
             }
 
-            if(CheckForTreesAndMountains(randomWidth, randomHeight))
+            if (CheckForTreesAndMountains(randomWidth, randomHeight))
             {
                 spawnPoints.Add(new SpawnPoint(randomWidth, randomHeight, onFullWidth));
-                UIChangeManager.Instance.createWaveAlert(spawnPoints[i]);
+                UIChangeManager.Instance.CreateWaveAlert(spawnPoints[i]);
                 Debug.Log("New SpawnPoint: " + randomWidth + ", " + randomHeight + ", " + onFullWidth);
             }
             else
@@ -184,7 +184,7 @@ public class RoundManager : Singleton<RoundManager>
                 i -= 1;
             }
 
-            
+
         }
     }
 
@@ -192,9 +192,9 @@ public class RoundManager : Singleton<RoundManager>
     {
         foreach (Transform go in gridManager.transform)
         {
-            if(go.transform.position.x == x && go.transform.position.y == y)
+            if (go.transform.position.x == x && go.transform.position.y == y)
             {
-                if(go.GetComponent<FlowFieldTile>().GetAssignedCost()==10000)
+                if (go.GetComponent<FlowFieldTile>().GetAssignedCost() == 10000)
                 {
                     return false;
                 }
@@ -217,10 +217,10 @@ public class RoundManager : Singleton<RoundManager>
     //Prepare the next wave
     public void NextRound()
     {
-       
+
         activeWave = false;
         round++;
-        UIChangeManager.Instance.updateRound();
+        UIChangeManager.Instance.UpdateRound();
         enemyCount = 0;
         roundValue = roundValue * 2;
         if (round <= 3)
@@ -276,6 +276,7 @@ public class RoundManager : Singleton<RoundManager>
         Debug.Log("Wave!");
         enemyCount = 0;
         roundValueLeft = waveValue;
+        AudioSystem.Instance.PlayDramaticBoom();
         waveQueued = false;
     }
 

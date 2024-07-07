@@ -21,6 +21,10 @@ public class Enemy : MonoBehaviour
 
     public Color overallSlow = Color.grey;
 
+    [SerializeField] private AudioClip enemySound;
+
+    public float enemySoundChance = 0.2f;
+
 
     [Header("Stats")]
     public int maxHealth = 100;
@@ -63,6 +67,7 @@ public class Enemy : MonoBehaviour
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
+        randomSoundChance();
 
     }
     private void Update()
@@ -274,6 +279,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        randomSoundChance();
+        UIChangeManager.Instance.damageDealt += damage;
         StartCoroutine(changeColor(hitColor, true, 0.2f));
         health -= damage;
         if (health <= 0)
@@ -300,6 +307,7 @@ public class Enemy : MonoBehaviour
         var building = currentTile.GetBuilding();
         if (building != null)
         {
+            randomSoundChance();
             building.GetComponent<BaseTower>().TakeDamage(attackDamage);
             canAttack = false;
             StartCoroutine(AttackCooldown());
@@ -389,6 +397,19 @@ public class Enemy : MonoBehaviour
             else
             {
                 objectRenderer.material.color = originalColor;
+            }
+
+        }
+
+    }
+
+    public void randomSoundChance()
+    {
+        if (enemySound != null)
+        {
+            if (Random.Range(0.0f, 1.0f) >= (1.0f - enemySoundChance))
+            {
+                AudioSystem.Instance.PlayEnemySound(enemySound);
             }
 
         }

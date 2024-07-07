@@ -20,3 +20,4 @@ MonoBehaviour:
   effect: {fileID: 11400000, guid: 923922cea75fa714e9ffc5040350eb06, type: 2}
   valueOfCard: 25
   duration: 0
+  cardSound: {fileID: 8300000, guid: c51f95ebda6871d46b78da10d7e0f481, type: 3}

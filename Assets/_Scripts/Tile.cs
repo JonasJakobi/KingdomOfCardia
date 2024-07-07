@@ -26,6 +26,7 @@ public class Tile : MonoBehaviour
     [SerializeField]
     public List<Enemy> enemies = new List<Enemy>();
     public FlowFieldTile flowFieldTile;
+    public TileType Type;
 
 
     private void Start()
@@ -33,8 +34,15 @@ public class Tile : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = baseColor;
         flowFieldTile = GetComponent<FlowFieldTile>();
+
     }
 
+    public enum TileType
+    {
+        Grass,
+        Mountain,
+        Forest
+    }
 
     public bool IsWalkable(bool ignoreBuilding = false)
     {
@@ -91,7 +99,6 @@ public class Tile : MonoBehaviour
     {
         return building;
     }
-
 
 
 

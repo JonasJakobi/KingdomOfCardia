@@ -102,6 +102,8 @@ MonoBehaviour:
   movementSpeed: 5
   damage: 10
   lifetime: 2
+  maxEnemiesStillHitable: 1
+  projectileHitSound: {fileID: 8300000, guid: 64aa9fee160165d409e7769d4c116958, type: 3}
 --- !u!61 &4034829576843520461
 BoxCollider2D:
   m_ObjectHideFlags: 0

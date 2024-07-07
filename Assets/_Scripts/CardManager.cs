@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CardManager : Singleton<CardManager>
 {
+    public int handSize = 3;
+    public int cardsPlayed = 0;
     public GameObject cardUIPrefab;
     public List<Card> allCards;
     public List<Card> deck;
@@ -14,8 +16,12 @@ public class CardManager : Singleton<CardManager>
     public RectTransform cardSelectionArea;
     public Button drawCardButton;
     public Button selectCardButton;
+    public GameObject skipCardButton;
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
     public GameObject cardSpacer;
+    public GameObject cardSelectionBackground;
+
+
 
 
     private List<GameObject> hand = new List<GameObject>();
@@ -26,6 +32,7 @@ public class CardManager : Singleton<CardManager>
     {
         drawCardButton.onClick.AddListener(DrawCard);
         selectCardButton.onClick.AddListener(DrawRandomCards);
+        handSize = 3;
     }
 
     [ProButton]
@@ -35,6 +42,9 @@ public class CardManager : Singleton<CardManager>
     public void DrawRandomCards()
     {
         if (displayedCards.Count > 0) return; // Only one set of random card can be present at the same time
+
+        cardSelectionBackground.SetActive(true);
+        skipCardButton.SetActive(true);
 
         for (int i = 0; i < 3; i++)
         {
@@ -62,12 +72,10 @@ public class CardManager : Singleton<CardManager>
         // Karte zum Deck hinzufügen
         AddCardToDeck(selectedCardUI.cardData);
 
+        UIChangeManager.Instance.TutorialCheck();
+
         // Entfernen der angezeigten Karten
-        foreach (var card in displayedCards)
-        {
-            Destroy(card.gameObject);
-        }
-        displayedCards.Clear();
+        DiscardSelection();
     }
 
     /// <summary>
@@ -223,22 +231,43 @@ public class CardManager : Singleton<CardManager>
         hand.Clear();
     }
 
-    public void DrawNewCards(int amount)
+    public void DiscardSelection()
+    {
+        // Entfernen der angezeigten Karten
+        foreach (var card in displayedCards)
+        {
+            Destroy(card.gameObject);
+        }
+        displayedCards.Clear();
+        cardSelectionBackground.SetActive(false);
+        skipCardButton.SetActive(false);
+    }
+
+    public void DrawNewCards()
     {
         deck.Clear();
         deck.AddRange(fullDeck);
-        for (float i = 0f; i < (float)amount; i++)
+        for (float i = 0f; i < (float)handSize; i++)
         {
             StartCoroutine(cardDrawDelay(i * 0.2f));
 
         }
     }
 
+    [ProButton]
+    public void IncreaseHandSize()
+    {
+        if (MoneyManager.Instance.CanAfford(50))
+        {
+            MoneyManager.Instance.RemoveMoney(50);
+            handSize++;
+        }
+        else Debug.Log("Can't afford upgrade.");
+    }
+
     private IEnumerator cardDrawDelay(float delay)
     {
-        Debug.Log("Start der Coroutine mit delay: " + delay);
         yield return new WaitForSeconds(delay);
-        Debug.Log("Ende der Coroutine");
         DrawCard();
     }
 }

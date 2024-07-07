@@ -283,6 +283,8 @@ MonoBehaviour:
   attackDelayTimer: 0.89
   canAttack: 1
   targetingType: 2
+  towerShootSound: {fileID: 0}
+  towerWindupSound: {fileID: 8300000, guid: e0503d5d0838c9f46b596a7aac5bb18b, type: 3}
 --- !u!1001 &5186212611977103352
 PrefabInstance:
   m_ObjectHideFlags: 0

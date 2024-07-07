@@ -194,6 +194,7 @@ MonoBehaviour:
   building: {fileID: 0}
   enemies: []
   flowFieldTile: {fileID: 0}
+  Type: 2
 --- !u!61 &-8614168291074592510
 BoxCollider2D:
   m_ObjectHideFlags: 0

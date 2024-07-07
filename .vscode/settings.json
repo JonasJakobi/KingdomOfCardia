@@ -63,5 +63,6 @@
     "[csharp]": {
         "editor.defaultFormatter": "ms-dotnettools.csharp"
     },
-    "csharp.format.braces": "newLineNextLine"
+    "csharp.format.braces": "newLineNextLine",
+    "FSharp.suggestGitignore": false
 }
