@@ -201,8 +201,8 @@ MonoBehaviour:
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
   fireParticleSystem: {fileID: 4042614034927678903}
-  necroticParticleSystem: {fileID: 0}
-  electricParticleSystem: {fileID: 0}
+  necroticParticleSystem: {fileID: 8353782785261888405}
+  electricParticleSystem: {fileID: 7359425434860166844}
 --- !u!61 &-7548727902778042931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -450,5 +450,15 @@ Transform:
 --- !u!198 &4042614034927678903 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3212306618101073372, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+  m_PrefabInstance: {fileID: 1481165111595004011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7359425434860166844 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8264045541579747031, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+  m_PrefabInstance: {fileID: 1481165111595004011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8353782785261888405 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7449163775830955006, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
   m_PrefabInstance: {fileID: 1481165111595004011}
   m_PrefabAsset: {fileID: 0}

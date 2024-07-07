@@ -190,9 +190,9 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   reduceColor: {r: 1, g: 0, b: 1, a: 1}
   overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  enemySound: {fileID: 0}
+  enemySound: {fileID: 8300000, guid: 3efca52d626dec644a6fc61388aab7ad, type: 3}
   enemySoundChance: 0.2
-  maxHealth: 170
+  maxHealth: 200
   originalMovementSpeed: 1
   movementSpeed: 1
   attackCooldown: 1
@@ -204,9 +204,9 @@ MonoBehaviour:
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
-  fireParticleSystem: {fileID: 0}
-  necroticParticleSystem: {fileID: 0}
-  electricParticleSystem: {fileID: 0}
+  fireParticleSystem: {fileID: 6108295164746185326}
+  necroticParticleSystem: {fileID: 2247823102534691916}
+  electricParticleSystem: {fileID: 792255774693871973}
 --- !u!61 &3432086781191187101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -591,6 +591,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+--- !u!198 &792255774693871973 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8264045541579747031, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+  m_PrefabInstance: {fileID: 8669818300766863282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2247823102534691916 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7449163775830955006, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+  m_PrefabInstance: {fileID: 8669818300766863282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6108295164746185326 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3212306618101073372, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
+  m_PrefabInstance: {fileID: 8669818300766863282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7516334294522801469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
