@@ -140,7 +140,7 @@ public class RoundManager : Singleton<RoundManager>
 
     private GameObject ChooseEnemeyPrefab(int enemyValue)
     {
-        Shuffle();
+
         return EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue() - enemyValue)).First(); //closest value to our wanted value, shuffled randomly
     }
 
@@ -230,6 +230,7 @@ public class RoundManager : Singleton<RoundManager>
         {
             CreateSpawnPoints(Random.Range(1, maxSpawnPoints));
         }
+        ShuffleEnemiesArray();
     }
 
     //Start next round and decide if a wave will be present
@@ -285,7 +286,7 @@ public class RoundManager : Singleton<RoundManager>
         roundValueLeft = roundValue;
         GameManager.Instance.ChangeGameState(GameState.PlayMode);
     }
-    void Shuffle()
+    void ShuffleEnemiesArray()
     {
         if (EnemyPrefabs == null || EnemyPrefabs.Length <= 1)
         {

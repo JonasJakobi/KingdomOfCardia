@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9060346892901076109}
   - component: {fileID: 8242657347162470757}
   - component: {fileID: 1571192109593789046}
+  - component: {fileID: 2315180905583668531}
   m_Layer: 0
   m_Name: Lichtturm
   m_TagString: Untagged
@@ -130,6 +131,31 @@ MonoBehaviour:
     m_Extent: {x: 0.77631855, y: 1.200298, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &2315180905583668531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759197188728652004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b566a1f2446b0f74683681ccf01b40c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  currentLevel: 0
+  currentUpgrade: {fileID: 11400000, guid: 8ac3352e320e3f94a81c63173f923563, type: 2}
+  upgradePath: {fileID: 11400000, guid: 58dbc61bbf84d564f9f04e8bd57ea9f1, type: 2}
+  isNexus: 0
+  projectilePrefab: {fileID: 4109092055971077752, guid: 63491e07022bf064ea1b3fdffa20b338, type: 3}
+  projectileSpawnPoint: {fileID: 2126596188752751258}
+  currentTarget: {fileID: 0}
+  attackDelayTimer: 0.05
+  canAttack: 1
+  targetingType: 0
+  towerShootSound: {fileID: 0}
+  towerWindupSound: {fileID: 0}
 --- !u!1 &2126596188752751258
 GameObject:
   m_ObjectHideFlags: 0

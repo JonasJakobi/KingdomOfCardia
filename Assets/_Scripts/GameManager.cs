@@ -58,6 +58,7 @@ public class GameManager : SingletonPersistent<GameManager>
                 RoundManager.Instance.BeginNextRound();
                 CardManager.Instance.DrawNewCards();
                 UIChangeManager.Instance.ShowUpgrades();
+                GameSpeedManager.Instance.SetNormal();
                 break;
             case GameState.GameOver:
                 AudioSystem.Instance.PlayGameOverMusic();
