@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 /// <summary>
 /// A Projectile that instantly comes down upon an enemy and deals damage to it.
@@ -8,7 +6,9 @@ using UnityEngine;
 public class LightningProjectile : MonoBehaviour, IProjectile
 {
     [SerializeField]
-    private AnimatorController redLightningAnimation;
+
+    private RuntimeAnimatorController redLightningAnimatorController;
+
     public float delay = 0.04f;
     public float verticalDisplacement = 0.3f;
     Enemy enemy;
@@ -35,8 +35,13 @@ public class LightningProjectile : MonoBehaviour, IProjectile
         if (towerStats.upgradeName.Equals("Red Wizard"))
         {
             Debug.Log("Lightning will be red");
-            GetComponent<Animator>().runtimeAnimatorController = redLightningAnimation;
+            Animator animator = GetComponent<Animator>();
+            if (animator != null && redLightningAnimatorController != null)
+            {
+                animator.runtimeAnimatorController = redLightningAnimatorController;
+            }
         }
+
     }
 
     private IEnumerator DealDamageAndDestroy()

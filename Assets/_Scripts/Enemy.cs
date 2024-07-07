@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
+
 using UnityEngine;
 /// <summary>
 /// Base class for all enemies in the game.
@@ -85,9 +85,9 @@ public class Enemy : MonoBehaviour
         {
             animator.SetBool("Attack", false);
             MoveInDirection((nexusVector - transform.position).normalized, movementSpeed);
-            if(nexusVector.x > transform.position.x)
+            if (nexusVector.x > transform.position.x)
             {
-                transform.rotation = new Quaternion(0f,180f,0f,0f);
+                transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
             }
             else
             {
