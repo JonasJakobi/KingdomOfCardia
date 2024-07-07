@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 /// <summary>
 /// Attached to sprite of a tower and allows the player to place towers on the grid. by dragging or clicking onto the grid.
@@ -11,7 +12,8 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 {
     //temporary solution to tower costs
     [SerializeField]
-    private int towerCost = 1;
+    private int towerStartCost = 1;
+
     private bool stillOnUI = false;
 
     [SerializeField]
@@ -29,6 +31,8 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
     [SerializeField]
     private TextMeshProUGUI costText;
     [Header("Visible for debugging:")]
+    [SerializeField] private float towerCost = 1;
+    [SerializeField] private int placedTowerAmount = 0;
     [SerializeField]
     private bool isPlacingTowerClick = false;
     [SerializeField]
@@ -38,7 +42,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
     void Start()
     {
-        costText.text = towerCost.ToString();
+        costText.text = GetTowerCostString();
     }
 
     // Update is called once per frame
@@ -92,7 +96,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
     public void ButtonClick()
     {
         AudioSystem.Instance.PlayClickSound();
-        if (MoneyManager.Instance.CanAfford(towerCost))
+        if (MoneyManager.Instance.CanAfford(Convert.ToInt32(towerCost)))
         {
             isPlacingTowerDrag = true;
             money.color = Color.white;
@@ -123,10 +127,39 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
     private void PlaceTower()
     {
-        MoneyManager.Instance.RemoveMoney(towerCost);
+        MoneyManager.Instance.RemoveMoney(Convert.ToInt32(towerCost));
         Tile tile = GridManager.Instance.GetTileAtPosition(GetMousePosition());
         Instantiate(towerPrefab, tile.transform.position, Quaternion.identity);
         AudioSystem.Instance.PlayBonkSound();
+        IncreaseCost();
+    }
+
+    private void IncreaseCost()
+    {
+        placedTowerAmount++;
+        if (placedTowerAmount > 2)//starting from 3th tower, they get more and more expensive.
+        {
+            towerCost = towerCost * 1.3f;
+        }
+
+
+        costText.text = GetTowerCostString();
+    }
+
+    public string GetTowerCostString()
+    {
+        if (towerCost < 1000)
+        {
+            return Convert.ToInt32(towerCost).ToString();
+        }
+        else if (towerCost < 1000000)
+        {
+            return Convert.ToInt32((towerCost / 1000)).ToString(".0") + "k";
+        }
+        else
+        {
+            return Convert.ToInt32((towerCost / 1000000)).ToString(".0") + "M";
+        }
     }
 
 
@@ -218,4 +251,6 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
         }
         StopPlacingTower();
     }
+
+
 }

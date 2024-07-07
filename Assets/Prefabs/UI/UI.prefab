@@ -3918,7 +3918,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -76.05292, y: 3.5812073}
+  m_AnchoredPosition: {x: -76.05292, y: 3.5811768}
   m_SizeDelta: {x: 177.0332, y: 21.487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3658219413542142950
@@ -4382,12 +4382,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749e36032f1c79a43bb0d08c700021d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 1
+  towerStartCost: 1
   towerPreviewPrefab: {fileID: 8986985184927539993, guid: 5b69a6a27b75de54aafbdf41e05d1f40, type: 3}
   towerPrefab: {fileID: 8986985184927539993, guid: 5b69a6a27b75de54aafbdf41e05d1f40, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 5907971227123585435}
+  towerCost: 1
+  placedTowerAmount: 0
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
   money: {fileID: 1548978374823740038}
@@ -5269,7 +5271,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5559,12 +5561,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749e36032f1c79a43bb0d08c700021d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 5
+  towerStartCost: 1
   towerPreviewPrefab: {fileID: 2667876061457046568, guid: 0c5636298cdeffb4a9408e0376dca758, type: 3}
   towerPrefab: {fileID: 2667876061457046568, guid: 0c5636298cdeffb4a9408e0376dca758, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 1638909975517462741}
+  towerCost: 5
+  placedTowerAmount: 0
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
   money: {fileID: 1548978374823740038}
@@ -5667,7 +5671,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5696,7 +5700,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 38.365013, y: 0, z: -9.814304, w: 0}
+  m_margin: {x: -37.122578, y: 0, z: -0.28671268, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6025,7 +6029,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6054,7 +6058,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 38.365013, y: 0, z: -9.814304, w: 0}
+  m_margin: {x: -15.608538, y: 0, z: -0.79522324, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6232,7 +6236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.7263184, y: -18.100006}
+  m_AnchoredPosition: {x: 2.7263184, y: -18.099976}
   m_SizeDelta: {x: 19.475, y: 44.7189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2360831873153636653
@@ -6499,12 +6503,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749e36032f1c79a43bb0d08c700021d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 20
+  towerStartCost: 1
   towerPreviewPrefab: {fileID: 8937360665854073709, guid: 15b285690cf87cb4baa5dea66c176dad, type: 3}
   towerPrefab: {fileID: 8937360665854073709, guid: 15b285690cf87cb4baa5dea66c176dad, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 4830986200091979287}
+  towerCost: 20
+  placedTowerAmount: 0
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
   money: {fileID: 1548978374823740038}
@@ -6711,7 +6717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -76.053, y: 3.5812073}
+  m_AnchoredPosition: {x: -76.05298, y: 3.5811768}
   m_SizeDelta: {x: 177.03, y: 21.487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4010653960577474466
@@ -7298,7 +7304,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7327,7 +7333,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 38.365013, y: 0, z: -9.814304, w: 0}
+  m_margin: {x: 5.2764606, y: 0, z: 1.8896217, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7603,12 +7609,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749e36032f1c79a43bb0d08c700021d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 1
+  towerStartCost: 1
   towerPreviewPrefab: {fileID: 8570863131761619502, guid: 6f040786a21abff40a0d3dcdb207bd8b, type: 3}
   towerPrefab: {fileID: 8570863131761619502, guid: 6f040786a21abff40a0d3dcdb207bd8b, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 1173752912637000994}
+  towerCost: 1
+  placedTowerAmount: 0
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
   money: {fileID: 1548978374823740038}
@@ -9564,12 +9572,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749e36032f1c79a43bb0d08c700021d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 1
+  towerStartCost: 1
   towerPreviewPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
   towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
   notPlaceableColor: {r: 1, g: 0, b: 0, a: 0.5}
   costText: {fileID: 7142601634379946670}
+  towerCost: 1
+  placedTowerAmount: 0
   isPlacingTowerClick: 0
   isPlacingTowerDrag: 0
   money: {fileID: 1548978374823740038}
