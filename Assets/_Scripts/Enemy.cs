@@ -352,7 +352,7 @@ public class Enemy : MonoBehaviour
     public void SlowMovementAndAttack(float slow, float duration)
     {
         float slowMultiplicator = 1f / (float)slow;
-        StartCoroutine(SlowForSeconds(slowMultiplicator, duration, false));
+        StartCoroutine(SlowForSeconds(slowMultiplicator, duration, true));
         StartCoroutine(SlowAttackCooldown(duration));
     }
 
