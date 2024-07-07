@@ -193,7 +193,7 @@ public class RoundManager : Singleton<RoundManager>
         {
             if (go.transform.position.x == x && go.transform.position.y == y)
             {
-                if (go.GetComponent<FlowFieldTile>().GetAssignedCost() == 10000)
+                if (go.GetComponent<FlowFieldTile>().GetBaseCost() == 10000) // GetAssignedCost caused bug here if round ends when base tower surrounded by stuff
                 {
                     return false;
                 }
@@ -230,7 +230,6 @@ public class RoundManager : Singleton<RoundManager>
         {
             CreateSpawnPoints(Random.Range(1, maxSpawnPoints));
         }
-        ShuffleEnemiesArray();
     }
 
     //Start next round and decide if a wave will be present

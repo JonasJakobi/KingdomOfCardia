@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b0f053b0870bd418dd81a70d709438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCost: 2
+  baseCost: 10000
   assignedCost: 1
   tile: {fileID: 7558562331473169665}
   towerMovementVector: {x: 0, y: 0, z: 0}
