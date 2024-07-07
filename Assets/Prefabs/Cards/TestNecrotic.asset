@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TestNecrotic
   m_EditorClassIdentifier: 
   cardType: 6
-  cardName: "Gr\xFCne TEilchen und so"
-  description: 
+  cardName: "Gr\xFCne Wolken am Horizont"
+  description: Von den Gegner geht so ein Gestank aus, dass ihnen das selber schadet!
   artwork: {fileID: 0}
   effect: {fileID: 11400000, guid: c356f1f7ea07aa74ba447e4d760dc883, type: 2}
   valueOfCard: 1
   duration: 5
+  cardSound: {fileID: 0}
