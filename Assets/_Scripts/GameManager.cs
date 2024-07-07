@@ -44,9 +44,10 @@ public class GameManager : SingletonPersistent<GameManager>
 
                 break;
             case GameState.BuildMode:
+                GameSpeedManager.Instance.SetFastForward(false);
                 AudioSystem.Instance.PlayBuildMusic();
                 UIChangeManager.Instance.ShowBuildModeUI();
-                UIChangeManager.Instance.ShowUpgrades();
+                UIChangeManager.Instance.HideUpgrades();
                 RoundManager.Instance.NextRound();
                 CardManager.Instance.ClearHand();
                 CardManager.Instance.DrawRandomCards();
@@ -56,7 +57,7 @@ public class GameManager : SingletonPersistent<GameManager>
                 UIChangeManager.Instance.RemoveBuildModeUI();
                 RoundManager.Instance.BeginNextRound();
                 CardManager.Instance.DrawNewCards();
-                UIChangeManager.Instance.HideUpgrades();
+                UIChangeManager.Instance.ShowUpgrades();
                 break;
             case GameState.GameOver:
                 AudioSystem.Instance.PlayGameOverMusic();

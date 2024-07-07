@@ -4,7 +4,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-public class GameSpeedManager : MonoBehaviour
+public class GameSpeedManager : Singleton<GameSpeedManager>
 {
     public bool pauseMode = false;
     public bool fastForwardMode = false;

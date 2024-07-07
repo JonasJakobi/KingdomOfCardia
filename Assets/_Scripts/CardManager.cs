@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class CardManager : Singleton<CardManager>
 {
@@ -261,6 +262,7 @@ public class CardManager : Singleton<CardManager>
         {
             MoneyManager.Instance.RemoveMoney(50);
             handSize++;
+            DrawCard();
         }
         else Debug.Log("Can't afford upgrade.");
     }
