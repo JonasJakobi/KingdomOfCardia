@@ -2596,17 +2596,6 @@ Transform:
   - {fileID: 1951575921}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &959245069 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8595933990075014905, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
-  m_PrefabInstance: {fileID: 5117662905464472562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &959245071 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8518608134288221962, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
@@ -3771,7 +3760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f33c29da23a4af43a424b02665540e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoundButton: {fileID: 959245069}
   panalAnimator: {fileID: 617782525}
   difDis: {fileID: 1264217784}
   round: 1
@@ -4029,6 +4017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsWindow: {fileID: 546676419}
+  quitWindow: {fileID: 0}
+  menuBackground: {fileID: 0}
 --- !u!114 &1319807734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4807,6 +4797,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsWindow: {fileID: 546676419}
+  quitWindow: {fileID: 0}
+  menuBackground: {fileID: 0}
 --- !u!114 &1498407663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7337,6 +7329,10 @@ PrefabInstance:
       propertyPath: towerPreviewPrefab
       value: 
       objectReference: {fileID: 2667876061457046568, guid: f64bd438c2b00cd488485b41a141ad85, type: 3}
+    - target: {fileID: 3668756317939713669, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3703705260710988034, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7649,6 +7645,10 @@ PrefabInstance:
       propertyPath: towerPreviewPrefab
       value: 
       objectReference: {fileID: 759197188728652004, guid: e7e3afdccf2ab944c9da00414c3eff15, type: 3}
+    - target: {fileID: 6833928856363027095, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6840061049235469057, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

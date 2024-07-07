@@ -5,6 +5,8 @@ using UnityEngine;
 public class MenuButtonScript : MonoBehaviour
 {
     public GameObject optionsWindow;
+    public GameObject quitWindow;
+    public GameObject menuBackground;
 
     void Update()
     {
@@ -12,26 +14,34 @@ public class MenuButtonScript : MonoBehaviour
     }
 
     // Method to toggle the options window
-    public void ToggleOptionsWindow()
+    public void ToggleOptionsWindow(bool toQuit)
     {
-        if (optionsWindow != null)
+
+        if (optionsWindow.activeSelf && !toQuit)
         {
-            bool isActive = optionsWindow.activeSelf;
-            if (isActive)
-            {
-                AudioSystem.Instance.PlayMenuClickSound();
-                optionsWindow.SetActive(false);
-                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
+            AudioSystem.Instance.PlayMenuClickSound();
+            menuBackground.SetActive(false);
+            optionsWindow.SetActive(false);
+            quitWindow.SetActive(false);
+            GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
 
-            }
+        }
 
-            else
-            {
-                AudioSystem.Instance.PlayMenuClickSound();
-                optionsWindow.SetActive(true);
-                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.PAUSE);
-            }
+        else if (optionsWindow.activeSelf && toQuit)
+        {
+            AudioSystem.Instance.PlayMenuClickSound();
+            menuBackground.SetActive(true);
+            optionsWindow.SetActive(false);
+            quitWindow.SetActive(true);
+        }
 
+        else
+        {
+            AudioSystem.Instance.PlayMenuClickSound();
+            menuBackground.SetActive(true);
+            optionsWindow.SetActive(true);
+            quitWindow.SetActive(false);
+            GameSpeedManager.Instance.SetGameSpeed(GameSpeed.PAUSE);
         }
     }
 
@@ -39,7 +49,7 @@ public class MenuButtonScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToggleOptionsWindow();
+            ToggleOptionsWindow(false);
         }
     }
 }
