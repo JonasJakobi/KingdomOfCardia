@@ -11,8 +11,6 @@ public class GameManager : SingletonPersistent<GameManager>
     [SerializeField]
     public GameState State { get; private set; }
 
-    private bool fastForwardMode = false;
-    public float fastForwardTime = 3f;
     //For test purposes:
     private void Start()
     {
@@ -20,20 +18,7 @@ public class GameManager : SingletonPersistent<GameManager>
         ChangeGameState(GameState.Starting);
     }
 
-    public void ToggleFastFordwardMode()
-    {
-        if (fastForwardMode)
-        {
-            Time.timeScale = 1;
 
-        }
-        else
-        {
-            Time.timeScale = fastForwardTime;
-        }
-
-        fastForwardMode = !fastForwardMode;
-    }
     public void ChangeGameState(GameState gameState)
     {
 
