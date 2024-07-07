@@ -77,7 +77,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
                 Debug.Log("Trying to place tower but we cant");
             }
             StopPlacingTower();
-            MoneyManager.Instance.RemoveMoney(towerCost);
+
         }
         //We place the tower:
         else if (UserTryingToPlace())
@@ -91,12 +91,9 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
     public void ButtonClick()
     {
-        Debug.Log("Clicked on tower placer");
         AudioSystem.Instance.PlayClickSound();
-        print(MoneyManager.Instance.CanAfford(towerCost));
         if (MoneyManager.Instance.CanAfford(towerCost))
         {
-            MoneyManager.Instance.RemoveMoney(towerCost);
             isPlacingTowerDrag = true;
             money.color = Color.white;
         }
@@ -126,6 +123,7 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
     private void PlaceTower()
     {
+        MoneyManager.Instance.RemoveMoney(towerCost);
         Tile tile = GridManager.Instance.GetTileAtPosition(GetMousePosition());
         Instantiate(towerPrefab, tile.transform.position, Quaternion.identity);
         AudioSystem.Instance.PlayBonkSound();
@@ -183,7 +181,6 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
             else
             {
                 StopPlacingTower();
-                MoneyManager.Instance.AddMoney(towerCost);
             }
 
         }

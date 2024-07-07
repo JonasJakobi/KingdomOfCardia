@@ -31,7 +31,7 @@ public class BaseTower : MonoBehaviour
         health = currentUpgrade.health;
         UIChangeManager.Instance.UpdateHP();
         var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
-        print(transform.position);
+
         tileHere.SetHasBuilding(true, this.gameObject);
 
     }

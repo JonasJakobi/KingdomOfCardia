@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8242657347162470757}
   - component: {fileID: 1571192109593789046}
   m_Layer: 0
-  m_Name: Lichtturm
+  m_Name: LichtturmPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

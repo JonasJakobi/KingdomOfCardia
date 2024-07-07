@@ -75,6 +75,7 @@ public class Tile : MonoBehaviour
 
     public void SetHasBuilding(bool value, GameObject building)
     {
+        Debug.Log("Set has building called!");
         hasBuilding = value;
         if (value)
         {
