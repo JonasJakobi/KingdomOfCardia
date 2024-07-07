@@ -44,7 +44,7 @@ public class GameManager : SingletonPersistent<GameManager>
 
                 break;
             case GameState.BuildMode:
-                GameSpeedManager.Instance.SetFastForward(false);
+                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
                 AudioSystem.Instance.PlayBuildMusic();
                 UIChangeManager.Instance.ShowBuildModeUI();
                 UIChangeManager.Instance.HideUpgrades();

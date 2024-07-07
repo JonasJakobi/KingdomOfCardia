@@ -6,64 +6,54 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 public class GameSpeedManager : Singleton<GameSpeedManager>
 {
-    public bool pauseMode = false;
-    public bool fastForwardMode = false;
+    public GameSpeed gameSpeed;
     public float fastForwardTime = 3f;
 
     public Color color;
     public UnityEngine.UI.Image fastForwardImage;
     public UnityEngine.UI.Image pauseImage;
-    public void SetFastForward(bool ff)
+    public UnityEngine.UI.Image regularImage;
+    public void SetGameSpeed(GameSpeed speed)
     {
-        if (pauseMode)
-        {
-            SetPauseMode(false);
-        }
-
-        fastForwardMode = ff;
-        if (!fastForwardMode)
-        {
-            Time.timeScale = 1;
-            fastForwardImage.color = Color.white;
-
-        }
-        else
+        gameSpeed = speed;
+        if (gameSpeed.Equals(GameSpeed.FAST))
         {
             Time.timeScale = fastForwardTime;
-            fastForwardImage.color = color;
-
         }
-    }
-
-    public void SetPauseMode(bool pause)
-    {
-        if (fastForwardMode)
+        else if (gameSpeed.Equals(GameSpeed.PAUSE))
         {
-            SetFastForward(false);
-        }
-
-        pauseMode = pause;
-        if (!pauseMode)
-        {
-            Time.timeScale = 1;
-            pauseImage.color = Color.white;
-
+            Time.timeScale = 0;
         }
         else
         {
-            Time.timeScale = 0;
-            pauseImage.color = color;
-
+            Time.timeScale = 1;
         }
+        UpdateButtonImages();
     }
-    public void ToggleFastFordwardMode()
+
+    public void SetFast()
     {
-        SetFastForward(!fastForwardMode);
+        SetGameSpeed(GameSpeed.FAST);
     }
-    public void TogglePauseMode()
+    public void SetPause()
     {
-        SetPauseMode(!pauseMode);
+        SetGameSpeed(GameSpeed.PAUSE);
+    }
+    public void SetNormal()
+    {
+        SetGameSpeed(GameSpeed.NORMAL);
+    }
+    private void UpdateButtonImages()
+    {
+        fastForwardImage.color = (gameSpeed.Equals(GameSpeed.FAST)) ? color : Color.white;
+        pauseImage.color = (gameSpeed.Equals(GameSpeed.PAUSE)) ? color : Color.white;
+        regularImage.color = (gameSpeed.Equals(GameSpeed.NORMAL)) ? color : Color.white;
     }
 
 
+}
+[System.Serializable]
+public enum GameSpeed
+{
+    NORMAL, FAST, PAUSE
 }

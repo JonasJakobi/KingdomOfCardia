@@ -188,7 +188,7 @@ MonoBehaviour:
   overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   enemySound: {fileID: 8300000, guid: 4a65c4a27d56eeb47a1fc9282bc2fe64, type: 3}
   enemySoundChance: 0.35
-  maxHealth: 250
+  maxHealth: 150
   originalMovementSpeed: 1
   movementSpeed: 1
   attackCooldown: 1.1
