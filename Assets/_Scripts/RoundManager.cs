@@ -23,7 +23,10 @@ public class RoundManager : Singleton<RoundManager>
 {
     [SerializeField] private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     public Button startRoundButton;
-    
+
+    [SerializeField] private Animator panalAnimator;
+    [SerializeField] private DifficultyDisplay difDis;
+
     [Header("Round Statistics")]
     public int round = 1;
     [SerializeField] private int roundValue = 1;
@@ -36,6 +39,8 @@ public class RoundManager : Singleton<RoundManager>
     [SerializeField] private GameObject EnemyType1;
     [SerializeField] private GameObject EnemyType2;
     [SerializeField] private GameObject EnemyType3;
+
+   
 
     [Header("Spawn behaviour")]
     public int maxSpawnPoints = 3;
@@ -212,6 +217,7 @@ public class RoundManager : Singleton<RoundManager>
     //Prepare the next wave
     public void NextRound()
     {
+       
         activeWave = false;
         round++;
         UIChangeManager.Instance.updateRound();
@@ -230,6 +236,9 @@ public class RoundManager : Singleton<RoundManager>
     //Start next round and decide if a wave will be present
     public void BeginNextRound()
     {
+        panalAnimator.SetBool("gone", false);
+        difDis.Changes();
+        panalAnimator.SetBool("gone", true);
         roundValueLeft = roundValue;
         if (waveChance >= Random.Range(1.0f, 100.0f) && (round >= waveStart))
         {

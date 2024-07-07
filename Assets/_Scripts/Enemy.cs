@@ -80,6 +80,14 @@ public class Enemy : MonoBehaviour
         {
             animator.SetBool("Attack", false);
             MoveInDirection((nexusVector - transform.position).normalized, movementSpeed);
+            if(nexusVector.x > transform.position.x)
+            {
+                transform.rotation = new Quaternion(0f,180f,0f,0f);
+            }
+            else
+            {
+                transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            }
         }
         else if (buildingVector != Vector3.zero)//move towards building if possible
         {
