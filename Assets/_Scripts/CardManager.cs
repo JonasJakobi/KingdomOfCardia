@@ -15,8 +15,6 @@ public class CardManager : Singleton<CardManager>
     public List<Card> fullDeck;
     public RectTransform cardArea;
     public RectTransform cardSelectionArea;
-    public Button drawCardButton;
-    public Button selectCardButton;
     public GameObject skipCardButton;
     public float positionDuration = 0.5f; // Dauer der Positionsänderung
     public GameObject cardSpacer;
@@ -31,8 +29,6 @@ public class CardManager : Singleton<CardManager>
 
     void Start()
     {
-        drawCardButton.onClick.AddListener(DrawCard);
-        selectCardButton.onClick.AddListener(DrawRandomCards);
         handSize = 3;
     }
 
