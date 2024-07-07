@@ -126,6 +126,8 @@ public class UIChangeManager : Singleton<UIChangeManager>
         Stat5.text = MoneyManager.Instance.moneyGained.ToString();
         Stat6.text = MoneyManager.Instance.moneySpent.ToString();
         Stat7.text = CardManager.Instance.cardsPlayed.ToString();
+        speedButtons.SetActive(false);
+        StartCoroutine(WaitAndPause(1.0f));
     }
 
     public void ShowUpgrades()
@@ -136,5 +138,11 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public void HideUpgrades()
     {
         upgradeUI.SetActive(false);
+    }
+
+    public IEnumerator WaitAndPause(float amount)
+    {
+        yield return new WaitForSeconds(amount);
+        GameSpeedManager.Instance.SetGameSpeed(GameSpeed.PAUSE);
     }
 }

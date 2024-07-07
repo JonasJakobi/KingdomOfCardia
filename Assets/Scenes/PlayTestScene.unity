@@ -1593,11 +1593,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515477109}
   m_CullTransparentMesh: 1
---- !u!1 &546676419 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6107027074932678432, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
-  m_PrefabInstance: {fileID: 5117662905464472562}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &596024441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2735,7 +2730,7 @@ MonoBehaviour:
   currentLevel: 0
   currentUpgrade: {fileID: 11400000, guid: 10edde1aaae047b4f9b50e9d48773a17, type: 2}
   upgradePath: {fileID: 11400000, guid: 1a0b0d0ee3404b14f8640b0645752e83, type: 2}
-  isNexus: 0
+  isNexus: 1
 --- !u!114 &1018112989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3048,8 +3043,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -57.31763, y: -17.4132}
-  m_SizeDelta: {x: 1018.4208, y: 514.1544}
+  m_AnchoredPosition: {x: -81.02002, y: -19.865501}
+  m_SizeDelta: {x: 972.245, y: 516.1067}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1135589479
 MonoBehaviour:
@@ -3976,7 +3971,6 @@ GameObject:
   - component: {fileID: 1319807736}
   - component: {fileID: 1319807735}
   - component: {fileID: 1319807734}
-  - component: {fileID: 1319807733}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -4004,21 +3998,6 @@ RectTransform:
   m_AnchoredPosition: {x: 155.66, y: -295.67493}
   m_SizeDelta: {x: 208.917, y: 48.0678}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1319807733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319807731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b9908b36fe70346a4abd41f2b4d8a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  optionsWindow: {fileID: 546676419}
-  quitWindow: {fileID: 0}
-  menuBackground: {fileID: 0}
 --- !u!114 &1319807734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4756,7 +4735,6 @@ GameObject:
   - component: {fileID: 1498407665}
   - component: {fileID: 1498407664}
   - component: {fileID: 1498407663}
-  - component: {fileID: 1498407662}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -4784,21 +4762,6 @@ RectTransform:
   m_AnchoredPosition: {x: -160.83, y: -295.67493}
   m_SizeDelta: {x: 215.9368, y: 48.0678}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1498407662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498407660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b9908b36fe70346a4abd41f2b4d8a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  optionsWindow: {fileID: 546676419}
-  quitWindow: {fileID: 0}
-  menuBackground: {fileID: 0}
 --- !u!114 &1498407663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4852,7 +4815,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Tutorial&SoundScene
+          m_StringArgument: PlayTestScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1498407664
@@ -7301,6 +7264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1996622699869403122, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3556573538410556089, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7536,6 +7503,18 @@ PrefabInstance:
     - target: {fileID: 5273676746478438271, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_text
       value: Lichtturm
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302253181009607183, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6179246
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302253181009607183, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302253181009607183, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6625173
       objectReference: {fileID: 0}
     - target: {fileID: 5479134602605487858, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_SizeDelta.x

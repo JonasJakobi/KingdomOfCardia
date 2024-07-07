@@ -53,7 +53,13 @@ public class BaseTower : MonoBehaviour
         {
             Debug.Log("Tower " + this.gameObject.name + ": " + health + "/" + currentUpgrade.health + " health left.");
         }
-        if (health <= 0)
+        if (health <= 0 && isNexus)
+        {
+            GameManager.Instance.ChangeGameState(GameState.GameOver);
+            Debug.Log("Game Over BaseTower!");
+            Destroy(this.gameObject);
+        }
+        if (health <= 0 && !isNexus)
         {
             Destroy(this.gameObject);
         }
