@@ -142,6 +142,7 @@ public class RoundManager : Singleton<RoundManager>
 
     private GameObject ChooseEnemeyPrefab(int enemyValue)
     {
+        Shuffle();
         return EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue() - enemyValue)).First(); //closest value to our wanted value, shuffled randomly
     }
 
@@ -286,6 +287,25 @@ public class RoundManager : Singleton<RoundManager>
         roundValueLeft = roundValue;
         GameManager.Instance.ChangeGameState(GameState.PlayMode);
     }
+    void Shuffle()
+    {
+        if (EnemyPrefabs == null || EnemyPrefabs.Length <= 1)
+        {
+            return; // No need to shuffle if the array is null or has 1 or fewer elements
+        }
+
+        System.Random random = new System.Random();
+        int n = EnemyPrefabs.Length;
+        for (int i = n - 1; i > 0; i--)
+        {
+            int j = random.Next(0, i + 1);
+            GameObject temp = EnemyPrefabs[i];
+            EnemyPrefabs[i] = EnemyPrefabs[j];
+            EnemyPrefabs[j] = temp;
+        }
+    }
+
+
 
 }
 
