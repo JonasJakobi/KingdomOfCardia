@@ -33,6 +33,8 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public bool tutorialDisabledPermanently = false;
     public GameObject tutorialParent;
     public Tutorial tutorialScript;
+    public GameObject speedButtons;
+    public GameObject startRoundButton;
 
     public int damageDealt = 0;
 
@@ -89,12 +91,15 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public void ShowBuildModeUI()
     {
         towerPlaceUI.SetActive(true);
-
+        startRoundButton.SetActive(true);
+        speedButtons.SetActive(false);
     }
 
     public void RemoveBuildModeUI()
     {
+        startRoundButton.SetActive(false);
         towerPlaceUI.SetActive(false);
+        speedButtons.SetActive(true);
         RemoveAllWaveAlerts();
     }
 
