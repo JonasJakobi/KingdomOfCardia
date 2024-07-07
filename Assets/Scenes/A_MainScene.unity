@@ -2830,6 +2830,7 @@ MonoBehaviour:
   waveQueued: 0
   activeWave: 0
   waveValue: 0
+  gridManager: {fileID: 0}
 --- !u!1 &1289356441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,6 +3397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8efeabcd2f507468796045ed040f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fastForwardTime: 3
 --- !u!1001 &1708460620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4235,6 +4237,7 @@ MonoBehaviour:
   mountainChance: 0.06
   startX: 0
   startY: 0
+  mainTower: {fileID: 1018112986}
   tilePrefab:
   - {fileID: 7558562331473169665, guid: 551a0aa137e86f24ab7e24274bd2300b, type: 3}
   - {fileID: 7558562331473169665, guid: b4b3b2ba03ae0284993a003910a7f02a, type: 3}
@@ -6997,6 +7000,34 @@ PrefabInstance:
     - target: {fileID: 3703705260710988034, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222829577858234867, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222829577858234867, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222829577858234867, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1651207542}
+    - target: {fileID: 5222829577858234867, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222829577858234867, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleFastFordwardMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222829577858234867, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222829577858234867, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5273676746478438271, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_text
