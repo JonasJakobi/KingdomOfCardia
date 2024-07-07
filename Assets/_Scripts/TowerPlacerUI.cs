@@ -112,14 +112,20 @@ public class TowerPlacerUI : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
     private void UpdatePreview(Vector3 mousePos, Tile tile, bool isBuildable)
     {
-        Debug.Log("In update");
         if (towerPreview.activeSelf == false)
         {
             towerPreview.SetActive(true);
         }
         towerPreview.transform.position = tile.transform.position;
+        if (towerPreview.GetComponent<SpriteRenderer>() != null)
+        {
+            towerPreview.GetComponent<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
+        }
+        else
+        {
+            towerPreview.GetComponentInChildren<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
 
-        towerPreview.GetComponent<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
+        }
         towerPreview.transform.position = tile.transform.position;
     }
 

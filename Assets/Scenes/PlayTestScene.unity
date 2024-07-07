@@ -3776,8 +3776,8 @@ MonoBehaviour:
   panalAnimator: {fileID: 617782525}
   difDis: {fileID: 1264217784}
   round: 1
-  roundValue: 1
-  roundValueLeft: 1
+  roundValue: 4
+  roundValueLeft: 4
   enemyCount: 0
   enemiesSpawned: 0
   enemiesDefeated: 0
@@ -7650,6 +7650,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7111492955326007783}
+    - target: {fileID: 7133619635444040577, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -76.05298
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133619635444040577, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.5811768
+      objectReference: {fileID: 0}
     - target: {fileID: 7165274924694970779, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7674,6 +7682,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7350225923940646743, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.5811768
+      objectReference: {fileID: 0}
     - target: {fileID: 7370203169679656492, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7697,6 +7709,10 @@ PrefabInstance:
     - target: {fileID: 7370203169679656492, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437286312072737457, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.099976
       objectReference: {fileID: 0}
     - target: {fileID: 8395294698642407159, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_SizeDelta.x

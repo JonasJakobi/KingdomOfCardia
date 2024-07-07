@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d320ba2bdf5bb4c49bf5f5c28d7230e0, type: 3}
-  m_Name: BaseTower 2
+  m_Name: IceTower 0
   m_EditorClassIdentifier: 
-  health: 180
-  cost: 4
-  damage: 22
-  range: 2
-  attackSpeed: 0.15
-  projectileSpeed: 4
-  projectileLifetime: 1
-  maxEnemiesHittable: 0
-  upgradeName: Base Upgrade
+  health: 100
+  cost: 0
+  damage: 8
+  range: 4
+  attackSpeed: 2
+  projectileSpeed: 5
+  projectileLifetime: 2
+  maxEnemiesHittable: 1
+  upgradeName: Base Ice Tower
   upgradeSprite: {fileID: 0}
-  starLevel: 2
+  starLevel: 0
   starColor: 0

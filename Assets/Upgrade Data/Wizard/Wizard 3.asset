@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d320ba2bdf5bb4c49bf5f5c28d7230e0, type: 3}
-  m_Name: Wizard1
+  m_Name: Wizard 3
   m_EditorClassIdentifier: 
   health: 150
   cost: 2
   damage: 28
   range: 6
-  attackSpeed: 1.8
+  attackSpeed: 2
   projectileSpeed: 0
   projectileLifetime: 0
   maxEnemiesHittable: 0

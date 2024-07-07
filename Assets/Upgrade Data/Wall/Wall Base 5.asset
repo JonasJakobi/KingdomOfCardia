@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d320ba2bdf5bb4c49bf5f5c28d7230e0, type: 3}
-  m_Name: Wizard2
+  m_Name: Wall Base 5
   m_EditorClassIdentifier: 
-  health: 200
-  cost: 10
-  damage: 112
-  range: 8
-  attackSpeed: 1.6
+  health: 6400
+  cost: 32
+  damage: 0
+  range: 0
+  attackSpeed: 0
   projectileSpeed: 0
   projectileLifetime: 0
   maxEnemiesHittable: 0
-  upgradeName: Fire Wizard
-  upgradeSprite: {fileID: 21300000, guid: 3c2e596be06ac9d44b79604111378de5, type: 3}
-  starLevel: 0
-  starColor: 0
+  upgradeName: Base Tower
+  upgradeSprite: {fileID: 0}
+  starLevel: 2
+  starColor: 1
