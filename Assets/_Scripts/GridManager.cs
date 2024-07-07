@@ -113,8 +113,8 @@ public class GridManager : Singleton<GridManager>
 
     public Tile GetTileAtPosition(Vector3 pos)
     {
-        int x = Mathf.RoundToInt((pos.x - startX));
-        int y = Mathf.RoundToInt((pos.y - startY));
+        int x = Mathf.RoundToInt(pos.x - startX);
+        int y = Mathf.RoundToInt(pos.y - startY);
 
         if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
@@ -122,6 +122,9 @@ public class GridManager : Singleton<GridManager>
             //Debug.LogError("Tile out of bounds");
             return null;
         }
+        print(x);
+        print(y);
+        print(grid[x, y]);
         return grid[x, y];
     }
 

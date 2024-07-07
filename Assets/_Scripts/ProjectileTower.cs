@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 /// <summary>
 /// A tower that shoots homing projectiles at enemies. Projectiles will follow the enemy until it hits it and despawn on death.
@@ -21,6 +22,12 @@ public class ProjectileTower : BaseTower
     [SerializeField] private AudioClip towerShootSound;
     [SerializeField] private AudioClip towerWindupSound;
     // Update is called once per frame
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     void Update()
     {
         if (canAttack && RoundManager.Instance.AttackableEnemiesAvailable())

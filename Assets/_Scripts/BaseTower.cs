@@ -16,14 +16,22 @@ public class BaseTower : MonoBehaviour
 
     [SerializeField] private bool isNexus = false;
     // Start is called before the first frame update
-    private void Start()
+    protected virtual void Awake()
     {
+        StartCoroutine(SmallDelay());
+    }
+
+    public IEnumerator SmallDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("Base Tower placed");
         currentUpgrade = upgradePath.upgrades[currentLevel];
         ApplyUpgrade();
 
         health = currentUpgrade.health;
         UIChangeManager.Instance.UpdateHP();
         var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
+        print(transform.position);
         tileHere.SetHasBuilding(true, this.gameObject);
 
     }

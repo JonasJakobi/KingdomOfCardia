@@ -141,6 +141,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
 
     public void RequestFlowFieldRecalculation()
     {
+
         GenerateFlowField(false);
         GenerateFlowField(true);
 
