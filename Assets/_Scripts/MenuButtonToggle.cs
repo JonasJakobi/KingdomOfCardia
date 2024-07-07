@@ -16,9 +16,22 @@ public class MenuButtonScript : MonoBehaviour
     {
         if (optionsWindow != null)
         {
-            AudioSystem.Instance.PlayMenuClickSound();
             bool isActive = optionsWindow.activeSelf;
-            optionsWindow.SetActive(!isActive);
+            if (isActive)
+            {
+                AudioSystem.Instance.PlayMenuClickSound();
+                optionsWindow.SetActive(false);
+                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
+
+            }
+
+            else
+            {
+                AudioSystem.Instance.PlayMenuClickSound();
+                optionsWindow.SetActive(true);
+                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.PAUSE);
+            }
+
         }
     }
 

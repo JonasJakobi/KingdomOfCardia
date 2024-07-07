@@ -70,6 +70,12 @@ public class GameManager : SingletonPersistent<GameManager>
 
         OnAfterGameStateChanged?.Invoke(gameState);
     }
+
+    public void ChangeGameStateToPlayMode()
+    {
+        ChangeGameState(GameState.PlayMode);
+    }
+
 }
 
 

@@ -22,7 +22,6 @@ public class SpawnPoint
 public class RoundManager : Singleton<RoundManager>
 {
     [SerializeField] private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
-    public Button startRoundButton;
 
     [SerializeField] private Animator panalAnimator;
     [SerializeField] private DifficultyDisplay difDis;
@@ -59,7 +58,6 @@ public class RoundManager : Singleton<RoundManager>
 
     private void Start()
     {
-        startRoundButton.onClick.AddListener(changeToPlayMode);
         roundValueLeft = 0;
         CreateSpawnPoints(1);
         var enemies = EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue()));
