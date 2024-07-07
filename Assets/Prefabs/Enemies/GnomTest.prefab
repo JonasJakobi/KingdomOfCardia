@@ -189,10 +189,9 @@ MonoBehaviour:
   enemySound: {fileID: 8300000, guid: 4a65c4a27d56eeb47a1fc9282bc2fe64, type: 3}
   enemySoundChance: 0.35
   maxHealth: 150
-  originalMovementSpeed: 1
-  movementSpeed: 1
+  movementSpeed: 1.2
   attackCooldown: 1.1
-  attackDamage: 30
+  attackDamage: 15
   attackRange: 0.4
   health: 100
   currentTile: {fileID: 0}

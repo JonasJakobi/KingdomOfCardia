@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Stats")]
     public int maxHealth = 100;
-    public float originalMovementSpeed = 1;
+    private float originalMovementSpeed = 1;
 
 
     public float movementSpeed = 1;

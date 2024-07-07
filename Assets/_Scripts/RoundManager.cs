@@ -72,7 +72,7 @@ public class RoundManager : Singleton<RoundManager>
     {
         if (roundValueLeft > 0)
         {
-            int maxValue = (roundValueLeft <= 4) ? 1 : roundValueLeft / 3; //biggest enemy is quarter of the roundValue, but restrict bottom value to 1
+            int maxValue = (roundValueLeft <= 3) ? 1 : roundValueLeft / 3; //biggest enemy is quarter of the roundValue, but restrict bottom value to 1
             int randVal = Random.Range(1, maxValue);
             StartCoroutine(SpawnDelayCoroutine(randVal));
             roundValueLeft = roundValueLeft - randVal;
@@ -140,7 +140,7 @@ public class RoundManager : Singleton<RoundManager>
 
     private GameObject ChooseEnemeyPrefab(int enemyValue)
     {
-
+        ShuffleEnemiesArray();
         return EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue() - enemyValue)).First(); //closest value to our wanted value, shuffled randomly
     }
 
@@ -230,6 +230,7 @@ public class RoundManager : Singleton<RoundManager>
         {
             CreateSpawnPoints(Random.Range(1, maxSpawnPoints));
         }
+
     }
 
     //Start next round and decide if a wave will be present
