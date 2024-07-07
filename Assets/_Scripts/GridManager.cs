@@ -122,9 +122,6 @@ public class GridManager : Singleton<GridManager>
             //Debug.LogError("Tile out of bounds");
             return null;
         }
-        print(x);
-        print(y);
-        print(grid[x, y]);
         return grid[x, y];
     }
 
