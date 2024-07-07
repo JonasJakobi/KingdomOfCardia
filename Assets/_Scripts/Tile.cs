@@ -100,6 +100,10 @@ public class Tile : MonoBehaviour
     {
         return building;
     }
+    public void SetIsBuildable(bool buildable)
+    {
+        isBuildable = buildable;
+    }
 
 
 

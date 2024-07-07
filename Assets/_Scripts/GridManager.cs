@@ -97,6 +97,10 @@ public class GridManager : Singleton<GridManager>
                         grid[x, y].transform.parent = transform;
                         grid[x, y].Type = Tile.TileType.Forest;
                     }
+                    if (x == 0 || y == 0 || x == WIDTH - 1 || y == HEIGHT - 1)
+                    {
+                        grid[x, y].SetIsBuildable(false);
+                    }
                 }
 
 
