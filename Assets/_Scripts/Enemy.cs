@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
-        randomSoundChance();
+        RandomSoundChance();
 
     }
     private void Update()
@@ -209,8 +209,8 @@ public class Enemy : MonoBehaviour
 
     public void StartElectricDamage(float duration, int damage)
     {
-        if (electricParticleSystem != null) ;
-        electricParticleSystem.Play();
+        if (electricParticleSystem != null)
+            electricParticleSystem.Play();
         StartCoroutine(TakeElectricDamageOverTime(duration, damage));
     }
 
@@ -240,7 +240,7 @@ public class Enemy : MonoBehaviour
     {
         attackDamage = Mathf.RoundToInt(originalAttackDamage / reduce);
         //Change Color to purple
-        StartCoroutine(changeColor(reduceColor, false, 0f));
+        StartCoroutine(ChangeColor(reduceColor, false, 0f));
 
         yield return new WaitForSeconds(duration);
 
@@ -248,7 +248,7 @@ public class Enemy : MonoBehaviour
         attackDamage = originalAttackDamage;
 
         //revert Color to normal
-        StartCoroutine(changeColor(originalColor, false, 0f));
+        StartCoroutine(ChangeColor(originalColor, false, 0f));
 
 
     }
@@ -279,9 +279,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        randomSoundChance();
+        RandomSoundChance();
         UIChangeManager.Instance.damageDealt += damage;
-        StartCoroutine(changeColor(hitColor, true, 0.2f));
+        StartCoroutine(ChangeColor(hitColor, true, 0.2f));
         health -= damage;
         if (health <= 0)
         {
@@ -307,7 +307,7 @@ public class Enemy : MonoBehaviour
         var building = currentTile.GetBuilding();
         if (building != null)
         {
-            randomSoundChance();
+            RandomSoundChance();
             building.GetComponent<BaseTower>().TakeDamage(attackDamage);
             canAttack = false;
             StartCoroutine(AttackCooldown());
@@ -344,7 +344,7 @@ public class Enemy : MonoBehaviour
     public IEnumerator SlowForSeconds(float slowMultiplicator, float duration, bool musicEffect)
     {
 
-        StartCoroutine(changeColor(freezeColor, false, 0.0f));
+        StartCoroutine(ChangeColor(freezeColor, false, 0.0f));
 
         if (musicEffect)
         {
@@ -361,7 +361,7 @@ public class Enemy : MonoBehaviour
         }
 
         movementSpeed = originalMovementSpeed;
-        StartCoroutine(changeColor(originalColor, false, 0.0f));
+        StartCoroutine(ChangeColor(originalColor, false, 0.0f));
 
     }
 
@@ -380,7 +380,7 @@ public class Enemy : MonoBehaviour
         attackCooldown = originalCooldown;
     }
 
-    public IEnumerator changeColor(Color color, bool revertColor, float duration)
+    public IEnumerator ChangeColor(Color color, bool revertColor, float duration)
     {
 
 
@@ -403,7 +403,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void randomSoundChance()
+    public void RandomSoundChance()
     {
         if (enemySound != null)
         {
