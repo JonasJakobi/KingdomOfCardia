@@ -9,6 +9,7 @@ public class CardManager : Singleton<CardManager>
 {
     public int handSize = 3;
     public int cardsPlayed = 0;
+    public int currentUpgradeCost = 50;
     public GameObject cardUIPrefab;
     public List<Card> allCards;
     public List<Card> deck;
@@ -30,6 +31,7 @@ public class CardManager : Singleton<CardManager>
     void Start()
     {
         handSize = 3;
+        currentUpgradeCost = 50;
     }
 
     [ProButton]
@@ -246,7 +248,7 @@ public class CardManager : Singleton<CardManager>
         deck.AddRange(fullDeck);
         for (float i = 0f; i < (float)handSize; i++)
         {
-            StartCoroutine(cardDrawDelay(i * 0.2f));
+            StartCoroutine(CardDrawDelay(i * 0.2f));
 
         }
     }
@@ -254,16 +256,29 @@ public class CardManager : Singleton<CardManager>
     [ProButton]
     public void IncreaseHandSize()
     {
-        if (MoneyManager.Instance.CanAfford(50))
+        if (handSize < 6)
         {
-            MoneyManager.Instance.RemoveMoney(50);
-            handSize++;
-            DrawCard();
+            if (MoneyManager.Instance.CanAfford(currentUpgradeCost))
+            {
+                MoneyManager.Instance.RemoveMoney(currentUpgradeCost);
+                handSize++;
+                DrawCard();
+                currentUpgradeCost *= 25;
+                if (currentUpgradeCost < 31250)
+                {
+                    UIChangeManager.Instance.IncreaseCardUpgradeCost("Kaufen (" + currentUpgradeCost + ")");
+                }
+                else
+                {
+                    UIChangeManager.Instance.IncreaseCardUpgradeCost("Maximal");
+                }
+            }
+            else Debug.Log("Can't afford upgrade.");
         }
-        else Debug.Log("Can't afford upgrade.");
+        else Debug.Log("Already at max deck size");
     }
 
-    private IEnumerator cardDrawDelay(float delay)
+    private IEnumerator CardDrawDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         DrawCard();

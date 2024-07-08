@@ -12,6 +12,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public TMP_Text MoneyText;
 
     public TMP_Text HPText;
+    public TMP_Text CardUpgradeCost;
     public TMP_Text Stat1;
     public TMP_Text Stat2;
     public TMP_Text Stat3;
@@ -138,6 +139,11 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public void HideUpgrades()
     {
         upgradeUI.SetActive(false);
+    }
+
+    public void IncreaseCardUpgradeCost(string buttonText)
+    {
+        CardUpgradeCost.text = buttonText;
     }
 
     public IEnumerator WaitAndPause(float amount)
