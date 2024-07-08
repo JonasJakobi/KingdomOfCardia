@@ -264,7 +264,7 @@ public class CardManager : Singleton<CardManager>
                 handSize++;
                 DrawCard();
                 currentUpgradeCost *= 25;
-                if (currentUpgradeCost < 31250)
+                if (currentUpgradeCost <= 31250)
                 {
                     UIChangeManager.Instance.IncreaseCardUpgradeCost("Kaufen (" + currentUpgradeCost + ")");
                 }
