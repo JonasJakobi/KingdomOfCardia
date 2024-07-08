@@ -3458,17 +3458,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239876148}
   m_CullTransparentMesh: 1
---- !u!114 &1264217784 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8287287278760609224, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
-  m_PrefabInstance: {fileID: 5117662905464472562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c595331cd8c0842aa5e03cc14a8d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1265555233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3514,7 +3503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panalAnimator: {fileID: 617782525}
-  difDis: {fileID: 1264217784}
+  difDis: {fileID: 1681801843}
   round: 1
   roundValue: 4
   roundValueLeft: 4
@@ -4912,6 +4901,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2101207753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1681801843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8685081568622151581, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+  m_PrefabInstance: {fileID: 5117662905464472562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c595331cd8c0842aa5e03cc14a8d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1775314368
 GameObject:
   m_ObjectHideFlags: 0
