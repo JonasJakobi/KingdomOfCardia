@@ -81,7 +81,11 @@ public class GridManager : Singleton<GridManager>
                         }
 
                     }
-
+                    if (x == 0 || y == 0 || x == WIDTH - 1 || y == HEIGHT - 1)
+                    {
+                        grid[x, y].SetIsBuildable(false);
+                        continue;
+                    }
                     //Small chance for mountain, otherwise normal tile
                     if ((!hasNeighbouringMountain && Random.Range(0, 100) < mountainChance * 10) || (hasNeighbouringMountain && Random.Range(0, 100) < mountainChance * mountainChanceMultiplier))
                     {
@@ -97,10 +101,7 @@ public class GridManager : Singleton<GridManager>
                         grid[x, y].transform.parent = transform;
                         grid[x, y].Type = Tile.TileType.Forest;
                     }
-                    if (x == 0 || y == 0 || x == WIDTH - 1 || y == HEIGHT - 1)
-                    {
-                        grid[x, y].SetIsBuildable(false);
-                    }
+
                 }
 
 
