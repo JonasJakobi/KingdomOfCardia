@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wizard 2
   m_EditorClassIdentifier: 
   health: 150
-  cost: 2
-  damage: 28
+  cost: 4
+  damage: 52
   range: 6
   attackSpeed: 2
   projectileSpeed: 0
@@ -22,5 +22,5 @@ MonoBehaviour:
   maxEnemiesHittable: 0
   upgradeName: Upgraded Wizard
   upgradeSprite: {fileID: 0}
-  starLevel: 1
+  starLevel: 2
   starColor: 0

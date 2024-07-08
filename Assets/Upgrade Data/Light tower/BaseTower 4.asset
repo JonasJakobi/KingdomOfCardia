@@ -21,6 +21,6 @@ MonoBehaviour:
   projectileLifetime: 1.5
   maxEnemiesHittable: 0
   upgradeName: Long Range
-  upgradeSprite: {fileID: 0}
+  upgradeSprite: {fileID: 21300000, guid: 5e2259369c8787f4d9a184a212f98d8e, type: 3}
   starLevel: 1
   starColor: 1

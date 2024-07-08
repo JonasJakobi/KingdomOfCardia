@@ -21,6 +21,6 @@ MonoBehaviour:
   projectileLifetime: 2
   maxEnemiesHittable: 4
   upgradeName: Base Ice Tower
-  upgradeSprite: {fileID: 0}
-  starLevel: 1
+  upgradeSprite: {fileID: 21300000, guid: 1491e122176094542adbde6355024001, type: 3}
+  starLevel: 2
   starColor: 1
