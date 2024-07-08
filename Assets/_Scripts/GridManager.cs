@@ -25,7 +25,7 @@ public class GridManager : Singleton<GridManager>
     [SerializeField] private Transform camera;
 
 
-    Tile[,] grid;
+    public Tile[,] grid;
     private void Start()
     {
         GenerateGrid();

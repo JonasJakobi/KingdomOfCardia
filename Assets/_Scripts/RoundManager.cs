@@ -172,7 +172,7 @@ public class RoundManager : Singleton<RoundManager>
                 randomHeight = Random.Range(0, height);
             }
 
-            if (CheckForTreesAndMountains(randomWidth, randomHeight))
+            if (gridManager.GetComponent<GridManager>().grid[randomWidth, randomHeight].IsWalkable())
             {
                 spawnPoints.Add(new SpawnPoint(randomWidth, randomHeight, onFullWidth));
                 UIChangeManager.Instance.CreateWaveAlert(spawnPoints[i]);
@@ -187,24 +187,7 @@ public class RoundManager : Singleton<RoundManager>
         }
     }
 
-    private bool CheckForTreesAndMountains(int x, int y)
-    {
-        foreach (Transform go in gridManager.transform)
-        {
-            if (go.transform.position.x == x && go.transform.position.y == y)
-            {
-                if (go.GetComponent<FlowFieldTile>().GetBaseCost() == 10000) // GetAssignedCost caused bug here if round ends when base tower surrounded by stuff
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+
 
     private void QueueWave()
     {
