@@ -39,8 +39,11 @@ public class BaseTower : MonoBehaviour
     private void OnDestroy()
     {
         StopAllCoroutines();
-        var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
-        tileHere.SetHasBuilding(false, this.gameObject);
+        if (GridManager.Instance != null)
+        {
+            var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
+            tileHere.SetHasBuilding(false, this.gameObject);
+        }
 
     }
 

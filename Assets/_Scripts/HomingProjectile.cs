@@ -22,7 +22,7 @@ public class HomingProjectile : MonoBehaviour, IProjectile
             direction.Normalize();
             transform.position += direction * movementSpeed * Time.deltaTime;
 
-            if (distance < 0.02f)
+            if (distance < 0.04f)
             {
                 target.TakeDamage(damage);
                 if (projectileHitSound != null)
