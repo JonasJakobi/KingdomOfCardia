@@ -255,7 +255,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29.396828, y: -5.896385, z: 0}
-  m_LocalScale: {x: 0.120000005, y: 0.120000005, z: 0.13333334}
+  m_LocalScale: {x: 0.18, y: 0.18, z: 0.20000002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8147116208450259579}
@@ -382,6 +382,7 @@ MonoBehaviour:
   enemySound: {fileID: 0}
   enemySoundChance: 0.2
   maxHealth: 10000
+  originalMovementSpeed: 1
   movementSpeed: 0.9
   attackCooldown: 1.2
   attackDamage: 1500
