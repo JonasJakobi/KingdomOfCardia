@@ -15,6 +15,8 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private TowerUpgradePath upgradePath;
 
     [SerializeField] private bool isNexus = false;
+
+    public event System.Action OnTowerDestroyed;
     // Start is called before the first frame update
     protected virtual void Awake()
     {
@@ -35,6 +37,13 @@ public class BaseTower : MonoBehaviour
         tileHere.SetHasBuilding(true, this.gameObject);
 
     }
+    public void DestroyTower()
+    {
+        if (!isNexus)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void OnDestroy()
     {
@@ -44,9 +53,18 @@ public class BaseTower : MonoBehaviour
             var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
             tileHere.SetHasBuilding(false, this.gameObject);
         }
+        var placers = FindObjectsOfType<TowerPlacerUI>();
+
+        OnTowerDestroyed?.Invoke();
 
     }
-
+    private void RefundMoney()
+    {
+        for (int i = 0; i < currentLevel; i++)
+        {
+            MoneyManager.Instance.AddMoney((int)(upgradePath.upgrades[i].cost / 2));
+        }
+    }
     public void TakeDamage(int damage)
     {
 

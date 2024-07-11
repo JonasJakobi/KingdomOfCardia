@@ -22,7 +22,7 @@ public class TowerPlacerUI : MonoBehaviour
 
     GameObject towerPreview;
     [SerializeField]
-    GameObject towerPrefab;
+    public GameObject towerPrefab;
 
     [SerializeField]
     private Color placeableColor = new Color(0, 1, 0, 0.5f);
@@ -33,7 +33,7 @@ public class TowerPlacerUI : MonoBehaviour
     private TextMeshProUGUI costText;
     [Header("Visible for debugging:")]
     [SerializeField] private float towerCost = 1;
-    [SerializeField] private int placedTowerAmount = 0;
+    [SerializeField] public int placedTowerAmount = 0;
     [SerializeField]
     private bool isPlacingTowerClick = false;
     [SerializeField]
@@ -162,7 +162,9 @@ public class TowerPlacerUI : MonoBehaviour
     {
         MoneyManager.Instance.RemoveMoney(Convert.ToInt32(towerCost));
         Tile tile = GridManager.Instance.GetTileAtPosition(GetMousePosition());
-        Instantiate(towerPrefab, tile.transform.position, Quaternion.identity);
+        var tower = Instantiate(towerPrefab, tile.transform.position, Quaternion.identity);
+        //give the tower our decrease cost method via event or something
+        tower.GetComponent<BaseTower>().OnTowerDestroyed += DecreaseCost;
         AudioSystem.Instance.PlayBonkSound();
         IncreaseCost();
     }
@@ -176,6 +178,19 @@ public class TowerPlacerUI : MonoBehaviour
         }
 
 
+        costText.text = GetTowerCostString();
+    }
+    /// <summary>
+    /// Called when a tower gets destroyed
+    /// </summary>
+    private void DecreaseCost()
+    {
+        placedTowerAmount--;
+        MoneyManager.Instance.AddMoney(Convert.ToInt32(towerCost / 2)); // refund half of the cost
+        if (placedTowerAmount > 2)//starting from 3th tower, they get more and more expensive.
+        {
+            towerCost = towerCost / 1.3f;
+        }
         costText.text = GetTowerCostString();
     }
 

@@ -62,6 +62,17 @@ public class DebugManager : Singleton<DebugManager>
                 tile.GetBuilding().GetComponent<BaseTower>().Upgrade();
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var tile = GridManager.Instance.GetTileAtPosition(mousePos);
+            if (tile == null) return;
+
+            if (tile.GetBuilding() != null && tile.GetBuilding().GetComponent<Nexus>() == null)
+            {
+                tile.GetBuilding().GetComponent<BaseTower>().DestroyTower();
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

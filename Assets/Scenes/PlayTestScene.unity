@@ -1157,7 +1157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &385734037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1318,7 +1318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &468301001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,6 +2213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handSize: 3
   cardsPlayed: 0
+  currentUpgradeCost: 50
   cardUIPrefab: {fileID: 6948449565007065714, guid: c37a22bd4ddbb684e93be82831958051, type: 3}
   allCards:
   - {fileID: 11400000, guid: d21366c08578fe541b541b3a9eec90c5, type: 2}
@@ -2230,8 +2231,6 @@ MonoBehaviour:
   fullDeck: []
   cardArea: {fileID: 6746439655830293997}
   cardSelectionArea: {fileID: 254961906}
-  drawCardButton: {fileID: 0}
-  selectCardButton: {fileID: 0}
   skipCardButton: {fileID: 84297726}
   positionDuration: 0.5
   cardSpacer: {fileID: 1084807589}
@@ -2925,6 +2924,7 @@ MonoBehaviour:
   RoundText: {fileID: 1892283154}
   MoneyText: {fileID: 1417797990}
   HPText: {fileID: 1449301378}
+  CardUpgradeCost: {fileID: 0}
   Stat1: {fileID: 1281545350}
   Stat2: {fileID: 1494559795}
   Stat3: {fileID: 230007523}
@@ -2940,6 +2940,8 @@ MonoBehaviour:
   tutorialDisabledPermanently: 0
   tutorialParent: {fileID: 962081419}
   tutorialScript: {fileID: 276152915}
+  speedButtons: {fileID: 0}
+  startRoundButton: {fileID: 0}
   damageDealt: 0
 --- !u!1 &1084807589
 GameObject:
@@ -3237,7 +3239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1137368199
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3862,7 +3864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f33c29da23a4af43a424b02665540e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoundButton: {fileID: 0}
   panalAnimator: {fileID: 617782525}
   difDis: {fileID: 1681801843}
   round: 1
