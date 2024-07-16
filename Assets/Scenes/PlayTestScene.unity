@@ -3882,7 +3882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c108113961a5db644a8db0933faf6dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 14
+  startingMoney: 50
   money: 0
   moneyGained: 0
   moneySpent: 0
@@ -7369,9 +7369,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7111492955326007783}
     - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: towerPrefab
+      value: 
+      objectReference: {fileID: 8570863131761619502, guid: 6f040786a21abff40a0d3dcdb207bd8b, type: 3}
+    - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: placeThisTowerKey
       value: 52
       objectReference: {fileID: 0}
+    - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: towerPreviewPrefab
+      value: 
+      objectReference: {fileID: 8570863131761619502, guid: 77c0defceb821604aa934f147d54300d, type: 3}
     - target: {fileID: 7133619635444040577, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -76.05298
@@ -7460,6 +7468,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7710982517468776544, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: towerPrefab
+      value: 
+      objectReference: {fileID: 1264701238348325846, guid: 281061a5f5f435e4cbd70b2b9b2e059e, type: 3}
+    - target: {fileID: 7710982517468776544, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: towerPreviewPrefab
+      value: 
+      objectReference: {fileID: 1264701238348325846, guid: dd668a50b0e9fbe4093b0026eb5ff3f4, type: 3}
     - target: {fileID: 7912253689745704057, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -335,9 +335,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void SlowEnemy(int slow, float duration, bool musicEffect)
+    public void SlowEnemy(float slow, float duration, bool musicEffect)
     {
-        float slowMultiplicator = 1f / (float)slow;
+        float slowMultiplicator = 1f / slow;
         StartCoroutine(SlowForSeconds(slowMultiplicator, duration, musicEffect));
     }
 
