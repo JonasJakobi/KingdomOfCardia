@@ -98,6 +98,7 @@ public class Enemy : MonoBehaviour
         {
             animator.SetBool("Attack", false);
             MoveInDirection((buildingVector - transform.position).normalized, movementSpeed);
+            UIChangeManager.Instance.QueueWarning();
         }
         else
         {

@@ -32,6 +32,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public GameObject upgradeUI;
 
     public bool tutorialDisabledPermanently = false;
+    public bool warningQueued = false;
     public GameObject tutorialParent;
     public Tutorial tutorialScript;
     public GameObject speedButtons;
@@ -114,6 +115,22 @@ public class UIChangeManager : Singleton<UIChangeManager>
         if (tutorialScript.tutorialSkipped == false && tutorialDisabledPermanently == false)
         {
             tutorialParent.SetActive(true);
+        }
+    }
+
+    public void QueueWarning()
+    {
+        if (tutorialScript.warningShowed == false && warningQueued == false)
+        {
+            warningQueued = true;
+        }
+    }
+    public void WarningCheck()
+    {
+        if (tutorialScript.warningShowed == false && warningQueued == true)
+        {
+            tutorialParent.SetActive(true);
+            tutorialScript.ShowWarning();
         }
     }
 

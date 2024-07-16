@@ -11,12 +11,14 @@ public class Tutorial : MonoBehaviour
     public TMP_Text tutorialSpeechText;
     public int tutorialStep;
     public bool tutorialSkipped = true;
+    public bool warningShowed = false;
+    private int lastTutorialStep;
 
     // Start is called before the first frame update
     void Start()
     {
         tutorialStep = 0;
-        switchTutotialDialogue();
+        SwitchTutotialDialogue();
     }
 
     // Update is called once per frame
@@ -27,10 +29,10 @@ public class Tutorial : MonoBehaviour
 
     public void IncrementTutorialStep()
     {
-        if ((tutorialSkipped != true) && (tutorialStep != 0))
+        if (((tutorialSkipped == false) && (tutorialStep != 0)) || ((warningShowed == false) && (tutorialStep >= 20)))
         {
             tutorialStep++;
-            switchTutotialDialogue();
+            SwitchTutotialDialogue();
             AudioSystem.Instance.PlayClickSound();
         }
     }
@@ -39,7 +41,7 @@ public class Tutorial : MonoBehaviour
     {
         tutorialSkipped = false;
         tutorialStep++;
-        switchTutotialDialogue();
+        SwitchTutotialDialogue();
         AudioSystem.Instance.PlayBonkSound();
         tutorialButtons.SetActive(false);
     }
@@ -47,11 +49,22 @@ public class Tutorial : MonoBehaviour
     public void SkipTutorial()
     {
         tutorialSkipped = true;
+        warningShowed = true;
         AudioSystem.Instance.PlayBonkSound();
         tutorialParent.SetActive(false);
     }
 
-    public void switchTutotialDialogue()
+    public void ShowWarning()
+    {
+        if (warningShowed == false)
+        {
+            lastTutorialStep = tutorialStep;
+            tutorialStep = 20;
+            SwitchTutotialDialogue();
+        }
+    }
+
+    public void SwitchTutotialDialogue()
     {
         switch (tutorialStep)
         {
@@ -83,19 +96,43 @@ public class Tutorial : MonoBehaviour
                 tutorialParent.SetActive(false);
                 break;
             case 7:
-                tutorialSpeechText.text = "Du hast gerade deine erste <b>Karte</b> erhalten!";
+                tutorialSpeechText.text = "Du hast gerade eine <b>Karte</b> erhalten!";
                 break;
             case 8:
                 tutorialSpeechText.text = "Du kannst diese während des nächsten <i>Angriffes</i> verwenden, um uns bei der Verteidigung zu unterstützen.";
                 break;
             case 9:
-                tutorialSpeechText.text = "Es wurden mehr <i>Monster</i> gesichtet. <i><b>Doppelt</b></i> so viele wie beim letzten Angriff!";
+                tutorialSpeechText.text = "Allerdings kannst du während einer Runde nur bis zu <b>3 Karten</b> auf der Hand haben. Mit genügend <b>Gold</b> kannst du dieses Limit während eines <i>Angriffes</i> erhöhen.";
                 break;
             case 10:
-                tutorialSpeechText.text = "Mehr kann ich dir nicht beibringen. Viel Erfolg...";
+                tutorialSpeechText.text = "Es wurden mehr <i>Monster</i> gesichtet. <i><b>Doppelt</b></i> so viele wie beim letzten Angriff!";
                 break;
             case 11:
+                tutorialSpeechText.text = "Passe deine Verteidigung an, indem du neue Einheiten platzierst, Gebäude errichtest oder die bestehende Verteidigung <i>verbesserst</i>!";
+                break;
+            case 12:
+                tutorialSpeechText.text = "Mehr kann ich dir nicht beibringen. Viel Erfolg...";
+                break;
+            case 13:
                 tutorialSkipped = true;
+                tutorialParent.SetActive(false);
+                return;
+            case 20:
+                tutorialSpeechText.text = "Whoops, da habe ich wohl doch etwas vergessen zu erwähnen.";
+                break;
+            case 21:
+                tutorialSpeechText.text = "Wenn die <i>Monster</i> keinen Weg zu dem <b>Schneckenturm</b> finden, drehen sie durch und greifen einfach andere Türme an!";
+                break;
+            case 22:
+                tutorialSpeechText.text = "Sei also stets vorsichtig beim Planen der nächsten Verteidigung und <i>entferne</i> notfalls bestehende Einheiten wieder.";
+                break;
+            case 23:
+                tutorialSpeechText.text = "Das müsste jetzt aber wirklich alles gewesen sein? Viel Erfolg!";
+                break;
+            case 24:
+                warningShowed = true;
+                tutorialStep = lastTutorialStep;
+                SwitchTutotialDialogue();
                 tutorialParent.SetActive(false);
                 return;
         }

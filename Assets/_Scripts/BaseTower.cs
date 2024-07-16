@@ -82,6 +82,8 @@ public class BaseTower : MonoBehaviour
         }
         if (health <= 0 && !isNexus)
         {
+            AudioSystem.Instance.PlayDramaticBoom();
+            Debug.Log("Boom?");
             Destroy(this.gameObject);
         }
     }

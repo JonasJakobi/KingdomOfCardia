@@ -72,6 +72,7 @@ public class CardManager : Singleton<CardManager>
         AddCardToDeck(selectedCardUI.cardData);
 
         UIChangeManager.Instance.TutorialCheck();
+        UIChangeManager.Instance.WarningCheck();
 
         // Entfernen der angezeigten Karten
         DiscardSelection();
