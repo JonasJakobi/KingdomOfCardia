@@ -72,8 +72,9 @@ public class RoundManager : Singleton<RoundManager>
     {
         if (roundValueLeft > 0)
         {
-            int maxValue = (roundValueLeft <= 3) ? 1 : roundValueLeft / 3; //biggest enemy is quarter of the roundValue, but restrict bottom value to 1
-            int randVal = Random.Range(1, maxValue);
+            int maxValue = (roundValueLeft <= 3) ? 1 : roundValueLeft / 3;
+            //generate random value between 1 and maxValue but have chances be higher towards max value
+            int randVal = Random.Range(1, maxValue + 1);
             StartCoroutine(SpawnDelayCoroutine(randVal));
             roundValueLeft = roundValueLeft - randVal;
         }

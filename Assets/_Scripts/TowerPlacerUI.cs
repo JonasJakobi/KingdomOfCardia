@@ -40,7 +40,6 @@ public class TowerPlacerUI : MonoBehaviour
     private TMP_Text money;
 
     public KeyCode placeThisTowerKey;
-
     void Start()
     {
         costText.text = GetTowerCostString();
@@ -174,7 +173,7 @@ public class TowerPlacerUI : MonoBehaviour
         placedTowerAmount++;
         if (placedTowerAmount > 2)//starting from 3th tower, they get more and more expensive.
         {
-            towerCost = towerCost * 1.3f;
+            towerCost = towerCost * Constants.Instance.towerCostGrowthRate;
         }
 
 
@@ -189,7 +188,7 @@ public class TowerPlacerUI : MonoBehaviour
         MoneyManager.Instance.AddMoney(Convert.ToInt32(towerCost / 2)); // refund half of the cost
         if (placedTowerAmount > 2)//starting from 3th tower, they get more and more expensive.
         {
-            towerCost = towerCost / 1.3f;
+            towerCost = towerCost / Constants.Instance.towerCostGrowthRate;
         }
         costText.text = GetTowerCostString();
     }

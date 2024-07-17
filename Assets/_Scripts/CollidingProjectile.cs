@@ -20,6 +20,8 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
     /// Gets set at start and then decremented each time an enemy is hit.
     /// </summary>
     public int maxEnemiesStillHitable = 1;
+
+    public float slowAmount = 1;
     [SerializeField] private AudioClip projectileHitSound;
 
     private void Update()
@@ -53,7 +55,11 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
             }
 
             //Only if all of these remain ice projectiles:
-            other.gameObject.GetComponentInChildren<Enemy>().SlowEnemy(2, 1.5f, false);
+            if (slowAmount != 1)
+            {
+                other.gameObject.GetComponentInChildren<Enemy>().SlowEnemy(slowAmount, 1.5f, false);
+            }
+
             other.gameObject.GetComponentInChildren<Enemy>().TakeDamage(damage);
             if (projectileHitSound != null)
             {

@@ -263,7 +263,7 @@ public class Enemy : MonoBehaviour
     public void MoveInDirection(Vector3 direction, float speed)
     {
         Vector3 pos = transform.position;
-        pos += direction * speed * Time.deltaTime;
+        pos += direction * speed * Time.deltaTime * Constants.Instance.enemyMoveSpeedMultiplier;
 
         // Check if we entered a new tile, if so, register the enemy at the new tile and unregister at the old tile
         if (Mathf.RoundToInt(pos.x) != Mathf.RoundToInt(transform.position.x) || Mathf.RoundToInt(pos.y) != Mathf.RoundToInt(transform.position.y))
@@ -279,10 +279,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        int trueDamage = Mathf.RoundToInt(damage * Constants.Instance.damageToEnemiesMultiplier);
         RandomSoundChance();
-        UIChangeManager.Instance.damageDealt += damage;
+        UIChangeManager.Instance.damageDealt += trueDamage;
         StartCoroutine(ChangeColor(hitColor, true, 0.2f));
-        health -= damage;
+        health -= trueDamage;
         if (health <= 0)
         {
             StopAllCoroutines();
@@ -303,19 +304,15 @@ public class Enemy : MonoBehaviour
     protected virtual void Attack()
     {
 
-
-        var building = currentTile.GetBuilding();
-        if (building != null)
+        RandomSoundChance();
+        currentlyTargetedBuilding.TakeDamage(attackDamage);
+        canAttack = false;
+        StartCoroutine(AttackCooldown());
+        if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Enemies))
         {
-            RandomSoundChance();
-            building.GetComponent<BaseTower>().TakeDamage(attackDamage);
-            canAttack = false;
-            StartCoroutine(AttackCooldown());
-            if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Enemies))
-            {
-                Debug.Log("Enemy attacked building" + building + " for " + attackDamage + " damage.");
-            }
+            Debug.Log("Enemy attacked building" + currentlyTargetedBuilding + " for " + attackDamage + " damage.");
         }
+
     }
 
     private IEnumerator AttackCooldown()
@@ -335,9 +332,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void SlowEnemy(int slow, float duration, bool musicEffect)
+    public void SlowEnemy(float slow, float duration, bool musicEffect)
     {
-        float slowMultiplicator = 1f / (float)slow;
+        float slowMultiplicator = 1f / slow;
         StartCoroutine(SlowForSeconds(slowMultiplicator, duration, musicEffect));
     }
 
@@ -362,6 +359,7 @@ public class Enemy : MonoBehaviour
 
         movementSpeed = originalMovementSpeed;
         StartCoroutine(ChangeColor(originalColor, false, 0.0f));
+
 
     }
 

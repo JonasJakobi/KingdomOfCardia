@@ -161,6 +161,7 @@ public class GridManager : Singleton<GridManager>
             grid[Mathf.Clamp(x, 0, WIDTH - 1), Mathf.Clamp(y, 0, HEIGHT - 1)].RegisterEnemy(enemy);
             return;
         }
+        else
         {
             grid[x, y].RegisterEnemy(enemy);
         }
