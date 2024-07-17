@@ -110,7 +110,7 @@ public class GridManager : Singleton<GridManager>
 
             }
         }
-        camera.position = new Vector3((WIDTH / 2) + 1, (HEIGHT / 2), -10);
+        camera.position = new Vector3((WIDTH / 2) + 2, (HEIGHT / 2), -10);
 
     }
 

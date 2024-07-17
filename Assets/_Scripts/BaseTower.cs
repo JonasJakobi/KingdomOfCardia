@@ -37,6 +37,14 @@ public class BaseTower : MonoBehaviour
         tileHere.SetHasBuilding(true, this.gameObject);
 
     }
+    public TowerUpgrade GetTowerUpgrade(bool next = false)
+    {
+        if(next && upgradePath.upgrades.Length > currentLevel+1 )
+        {
+            return upgradePath.upgrades[currentLevel + 1];
+        }
+        return currentUpgrade;
+    }
     public void DestroyTower()
     {
         if (!isNexus)
