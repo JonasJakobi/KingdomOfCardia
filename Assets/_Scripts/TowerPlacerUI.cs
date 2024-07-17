@@ -186,7 +186,7 @@ public class TowerPlacerUI : MonoBehaviour
     {
         placedTowerAmount--;
         MoneyManager.Instance.AddMoney(Convert.ToInt32(towerCost / 2)); // refund half of the cost
-        if (placedTowerAmount > 2)//starting from 3th tower, they get more and more expensive.
+        if (placedTowerAmount > 1)//starting from 3th tower, they get more and more expensive.
         {
             towerCost = towerCost / Constants.Instance.towerCostGrowthRate;
         }
