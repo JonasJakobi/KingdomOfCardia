@@ -18,6 +18,7 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     [SerializeField] private AudioSource enemySoundSource3;
     [SerializeField] private AudioSource towerSoundSource;
     [SerializeField] private AudioSource projectileSoundSource;
+    [SerializeField] private AudioSource anvilSoundSource;
     [SerializeField] private AudioClip backgroundMusic;
     [SerializeField] private AudioClip menuMusic;
     [SerializeField] private AudioClip buildMusic;
@@ -27,6 +28,7 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     [SerializeField] private AudioClip bonkSound;
     [SerializeField] private AudioClip basicSplash;
     [SerializeField] private AudioClip dramaticBoom;
+    [SerializeField] private AudioClip anvilSound;
 
     void Start()
     {
@@ -125,6 +127,12 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     public void PlayDramaticBoom()
     {
         PlaySound(dramaticBoom);
+    }
+    public void PlayAnvilSound(int level)
+    {
+        anvilSoundSource.clip = anvilSound;
+        anvilSoundSource.pitch = 0.65f + (level * 0.05f);
+        anvilSoundSource.Play();
     }
 
     public void PlayCardSound(AudioClip clip)

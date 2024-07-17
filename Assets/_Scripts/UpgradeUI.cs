@@ -34,13 +34,11 @@ public class UpgradeUI : MonoBehaviour
                 //zur�cksetzen der alten gr��e
                 if (selected != null)
                 {
-                    Transform spriteTransform1 = selected.GetBuilding().transform;
-                    spriteTransform1.localScale *= 0.66666667f;
+                    selected.GetBuilding().GetComponent<BaseTower>().DeSelectTower();
                 }
 
                 //neue gr��e
-                Transform spriteTransform = tile.GetBuilding().transform;
-                spriteTransform.localScale *= 1.5f;
+                tile.GetBuilding().GetComponent<BaseTower>().SelectTower();
                 VisualiseUpgradeInfo(tile);
                 selected = tile;
                 if (GameManager.Instance.State.Equals(GameState.BuildMode) || GameManager.Instance.State.Equals(GameState.Starting))
@@ -61,8 +59,7 @@ public class UpgradeUI : MonoBehaviour
                 }
                 if (selected != null)
                 {
-                    Transform spriteTransform1 = selected.GetBuilding().transform;
-                    spriteTransform1.localScale *= 0.66666667f;
+                    selected.GetBuilding().GetComponent<BaseTower>().DeSelectTower();
                     selected = null;
                     upgradeInfo.SetActive(false);
 
@@ -80,7 +77,17 @@ public class UpgradeUI : MonoBehaviour
     {
         GameObject tower = tile.GetBuilding();
         towerName.text = tower.name;
-        upgradeButton.text = "Upgrade: " + tower.GetComponent<BaseTower>().GetCostOfUpgrading().ToString();
+        if (tower.GetComponent<BaseTower>().GetCostOfUpgrading() != -1)
+        {
+            upgradeButton.text = "Upgrade: " + tower.GetComponent<BaseTower>().GetCostOfUpgrading().ToString();
+
+        }
+        else
+        {
+            upgradeButton.text = "Fully Upgraded";
+            upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = false;
+        }
+
 
         TowerUpgrade ctu = tower.GetComponent<BaseTower>().GetTowerUpgrade();
         TowerUpgrade ntu = tower.GetComponent<BaseTower>().GetTowerUpgrade(true);

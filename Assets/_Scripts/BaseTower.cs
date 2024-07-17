@@ -22,13 +22,18 @@ public class BaseTower : MonoBehaviour
     /// Can be selected by the player to upgrade/ see stats
     /// </summary>
     public bool isSelectable = false;
+    private Tween scaleTween;
     public event System.Action OnTowerDestroyed;
+    public Vector3 originalScale;
+    public Vector3 selectedScale;
+    public bool isSelected = false;
     // Start is called before the first frame update
     protected virtual void Awake()
     {
-        var scaleBefore = transform.localScale;
+        originalScale = transform.localScale;
+        selectedScale = originalScale * 1.5f;
         transform.localScale = Vector3.zero;
-        transform.DOScale(scaleBefore, 1f).SetEase(Ease.OutBack);
+        transform.DOScale(originalScale, 1f).SetEase(Ease.OutBack);
         StartCoroutine(SmallDelay());
     }
 
@@ -163,6 +168,33 @@ public class BaseTower : MonoBehaviour
         {
             GetComponentInChildren<TowerStars>().SetStars(currentUpgrade.starLevel, currentUpgrade.starColor);
         }
+        if (currentLevel > 0) // play animation on every upgrade
+        {
+            UpgradeAnimation();
+        }
+
+    }
+    private void UpgradeAnimation()
+    {
+        if (scaleTween != null)
+        {
+            scaleTween.Kill();
+            if (isSelected)
+            {
+                transform.localScale = selectedScale;
+            }
+            else
+            {
+                transform.localScale = originalScale;
+
+            }
+        }
+        //grow and then shrink as feedback with DoScale
+        scaleTween = transform.DOScale(transform.localScale * 1.2f, 0.25f).SetEase(Ease.InSine).OnComplete(() =>
+        {
+            transform.DOScale(transform.localScale / 1.2f, 0.25f).SetEase(Ease.InSine);
+        });
+        AudioSystem.Instance.PlayAnvilSound(currentLevel);
     }
     /// <summary>
     /// Returns the price of the next upgrade in the upgrade path. Returns -1 if we are at max level.
@@ -208,6 +240,18 @@ public class BaseTower : MonoBehaviour
             //error log
             Debug.LogError("Tried to upgrade tower " + this.gameObject.name + " but it is already at max level (level " + currentLevel + ")");
         }
+    }
+    public void SelectTower()
+    {
+        scaleTween.Kill();
+        isSelected = true;
+        scaleTween = transform.DOScale(selectedScale, 0.3f).SetEase(Ease.InSine);
+    }
+    public void DeSelectTower()
+    {
+        scaleTween.Kill();
+        isSelected = false;
+        scaleTween = transform.DOScale(originalScale, 0.3f).SetEase(Ease.InSine);
     }
 }
 
