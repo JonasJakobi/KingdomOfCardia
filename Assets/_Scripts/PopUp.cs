@@ -31,7 +31,7 @@ public class PopUp : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         var textMesh = popup.GetComponentInChildren<TextMeshProUGUI>();
         DOTween.Kill(textMesh);
         popup.DOFade(0, fadeDuration * 0.6f);
-        textMesh.DOFade(0, fadeDuration * 0.6f);
+        textMesh.DOFade(0, fadeDuration * 0.6f).OnComplete(() => popup.gameObject.SetActive(false));
 
 
     }

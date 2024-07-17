@@ -93,6 +93,7 @@ public class UpgradeUI : MonoBehaviour
     public void Upgrade()
     {
         selected.GetBuilding().GetComponent<BaseTower>().Upgrade();
+        VisualiseUpgradeInfo(selected);
 
     }
 
