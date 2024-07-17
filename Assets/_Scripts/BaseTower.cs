@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 /// <summary>
 /// Base class for all towers in the game. Registers on the grid and can take damage and be destroyed.
@@ -8,6 +9,9 @@ using UnityEngine;
 public class BaseTower : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    [SerializeField] private int temporaryHealth = 0;
+    private int activeShieldAmount = 0;
+    private int sumOfAllShields = 0;
     [SerializeField] private int currentLevel = 0;
 
     [SerializeField] protected TowerUpgrade currentUpgrade;
@@ -67,8 +71,15 @@ public class BaseTower : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-
-        health -= damage;
+        if ((temporaryHealth - damage) > 0) temporaryHealth -= damage;
+        else if ((temporaryHealth > 0) && ((temporaryHealth - damage) < 0))
+        {
+            int trueDamage = damage - temporaryHealth;
+            temporaryHealth = 0;
+            health -= trueDamage;
+            UIChangeManager.Instance.RemoveShield();
+        }
+        else health -= damage;
         UIChangeManager.Instance.UpdateHP();
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Towers))
         {
@@ -83,7 +94,6 @@ public class BaseTower : MonoBehaviour
         if (health <= 0 && !isNexus)
         {
             AudioSystem.Instance.PlayDramaticBoom();
-            Debug.Log("Boom?");
             Destroy(this.gameObject);
         }
     }
@@ -95,15 +105,32 @@ public class BaseTower : MonoBehaviour
 
     private IEnumerator GiveTemporaryHP(int healthAmount, float duration)
     {
-        int currentHealth = health;
-        health += healthAmount;
-        UIChangeManager.Instance.UpdateHP();
+        activeShieldAmount++;
+        if (activeShieldAmount == 1) UIChangeManager.Instance.CreateShield();
+        Debug.Log("Active shields: " + activeShieldAmount);
+        temporaryHealth += healthAmount;
+        sumOfAllShields += healthAmount;
+        Debug.Log("Temp HP: " + temporaryHealth);
         yield return new WaitForSeconds(duration);
-        if (currentHealth <= health)
+        if (temporaryHealth > 0 && activeShieldAmount == 1)
         {
-            health = currentHealth;
+            temporaryHealth = 0;
+            UIChangeManager.Instance.RemoveShield();
         }
-        UIChangeManager.Instance.UpdateHP();
+        else if (temporaryHealth > 0 && activeShieldAmount > 1)
+        {
+            int sumOfOtherShields;
+
+            sumOfOtherShields = sumOfAllShields - healthAmount;
+            if (temporaryHealth == sumOfAllShields)
+            {
+                temporaryHealth -= healthAmount;
+            }
+            else if (temporaryHealth >= sumOfOtherShields) temporaryHealth = sumOfOtherShields;
+        }
+        activeShieldAmount--;
+        sumOfAllShields -= healthAmount;
+        Debug.Log("Temp HP after shield: " + temporaryHealth);
     }
 
     public int GetCurrentHealth()

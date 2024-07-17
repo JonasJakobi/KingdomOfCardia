@@ -522,7 +522,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.932129, y: 23.611023}
+  m_AnchoredPosition: {x: 13.932129, y: 23.611084}
   m_SizeDelta: {x: 27.8621, y: 47.222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &159399326
@@ -856,6 +856,7 @@ MonoBehaviour:
   tutorialSpeechText: {fileID: 2140684425}
   tutorialStep: 0
   tutorialSkipped: 0
+  warningShowed: 0
 --- !u!114 &276152916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2613,6 +2614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  temporaryHealth: 0
   currentLevel: 0
   currentUpgrade: {fileID: 11400000, guid: a8ccead87f8c980448aacf8b893aca7b, type: 2}
   upgradePath: {fileID: 11400000, guid: cfa58c4a500154f469b19ada4351e1b1, type: 2}
@@ -2686,11 +2688,13 @@ MonoBehaviour:
   Stat6: {fileID: 874604485}
   Stat7: {fileID: 346257678}
   WaveAlertPrefab: {fileID: 4446087087194784983, guid: 7908ff2026b9d704cae2e4251e5bff46, type: 3}
+  shieldPrefab: {fileID: 2512379291943744515, guid: 605b4e073f204ae46abf41a674acee5c, type: 3}
   towerPlaceUI: {fileID: 617782524}
   gameOverUI: {fileID: 1423802685}
   tutorialUI: {fileID: 962081419}
   upgradeUI: {fileID: 1965405605}
   tutorialDisabledPermanently: 0
+  warningQueued: 0
   tutorialParent: {fileID: 962081419}
   tutorialScript: {fileID: 276152915}
   speedButtons: {fileID: 2110410037}
@@ -7220,6 +7224,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.6625173
       objectReference: {fileID: 0}
+    - target: {fileID: 5309136919743495016, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -26.000122
+      objectReference: {fileID: 0}
     - target: {fileID: 5479134602605487858, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_SizeDelta.x
       value: -27.108
@@ -7267,6 +7275,10 @@ PrefabInstance:
     - target: {fileID: 5836857733458638081, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_Offset.y
       value: -6.866848
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.276001
       objectReference: {fileID: 0}
     - target: {fileID: 6000097980049525178, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7368,6 +7380,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7111492955326007783}
+    - target: {fileID: 7013103262901039319, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -26.000122
+      objectReference: {fileID: 0}
     - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: placeThisTowerKey
       value: 52

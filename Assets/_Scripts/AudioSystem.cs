@@ -27,6 +27,7 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     [SerializeField] private AudioClip bonkSound;
     [SerializeField] private AudioClip basicSplash;
     [SerializeField] private AudioClip dramaticBoom;
+    [SerializeField] private AudioClip plopp;
 
     void Start()
     {
@@ -125,6 +126,11 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     public void PlayDramaticBoom()
     {
         PlaySound(dramaticBoom);
+    }
+
+    public void PlayPloppSound()
+    {
+        PlaySound(plopp);
     }
 
     public void PlayCardSound(AudioClip clip)

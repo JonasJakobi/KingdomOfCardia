@@ -75,6 +75,7 @@ MonoBehaviour:
   bonkSound: {fileID: 8300000, guid: a6573f0d64613a94daba5e47e6e48049, type: 3}
   basicSplash: {fileID: 8300000, guid: d5f88a7fbbfd43049978ec9e3707af03, type: 3}
   dramaticBoom: {fileID: 8300000, guid: 9073535e2852fa94db5ef4a3bc0db85e, type: 3}
+  plopp: {fileID: 8300000, guid: 831b3ac92af21cf45b71222dac3c3c85, type: 3}
 --- !u!82 &3146287058507271818
 AudioSource:
   m_ObjectHideFlags: 0
