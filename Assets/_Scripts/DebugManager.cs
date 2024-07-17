@@ -52,6 +52,7 @@ public class DebugManager : Singleton<DebugManager>
         {
             ShowOrHideDebugObjects();
         }
+        /*
         if (Input.GetKeyDown(KeyCode.U))
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -62,6 +63,7 @@ public class DebugManager : Singleton<DebugManager>
                 tile.GetBuilding().GetComponent<BaseTower>().Upgrade();
             }
         }
+        */
         if (Input.GetKeyDown(KeyCode.R))
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
