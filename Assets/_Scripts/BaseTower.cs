@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 /// <summary>
 /// Base class for all towers in the game. Registers on the grid and can take damage and be destroyed.
 /// Specific implementations of towers should inherit from this class.
@@ -71,8 +72,8 @@ public class BaseTower : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-
-        health -= damage;
+        int trueDamage = Mathf.RoundToInt(damage * Constants.Instance.damageToTowersMultiplier);
+        health -= trueDamage;
         UIChangeManager.Instance.UpdateHP();
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Towers))
         {

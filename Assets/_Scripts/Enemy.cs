@@ -263,7 +263,7 @@ public class Enemy : MonoBehaviour
     public void MoveInDirection(Vector3 direction, float speed)
     {
         Vector3 pos = transform.position;
-        pos += direction * speed * Time.deltaTime;
+        pos += direction * speed * Time.deltaTime * Constants.Instance.enemyMoveSpeedMultiplier;
 
         // Check if we entered a new tile, if so, register the enemy at the new tile and unregister at the old tile
         if (Mathf.RoundToInt(pos.x) != Mathf.RoundToInt(transform.position.x) || Mathf.RoundToInt(pos.y) != Mathf.RoundToInt(transform.position.y))
@@ -279,10 +279,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        int trueDamage = Mathf.RoundToInt(damage * Constants.Instance.damageToEnemiesMultiplier);
         RandomSoundChance();
-        UIChangeManager.Instance.damageDealt += damage;
+        UIChangeManager.Instance.damageDealt += trueDamage;
         StartCoroutine(ChangeColor(hitColor, true, 0.2f));
-        health -= damage;
+        health -= trueDamage;
         if (health <= 0)
         {
             StopAllCoroutines();
@@ -358,6 +359,7 @@ public class Enemy : MonoBehaviour
 
         movementSpeed = originalMovementSpeed;
         StartCoroutine(ChangeColor(originalColor, false, 0.0f));
+
 
     }
 
