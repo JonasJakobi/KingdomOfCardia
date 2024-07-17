@@ -88,7 +88,6 @@ public class BaseTower : MonoBehaviour
         if (health <= 0 && isNexus)
         {
             GameManager.Instance.ChangeGameState(GameState.GameOver);
-            Debug.Log("Game Over BaseTower!");
             Destroy(this.gameObject);
         }
         if (health <= 0 && !isNexus)
@@ -107,10 +106,8 @@ public class BaseTower : MonoBehaviour
     {
         activeShieldAmount++;
         if (activeShieldAmount == 1) UIChangeManager.Instance.CreateShield();
-        Debug.Log("Active shields: " + activeShieldAmount);
         temporaryHealth += healthAmount;
         sumOfAllShields += healthAmount;
-        Debug.Log("Temp HP: " + temporaryHealth);
         yield return new WaitForSeconds(duration);
         if (temporaryHealth > 0 && activeShieldAmount == 1)
         {
@@ -130,7 +127,12 @@ public class BaseTower : MonoBehaviour
         }
         activeShieldAmount--;
         sumOfAllShields -= healthAmount;
-        Debug.Log("Temp HP after shield: " + temporaryHealth);
+    }
+
+    public void HealBaseTower(int amount)
+    {
+        health += amount;
+        UIChangeManager.Instance.UpdateHP();
     }
 
     public int GetCurrentHealth()

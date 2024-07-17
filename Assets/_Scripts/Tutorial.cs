@@ -9,6 +9,8 @@ public class Tutorial : MonoBehaviour
     public GameObject tutorialParent;
     public GameObject tutorialButtons;
     public TMP_Text tutorialSpeechText;
+    private Coroutine typeSentence;
+    private string stringSaver;
     public int tutorialStep;
     public bool tutorialSkipped = true;
     public bool warningShowed = false;
@@ -31,14 +33,30 @@ public class Tutorial : MonoBehaviour
     {
         if (((tutorialSkipped == false) && (tutorialStep != 0)) || ((warningShowed == false) && (tutorialStep >= 20)))
         {
-            tutorialStep++;
-            SwitchTutotialDialogue();
+            if (typeSentence != null)
+            {
+                StopCoroutine(typeSentence);
+                typeSentence = null;
+                tutorialSpeechText.text = stringSaver;
+            }
+            else
+            {
+                tutorialStep++;
+                SwitchTutotialDialogue();
+            }
+
             AudioSystem.Instance.PlayClickSound();
         }
     }
 
     public void StartTutorial()
     {
+        if (typeSentence != null)
+        {
+            StopCoroutine(typeSentence);
+            Debug.Log("Coroutine stopped");
+            typeSentence = null;
+        }
         tutorialSkipped = false;
         tutorialStep++;
         SwitchTutotialDialogue();
@@ -64,70 +82,89 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    public void ReactivateTutorial()
+    {
+        SwitchTutotialDialogue();
+    }
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        stringSaver = sentence;
+        tutorialSpeechText.text = "";
+
+        foreach (char letter in sentence.ToCharArray())
+        {
+            AudioSystem.Instance.PlayDialogueSound();
+            tutorialSpeechText.text += letter;
+            yield return new WaitForSeconds(0.02f);
+        }
+        typeSentence = null;
+    }
+
     public void SwitchTutotialDialogue()
     {
         switch (tutorialStep)
         {
             case 0:
-                tutorialSpeechText.text = "Bist Du bereits in die <b>Grundlagen</b> eingeweiht?";
+                typeSentence = StartCoroutine(TypeSentence("Bist Du bereits in die <b>Grundlagen</b> eingeweiht?"));
                 break;
 
             case 1:
-                tutorialSpeechText.text = "Wir müssen um jeden Preis den <b>Schneckenturm</b> verteidigen!";
+                typeSentence = StartCoroutine(TypeSentence("Wir müssen um jeden Preis den <b>Schneckenturm</b> verteidigen!"));
                 break;
 
             case 2:
-                tutorialSpeechText.text = "Dafür benötigen wir allerdings ordentlich Hilfe und die Schatzkammer ist fast leer.";
+                typeSentence = StartCoroutine(TypeSentence("Dafür benötigen wir allerdings ordentlich Hilfe und die Schatzkammer ist fast leer."));
                 break;
 
             case 3:
-                tutorialSpeechText.text = "Unsere Späher konnten ein <i>Monster</i> ausfindig machen! Es wurde auf deiner Karte markiert.";
+                typeSentence = StartCoroutine(TypeSentence("Unsere Späher konnten ein <i>Monster</i> ausfindig machen! Es wurde auf deiner Karte markiert."));
                 break;
 
             case 4:
-                tutorialSpeechText.text = "Wir müssen nun mit unserem verbliebenem <b>Gold</b> einen <b>Zauberer</b> rekrutieren, sodass wir diese <i>erste Bedrohung</i> erfolgreich abwehren können.";
+                typeSentence = StartCoroutine(TypeSentence("Wir müssen nun mit unserem verbliebenem <b>Gold</b> einen <b>Zauberer</b> rekrutieren, sodass wir diese <i>erste Bedrohung</i> erfolgreich abwehren können."));
                 break;
 
             case 5:
-                tutorialSpeechText.text = "<b>Achtung:</b> Während eines aktiven <i>Angriffes</i> können wir weder Einheiten rekrutieren noch Gebäude errichten.";
+                typeSentence = StartCoroutine(TypeSentence("<b>Achtung:</b> Während eines aktiven <i>Angriffes</i> können wir weder Einheiten rekrutieren noch Gebäude errichten."));
                 break;
             case 6:
                 IncrementTutorialStep();
                 tutorialParent.SetActive(false);
                 break;
             case 7:
-                tutorialSpeechText.text = "Du hast gerade eine <b>Karte</b> erhalten!";
+                typeSentence = StartCoroutine(TypeSentence("Du hast gerade eine <b>Karte</b> erhalten!"));
                 break;
             case 8:
-                tutorialSpeechText.text = "Du kannst diese während des nächsten <i>Angriffes</i> verwenden, um uns bei der Verteidigung zu unterstützen.";
+                typeSentence = StartCoroutine(TypeSentence("Du kannst diese während des nächsten <i>Angriffes</i> verwenden, um uns bei der Verteidigung zu unterstützen."));
                 break;
             case 9:
-                tutorialSpeechText.text = "Allerdings kannst du während einer Runde nur bis zu <b>3 Karten</b> auf der Hand haben. Mit genügend <b>Gold</b> kannst du dieses Limit während eines <i>Angriffes</i> erhöhen.";
+                typeSentence = StartCoroutine(TypeSentence("Allerdings kannst du während einer Runde nur bis zu <b>3 Karten</b> auf der Hand haben. Mit genügend <b>Gold</b> kannst du dieses Limit während eines <i>Angriffes</i> erhöhen."));
                 break;
             case 10:
-                tutorialSpeechText.text = "Es wurden mehr <i>Monster</i> gesichtet. <i><b>Doppelt</b></i> so viele wie beim letzten Angriff!";
+                typeSentence = StartCoroutine(TypeSentence("Es wurden mehr <i>Monster</i> gesichtet. <i><b>Doppelt</b></i> so viele wie beim letzten Angriff!"));
                 break;
             case 11:
-                tutorialSpeechText.text = "Passe deine Verteidigung an, indem du neue Einheiten platzierst, Gebäude errichtest oder die bestehende Verteidigung <i>verbesserst</i>!";
+                typeSentence = StartCoroutine(TypeSentence("Passe deine Verteidigung an, indem du neue Einheiten platzierst, Gebäude errichtest oder die bestehende Verteidigung <i>verbesserst</i>!"));
                 break;
             case 12:
-                tutorialSpeechText.text = "Mehr kann ich dir nicht beibringen. Viel Erfolg...";
+                typeSentence = StartCoroutine(TypeSentence("Mehr kann ich dir nicht beibringen. Viel Erfolg..."));
                 break;
             case 13:
                 tutorialSkipped = true;
                 tutorialParent.SetActive(false);
                 return;
             case 20:
-                tutorialSpeechText.text = "Whoops, da habe ich wohl doch etwas vergessen zu erwähnen.";
+                typeSentence = StartCoroutine(TypeSentence("Whoops, da habe ich wohl doch etwas vergessen zu erwähnen."));
                 break;
             case 21:
-                tutorialSpeechText.text = "Wenn die <i>Monster</i> keinen Weg zu dem <b>Schneckenturm</b> finden, drehen sie durch und greifen einfach andere Türme an!";
+                typeSentence = StartCoroutine(TypeSentence("Wenn die <i>Monster</i> keinen Weg zu dem <b>Schneckenturm</b> finden, drehen sie durch und greifen einfach andere Türme an!"));
                 break;
             case 22:
-                tutorialSpeechText.text = "Sei also stets vorsichtig beim Planen der nächsten Verteidigung und <i>entferne</i> notfalls bestehende Einheiten wieder.";
+                typeSentence = StartCoroutine(TypeSentence("Sei also stets vorsichtig beim Planen der nächsten Verteidigung und <i>entferne</i> notfalls bestehende Einheiten wieder."));
                 break;
             case 23:
-                tutorialSpeechText.text = "Das müsste jetzt aber wirklich alles gewesen sein? Viel Erfolg!";
+                typeSentence = StartCoroutine(TypeSentence("Das müsste jetzt aber wirklich alles gewesen sein? Viel Erfolg!"));
                 break;
             case 24:
                 warningShowed = true;

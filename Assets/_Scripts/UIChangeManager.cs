@@ -136,6 +136,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
         if (tutorialScript.tutorialSkipped == false && tutorialDisabledPermanently == false)
         {
             tutorialParent.SetActive(true);
+            tutorialScript.ReactivateTutorial();
         }
     }
 

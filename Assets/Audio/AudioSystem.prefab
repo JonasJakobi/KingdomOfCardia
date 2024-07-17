@@ -66,6 +66,7 @@ MonoBehaviour:
   enemySoundSource3: {fileID: 9159610660435993240}
   towerSoundSource: {fileID: 1322669520929995713}
   projectileSoundSource: {fileID: 8216784283999744767}
+  dialogueSource: {fileID: 8216784283999744767}
   backgroundMusic: {fileID: 8300000, guid: 8335194611634ba46a90a5ee622ccf9a, type: 3}
   menuMusic: {fileID: 8300000, guid: 3d85a8bc5ba88b748a924bbc9c5f0b25, type: 3}
   buildMusic: {fileID: 8300000, guid: 0d9c69ed637a5d5458eed58740a37cfd, type: 3}
@@ -76,6 +77,7 @@ MonoBehaviour:
   basicSplash: {fileID: 8300000, guid: d5f88a7fbbfd43049978ec9e3707af03, type: 3}
   dramaticBoom: {fileID: 8300000, guid: 9073535e2852fa94db5ef4a3bc0db85e, type: 3}
   plopp: {fileID: 8300000, guid: 831b3ac92af21cf45b71222dac3c3c85, type: 3}
+  dialogueSound: {fileID: 8300000, guid: c0558c2eb0d601e4f93a7bfb30eb3cd5, type: 3}
 --- !u!82 &3146287058507271818
 AudioSource:
   m_ObjectHideFlags: 0
@@ -950,7 +952,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c0558c2eb0d601e4f93a7bfb30eb3cd5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
