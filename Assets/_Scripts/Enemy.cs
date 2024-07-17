@@ -303,19 +303,15 @@ public class Enemy : MonoBehaviour
     protected virtual void Attack()
     {
 
-
-        var building = currentTile.GetBuilding();
-        if (building != null)
+        RandomSoundChance();
+        currentlyTargetedBuilding.TakeDamage(attackDamage);
+        canAttack = false;
+        StartCoroutine(AttackCooldown());
+        if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Enemies))
         {
-            RandomSoundChance();
-            building.GetComponent<BaseTower>().TakeDamage(attackDamage);
-            canAttack = false;
-            StartCoroutine(AttackCooldown());
-            if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Enemies))
-            {
-                Debug.Log("Enemy attacked building" + building + " for " + attackDamage + " damage.");
-            }
+            Debug.Log("Enemy attacked building" + currentlyTargetedBuilding + " for " + attackDamage + " damage.");
         }
+
     }
 
     private IEnumerator AttackCooldown()
