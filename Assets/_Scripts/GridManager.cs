@@ -11,10 +11,10 @@ using System.Runtime.CompilerServices;
 public class GridManager : Singleton<GridManager>
 
 {
-    public float mountainChance = 0.07f;
-    public float mountainChanceMultiplier = 200.0f;
-    public float forestChance = 0.12f;
-    public float forestChanceMultiplier = 100.0f;
+    public float mountainChance = 0.05f;
+    public float mountainChanceMultiplier = 170.0f;
+    public float forestChance = 0.1f;
+    public float forestChanceMultiplier = 90.0f;
     [SerializeField] private int startX, startY;
     public const int WIDTH = 32;
     public const int HEIGHT = 18;

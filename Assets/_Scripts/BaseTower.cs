@@ -18,10 +18,17 @@ public class BaseTower : MonoBehaviour
 
     [SerializeField] private bool isNexus = false;
 
+    /// <summary>
+    /// Can be selected by the player to upgrade/ see stats
+    /// </summary>
+    public bool isSelectable = false;
     public event System.Action OnTowerDestroyed;
     // Start is called before the first frame update
     protected virtual void Awake()
     {
+        var scaleBefore = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.DOScale(scaleBefore, 1f).SetEase(Ease.OutBack);
         StartCoroutine(SmallDelay());
     }
 
@@ -29,9 +36,7 @@ public class BaseTower : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         Debug.Log("Base Tower placed");
-        var scaleBefore = transform.localScale;
-        transform.localScale = Vector3.zero;
-        transform.DOScale(scaleBefore, 1f).SetEase(Ease.OutBack);
+
         currentUpgrade = upgradePath.upgrades[currentLevel];
         ApplyUpgrade();
 
@@ -40,11 +45,17 @@ public class BaseTower : MonoBehaviour
         var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
 
         tileHere.SetHasBuilding(true, this.gameObject);
+        if (!isNexus)
+        {
+            yield return new WaitForSeconds(0.95f);
+            isSelectable = true;
+        }
+
 
     }
     public TowerUpgrade GetTowerUpgrade(bool next = false)
     {
-        if(next && upgradePath.upgrades.Length > currentLevel+1 )
+        if (next && upgradePath.upgrades.Length > currentLevel + 1)
         {
             return upgradePath.upgrades[currentLevel + 1];
         }
@@ -187,6 +198,8 @@ public class BaseTower : MonoBehaviour
             else
             {
                 Debug.LogError("Tried to upgrade tower " + this.gameObject.name + " but there is not enough money to upgrade it");
+                //flash money red
+                MoneyManager.Instance.FlashMoneyText();
             }
 
         }

@@ -43,6 +43,22 @@ public class HomingProjectile : MonoBehaviour, IProjectile
         movementSpeed = towerStats.projectileSpeed;
         this.damage = towerStats.damage;
         transform.rotation = rot;
+        if (towerStats.upgradeName == "Paradox")
+        {
+            Color color;
+            if (ColorUtility.TryParseHtmlString("#380044", out color))
+            {
+                GetComponent<SpriteRenderer>().color = color;
+            }
+        }
+        else if (towerStats.upgradeName == "Long Range")
+        {
+            Color color;
+            if (ColorUtility.TryParseHtmlString("#E5CC12", out color))
+            {
+                GetComponent<SpriteRenderer>().color = color;
+            }
+        }
     }
 
 }

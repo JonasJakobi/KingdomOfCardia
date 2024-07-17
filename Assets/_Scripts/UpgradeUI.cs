@@ -8,43 +8,69 @@ public class UpgradeUI : MonoBehaviour
 
     public TMP_Text upgradeButton, towerName, health, damage, speed, range;
     public GameObject upgradeInfo;
-
+    [SerializeField]
     private Tile selected;
 
-    void Start()
-    {
-        
-    }
-    
+    [SerializeField]
+    private GameObject towerPlaceUI;
+
+
+
     void Update()
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
-        if (tile != null && tile.GetBuilding() != null)
+        if (tile != null && tile.GetBuilding() != null && tile.GetBuilding().GetComponent<BaseTower>().isSelectable)
         {
-            if(selected ==null)
+            if (selected == null)
             {
                 VisualiseUpgradeInfo(tile);
                 upgradeInfo.SetActive(true);
+
             }
 
             if (Input.GetMouseButtonDown(0) && selected != tile)
             {
-                //zurücksetzen der alten größe
-                if(selected != null)
+                //zurï¿½cksetzen der alten grï¿½ï¿½e
+                if (selected != null)
                 {
                     Transform spriteTransform1 = selected.GetBuilding().transform;
-                    spriteTransform1.localScale *= 0.666667f;
+                    spriteTransform1.localScale *= 0.66666667f;
                 }
 
-                //neue größe
+                //neue grï¿½ï¿½e
                 Transform spriteTransform = tile.GetBuilding().transform;
                 spriteTransform.localScale *= 1.5f;
                 VisualiseUpgradeInfo(tile);
                 selected = tile;
+                if (GameManager.Instance.State.Equals(GameState.BuildMode) || GameManager.Instance.State.Equals(GameState.Starting))
+                {
+                    Debug.Log("BuildMode");
+                    towerPlaceUI.SetActive(false);
+
+                }
             }
         }
-        else if(selected ==null)
+        else if (tile != null && tile.GetBuilding() == null)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (GameManager.Instance.State.Equals(GameState.BuildMode) || GameManager.Instance.State.Equals(GameState.Starting))
+                {
+                    towerPlaceUI.SetActive(true);
+                }
+                if (selected != null)
+                {
+                    Transform spriteTransform1 = selected.GetBuilding().transform;
+                    spriteTransform1.localScale *= 0.66666667f;
+                    selected = null;
+                    upgradeInfo.SetActive(false);
+
+                }
+
+            }
+        }
+        else if (selected == null)
         {
             upgradeInfo.SetActive(false);
         }
@@ -67,8 +93,7 @@ public class UpgradeUI : MonoBehaviour
     public void Upgrade()
     {
         selected.GetBuilding().GetComponent<BaseTower>().Upgrade();
-        Transform spriteTransform1 = selected.GetBuilding().transform;
-        spriteTransform1.localScale *= 0.75f;
-        selected = null;
+
     }
+
 }

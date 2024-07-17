@@ -16,10 +16,10 @@ MonoBehaviour:
   cost: 1
   damage: 10
   range: 2
-  attackSpeed: 1.05
+  attackSpeed: 1.8
   projectileSpeed: 2
   projectileLifetime: 1
-  maxEnemiesHittable: 50
+  maxEnemiesHittable: 8
   upgradeName: Base Ritter
   upgradeSprite: {fileID: 0}
   starLevel: 0

@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   damage: 2
+  projectileHitSound: {fileID: 0}

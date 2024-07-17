@@ -14,3 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrades:
   - {fileID: 11400000, guid: b7158b8e047a377499a31e9f5b245ca0, type: 2}
+  - {fileID: 11400000, guid: fafa8f99e4823254aaf284312293f696, type: 2}
+  - {fileID: 11400000, guid: a3a6ba6acdbc6ee478a489657ebd8c87, type: 2}
+  - {fileID: 11400000, guid: ec562867d52b22c44b9cab40e7b6b5be, type: 2}
+  - {fileID: 11400000, guid: 4130a17079503104ea76ea1442541b7d, type: 2}
+  - {fileID: 11400000, guid: 3b161236273601941b6c9f514da8c4e0, type: 2}
+  - {fileID: 11400000, guid: 5ac197f29d781424eaea9a2748d8425b, type: 2}
+  - {fileID: 11400000, guid: 1c6ad921c3d3eff4289e2845404596a3, type: 2}

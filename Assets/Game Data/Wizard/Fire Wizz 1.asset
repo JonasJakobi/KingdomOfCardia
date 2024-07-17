@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Fire Wizz 1
   m_EditorClassIdentifier: 
   health: 200
-  cost: 29
-  damage: 150
+  cost: 150
+  damage: 450
   range: 8
-  attackSpeed: 1.6
+  attackSpeed: 1.8
   projectileSpeed: 0
   projectileLifetime: 0
   maxEnemiesHittable: 0

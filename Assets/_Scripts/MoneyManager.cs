@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MoneyManager : Singleton<MoneyManager>
 {
@@ -11,6 +12,9 @@ public class MoneyManager : Singleton<MoneyManager>
     public int moneyGained = 0;
 
     public int moneySpent = 0;
+
+    [SerializeField]
+    private TMP_Text moneyText;
 
     void Start()
     {
@@ -39,5 +43,17 @@ public class MoneyManager : Singleton<MoneyManager>
     {
 
         return money >= amount;
+    }
+
+    private IEnumerator FlashMoney()
+    {
+        moneyText.color = Color.red;
+        yield return new WaitForSeconds(1f);
+        moneyText.color = Color.white;
+    }
+    public void FlashMoneyText()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FlashMoney());
     }
 }

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d320ba2bdf5bb4c49bf5f5c28d7230e0, type: 3}
   m_Name: RitterBase 2
   m_EditorClassIdentifier: 
-  health: 100
-  cost: 1
-  damage: 10
+  health: 600
+  cost: 80
+  damage: 14
   range: 2
-  attackSpeed: 1.05
+  attackSpeed: 1.4
   projectileSpeed: 2
   projectileLifetime: 1
-  maxEnemiesHittable: 50
+  maxEnemiesHittable: 14
   upgradeName: Base Ritter
   upgradeSprite: {fileID: 0}
-  starLevel: 0
+  starLevel: 2
   starColor: 0
