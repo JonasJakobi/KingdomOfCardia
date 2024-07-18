@@ -1501,7 +1501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -169.94, y: -20.276}
+  m_AnchoredPosition: {x: -169.94006, y: -20.276001}
   m_SizeDelta: {x: 920, y: -433.6842}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &497249508
@@ -2260,6 +2260,7 @@ MonoBehaviour:
   damageToEnemiesMultiplier: 1
   damageToTowersMultiplier: 1
   enemyMoveSpeedMultiplier: 1
+  startMoney: 10
 --- !u!1 &686699609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6609349939952441156, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
@@ -4530,7 +4531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c108113961a5db644a8db0933faf6dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 112998
   money: 0
   moneyGained: 0
   moneySpent: 0
@@ -9016,6 +9016,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -266.78275
       objectReference: {fileID: 0}
+    - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: towerPrefab
+      value: 
+      objectReference: {fileID: 8570863131761619502, guid: 6f040786a21abff40a0d3dcdb207bd8b, type: 3}
     - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: placeThisTowerKey
       value: 53

@@ -81,6 +81,8 @@ public class UpgradeUI : MonoBehaviour
         {
             upgradeButton.text = "Upgrade: " + tower.GetComponent<BaseTower>().GetCostOfUpgrading().ToString();
 
+            upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = true;
+
         }
         else
         {

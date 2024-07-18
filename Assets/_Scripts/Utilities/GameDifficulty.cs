@@ -7,4 +7,5 @@ public class GameDifficulty : ScriptableObject
     public float damageToEnemiesMultiplier = 1.0f;
     public float damageToTowersMultiplier = 1.0f;
     public float enemyMoveSpeedMultiplier = 1.0f;
+    public int startMoney = 10;
 }

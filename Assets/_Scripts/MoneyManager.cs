@@ -5,8 +5,7 @@ using TMPro;
 
 public class MoneyManager : Singleton<MoneyManager>
 {
-    [SerializeField]
-    private int startingMoney = 1;
+    [Header("Start Money is now in Constants")]
     public int money = 0;
 
     public int moneyGained = 0;
@@ -18,7 +17,7 @@ public class MoneyManager : Singleton<MoneyManager>
 
     void Start()
     {
-        money = startingMoney;
+        money = Constants.Instance.startMoney;
         UIChangeManager.Instance.UpdateMoney();
     }
 

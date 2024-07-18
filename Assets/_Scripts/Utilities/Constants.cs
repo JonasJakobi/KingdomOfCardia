@@ -7,6 +7,7 @@ public class Constants : Singleton<Constants>
     public float damageToEnemiesMultiplier = 1.0f;
     public float damageToTowersMultiplier = 1.0f;
     public float enemyMoveSpeedMultiplier = 1.0f;
+    public int startMoney = 10;
     private void Start()
     {
         if (gameDifficulty != null)
@@ -22,6 +23,7 @@ public class Constants : Singleton<Constants>
         damageToEnemiesMultiplier = gameDifficulty.damageToEnemiesMultiplier;
         damageToTowersMultiplier = gameDifficulty.damageToTowersMultiplier;
         enemyMoveSpeedMultiplier = gameDifficulty.enemyMoveSpeedMultiplier;
+        startMoney = gameDifficulty.startMoney;
     }
     public void SetGameDifficulty(GameDifficulty newGameDifficulty)
     {
