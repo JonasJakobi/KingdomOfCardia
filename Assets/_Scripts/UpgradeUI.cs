@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class UpgradeUI : MonoBehaviour
 {
 
-    public TMP_Text upgradeButton, towerName, health, damage, speed, range;
+    public TMP_Text upgradeButton, towerName, health, damage, speed, range, DeleteButton;
     public GameObject upgradeInfo;
     [SerializeField]
     private Tile selected;
@@ -20,6 +21,8 @@ public class UpgradeUI : MonoBehaviour
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
+
+
         if (tile != null && tile.GetBuilding() != null && tile.GetBuilding().GetComponent<BaseTower>().isSelectable)
         {
             if (selected == null)
@@ -77,26 +80,26 @@ public class UpgradeUI : MonoBehaviour
     {
         GameObject tower = tile.GetBuilding();
         towerName.text = tower.name;
+        //Upgrade Button
         if (tower.GetComponent<BaseTower>().GetCostOfUpgrading() != -1)
         {
             upgradeButton.text = "Upgrade: " + tower.GetComponent<BaseTower>().GetCostOfUpgrading().ToString();
-
             upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = true;
-
         }
         else
         {
             upgradeButton.text = "Fully Upgraded";
             upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = false;
         }
-
-
+        //Stats
         TowerUpgrade ctu = tower.GetComponent<BaseTower>().GetTowerUpgrade();
         TowerUpgrade ntu = tower.GetComponent<BaseTower>().GetTowerUpgrade(true);
         health.text = ctu.health.ToString() + "             " + ntu.health.ToString();
         damage.text = ctu.damage.ToString() + "             " + ntu.damage.ToString();
         range.text = ctu.range.ToString() + "             " + ntu.range.ToString();
         speed.text = ctu.attackSpeed.ToString() + "             " + ntu.attackSpeed.ToString();
+        //Delete Button
+
     }
 
     public void Upgrade()
@@ -104,6 +107,16 @@ public class UpgradeUI : MonoBehaviour
         selected.GetBuilding().GetComponent<BaseTower>().Upgrade();
         VisualiseUpgradeInfo(selected);
 
+    }
+    public void Sell()
+    {
+        selected.GetBuilding().GetComponent<BaseTower>().DestroyTower();
+        selected = null;
+        upgradeInfo.SetActive(false);
+        if (GameManager.Instance.State.Equals(GameState.BuildMode) || GameManager.Instance.State.Equals(GameState.Starting))
+        {
+            towerPlaceUI.SetActive(true);
+        }
     }
 
 }

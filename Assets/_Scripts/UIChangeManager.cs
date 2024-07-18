@@ -22,6 +22,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public TMP_Text Stat7;
 
     public GameObject WaveAlertPrefab;
+    public GameObject shieldPrefab;
 
     public GameObject towerPlaceUI;
 
@@ -32,6 +33,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public GameObject upgradeUI;
 
     public bool tutorialDisabledPermanently = false;
+    public bool warningQueued = false;
     public GameObject tutorialParent;
     public Tutorial tutorialScript;
     public GameObject speedButtons;
@@ -64,6 +66,26 @@ public class UIChangeManager : Singleton<UIChangeManager>
         float percentageHealth = Mathf.Round((((float)baseTower.GetCurrentHealth() / (float)baseTower.GetMaxHealth()) * 100.0f) * 100f) / 100f;
         if (percentageHealth >= 0f) HPText.text = percentageHealth.ToString() + " % HP";
         else HPText.text = "0% HP";
+    }
+
+    public void CreateShield()
+    {
+        GameObject newShield = Instantiate(shieldPrefab, new Vector3(15, 8, 0), Quaternion.identity);
+    }
+
+    public void RemoveShield()
+    {
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == "shield(Clone)")
+            {
+                AudioSystem.Instance.PlayPloppSound();
+                Destroy(obj);
+            }
+
+        }
     }
 
     //Create GameObject to indicate the SpawnPoints in the following round
@@ -114,6 +136,23 @@ public class UIChangeManager : Singleton<UIChangeManager>
         if (tutorialScript.tutorialSkipped == false && tutorialDisabledPermanently == false)
         {
             tutorialParent.SetActive(true);
+            tutorialScript.ReactivateTutorial();
+        }
+    }
+
+    public void QueueWarning()
+    {
+        if (tutorialScript.warningShowed == false && warningQueued == false)
+        {
+            warningQueued = true;
+        }
+    }
+    public void WarningCheck()
+    {
+        if (tutorialScript.warningShowed == false && warningQueued == true)
+        {
+            tutorialParent.SetActive(true);
+            tutorialScript.ShowWarning();
         }
     }
 
