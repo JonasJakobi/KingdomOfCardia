@@ -3491,7 +3491,7 @@ MonoBehaviour:
   Stat6: {fileID: 874604485}
   Stat7: {fileID: 346257678}
   WaveAlertPrefab: {fileID: 4446087087194784983, guid: 7908ff2026b9d704cae2e4251e5bff46, type: 3}
-  shieldPrefab: {fileID: 0}
+  shieldPrefab: {fileID: 2512379291943744515, guid: 605b4e073f204ae46abf41a674acee5c, type: 3}
   towerPlaceUI: {fileID: 617782524}
   gameOverUI: {fileID: 1423802685}
   tutorialUI: {fileID: 962081419}
