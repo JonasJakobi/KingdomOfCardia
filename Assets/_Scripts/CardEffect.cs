@@ -43,8 +43,8 @@ public class CardEffect : ScriptableObject
         foreach (BaseTower baseTower in baseTowers)
         {
             int missingHealth = baseTower.GetMaxHealth() - baseTower.GetCurrentHealth();
-            int healFor = ((missingHealth / 100) * healAmount) * -1;
-            baseTower.TakeDamage(healFor);
+            int healFor = (missingHealth / 100) * healAmount;
+            baseTower.HealBaseTower(healFor);
             Debug.Log("Healed base towers for " + healAmount + "% of their missing health!");
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
 using System;
@@ -10,6 +11,9 @@ using System;
 public class BaseTower : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    [SerializeField] private int temporaryHealth = 0;
+    private int activeShieldAmount = 0;
+    private int sumOfAllShields = 0;
     [SerializeField] private int currentLevel = 0;
 
     [SerializeField] protected TowerUpgrade currentUpgrade;
@@ -100,10 +104,19 @@ public class BaseTower : MonoBehaviour
             MoneyManager.Instance.AddMoney((int)(upgradePath.upgrades[i].cost / 2));
         }
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damageIncoming)
     {
-        int trueDamage = Mathf.RoundToInt(damage * Constants.Instance.damageToTowersMultiplier);
-        health -= trueDamage;
+        int damage = Mathf.RoundToInt(damageIncoming * Constants.Instance.damageToTowersMultiplier);
+
+        if ((temporaryHealth - damage) > 0) temporaryHealth -= damage;
+        else if ((temporaryHealth > 0) && ((temporaryHealth - damage) < 0))
+        {
+            int trueDamage = damage - temporaryHealth;
+            temporaryHealth = 0;
+            health -= trueDamage;
+            UIChangeManager.Instance.RemoveShield();
+        }
+        else health -= damage;
         UIChangeManager.Instance.UpdateHP();
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.Towers))
         {
@@ -112,11 +125,11 @@ public class BaseTower : MonoBehaviour
         if (health <= 0 && isNexus)
         {
             GameManager.Instance.ChangeGameState(GameState.GameOver);
-            Debug.Log("Game Over BaseTower!");
             Destroy(this.gameObject);
         }
         if (health <= 0 && !isNexus)
         {
+            AudioSystem.Instance.PlayDramaticBoom();
             Destroy(this.gameObject);
         }
     }
@@ -129,14 +142,34 @@ public class BaseTower : MonoBehaviour
 
     private IEnumerator GiveTemporaryHP(int healthAmount, float duration)
     {
-        int currentHealth = health;
-        health += healthAmount;
-        UIChangeManager.Instance.UpdateHP();
+        activeShieldAmount++;
+        if (activeShieldAmount == 1) UIChangeManager.Instance.CreateShield();
+        temporaryHealth += healthAmount;
+        sumOfAllShields += healthAmount;
         yield return new WaitForSeconds(duration);
-        if (currentHealth <= health)
+        if (temporaryHealth > 0 && activeShieldAmount == 1)
         {
-            health = currentHealth;
+            temporaryHealth = 0;
+            UIChangeManager.Instance.RemoveShield();
         }
+        else if (temporaryHealth > 0 && activeShieldAmount > 1)
+        {
+            int sumOfOtherShields;
+
+            sumOfOtherShields = sumOfAllShields - healthAmount;
+            if (temporaryHealth == sumOfAllShields)
+            {
+                temporaryHealth -= healthAmount;
+            }
+            else if (temporaryHealth >= sumOfOtherShields) temporaryHealth = sumOfOtherShields;
+        }
+        activeShieldAmount--;
+        sumOfAllShields -= healthAmount;
+    }
+
+    public void HealBaseTower(int amount)
+    {
+        health += amount;
         UIChangeManager.Instance.UpdateHP();
     }
 
