@@ -1059,6 +1059,7 @@ MonoBehaviour:
   tutorialSpeechText: {fileID: 2140684425}
   tutorialStep: 0
   tutorialSkipped: 0
+  warningShowed: 0
 --- !u!114 &276152916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,7 +1513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -169.94006, y: -20.276001}
+  m_AnchoredPosition: {x: -169.94006, y: -20.276062}
   m_SizeDelta: {x: 920, y: -433.6842}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &497249508
@@ -3412,6 +3413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  temporaryHealth: 0
   currentLevel: 0
   currentUpgrade: {fileID: 11400000, guid: a8ccead87f8c980448aacf8b893aca7b, type: 2}
   upgradePath: {fileID: 11400000, guid: cfa58c4a500154f469b19ada4351e1b1, type: 2}
@@ -3489,11 +3491,13 @@ MonoBehaviour:
   Stat6: {fileID: 874604485}
   Stat7: {fileID: 346257678}
   WaveAlertPrefab: {fileID: 4446087087194784983, guid: 7908ff2026b9d704cae2e4251e5bff46, type: 3}
+  shieldPrefab: {fileID: 0}
   towerPlaceUI: {fileID: 617782524}
   gameOverUI: {fileID: 1423802685}
   tutorialUI: {fileID: 962081419}
   upgradeUI: {fileID: 1965405605}
   tutorialDisabledPermanently: 0
+  warningQueued: 0
   tutorialParent: {fileID: 962081419}
   tutorialScript: {fileID: 276152915}
   speedButtons: {fileID: 2110410037}
@@ -4308,8 +4312,8 @@ MonoBehaviour:
   panalAnimator: {fileID: 617782525}
   difDis: {fileID: 1681801843}
   round: 1
-  roundValue: 4
-  roundValueLeft: 4
+  roundValue: 10
+  roundValueLeft: 10
   enemyCount: 0
   enemiesSpawned: 0
   enemiesDefeated: 0
@@ -7958,8 +7962,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -42.67253, y: -33.043686}
-  m_SizeDelta: {x: 343.4276, y: 149.4728}
+  m_AnchoredPosition: {x: -43.068325, y: -31.9184}
+  m_SizeDelta: {x: 313.8245, y: 129.0862}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2140684425
 MonoBehaviour:
@@ -8008,14 +8012,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.7
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -9177,7 +9181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -20.276001
+      value: -20.276062
       objectReference: {fileID: 0}
     - target: {fileID: 5907971227123585435, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_margin.x
