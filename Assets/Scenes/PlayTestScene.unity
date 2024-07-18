@@ -2508,7 +2508,7 @@ MonoBehaviour:
   handSize: 3
   cardsPlayed: 0
   currentUpgradeCost: 50
-  cardUIPrefab: {fileID: 6948449565007065714, guid: c37a22bd4ddbb684e93be82831958051, type: 3}
+  cardUIPrefab: {fileID: 6948449565007065714, guid: 9d76f00a0ce6ab747bd8017013c7f3ee, type: 3}
   allCards:
   - {fileID: 11400000, guid: d21366c08578fe541b541b3a9eec90c5, type: 2}
   - {fileID: 11400000, guid: c61e0570ecc846b42a2d999e8669b47a, type: 2}

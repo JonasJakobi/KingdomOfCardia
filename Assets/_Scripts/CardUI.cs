@@ -9,7 +9,9 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public Card cardData;
     public TMP_Text cardNameText;
     public TMP_Text descriptionText;
+    public TMP_Text cardTypeText;
     public Image artworkImage;
+    public CardType cardType;
     public CardManager cardManager;
     public AudioClip cardPlaySound;
     public AudioClip cardDrawSound;
@@ -41,6 +43,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
         cardData = card;
         cardManager = manager;
+        cardType = card.cardType;
+        cardTypeText.text = card.cardType.ToString();
         cardNameText.text = card.cardName;
         descriptionText.text = card.description;
         artworkImage.sprite = card.artwork;
