@@ -53,6 +53,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem necroticParticleSystem;
     [SerializeField] private ParticleSystem electricParticleSystem;
 
+    public Animation fireAnimation;
+
     private Animator animator;
 
     private int originalAttackDamage;
@@ -149,7 +151,7 @@ public class Enemy : MonoBehaviour
     /// <param name="damage"></param>
     public void StartFireDamage(float duration, int damage)
     {
-        if (fireParticleSystem != null)
+        if (fireAnimation != null)
             fireParticleSystem.Play();
         StartCoroutine(TakeOverTimeDamage(duration, damage));
 
