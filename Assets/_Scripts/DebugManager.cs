@@ -5,6 +5,7 @@ using UnityEngine;
 using com.cyborgAssets.inspectorButtonPro;
 
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 /// <summary>
 /// Enable or disable debugging UI elements. And Control the modes for printing debug messages.
 /// </summary>
@@ -34,7 +35,6 @@ public class DebugManager : Singleton<DebugManager>
     private bool showingNexusArrows = false;
     private bool showingTowerArrows = false;
 
-
     List<GameObject> allArrows = new List<GameObject>();
     private void Start()
     {
@@ -48,6 +48,7 @@ public class DebugManager : Singleton<DebugManager>
 
     private void HandleDebugInputs()
     {
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             ShowOrHideDebugObjects();
@@ -62,6 +63,11 @@ public class DebugManager : Singleton<DebugManager>
                 Debug.Log("Tile at " + tile.transform.position + " has " + tile.GetBuilding().name + " as building.");
                 tile.GetBuilding().GetComponent<BaseTower>().Upgrade();
             }
+        }
+        if (Input.GetKey(KeyCode.M) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.Y))
+        {
+            MoneyManager.Instance.AddMoney(1);
+            MoneyManager.Instance.AddMoney(Mathf.RoundToInt(MoneyManager.Instance.money * Time.deltaTime * 1.0f));
         }
 
         if (Input.GetKeyDown(KeyCode.R))

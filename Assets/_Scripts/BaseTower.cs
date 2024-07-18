@@ -70,7 +70,13 @@ public class BaseTower : MonoBehaviour
     {
         if (!isNexus)
         {
-            Destroy(this.gameObject);
+            RefundMoney();
+            AudioSystem.Instance.PlaySellSound();
+            transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutSine).OnComplete(() =>
+            {
+                Destroy(this.gameObject);
+            });
+
         }
     }
 
@@ -89,7 +95,7 @@ public class BaseTower : MonoBehaviour
     }
     private void RefundMoney()
     {
-        for (int i = 0; i < currentLevel; i++)
+        for (int i = 0; i <= currentLevel; i++)
         {
             MoneyManager.Instance.AddMoney((int)(upgradePath.upgrades[i].cost / 2));
         }
