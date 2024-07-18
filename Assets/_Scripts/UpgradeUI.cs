@@ -19,6 +19,11 @@ public class UpgradeUI : MonoBehaviour
 
     void Update()
     {
+        //Check if the mouse is over a ui element, in which case we dont want to select a tower
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
 
