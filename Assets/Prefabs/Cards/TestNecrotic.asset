@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TestNecrotic
   m_EditorClassIdentifier: 
   cardType: 6
-  cardName: "Gr\xFCne Wolken am Horizont"
+  cardName: "F\xFCrchterlicher Gestank"
   description: Von den Gegner geht so ein Gestank aus, dass ihnen das selber schadet!
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 3f93f945c904a704982e9df5e58625bf, type: 3}
   effect: {fileID: 11400000, guid: c356f1f7ea07aa74ba447e4d760dc883, type: 2}
   valueOfCard: 1
   duration: 5

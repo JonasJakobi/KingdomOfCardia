@@ -15,7 +15,7 @@ MonoBehaviour:
   cardType: 6
   cardName: Zipp Zapp
   description: "Die Gegner zittern vor Elektrizit\xE4t! Oder doch vor Angst?"
-  artwork: {fileID: 21300000, guid: 1497de84ebcffc84688d3a334981783b, type: 3}
+  artwork: {fileID: 21300000, guid: fc9cf2b754123134b929681d6a607ed1, type: 3}
   effect: {fileID: 11400000, guid: b50b43c0405f9e541b66098ae3463df3, type: 2}
   valueOfCard: 2
   duration: 6
