@@ -170,144 +170,43 @@ public class GridManager : Singleton<GridManager>
 
     public Enemy FindEnemy(int x, int y, int maxDistance, TargetingType targetingType = TargetingType.Closest)
     {
+        // x y is coordinates of our tower
+        List<Enemy> enemies = new List<Enemy>();
+        for (int i = -maxDistance; i <= maxDistance; i++)
+        {
+            for (int j = -maxDistance; j <= maxDistance; j++)
+            {
+                int checkX = x + i;
+                int checkY = y + j;
+                if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
+                else if (grid[checkX, checkY].enemies.Count > 0)
+                {
+                    enemies.AddRange(grid[checkX, checkY].enemies);
+                }
+            }
+        }
         switch (targetingType)
         {
             case TargetingType.Closest:
-                return FindClosestEnemy(x, y, maxDistance);
+                return enemies.OrderBy(e => Vector3.Distance(e.transform.position, new Vector3(x, y, 0))).First();
             case TargetingType.First:
-                return FindFirstEnemy(x, y, maxDistance);
+                return enemies.OrderBy(e => Vector3.Distance(e.transform.position, Nexus.Instance.transform.position)).First();
             case TargetingType.Strongest:
-                return FindStrongestEnemy(x, y, maxDistance);
+                return enemies.OrderByDescending(e => e.GetValue()).First();
+        }
+
+
+
+
+        switch (targetingType)
+        {
+            case TargetingType.Closest:
+            case TargetingType.First:
+            case TargetingType.Strongest:
             default:
                 return null;
         }
     }
-    /// <summary>
-    /// Find the enemy closest to the (x,y) position within a maxDistance
-    /// !! Current implementation doesnt always get the first one, as it gets the closest one, from the first tile it finds with enemies.
-    /// If we have no problems with performance, we can just loop through all tiles and remember the closest enemy.
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <param name="maxDistance"></param>
-    /// <returns></returns>
-    public Enemy FindClosestEnemy(int x, int y, int maxDistance)
-    {
-        for (int d = 0; d < maxDistance; d++)
-        {
-            for (int i = -d; i <= d; i++)
-            {
-                for (int j = -d; j <= d; j++)
-                {
-                    if (i != -d && i != d && j != -d && j != d) continue; // Skip tiles inside the square
-                    int checkX = x + i;
-                    int checkY = y + j;
-                    if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
-                    if (grid[checkX, checkY].enemies.Count > 0)
-                    {
-                        //Find closest enemy within tile
-                        Enemy closestEnemy = null;
-                        float shortestDistance = float.MaxValue;
-
-                        foreach (var enemy in grid[checkX, checkY].enemies)
-                        {
-                            float distance = Vector2.Distance(new Vector2(x, y), new Vector2(enemy.transform.position.x, enemy.transform.position.y));
-                            if (distance < shortestDistance)
-                            {
-                                shortestDistance = distance;
-                                closestEnemy = enemy;
-                            }
-                        }
-                        return closestEnemy;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-    /// <summary>
-    /// Find the enemy closest to the Nexus but within a maxDistance of the (x,y) position
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <param name="maxDistance"></param>
-    /// <returns></returns>
-    public Enemy FindFirstEnemy(int x, int y, int maxDistance)
-    {
-        Vector3 nexusPosition = Nexus.Instance.transform.position;
-        float closestDistance = float.MaxValue;
-        Enemy closestEnemy = null;
-
-        for (int d = 0; d < maxDistance; d++)
-        {
-            for (int i = -d; i <= d; i++)
-            {
-                for (int j = -d; j <= d; j++)
-                {
-                    if (i != -d && i != d && j != -d && j != d) continue; // Skip tiles inside the square
-                    int checkX = x + i;
-                    int checkY = y + j;
-                    if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
-
-                    Tile tile = grid[checkX, checkY];
-                    foreach (Enemy enemy in tile.enemies)
-                    {
-                        if (enemy == null)
-                        {
-                            continue;
-                        }
-                        float distance = Vector3.Distance(enemy.transform.position, nexusPosition);
-                        if (distance < closestDistance)
-                        {
-                            closestDistance = distance;
-                            closestEnemy = enemy;
-                        }
-                    }
-                }
-            }
-        }
-
-        return closestEnemy;
-    }
-    /// <summary>
-    /// Find the enemy with the highest health within a maxDistance of the (x,y) position
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <param name="maxDistance"></param>
-    /// <returns></returns>
-    public Enemy FindStrongestEnemy(int x, int y, int maxDistance)
-    {
-        float highestHealth = 0;
-        Enemy strongestEnemy = null;
-
-        for (int d = 0; d < maxDistance; d++)
-        {
-            for (int i = -d; i <= d; i++)
-            {
-                for (int j = -d; j <= d; j++)
-                {
-                    if (i != -d && i != d && j != -d && j != d) continue; // Skip tiles inside the square
-                    int checkX = x + i;
-                    int checkY = y + j;
-                    if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
-                    if (grid[checkX, checkY].enemies.Count > 0)
-                    {
-                        foreach (var enemy in grid[checkX, checkY].enemies)
-                        {
-                            if (enemy.maxHealth > highestHealth)
-                            {
-                                highestHealth = enemy.maxHealth;
-                                strongestEnemy = enemy;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return strongestEnemy;
-    }
-
     public BaseTower FindNearestBuilding(int x, int y)
     {
         List<BaseTower> towers = new List<BaseTower>();
@@ -320,7 +219,6 @@ public class GridManager : Singleton<GridManager>
             {
                 for (int j = -d; j <= d; j++)
                 {
-                    if (i != -d && i != d && j != -d && j != d) continue; // Skip tiles inside the square
                     int checkX = x + i;
                     int checkY = y + j;
                     if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles   

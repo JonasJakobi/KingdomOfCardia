@@ -64,8 +64,6 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         originalMovementSpeed = movementSpeed;
         originalAttackDamage = attackDamage;
-        GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
-        currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
         RandomSoundChance();
 
