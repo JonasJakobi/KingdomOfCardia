@@ -46,6 +46,7 @@ public class GameManager : SingletonPersistent<GameManager>
             case GameState.BuildMode:
                 GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
                 AudioSystem.Instance.PlayBuildMusic();
+                UpgradeUI.Instance.Unselect();
                 UIChangeManager.Instance.ShowBuildModeUI();
                 UIChangeManager.Instance.HideUpgrades();
                 RoundManager.Instance.NextRound();

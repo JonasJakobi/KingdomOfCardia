@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 
-public class UpgradeUI : MonoBehaviour
+public class UpgradeUI : Singleton<UpgradeUI>
 {
 
     public TMP_Text upgradeButton, towerName, health, damage, speed, range, DeleteButton;
@@ -67,9 +67,7 @@ public class UpgradeUI : MonoBehaviour
                 }
                 if (selected != null)
                 {
-                    selected.GetBuilding().GetComponent<BaseTower>().DeSelectTower();
-                    selected = null;
-                    upgradeInfo.SetActive(false);
+                    Unselect();
 
                 }
 
@@ -79,6 +77,12 @@ public class UpgradeUI : MonoBehaviour
         {
             upgradeInfo.SetActive(false);
         }
+    }
+    public void Unselect()
+    {
+        selected.GetBuilding().GetComponent<BaseTower>().DeSelectTower();
+        selected = null;
+        upgradeInfo.SetActive(false);
     }
 
     private void VisualiseUpgradeInfo(Tile tile)

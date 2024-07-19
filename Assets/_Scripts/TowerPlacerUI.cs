@@ -15,7 +15,6 @@ public class TowerPlacerUI : MonoBehaviour
     [SerializeField]
     private int towerStartCost = 1;
 
-    private bool stillOnUI = false;
 
     [SerializeField]
     GameObject towerPreviewPrefab;
@@ -35,7 +34,7 @@ public class TowerPlacerUI : MonoBehaviour
     [SerializeField] private float towerCost = 1;
     [SerializeField] public int placedTowerAmount = 0;
     [SerializeField]
-    private bool isPlacingTowerClick = false;
+    private bool isPlacingTower = false;
     [SerializeField]
     private TMP_Text money;
 
@@ -50,23 +49,16 @@ public class TowerPlacerUI : MonoBehaviour
     {
         if (Input.GetKeyDown(placeThisTowerKey))
         {
-            if (isPlacingTowerClick)
-            {
-                StopPlacingTower();
-            }
-            else
-            {
-                ButtonClick();
-            }
+            ButtonClick();
         }
-        //Catch trying to place another tower type
-        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4))
+        //Catch trying to place another tower type or open menu
+        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4))
         {
             StopPlacingTower();
         }
 
 
-        if (!isPlacingTowerClick || stillOnUI)
+        if (!isPlacingTower)
         {
             return;
         }
@@ -113,10 +105,15 @@ public class TowerPlacerUI : MonoBehaviour
 
     public void ButtonClick()
     {
+        if (isPlacingTower)
+        {
+            StopPlacingTower();
+            return;
+        }
         AudioSystem.Instance.PlayClickSound();
         if (MoneyManager.Instance.CanAfford(Convert.ToInt32(towerCost)))
         {
-            isPlacingTowerClick = true;
+            isPlacingTower = true;
             towerPreview = Instantiate(towerPreviewPrefab, GetMousePosition(), Quaternion.identity);
 
         }
@@ -220,12 +217,12 @@ public class TowerPlacerUI : MonoBehaviour
     }
     private bool UserTryingToPlace()
     {
-        return isPlacingTowerClick && Input.GetMouseButtonDown(0);
+        return isPlacingTower && Input.GetMouseButtonDown(0);
     }
 
     private void StopPlacingTower()
     {
-        isPlacingTowerClick = false;
+        isPlacingTower = false;
         if (towerPreview != null)
         {
             Destroy(towerPreview);
@@ -235,8 +232,7 @@ public class TowerPlacerUI : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Mouse up");
-        if (!isPlacingTowerClick)
+        if (!isPlacingTower)
         {
             return;
 
@@ -245,18 +241,10 @@ public class TowerPlacerUI : MonoBehaviour
         Vector3 mousePos = GetMousePosition();
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
         //If we are not hovering over a tile, we let go of the mouse on the UI so we placing tower with click
-        if (tile == null)
+        StopPlacingTower();
+        if (tile != null && tile.IsBuildable())
         {
-            StopPlacingTower();
-
-        }
-        else
-        {
-            if (tile.IsBuildable())
-            {
-                PlaceTower();
-            }
-            StopPlacingTower();
+            PlaceTower();
         }
 
     }
