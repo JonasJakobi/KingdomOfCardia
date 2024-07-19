@@ -1,6 +1,7 @@
 using UnityEngine;
 public class Constants : Singleton<Constants>
 {
+    public static GameDifficulty selectedDifficulty;
     [SerializeField]
     private GameDifficulty gameDifficulty;
     public float towerCostGrowthRate = 1.7f;
@@ -10,6 +11,10 @@ public class Constants : Singleton<Constants>
     public int startMoney = 10;
     private void Start()
     {
+        if (selectedDifficulty != null)
+        {
+            gameDifficulty = selectedDifficulty;
+        }
         if (gameDifficulty != null)
         {
             LoadValues();

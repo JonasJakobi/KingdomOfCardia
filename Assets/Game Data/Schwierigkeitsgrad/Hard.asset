@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5361cb3391d6e044ab956c2da5fe1b76, type: 3}
-  m_Name: StandardDifficulty
+  m_Name: Hard
   m_EditorClassIdentifier: 
-  towerCostGrowthRate: 1.7
-  damageToEnemiesMultiplier: 0.8
-  damageToTowersMultiplier: 1
-  enemyMoveSpeedMultiplier: 1.1
-  startMoney: 10
+  towerCostGrowthRate: 2
+  damageToEnemiesMultiplier: 0.4
+  damageToTowersMultiplier: 3
+  enemyMoveSpeedMultiplier: 1.2
+  startMoney: 5
