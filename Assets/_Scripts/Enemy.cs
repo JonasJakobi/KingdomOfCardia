@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float damageValueRatio = 1.0f;
 
-    [SerializeField] private GameObject firePrefab, necroticPrefab, electricPrefab;
+    [SerializeField] private GameObject firePrefab, necroticPrefab, electricPrefab, splatterPrefab;
 
     private Animator animator;
 
@@ -274,6 +274,8 @@ public class Enemy : MonoBehaviour
     }
     private void OnDestroy()
     {
+        Instantiate(splatterPrefab, transform.position, Quaternion.identity);
+        Destroy(splatterPrefab, 1);
         AudioSystem.Instance.PlaySplash();
         RoundManager.Instance.DefeatEnemy();
         Debug.Log("Gegner besiegt!");
