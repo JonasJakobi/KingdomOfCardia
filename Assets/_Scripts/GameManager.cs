@@ -4,7 +4,7 @@ using UnityEngine;
 /// Basic GameManager to handle current state of the Game.
 /// Contains Events to use for doing stuff when the GameState changes.
 /// </summary>
-public class GameManager : SingletonPersistent<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     public static event Action<GameState> OnBeforeGameStateChanged;
     public static event Action<GameState> OnAfterGameStateChanged;

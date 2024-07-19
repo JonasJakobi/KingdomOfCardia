@@ -16,7 +16,7 @@ MonoBehaviour:
   cost: 1000
   damage: 150
   range: 4
-  attackSpeed: 0.07
+  attackSpeed: 0.085
   projectileSpeed: 7
   projectileLifetime: 1.5
   maxEnemiesHittable: 0

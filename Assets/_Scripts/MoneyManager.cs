@@ -6,9 +6,9 @@ using TMPro;
 public class MoneyManager : Singleton<MoneyManager>
 {
     [Header("Start Money is now in Constants")]
-    public int money = 0;
+    public long money = 0;
 
-    public int moneyGained = 0;
+    public long moneyGained = 0;
 
     public int moneySpent = 0;
 
@@ -21,7 +21,7 @@ public class MoneyManager : Singleton<MoneyManager>
         UIChangeManager.Instance.UpdateMoney();
     }
 
-    public void AddMoney(int amount)
+    public void AddMoney(long amount)
     {
         money += amount;
         moneyGained += amount;
