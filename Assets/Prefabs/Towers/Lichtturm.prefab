@@ -144,10 +144,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  temporaryHealth: 0
   currentLevel: 0
   currentUpgrade: {fileID: 11400000, guid: 8ac3352e320e3f94a81c63173f923563, type: 2}
   upgradePath: {fileID: 11400000, guid: 58dbc61bbf84d564f9f04e8bd57ea9f1, type: 2}
   isNexus: 0
+  upgradePrefab: {fileID: 141128518672224820, guid: 060b234ba8fe87644b321258818d73af, type: 3}
+  isSelectable: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  selectedScale: {x: 0, y: 0, z: 0}
+  isSelected: 0
   projectilePrefab: {fileID: 4109092055971077752, guid: 63491e07022bf064ea1b3fdffa20b338, type: 3}
   projectileSpawnPoint: {fileID: 2126596188752751258}
   currentTarget: {fileID: 0}

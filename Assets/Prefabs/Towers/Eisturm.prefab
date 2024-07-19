@@ -145,10 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  temporaryHealth: 0
   currentLevel: 0
   currentUpgrade: {fileID: 0}
   upgradePath: {fileID: 11400000, guid: 8fae6edea60378f41bad704b6e703198, type: 2}
   isNexus: 0
+  upgradePrefab: {fileID: 141128518672224820, guid: 060b234ba8fe87644b321258818d73af, type: 3}
   isSelectable: 0
   originalScale: {x: 0, y: 0, z: 0}
   selectedScale: {x: 0, y: 0, z: 0}
