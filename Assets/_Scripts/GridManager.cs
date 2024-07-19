@@ -185,6 +185,10 @@ public class GridManager : Singleton<GridManager>
                 }
             }
         }
+        if (enemies.Count == 0)
+        {
+            return null;
+        }
         switch (targetingType)
         {
             case TargetingType.Closest:

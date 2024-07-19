@@ -28,27 +28,21 @@ public class UpgradeUI : Singleton<UpgradeUI>
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);
 
-
+        //hovering over tower
         if (tile != null && tile.GetBuilding() != null && tile.GetBuilding().GetComponent<BaseTower>().isSelectable)
         {
-            if (selected == null)
-            {
-                VisualiseUpgradeInfo(tile);
-                upgradeInfo.SetActive(true);
-
-            }
-
             if (Input.GetMouseButtonDown(0) && selected != tile)
             {
-                //zur�cksetzen der alten gr��e
+                //zuruecksetzen der alten groesse
                 if (selected != null)
                 {
                     selected.GetBuilding().GetComponent<BaseTower>().DeSelectTower();
                 }
 
-                //neue gr��e
+                //neue groesse
                 tile.GetBuilding().GetComponent<BaseTower>().SelectTower();
                 VisualiseUpgradeInfo(tile);
+                upgradeInfo.SetActive(true);
                 selected = tile;
                 if (GameManager.Instance.State.Equals(GameState.BuildMode) || GameManager.Instance.State.Equals(GameState.Starting))
                 {
@@ -57,7 +51,7 @@ public class UpgradeUI : Singleton<UpgradeUI>
 
                 }
             }
-        }
+        } //hovering over empty tile
         else if (tile != null && tile.GetBuilding() == null)
         {
             if (Input.GetMouseButtonDown(0))

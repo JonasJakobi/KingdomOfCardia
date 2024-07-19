@@ -39,6 +39,10 @@ public class Enemy : MonoBehaviour
     [Tooltip("How far the enemy can attack from (1 = 1 tile)")]
     public float attackRange = 0.1f;
     [Header("Debugging Info")]
+    [SerializeField]
+    private float slowLeft = 0;
+    [SerializeField]
+    private float slowAmount = 0;
     [SerializeField] private int health = 100;
     [SerializeField] Tile currentTile;
 
@@ -48,6 +52,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private BaseTower currentlyTargetedBuilding;
 
     [SerializeField] private float damageValueRatio = 1.0f;
+    [Header("References")]
 
     [SerializeField] private ParticleSystem fireParticleSystem;
     [SerializeField] private ParticleSystem necroticParticleSystem;
@@ -56,6 +61,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
 
     private int originalAttackDamage;
+
 
 
     private void Start()
@@ -72,6 +78,11 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        if (slowLeft > 0)
+        {
+            UpdateSlow();
+        }
+
         //If we are not on a tile, register at the tile we are on
         if (currentTile == null)
         {
@@ -105,6 +116,20 @@ public class Enemy : MonoBehaviour
             MoveToOrAttackBuilding();
         }
 
+
+    }
+    private void UpdateSlow()
+    {
+        slowLeft -= Time.deltaTime;
+        if (slowLeft <= 0)
+        {
+            Debug.Log("Enemy now not Slowed");
+            slowLeft = 0;
+            movementSpeed = originalMovementSpeed;
+            slowAmount = 0;
+            AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch);
+            StartCoroutine(ChangeColor(originalColor, false, 0.0f));
+        }
 
     }
     /// <summary>
@@ -336,38 +361,25 @@ public class Enemy : MonoBehaviour
     public void SlowEnemy(float slow, float duration, bool musicEffect)
     {
         float slowMultiplicator = 1f / slow;
-        StartCoroutine(SlowForSeconds(slowMultiplicator, duration, musicEffect));
+        if (slowMultiplicator < slowAmount || slowLeft <= 0)
+        {
+            Debug.Log("Enemy now Slowed");
+            slowAmount = slowMultiplicator;
+            slowLeft = duration;
+            movementSpeed = originalMovementSpeed * slowAmount;
+            StartCoroutine(ChangeColor(freezeColor, false, 0.0f));
+            if (musicEffect)
+            {
+                AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch - (0.75f * slow));
+
+            }
+        }
     }
 
-    public IEnumerator SlowForSeconds(float slowMultiplicator, float duration, bool musicEffect)
-    {
-
-        StartCoroutine(ChangeColor(freezeColor, false, 0.0f));
-
-        if (musicEffect)
-        {
-            AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch - (0.75f * slowMultiplicator));
-        }
-
-        movementSpeed = movementSpeed * slowMultiplicator;
-
-        yield return new WaitForSeconds(duration);
-
-        if (musicEffect)
-        {
-            AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch);
-        }
-
-        movementSpeed = originalMovementSpeed;
-        StartCoroutine(ChangeColor(originalColor, false, 0.0f));
-
-
-    }
 
     public void SlowMovementAndAttack(float slow, float duration)
     {
-        float slowMultiplicator = 1f / (float)slow;
-        StartCoroutine(SlowForSeconds(slowMultiplicator, duration, true));
+        SlowEnemy(slow, duration, true);
         StartCoroutine(SlowAttackCooldown(duration));
     }
 
