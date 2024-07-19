@@ -49,11 +49,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float damageValueRatio = 1.0f;
 
-    [SerializeField] private ParticleSystem fireParticleSystem;
-    [SerializeField] private ParticleSystem necroticParticleSystem;
-    [SerializeField] private ParticleSystem electricParticleSystem;
-
-    public Animation fireAnimation;
+    [SerializeField] private GameObject firePrefab, necroticPrefab, electricPrefab;
 
     private Animator animator;
 
@@ -143,16 +139,23 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
+    private void SpawnEffekt(GameObject animationPrefab, float duration)
+    {
+        if (animationPrefab != null)
+        {
+            var prefab = Instantiate(animationPrefab, transform);
+            Destroy(prefab, duration);
+        }
+    }
     /// <summary>
     /// Methods for starting fire damage and the corresponding particle system  
     /// </summary>
     /// <param name="duration"></param>
     /// <param name="damage"></param>
+
     public void StartFireDamage(float duration, int damage)
     {
-        if (fireAnimation != null)
-            fireParticleSystem.Play();
+        SpawnEffekt(firePrefab, duration);
         StartCoroutine(TakeOverTimeDamage(duration, damage));
 
     }
@@ -164,15 +167,8 @@ public class Enemy : MonoBehaviour
             TakeDamage(damage);
             yield return new WaitForSeconds(1);
         }
-        StopFireDamage();
     }
 
-    private void StopFireDamage()
-    {
-
-        if (fireParticleSystem != null)
-            fireParticleSystem.Stop();
-    }
 
     /// <summary>
     /// Methods for starting necrotic damage and the corresponding particle system  
@@ -182,8 +178,7 @@ public class Enemy : MonoBehaviour
 
     public void StartNecroticDamage(float duration, int damage)
     {
-        if (necroticParticleSystem != null)
-            necroticParticleSystem.Play();
+        SpawnEffekt(necroticPrefab, duration);
         StartCoroutine(TakeNecroticDamageOverTime(duration, damage));
     }
 
@@ -195,13 +190,6 @@ public class Enemy : MonoBehaviour
             TakeDamage(exponentialDamage);
             yield return new WaitForSeconds(1);
         }
-        StopNecroticDamage();
-    }
-
-    private void StopNecroticDamage()
-    {
-        if (necroticParticleSystem != null)
-            necroticParticleSystem.Stop();
     }
 
     /// <summary>
@@ -212,8 +200,7 @@ public class Enemy : MonoBehaviour
 
     public void StartElectricDamage(float duration, int damage)
     {
-        if (electricParticleSystem != null)
-            electricParticleSystem.Play();
+        SpawnEffekt(electricPrefab, duration);
         StartCoroutine(TakeElectricDamageOverTime(duration, damage));
     }
 
@@ -225,15 +212,7 @@ public class Enemy : MonoBehaviour
             TakeDamage(damage / 2);
             yield return new WaitForSeconds(1);
         }
-        StopElectricDamage();
     }
-
-    private void StopElectricDamage()
-    {
-        if (electricParticleSystem != null)
-            electricParticleSystem.Stop();
-    }
-
     public void ReduceDamage(float reduce, float duration)
     {
         StartCoroutine(ReduceDamageCoroutine(reduce, duration));

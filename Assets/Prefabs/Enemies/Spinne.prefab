@@ -67,7 +67,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 98381543547045862}
-  - {fileID: 6265334658155746949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1655297174215765763
@@ -207,9 +206,9 @@ MonoBehaviour:
   canAttack: 1
   currentlyTargetedBuilding: {fileID: 0}
   damageValueRatio: 1
-  fireParticleSystem: {fileID: 7672045295477293526}
-  necroticParticleSystem: {fileID: 2417392489648363508}
-  electricParticleSystem: {fileID: 3765918547716238045}
+  firePrefab: {fileID: 4506111635318946022, guid: fbafb549c977a1c4b81231a3ec47d8de, type: 3}
+  necroticPrefab: {fileID: 3674267720065450355, guid: c9327118c9f4d204e86ecf93f25fa0ae, type: 3}
+  electricPrefab: {fileID: 2114322510388040957, guid: f2a3a41ea43338845aaf52884ec197b4, type: 3}
 --- !u!61 &4306816398511381933
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -698,80 +697,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2414128995762368129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &5110727226914800650
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3566207422767923564}
-    m_Modifications:
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2878592813081998342, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-      propertyPath: m_Name
-      value: CardEffect
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
---- !u!198 &2417392489648363508 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7449163775830955006, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-  m_PrefabInstance: {fileID: 5110727226914800650}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3765918547716238045 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8264045541579747031, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-  m_PrefabInstance: {fileID: 5110727226914800650}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6265334658155746949 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1161370121394819727, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-  m_PrefabInstance: {fileID: 5110727226914800650}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7672045295477293526 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3212306618101073372, guid: e0526fca74e561a4496e9b27f880926f, type: 3}
-  m_PrefabInstance: {fileID: 5110727226914800650}
-  m_PrefabAsset: {fileID: 0}
