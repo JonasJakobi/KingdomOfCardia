@@ -7,7 +7,8 @@ using TMPro;
 public class UpgradeUI : Singleton<UpgradeUI>
 {
 
-    public TMP_Text upgradeButton, towerName, health, damage, speed, range, DeleteButton;
+    public TMP_Text upgradeButton, towerName, health, damage, speed, range, projectile;
+    public GameObject projectileBox;
     public GameObject upgradeInfo;
     [SerializeField]
     private Tile selected;
@@ -80,6 +81,7 @@ public class UpgradeUI : Singleton<UpgradeUI>
     }
     public void Unselect()
     {
+        if (selected == null) return;
         selected.GetBuilding().GetComponent<BaseTower>().DeSelectTower();
         selected = null;
         upgradeInfo.SetActive(false);
@@ -88,7 +90,7 @@ public class UpgradeUI : Singleton<UpgradeUI>
     private void VisualiseUpgradeInfo(Tile tile)
     {
         GameObject tower = tile.GetBuilding();
-        towerName.text = tower.name;
+        towerName.text = tower.name.Replace("(Clone)", "");
         //Upgrade Button
         if (tower.GetComponent<BaseTower>().GetCostOfUpgrading() != -1)
         {
@@ -106,8 +108,16 @@ public class UpgradeUI : Singleton<UpgradeUI>
         health.text = ctu.health.ToString() + "             " + ntu.health.ToString();
         damage.text = ctu.damage.ToString() + "             " + ntu.damage.ToString();
         range.text = ctu.range.ToString() + "             " + ntu.range.ToString();
-        speed.text = ctu.attackSpeed.ToString() + "             " + ntu.attackSpeed.ToString();
-        //Delete Button
+        speed.text = (1 / ctu.attackSpeed).ToString("F2") + "             " + (1 / ntu.attackSpeed).ToString("F2");
+        if (ctu.maxEnemiesHittable != 0)
+        {
+            projectileBox.SetActive(true);
+            projectile.text = ctu.maxEnemiesHittable.ToString() + "             " + ntu.maxEnemiesHittable.ToString();
+        }
+        else
+        {
+            projectileBox.SetActive(false);
+        }
 
     }
 
