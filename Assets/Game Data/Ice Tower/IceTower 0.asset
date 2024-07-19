@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 8
   range: 4
   attackSpeed: 2
-  projectileSpeed: 5
+  projectileSpeed: 6
   projectileLifetime: 2
   maxEnemiesHittable: 1
   upgradeName: Base Ice Tower

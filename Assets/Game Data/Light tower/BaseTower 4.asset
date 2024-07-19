@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BaseTower 4
   m_EditorClassIdentifier: 
   health: 250
-  cost: 50
-  damage: 60
+  cost: 60
+  damage: 40
   range: 4
-  attackSpeed: 0.1
+  attackSpeed: 0.12
   projectileSpeed: 6
   projectileLifetime: 1.5
   maxEnemiesHittable: 0

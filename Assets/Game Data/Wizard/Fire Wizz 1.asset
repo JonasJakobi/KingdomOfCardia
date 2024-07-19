@@ -15,7 +15,7 @@ MonoBehaviour:
   health: 200
   cost: 300
   damage: 850
-  range: 8
+  range: 7
   attackSpeed: 1.8
   projectileSpeed: 0
   projectileLifetime: 0

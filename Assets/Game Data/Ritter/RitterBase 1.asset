@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 400
   cost: 40
-  damage: 12
+  damage: 20
   range: 2
   attackSpeed: 1.5
   projectileSpeed: 2

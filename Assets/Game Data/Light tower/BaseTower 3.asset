@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseTower 3
   m_EditorClassIdentifier: 
   health: 250
-  cost: 15
+  cost: 30
   damage: 30
   range: 3
   attackSpeed: 0.12

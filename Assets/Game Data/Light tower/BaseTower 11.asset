@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d320ba2bdf5bb4c49bf5f5c28d7230e0, type: 3}
-  m_Name: BaseTower
+  m_Name: BaseTower 11
   m_EditorClassIdentifier: 
-  health: 90
-  cost: 0
-  damage: 12
-  range: 3
-  attackSpeed: 0.2
-  projectileSpeed: 4
-  projectileLifetime: 1
+  health: 250
+  cost: 1000000
+  damage: 2000
+  range: 5
+  attackSpeed: 0.05
+  projectileSpeed: 7
+  projectileLifetime: 1.5
   maxEnemiesHittable: 0
-  upgradeName: Base Upgrade
-  upgradeSprite: {fileID: 0}
-  starLevel: 0
-  starColor: 0
+  upgradeName: Paradox
+  upgradeSprite: {fileID: 21300000, guid: d9998d1e65fa4c647bfc8071b6433d99, type: 3}
+  starLevel: 2
+  starColor: 3

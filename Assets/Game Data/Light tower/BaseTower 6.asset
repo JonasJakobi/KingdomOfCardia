@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BaseTower 6
   m_EditorClassIdentifier: 
   health: 250
-  cost: 250
-  damage: 140
+  cost: 300
+  damage: 100
   range: 4
   attackSpeed: 0.1
   projectileSpeed: 6
