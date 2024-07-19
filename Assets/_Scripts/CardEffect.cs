@@ -65,10 +65,10 @@ public class CardEffect : ScriptableObject
         }
     }
 
-    //Multiply player gold by amount
+    //Increase player gold by amount in percent
     public void MultiplyGold(int amount)
     {
-        long moneyGain = MoneyManager.Instance.money * amount;
+        long moneyGain = MoneyManager.Instance.money * amount / 100;
         Debug.Log("So viel Geld: " + moneyGain);
         MoneyManager.Instance.AddMoney(moneyGain);
     }

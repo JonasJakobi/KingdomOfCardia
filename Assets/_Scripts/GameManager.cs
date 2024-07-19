@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager>
                 RoundManager.Instance.NextRound();
                 CardManager.Instance.ClearHand();
                 CardManager.Instance.DrawRandomCards();
+                Constants.Instance.DecreaseDamageToEnemiesMultiplier();
                 break;
             case GameState.PlayMode:
                 AudioSystem.Instance.PlayBackgroundMusic();
