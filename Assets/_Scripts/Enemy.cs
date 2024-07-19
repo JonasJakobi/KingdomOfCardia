@@ -274,8 +274,9 @@ public class Enemy : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Instantiate(splatterPrefab, transform.position, Quaternion.identity);
-        Destroy(splatterPrefab, 1);
+        var splatter = Instantiate(splatterPrefab, transform);
+        splatter.transform.SetParent(null);
+        Destroy(splatter, 1);
         AudioSystem.Instance.PlaySplash();
         RoundManager.Instance.DefeatEnemy();
         Debug.Log("Gegner besiegt!");

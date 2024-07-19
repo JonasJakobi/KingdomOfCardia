@@ -394,6 +394,7 @@ MonoBehaviour:
   firePrefab: {fileID: 4506111635318946022, guid: fbafb549c977a1c4b81231a3ec47d8de, type: 3}
   necroticPrefab: {fileID: 3674267720065450355, guid: c9327118c9f4d204e86ecf93f25fa0ae, type: 3}
   electricPrefab: {fileID: 2114322510388040957, guid: f2a3a41ea43338845aaf52884ec197b4, type: 3}
+  splatterPrefab: {fileID: 8262890951440004527, guid: ff09ae30824341144bcf8f83e54796eb, type: 3}
 --- !u!61 &1499018190243053946
 BoxCollider2D:
   m_ObjectHideFlags: 0
