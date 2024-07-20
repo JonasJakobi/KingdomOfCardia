@@ -7,6 +7,8 @@ public class Nexus : Singleton<Nexus>
 {
     [SerializeField] private int health = 100;
     int damagingIndex = 0;
+    public GameObject nexus1, nexus2, nexus3;
+
     private void FixedUpdate()
     {
         damagingIndex++;
@@ -15,8 +17,6 @@ public class Nexus : Singleton<Nexus>
             damagingIndex = 0;
             DealDamage();
         }
-
-
     }
 
     private void DealDamage()
@@ -32,5 +32,22 @@ public class Nexus : Singleton<Nexus>
             }
         }
         GridManager.Instance.GetTileAtPosition(transform.position).enemies.ForEach(e => e.TakeDamage(1));
+    }
+
+    //Aufgerufen im Roundmanager nach runde 15 und 30
+    public void ChangeNexus(bool second)
+    {
+        if(second)
+        {
+            nexus1.SetActive(false);
+            nexus2.SetActive(true);
+            transform.GetComponent<BaseTower>().ChangeHealth(50000);
+        }
+        else
+        {
+            nexus2.SetActive(false);
+            nexus3.SetActive(true);
+            transform.GetComponent<BaseTower>().ChangeHealth(100000);
+        }
     }
 }

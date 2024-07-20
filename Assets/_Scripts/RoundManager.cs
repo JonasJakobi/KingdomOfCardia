@@ -215,6 +215,16 @@ public class RoundManager : Singleton<RoundManager>
             CreateSpawnPoints(Random.Range(1, maxSpawnPoints));
         }
 
+        //sprite änderung des Nexus
+        if(round== 30)
+        {
+            Nexus.Instance.ChangeNexus(false);
+        }
+        else if(round == 15)
+        {
+            Nexus.Instance.ChangeNexus(true);
+        }
+
     }
 
     //Start next round and decide if a wave will be present
