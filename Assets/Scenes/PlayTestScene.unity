@@ -1231,6 +1231,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346257676}
   m_CullTransparentMesh: 1
+--- !u!114 &346335284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6694759497360188896, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+  m_PrefabInstance: {fileID: 5117662905464472562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &373470209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,7 +2434,7 @@ MonoBehaviour:
   damageToTowersMultiplier: 1
   enemyMoveSpeedMultiplier: 1
   startMoney: 10
-  lowestDamageToEnemiesMultiplier: 0.1
+  lowestDamageToEnemiesMultiplier: 0.02
 --- !u!1 &686699609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6609349939952441156, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
@@ -2805,7 +2816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handSize: 3
   cardsPlayed: 0
-  currentUpgradeCost: 50
+  currentUpgradeCost: 500
   cardUIPrefab: {fileID: 6948449565007065714, guid: 9d76f00a0ce6ab747bd8017013c7f3ee, type: 3}
   allCards:
   - {fileID: 11400000, guid: d21366c08578fe541b541b3a9eec90c5, type: 2}
@@ -3630,7 +3641,7 @@ MonoBehaviour:
   RoundText: {fileID: 1892283154}
   MoneyText: {fileID: 1417797990}
   HPText: {fileID: 1449301378}
-  CardUpgradeCost: {fileID: 0}
+  CardUpgradeCost: {fileID: 346335284}
   Stat1: {fileID: 1281545350}
   Stat2: {fileID: 1494559795}
   Stat3: {fileID: 230007523}
@@ -4458,6 +4469,9 @@ MonoBehaviour:
   - {fileID: 8703079658779940387, guid: d3aa89e1fafee504ebd521f3c22e9f4e, type: 3}
   - {fileID: 8658291818297038920, guid: ace4345894a9d4346a558060f63190fe, type: 3}
   - {fileID: 1702612968498891735, guid: f9fb008407957a34f94afe0a3e4efb4d, type: 3}
+  - {fileID: 7289399241858468884, guid: ebbacf61e79e2fa4ebe66f3b33044d72, type: 3}
+  - {fileID: 7681721145502958902, guid: f38accc95cf9346449b8b19f6bac6d24, type: 3}
+  - {fileID: 4304877632746298359, guid: c884062b28709f44bb25dea75497b690, type: 3}
   EnemyType1: {fileID: 2142602162031666653, guid: ed170d7169f36cc4ea3e5ffd50afff1a, type: 3}
   EnemyType2: {fileID: 8937360665854073709, guid: 28cfbaab706d43e47b5ff7b0908e1cca, type: 3}
   EnemyType3: {fileID: 4665688116233777606, guid: 03fe9624e26e50f438a09b6dd38ebc7d, type: 3}

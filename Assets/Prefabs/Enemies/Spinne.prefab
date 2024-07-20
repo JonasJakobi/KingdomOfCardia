@@ -195,10 +195,10 @@ MonoBehaviour:
   overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   enemySound: {fileID: 0}
   enemySoundChance: 0.2
-  maxHealth: 200
+  maxHealth: 400
   movementSpeed: 1
   attackCooldown: 1.2
-  attackDamage: 40
+  attackDamage: 68
   attackRange: 0.7
   slowLeft: 0
   slowAmount: 0

@@ -71,6 +71,10 @@ public class Enemy : MonoBehaviour
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
         RandomSoundChance();
 
     }
