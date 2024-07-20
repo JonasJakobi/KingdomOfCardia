@@ -113,6 +113,11 @@ public class UIChangeManager : Singleton<UIChangeManager>
         }
     }
 
+    public void MoneyUIReset()
+    {
+        MoneyText.color = Color.white;
+    }
+
     public void ShowBuildModeUI()
     {
         towerPlaceUI.SetActive(true);
@@ -126,6 +131,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
         towerPlaceUI.SetActive(false);
         speedButtons.SetActive(true);
         RemoveAllWaveAlerts();
+        MoneyUIReset();
     }
 
     public void StartTutorial()
