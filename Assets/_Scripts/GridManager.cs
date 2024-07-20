@@ -196,7 +196,9 @@ public class GridManager : Singleton<GridManager>
             case TargetingType.First:
                 return enemies.OrderBy(e => Vector3.Distance(e.transform.position, Nexus.Instance.transform.position)).First();
             case TargetingType.Strongest:
-                return enemies.OrderByDescending(e => e.GetValue()).First();
+                enemies.OrderByDescending(e => e.GetValue());
+                print(enemies.First().name);
+                return enemies.First();
         }
 
 

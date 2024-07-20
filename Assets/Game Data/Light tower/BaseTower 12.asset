@@ -22,5 +22,5 @@ MonoBehaviour:
   maxEnemiesHittable: 0
   upgradeName: Paradox
   upgradeSprite: {fileID: 21300000, guid: d9998d1e65fa4c647bfc8071b6433d99, type: 3}
-  starLevel: 2
+  starLevel: 3
   starColor: 3

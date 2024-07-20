@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: StandardDifficulty
   m_EditorClassIdentifier: 
   towerCostGrowthRate: 1.7
-  damageToEnemiesMultiplier: 0.65
+  damageToEnemiesMultiplier: 0.75
+  damageToEnemiesMultiplierDecreasePerRound: 0.015
   damageToTowersMultiplier: 1
   enemyMoveSpeedMultiplier: 1.1
-  startMoney: 10
+  startMoney: 12

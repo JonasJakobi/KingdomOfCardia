@@ -1513,7 +1513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -169.94006, y: -20.276062}
+  m_AnchoredPosition: {x: -169.94006, y: -20.276031}
   m_SizeDelta: {x: 920, y: -433.6842}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &497249508
@@ -8424,6 +8424,10 @@ PrefabInstance:
       propertyPath: projectileBox
       value: 
       objectReference: {fileID: 1330754760}
+    - target: {fileID: 116666364731169066, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: rangeIndicatorPrefab
+      value: 
+      objectReference: {fileID: 2788479500664461125, guid: 4adad373fa625214ab683a48590d2c24, type: 3}
     - target: {fileID: 204999982757558041, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

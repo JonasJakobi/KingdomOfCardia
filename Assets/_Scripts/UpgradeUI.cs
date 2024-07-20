@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using System;
+using DG.Tweening;
 
 public class UpgradeUI : Singleton<UpgradeUI>
 {
 
     public TMP_Text upgradeButton, towerName, health, damage, speed, range, projectile;
     public GameObject projectileBox;
+    public GameObject rangeIndicatorPrefab;
+    public GameObject rangeIndicator;
     public GameObject upgradeInfo;
     [SerializeField]
     private Tile selected;
@@ -31,6 +34,8 @@ public class UpgradeUI : Singleton<UpgradeUI>
         //hovering over tower
         if (tile != null && tile.GetBuilding() != null && tile.GetBuilding().GetComponent<BaseTower>().isSelectable)
         {
+            SpawnRangeIndicator(tile.GetBuilding().GetComponent<BaseTower>());
+
             if (Input.GetMouseButtonDown(0) && selected != tile)
             {
                 //zuruecksetzen der alten groesse
@@ -54,6 +59,11 @@ public class UpgradeUI : Singleton<UpgradeUI>
         } //hovering over empty tile
         else if (tile != null && tile.GetBuilding() == null)
         {
+            if (selected == null)
+            {
+                DeleteRangeIndicator();
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (GameManager.Instance.State.Equals(GameState.BuildMode) || GameManager.Instance.State.Equals(GameState.Starting))
@@ -79,12 +89,33 @@ public class UpgradeUI : Singleton<UpgradeUI>
         selected.GetBuilding().GetComponent<BaseTower>().DeSelectTower();
         selected = null;
         upgradeInfo.SetActive(false);
+        DeleteRangeIndicator();
+    }
+    private void SpawnRangeIndicator(BaseTower tower)
+    {
+        var rangevalue = tower.GetComponent<BaseTower>().GetTowerUpgrade().range;
+        DeleteRangeIndicator();
+        rangeIndicator = Instantiate(rangeIndicatorPrefab, tower.transform.position, Quaternion.identity);
+        //scale to range
+        rangeIndicator.transform.localScale = new Vector3(rangevalue * 2 + 1, rangevalue * 2 + 1, 1);
+
+    }
+    private void DeleteRangeIndicator()
+    {
+        if (rangeIndicator != null)
+        {
+            Destroy(rangeIndicator);
+
+        }
     }
 
     private void VisualiseUpgradeInfo(Tile tile)
     {
         GameObject tower = tile.GetBuilding();
         towerName.text = tower.name.Replace("(Clone)", "");
+        //Show tower range
+        SpawnRangeIndicator(tower.GetComponent<BaseTower>());
+
         //Upgrade Button
         if (tower.GetComponent<BaseTower>().GetCostOfUpgrading() != -1)
         {
