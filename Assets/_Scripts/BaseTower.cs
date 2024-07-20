@@ -33,6 +33,8 @@ public class BaseTower : MonoBehaviour
     public Vector3 selectedScale;
     public bool isSelected = false;
     // Start is called before the first frame update
+
+    [SerializeField] private GameObject placePrefab;
     protected virtual void Awake()
     {
         originalScale = transform.localScale;
@@ -40,6 +42,8 @@ public class BaseTower : MonoBehaviour
         transform.localScale = Vector3.zero;
         transform.DOScale(originalScale, 1f).SetEase(Ease.OutBack);
         StartCoroutine(SmallDelay());
+        var placeAnim = Instantiate(placePrefab, transform);
+        Destroy(placeAnim, 1);
     }
 
     public IEnumerator SmallDelay()

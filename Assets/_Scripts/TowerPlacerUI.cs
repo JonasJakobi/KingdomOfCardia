@@ -37,6 +37,7 @@ public class TowerPlacerUI : MonoBehaviour
     private bool isPlacingTower = false;
     [SerializeField]
     private TMP_Text money;
+    [SerializeField] private GameObject placePrefab;
 
     public KeyCode placeThisTowerKey;
     void Start()
@@ -111,10 +112,13 @@ public class TowerPlacerUI : MonoBehaviour
             return;
         }
         AudioSystem.Instance.PlayClickSound();
+
         if (MoneyManager.Instance.CanAfford(Convert.ToInt32(towerCost)))
         {
             isPlacingTower = true;
             towerPreview = Instantiate(towerPreviewPrefab, GetMousePosition(), Quaternion.identity);
+
+
 
         }
         else
@@ -164,6 +168,7 @@ public class TowerPlacerUI : MonoBehaviour
         AudioSystem.Instance.PlayBonkSound();
         IncreaseCost();
         UIChangeManager.Instance.towersPlaced++;
+
     }
 
     private void IncreaseCost()
@@ -238,6 +243,9 @@ public class TowerPlacerUI : MonoBehaviour
             return;
 
         }
+
+        var placeAnim = Instantiate(placePrefab, transform);
+        Destroy(placeAnim, 1);
 
         Vector3 mousePos = GetMousePosition();
         Tile tile = GridManager.Instance.GetTileAtPosition(mousePos);

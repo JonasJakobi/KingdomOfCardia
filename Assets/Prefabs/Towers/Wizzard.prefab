@@ -283,6 +283,7 @@ MonoBehaviour:
   originalScale: {x: 0, y: 0, z: 0}
   selectedScale: {x: 0, y: 0, z: 0}
   isSelected: 0
+  placePrefab: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
   projectilePrefab: {fileID: 2752317482476335656, guid: 429f381d6c043134bbf4afe981e3c36c, type: 3}
   projectileSpawnPoint: {fileID: 8986985184927539993}
   currentTarget: {fileID: 0}

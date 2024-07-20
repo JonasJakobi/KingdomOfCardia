@@ -3654,13 +3654,13 @@ MonoBehaviour:
   gameOverUI: {fileID: 1423802685}
   tutorialUI: {fileID: 962081419}
   upgradeUI: {fileID: 1965405605}
-  tutorialDisabledPermanently: 0
   warningQueued: 0
   tutorialParent: {fileID: 962081419}
   tutorialScript: {fileID: 276152915}
   speedButtons: {fileID: 2110410037}
   startRoundButton: {fileID: 1700544161}
   damageDealt: 0
+  towersPlaced: 0
 --- !u!1 &1084807589
 GameObject:
   m_ObjectHideFlags: 0
@@ -9168,6 +9168,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3650293025517007694, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: placePrefab
+      value: 
+      objectReference: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
+    - target: {fileID: 3650293025517007694, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: placeThisTowerKey
       value: 50
       objectReference: {fileID: 0}
@@ -9964,6 +9968,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6794474538767203592, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: placePrefab
+      value: 
+      objectReference: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
+    - target: {fileID: 6794474538767203592, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: towerStartCost
       value: 2
       objectReference: {fileID: 0}
@@ -10023,6 +10031,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -266.78275
       objectReference: {fileID: 0}
+    - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: placePrefab
+      value: 
+      objectReference: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
     - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: towerPrefab
       value: 
@@ -10179,6 +10191,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7710982517468776544, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: placePrefab
+      value: 
+      objectReference: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
     - target: {fileID: 7710982517468776544, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: towerPrefab
       value: 
@@ -10337,6 +10353,10 @@ PrefabInstance:
       propertyPath: towerCost
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8593577739567360366, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: placePrefab
+      value: 
+      objectReference: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
     - target: {fileID: 8593577739567360366, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: placeThisTowerKey
       value: 51

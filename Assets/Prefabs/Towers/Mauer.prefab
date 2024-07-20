@@ -141,6 +141,7 @@ MonoBehaviour:
   originalScale: {x: 0, y: 0, z: 0}
   selectedScale: {x: 0, y: 0, z: 0}
   isSelected: 0
+  placePrefab: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
 --- !u!1001 &3554146562703654506
 PrefabInstance:
   m_ObjectHideFlags: 0
