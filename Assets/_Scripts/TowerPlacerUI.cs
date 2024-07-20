@@ -243,6 +243,11 @@ public class TowerPlacerUI : MonoBehaviour
             return;
 
         }
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            StopPlacingTower();
+            return;
+        }
 
         var placeAnim = Instantiate(placePrefab, transform);
         Destroy(placeAnim, 1);
