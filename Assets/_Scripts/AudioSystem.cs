@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 /// <summary>
 /// Basic audio system that can play music and sound effects.
 /// </summary>
@@ -8,6 +9,8 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
 {
     [SerializeField] public float originalVolume;
     [SerializeField] public float originalPitch;
+    [SerializeField] private List<AudioSource> audioSourceList;
+    [SerializeField] private Slider musicSlider, sfxSlider, volumeSlider;
     [SerializeField] private AudioSource soundSource;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource uiSoundSource;
@@ -40,6 +43,44 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
         originalVolume = 0.2f;
         musicSource.volume = originalVolume;
         musicSource.pitch = originalPitch;
+        audioSourceList.Add(soundSource);
+        audioSourceList.Add(uiSoundSource);
+        audioSourceList.Add(cardSoundSource);
+        audioSourceList.Add(cardEffectSoundSource);
+        audioSourceList.Add(enemySoundSource);
+        audioSourceList.Add(enemySoundSource2);
+        audioSourceList.Add(enemySoundSource3);
+        audioSourceList.Add(towerSoundSource);
+        audioSourceList.Add(projectileSoundSource);
+        audioSourceList.Add(anvilSoundSource);
+        audioSourceList.Add(dialogueSource);
+        if (sfxSlider != null && musicSlider != null && volumeSlider != null)
+        {
+            sfxSlider.value = 1;
+            musicSlider.value = 0.2f;
+            volumeSlider.value = 1;
+        }
+
+    }
+
+    public void GeneralVolume()
+    {
+        SFXVolume();
+        MusicVolume();
+    }
+
+    public void SFXVolume()
+    {
+        foreach (AudioSource source in audioSourceList)
+        {
+            source.volume = sfxSlider.value * volumeSlider.value;
+        }
+    }
+
+    public void MusicVolume()
+    {
+        musicSource.volume = musicSlider.value * volumeSlider.value;
+        originalVolume = musicSlider.value * volumeSlider.value;
     }
 
     public void ChangePitch(float pitch)

@@ -7,49 +7,74 @@ public class MenuButtonScript : MonoBehaviour
     public GameObject optionsWindow;
     public GameObject quitWindow;
     public GameObject menuBackground;
+    public GameObject settingsWindow;
 
     void Update()
     {
-        checkEscPress();
+        CheckEscPress();
     }
 
     // Method to toggle the options window
-    public void ToggleOptionsWindow(bool toQuit)
+    public void ToggleOptionsWindow(int stateOfWindow)
     {
 
-        if (optionsWindow.activeSelf && !toQuit)
+        if (optionsWindow.activeSelf && stateOfWindow == 0)
         {
             AudioSystem.Instance.PlayMenuClickSound();
             menuBackground.SetActive(false);
             optionsWindow.SetActive(false);
             quitWindow.SetActive(false);
+            settingsWindow.SetActive(false);
             GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
 
         }
 
-        else if (optionsWindow.activeSelf && toQuit)
-        {
-            AudioSystem.Instance.PlayMenuClickSound();
-            menuBackground.SetActive(true);
-            optionsWindow.SetActive(false);
-            quitWindow.SetActive(true);
-        }
-
-        else
+        else if (!optionsWindow.activeSelf && stateOfWindow == 0)
         {
             AudioSystem.Instance.PlayMenuClickSound();
             menuBackground.SetActive(true);
             optionsWindow.SetActive(true);
             quitWindow.SetActive(false);
+            settingsWindow.SetActive(false);
             GameSpeedManager.Instance.SetGameSpeed(GameSpeed.PAUSE);
+        }
+
+        else if (optionsWindow.activeSelf && stateOfWindow == 1)
+        {
+            AudioSystem.Instance.PlayMenuClickSound();
+            menuBackground.SetActive(true);
+            optionsWindow.SetActive(true);
+            quitWindow.SetActive(false);
+            settingsWindow.SetActive(false);
+            GameSpeedManager.Instance.SetGameSpeed(GameSpeed.PAUSE);
+        }
+
+        else if (optionsWindow.activeSelf && stateOfWindow == 2)
+        {
+            AudioSystem.Instance.PlayMenuClickSound();
+            menuBackground.SetActive(true);
+            optionsWindow.SetActive(false);
+            quitWindow.SetActive(false);
+            settingsWindow.SetActive(true);
+        }
+
+        else if (optionsWindow.activeSelf && stateOfWindow == 3)
+        {
+            AudioSystem.Instance.PlayMenuClickSound();
+            menuBackground.SetActive(true);
+            optionsWindow.SetActive(false);
+            quitWindow.SetActive(true);
+            settingsWindow.SetActive(false);
         }
     }
 
-    private void checkEscPress()
+
+
+    private void CheckEscPress()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToggleOptionsWindow(false);
+            ToggleOptionsWindow(0);
         }
     }
 }

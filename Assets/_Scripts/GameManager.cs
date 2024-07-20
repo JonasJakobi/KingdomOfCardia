@@ -37,9 +37,11 @@ public class GameManager : Singleton<GameManager>
         switch (gameState)
         {
             case GameState.MainMenu:
+                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
                 AudioSystem.Instance.PlayMenuMusic();
                 break;
             case GameState.Starting:
+                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
                 AudioSystem.Instance.PlayMenuMusic();
 
                 break;
@@ -55,6 +57,7 @@ public class GameManager : Singleton<GameManager>
                 Constants.Instance.DecreaseDamageToEnemiesMultiplier();
                 break;
             case GameState.PlayMode:
+                GameSpeedManager.Instance.SetGameSpeed(GameSpeed.NORMAL);
                 AudioSystem.Instance.PlayBackgroundMusic();
                 UIChangeManager.Instance.RemoveBuildModeUI();
                 RoundManager.Instance.BeginNextRound();
