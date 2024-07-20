@@ -40,7 +40,7 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     void Start()
     {
         originalPitch = 0.8f;
-        originalVolume = 0.2f;
+        originalVolume = ConsistentSettings.musicVolume;
         musicSource.volume = originalVolume;
         musicSource.pitch = originalPitch;
         audioSourceList.Add(soundSource);
@@ -56,9 +56,14 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
         audioSourceList.Add(dialogueSource);
         if (sfxSlider != null && musicSlider != null && volumeSlider != null)
         {
-            sfxSlider.value = 1;
-            musicSlider.value = 0.2f;
-            volumeSlider.value = 1;
+            sfxSlider.value = ConsistentSettings.sfxVolume;
+            musicSlider.value = ConsistentSettings.musicVolume;
+            volumeSlider.value = ConsistentSettings.generalVolume;
+            GeneralVolume();
+        }
+        else
+        {
+            musicSource.volume = ConsistentSettings.musicVolume;
         }
 
     }
@@ -67,6 +72,7 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
     {
         SFXVolume();
         MusicVolume();
+        ConsistentSettings.generalVolume = volumeSlider.value;
     }
 
     public void SFXVolume()
@@ -75,12 +81,14 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
         {
             source.volume = sfxSlider.value * volumeSlider.value;
         }
+        ConsistentSettings.sfxVolume = sfxSlider.value;
     }
 
     public void MusicVolume()
     {
         musicSource.volume = musicSlider.value * volumeSlider.value;
         originalVolume = musicSlider.value * volumeSlider.value;
+        ConsistentSettings.musicVolume = musicSlider.value;
     }
     /// <summary>
     /// Change pitch to new pitch forever

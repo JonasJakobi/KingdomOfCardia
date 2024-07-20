@@ -32,7 +32,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public GameObject upgradeUI;
 
-    public static bool tutorialDisabledPermanently = false;
+    public bool tutorialDisabledPermanently = false;
     public bool warningQueued = false;
     public GameObject tutorialParent;
     public Tutorial tutorialScript;
@@ -47,6 +47,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
     // Start is called before the first frame update
     void Start()
     {
+        tutorialDisabledPermanently = !ConsistentSettings.tutorialEnabled;
         UpdateRound();
         StartTutorial();
     }
