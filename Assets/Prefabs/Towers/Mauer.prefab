@@ -136,12 +136,12 @@ MonoBehaviour:
   currentUpgrade: {fileID: 11400000, guid: 81f62e7e6b413b14592b21cb6a324ab8, type: 2}
   upgradePath: {fileID: 11400000, guid: c6d7d2e4a604da447957b3c14219ce11, type: 2}
   isNexus: 0
-  upgradePrefab: {fileID: 141128518672224820, guid: 060b234ba8fe87644b321258818d73af, type: 3}
+  upgradePrefab: {fileID: 141128518672224820, guid: 19f17e28f9aa8c343bd12cc0331cb723, type: 3}
   isSelectable: 0
   originalScale: {x: 0, y: 0, z: 0}
   selectedScale: {x: 0, y: 0, z: 0}
   isSelected: 0
-  placePrefab: {fileID: 5779606944200182271, guid: da8ddddd12ea9a449af6554f146f0a25, type: 3}
+  placePrefab: {fileID: 5779606944200182271, guid: 876e499dc24f5464194a60d359554e81, type: 3}
 --- !u!1001 &3554146562703654506
 PrefabInstance:
   m_ObjectHideFlags: 0
