@@ -290,7 +290,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.388676, y: -1.3342208, z: 0}
-  m_LocalScale: {x: 0.18, y: 0.18, z: 0.25714287}
+  m_LocalScale: {x: 0.36, y: 0.36, z: 0.51428574}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3210664364514093088}
@@ -424,6 +424,8 @@ MonoBehaviour:
   attackCooldown: 1.2
   attackDamage: 50
   attackRange: 0.37
+  slowLeft: 0
+  slowAmount: 0
   health: 100
   currentTile: {fileID: 0}
   attacking: 0
