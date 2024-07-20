@@ -163,6 +163,7 @@ public class TowerPlacerUI : MonoBehaviour
         tower.GetComponent<BaseTower>().OnTowerDestroyed += DecreaseCost;
         AudioSystem.Instance.PlayBonkSound();
         IncreaseCost();
+        UIChangeManager.Instance.towersPlaced++;
     }
 
     private void IncreaseCost()

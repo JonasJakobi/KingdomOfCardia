@@ -17,7 +17,9 @@ public class Credits : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckCreditEscPress();
+        if (!skipShown) CheckAnyKeyPress();
+        else if (skipShown) CheckCreditEscPress();
+
     }
 
     public void ShowSkip()
@@ -35,6 +37,11 @@ public class Credits : MonoBehaviour
         {
             ShowSkip();
         }
+    }
+
+    private void CheckAnyKeyPress()
+    {
+        if (Input.anyKeyDown) ShowSkip();
     }
 
     private void LoadMainMenu(string sceneName)
