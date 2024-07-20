@@ -139,6 +139,10 @@ public class BaseTower : MonoBehaviour
         }
     }
 
+    public void ChangeHealth(int addetHealth)
+    {
+        health += addetHealth;
+    }
 
     public void ShieldThisBaseTower(int healthAmount, float duration)
     {
