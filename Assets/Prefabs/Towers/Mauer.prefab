@@ -131,10 +131,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  temporaryHealth: 0
   currentLevel: 0
   currentUpgrade: {fileID: 11400000, guid: 81f62e7e6b413b14592b21cb6a324ab8, type: 2}
   upgradePath: {fileID: 11400000, guid: c6d7d2e4a604da447957b3c14219ce11, type: 2}
   isNexus: 0
+  upgradePrefab: {fileID: 141128518672224820, guid: 060b234ba8fe87644b321258818d73af, type: 3}
+  isSelectable: 0
+  originalScale: {x: 0, y: 0, z: 0}
+  selectedScale: {x: 0, y: 0, z: 0}
+  isSelected: 0
 --- !u!1001 &3554146562703654506
 PrefabInstance:
   m_ObjectHideFlags: 0

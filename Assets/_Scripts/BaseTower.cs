@@ -21,6 +21,7 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private TowerUpgradePath upgradePath;
 
     [SerializeField] private bool isNexus = false;
+    [SerializeField] private GameObject upgradePrefab;
 
     /// <summary>
     /// Can be selected by the player to upgrade/ see stats
@@ -215,6 +216,8 @@ public class BaseTower : MonoBehaviour
     }
     private void UpgradeAnimation()
     {
+        var upgradeanim = Instantiate(upgradePrefab, transform);
+        Destroy(upgradeanim, 0.5f);
         if (scaleTween != null)
         {
             scaleTween.Kill();
