@@ -181,6 +181,7 @@ public class Enemy : MonoBehaviour
     public void StartFireDamage(float duration, int damage)
     {
         SpawnEffekt(firePrefab, duration);
+        damage = Mathf.RoundToInt((maxHealth * 0.05f));
         StartCoroutine(TakeOverTimeDamage(duration, damage));
 
     }
@@ -204,6 +205,7 @@ public class Enemy : MonoBehaviour
     public void StartNecroticDamage(float duration, int damage)
     {
         SpawnEffekt(necroticPrefab, duration);
+        damage = Mathf.RoundToInt((maxHealth * 0.1f));
         StartCoroutine(TakeNecroticDamageOverTime(duration, damage));
     }
 
@@ -226,15 +228,16 @@ public class Enemy : MonoBehaviour
     public void StartElectricDamage(float duration, int damage)
     {
         SpawnEffekt(electricPrefab, duration);
+        damage = Mathf.RoundToInt((maxHealth * 0.2f));
         StartCoroutine(TakeElectricDamageOverTime(duration, damage));
     }
 
     public IEnumerator TakeElectricDamageOverTime(float duration, int damage)
     {
-        TakeDamage(damage * 5);
+        TakeDamage(damage * 3);
         for (int i = 0; i < duration; i++)
         {
-            TakeDamage(damage / 2);
+            TakeDamage(damage / 8);
             yield return new WaitForSeconds(1);
         }
     }
