@@ -3614,6 +3614,8 @@ MonoBehaviour:
   range: {fileID: 6886027104154235085}
   projectile: {fileID: 0}
   projectileBox: {fileID: 0}
+  rangeIndicatorPrefab: {fileID: 0}
+  rangeIndicator: {fileID: 0}
   upgradeInfo: {fileID: 7986700408633233945}
   selected: {fileID: 0}
   towerPlaceUI: {fileID: 0}
@@ -4307,6 +4309,7 @@ MonoBehaviour:
   placedTowerAmount: 0
   isPlacingTower: 0
   money: {fileID: 1548978374823740038}
+  placePrefab: {fileID: 0}
   placeThisTowerKey: 0
 --- !u!1 &4205636236912155133
 GameObject:
@@ -6629,6 +6632,7 @@ MonoBehaviour:
   placedTowerAmount: 0
   isPlacingTower: 0
   money: {fileID: 1548978374823740038}
+  placePrefab: {fileID: 0}
   placeThisTowerKey: 0
 --- !u!1 &5384942804175833803
 GameObject:
@@ -7422,6 +7426,7 @@ MonoBehaviour:
   placedTowerAmount: 0
   isPlacingTower: 0
   money: {fileID: 1548978374823740038}
+  placePrefab: {fileID: 0}
   placeThisTowerKey: 0
 --- !u!1 &5931003654168533613
 GameObject:
@@ -8867,6 +8872,7 @@ MonoBehaviour:
   placedTowerAmount: 0
   isPlacingTower: 0
   money: {fileID: 1548978374823740038}
+  placePrefab: {fileID: 0}
   placeThisTowerKey: 0
 --- !u!1 &6525821547306732241
 GameObject:
@@ -11657,6 +11663,7 @@ MonoBehaviour:
   placedTowerAmount: 0
   isPlacingTower: 0
   money: {fileID: 1548978374823740038}
+  placePrefab: {fileID: 0}
   placeThisTowerKey: 0
 --- !u!1 &8509597783697141938
 GameObject:
