@@ -32,7 +32,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public GameObject upgradeUI;
 
-    public bool tutorialDisabledPermanently = false;
+    public static bool tutorialDisabledPermanently = false;
     public bool warningQueued = false;
     public GameObject tutorialParent;
     public Tutorial tutorialScript;
@@ -40,6 +40,8 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public GameObject startRoundButton;
 
     public int damageDealt = 0;
+
+    public int towersPlaced = 0;
 
 
     // Start is called before the first frame update
@@ -162,7 +164,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
         Stat1.text = RoundManager.Instance.round.ToString();
         Stat2.text = RoundManager.Instance.enemiesDefeated.ToString();
         Stat3.text = damageDealt.ToString();
-        Stat4.text = 0.ToString(); //Noch nicht implementiert
+        Stat4.text = towersPlaced.ToString();
         Stat5.text = MoneyManager.Instance.moneyGained.ToString();
         Stat6.text = MoneyManager.Instance.moneySpent.ToString();
         Stat7.text = CardManager.Instance.cardsPlayed.ToString();
