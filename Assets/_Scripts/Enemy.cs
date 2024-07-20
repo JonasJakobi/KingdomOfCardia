@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     private float slowLeft = 0;
     [SerializeField]
     private float slowAmount = 0;
-    [SerializeField] private int health = 100;
+    [SerializeField] public int health = 100;
     [SerializeField] Tile currentTile;
 
     [SerializeField] private bool attacking = false;
@@ -308,7 +308,7 @@ public class Enemy : MonoBehaviour
         var splatter = Instantiate(splatterPrefab, transform.position, Quaternion.identity);
         Destroy(splatter, 0.5f);
         AudioSystem.Instance.PlaySplash();
-        RoundManager.Instance.DefeatEnemy();
+        RoundManager.Instance.DefeatEnemy(this);
         Debug.Log("Gegner besiegt!");
         currentTile.UnregisterEnemy(this);
         MoneyManager.Instance.AddMoney(GetValue());

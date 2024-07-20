@@ -56,6 +56,8 @@ public class RoundManager : Singleton<RoundManager>
 
     public GameObject gridManager;
 
+    public List<Enemy> livingEnemies = new List<Enemy>();
+
     private void Start()
     {
         roundValueLeft = 0;
@@ -118,7 +120,7 @@ public class RoundManager : Singleton<RoundManager>
         int height = GridManager.HEIGHT - 1;
 
         enemyPrefab = ChooseEnemeyPrefab(enemyValue);
-
+        GameObject newEnemy;
         if (spawnPoint.isFullWidth)
         {
             if ((spawnPoint.widthPosition + randomDistance) >= width || (spawnPoint.widthPosition + randomDistance) <= 0)
@@ -126,7 +128,7 @@ public class RoundManager : Singleton<RoundManager>
                 randomDistance = -randomDistance;
             }
             Vector3 randomPos = new Vector3(spawnPoint.widthPosition + randomDistance, spawnPoint.heightPosition, 0);
-            GameObject newEnemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
+            newEnemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
         }
         else
         {
@@ -135,7 +137,18 @@ public class RoundManager : Singleton<RoundManager>
                 randomDistance = -randomDistance;
             }
             Vector3 randomPos = new Vector3(spawnPoint.widthPosition, spawnPoint.heightPosition + randomDistance, 0);
-            GameObject newEnemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
+            newEnemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
+
+        }
+        if (newEnemy.GetComponent<Enemy>() != null)
+        {
+            livingEnemies.Add(newEnemy.GetComponent<Enemy>());
+
+        }
+        else
+        {
+            livingEnemies.Add(newEnemy.GetComponentInChildren<Enemy>());
+
         }
     }
 
@@ -215,12 +228,12 @@ public class RoundManager : Singleton<RoundManager>
             CreateSpawnPoints(Random.Range(1, maxSpawnPoints));
         }
 
-        //sprite änderung des Nexus
-        if(round== 30)
+        //sprite ï¿½nderung des Nexus
+        if (round == 30)
         {
             Nexus.Instance.ChangeNexus(false);
         }
-        else if(round == 15)
+        else if (round == 15)
         {
             Nexus.Instance.ChangeNexus(true);
         }
@@ -240,8 +253,9 @@ public class RoundManager : Singleton<RoundManager>
         }
     }
 
-    public void DefeatEnemy()
+    public void DefeatEnemy(Enemy e)
     {
+        livingEnemies.Remove(e);
         enemyCount--;
         enemiesDefeated++;
     }

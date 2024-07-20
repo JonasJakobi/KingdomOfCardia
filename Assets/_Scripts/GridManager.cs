@@ -168,49 +168,50 @@ public class GridManager : Singleton<GridManager>
 
     }
 
-    public Enemy FindEnemy(int x, int y, int maxDistance, TargetingType targetingType = TargetingType.Closest)
+    public Enemy FindEnemy(float x, float y, int maxDistance, TargetingType targetingType = TargetingType.Closest)
     {
-        // x y is coordinates of our tower
-        List<Enemy> enemies = new List<Enemy>();
-        for (int i = -maxDistance; i <= maxDistance; i++)
+        Enemy bestEnemySoFar = null;
+        double bestValueSoFar = float.MaxValue;
+        Vector3 nexusPos = Nexus.Instance.transform.position;
+        foreach (Enemy enemy in RoundManager.Instance.livingEnemies)
         {
-            for (int j = -maxDistance; j <= maxDistance; j++)
+            if (enemy == null)
             {
-                int checkX = x + i;
-                int checkY = y + j;
-                if (checkX < 0 || checkX >= WIDTH || checkY < 0 || checkY >= HEIGHT) continue; // Skip out-of-bounds tiles
-                else if (grid[checkX, checkY].enemies.Count > 0)
-                {
-                    enemies.AddRange(grid[checkX, checkY].enemies);
-                }
+                continue;
+            }
+            float distance = Vector3.Distance(enemy.transform.position, new Vector3(x, y, 0));
+            if (distance > maxDistance)
+            {
+
+                continue;
+            }
+            switch (targetingType)
+            {
+                case TargetingType.First:
+                    float nexusDistance = Vector3.Distance(enemy.transform.position, nexusPos);
+                    if (nexusDistance < bestValueSoFar)
+                    {
+                        bestValueSoFar = nexusDistance;
+                        bestEnemySoFar = enemy;
+                    }
+                    break;
+                case TargetingType.Closest:
+                    if (distance < bestValueSoFar)
+                    {
+                        bestValueSoFar = distance;
+                        bestEnemySoFar = enemy;
+                    }
+                    break;
+                case TargetingType.Strongest:
+                    if (1 / enemy.health < bestValueSoFar)
+                    {
+                        bestValueSoFar = 1 / enemy.health;
+                        bestEnemySoFar = enemy;
+                    }
+                    break;
             }
         }
-        if (enemies.Count == 0)
-        {
-            return null;
-        }
-        switch (targetingType)
-        {
-            case TargetingType.Closest:
-                return enemies.OrderBy(e => Vector3.Distance(e.transform.position, new Vector3(x, y, 0))).First();
-            case TargetingType.First:
-                return enemies.OrderBy(e => Vector3.Distance(e.transform.position, Nexus.Instance.transform.position)).First();
-            case TargetingType.Strongest:
-                enemies.OrderByDescending(e => e.GetValue());
-                return enemies.First();
-        }
-
-
-
-
-        switch (targetingType)
-        {
-            case TargetingType.Closest:
-            case TargetingType.First:
-            case TargetingType.Strongest:
-            default:
-                return null;
-        }
+        return bestEnemySoFar;
     }
     public BaseTower FindNearestBuilding(int x, int y)
     {

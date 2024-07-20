@@ -44,7 +44,7 @@ public class ProjectileTower : BaseTower
 
     private void FindNewTarget()
     {
-        currentTarget = GridManager.Instance.FindEnemy(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), currentUpgrade.range, targetingType);
+        currentTarget = GridManager.Instance.FindEnemy((transform.position.x), (transform.position.y), currentUpgrade.range, targetingType);
 
     }
 
