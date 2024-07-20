@@ -3661,6 +3661,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 1423802685}
   tutorialUI: {fileID: 962081419}
   upgradeUI: {fileID: 1965405605}
+  tutorialDisabledPermanently: 0
   warningQueued: 0
   tutorialParent: {fileID: 962081419}
   tutorialScript: {fileID: 276152915}
@@ -4840,7 +4841,7 @@ MonoBehaviour:
   money: 0
   moneyGained: 0
   moneySpent: 0
-  moneyText: {fileID: 0}
+  moneyText: {fileID: 1417797990}
 --- !u!1 &1330754760
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using TMPro;
+using System.Collections.Generic;
+using System;
 
 public class Tutorial : MonoBehaviour
 {
@@ -54,7 +56,6 @@ public class Tutorial : MonoBehaviour
         if (typeSentence != null)
         {
             StopCoroutine(typeSentence);
-            Debug.Log("Coroutine stopped");
             typeSentence = null;
         }
         tutorialSkipped = false;
@@ -91,13 +92,36 @@ public class Tutorial : MonoBehaviour
     {
         stringSaver = sentence;
         tutorialSpeechText.text = "";
+        string subStringSaver = "";
+        bool openingTag = false;
 
         foreach (char letter in sentence.ToCharArray())
         {
-            AudioSystem.Instance.PlayDialogueSound();
-            tutorialSpeechText.text += letter;
-            yield return new WaitForSeconds(0.02f);
+            if (openingTag)
+            {
+                subStringSaver += letter;
+
+                if (letter == '>')
+                {
+                    openingTag = false;
+                    tutorialSpeechText.text += subStringSaver;
+                    subStringSaver = "";
+                }
+            }
+            else if (letter == '<')
+            {
+                subStringSaver = "<";
+                openingTag = true;
+                continue;
+            }
+            else
+            {
+                AudioSystem.Instance.PlayDialogueSound();
+                tutorialSpeechText.text += letter;
+                yield return new WaitForSeconds(0.02f);
+            }
         }
+
         typeSentence = null;
     }
 
