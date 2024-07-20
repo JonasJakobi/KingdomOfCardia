@@ -129,7 +129,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -27.751804, y: -3.143733, z: 0}
-  m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
+  m_LocalScale: {x: 0.22, y: 0.22, z: 0.22}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4660692237604043248}
@@ -256,11 +256,13 @@ MonoBehaviour:
   overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   enemySound: {fileID: 0}
   enemySoundChance: 0.2
-  maxHealth: 800
-  movementSpeed: 0.8
+  maxHealth: 1000
+  movementSpeed: 0.9
   attackCooldown: 1.1
-  attackDamage: 800
+  attackDamage: 900
   attackRange: 0.55
+  slowLeft: 0
+  slowAmount: 0
   health: 100
   currentTile: {fileID: 0}
   attacking: 0

@@ -9,7 +9,7 @@ public class CardManager : Singleton<CardManager>
 {
     public int handSize = 3;
     public int cardsPlayed = 0;
-    public int currentUpgradeCost = 50;
+    public int currentUpgradeCost = 500;
     public GameObject cardUIPrefab;
     public List<Card> allCards;
     public List<Card> deck;
@@ -22,17 +22,17 @@ public class CardManager : Singleton<CardManager>
     public GameObject cardSelectionBackground;
 
 
-
+    private void Start()
+    {
+        //update button foer upgrading
+        UIChangeManager.Instance.IncreaseCardUpgradeCost("Kaufen (" + currentUpgradeCost + ")");
+    }
 
     private List<GameObject> hand = new List<GameObject>();
     [SerializeField] private List<CardUI> displayedCards = new List<CardUI>();
     private Coroutine positionCoroutine;
 
-    void Start()
-    {
-        handSize = 3;
-        currentUpgradeCost = 50;
-    }
+
 
     [ProButton]
     /// <summary>
@@ -265,7 +265,7 @@ public class CardManager : Singleton<CardManager>
                 handSize++;
                 DrawCard();
                 currentUpgradeCost *= 25;
-                if (currentUpgradeCost <= 31250)
+                if (currentUpgradeCost <= 312500)
                 {
                     UIChangeManager.Instance.IncreaseCardUpgradeCost("Kaufen (" + currentUpgradeCost + ")");
                 }

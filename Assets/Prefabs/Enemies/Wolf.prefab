@@ -613,11 +613,13 @@ MonoBehaviour:
   overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   enemySound: {fileID: 8300000, guid: 577c1528c62b28846824af2b1e9f93e9, type: 3}
   enemySoundChance: 0.2
-  maxHealth: 800
+  maxHealth: 6100
   movementSpeed: 1.1
   attackCooldown: 1
-  attackDamage: 1600
+  attackDamage: 3600
   attackRange: 0.55
+  slowLeft: 0
+  slowAmount: 0
   health: 100
   currentTile: {fileID: 0}
   attacking: 0
