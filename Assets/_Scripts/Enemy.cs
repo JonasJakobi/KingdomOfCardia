@@ -208,7 +208,7 @@ public class Enemy : MonoBehaviour
     public void StartNecroticDamage(float duration, int damage)
     {
         SpawnEffekt(necroticPrefab, duration);
-        damage = Mathf.RoundToInt((maxHealth * 0.1f));
+        damage = Mathf.RoundToInt((maxHealth * 0.03f));
         StartCoroutine(TakeNecroticDamageOverTime(duration, damage));
     }
 
