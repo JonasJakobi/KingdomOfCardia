@@ -12,7 +12,7 @@ public class Constants : Singleton<Constants>
 
 
     [Header("Global Constants untied to GameDifficulty")]
-    public float lowestDamageToEnemiesMultiplier = 0.1f;
+    public float lowestDamageToEnemiesMultiplier = 0.05f;
     private void Start()
     {
         if (selectedDifficulty != null)

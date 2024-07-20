@@ -62,6 +62,7 @@ public class DebugManager : Singleton<DebugManager>
             {
                 Debug.Log("Tile at " + tile.transform.position + " has " + tile.GetBuilding().name + " as building.");
                 tile.GetBuilding().GetComponent<BaseTower>().Upgrade();
+                UpgradeUI.Instance.UpdateUpgradeButton(tile.GetBuilding().GetComponent<BaseTower>());
             }
         }
         if (Input.GetKey(KeyCode.M) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.Y))

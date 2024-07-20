@@ -115,18 +115,8 @@ public class UpgradeUI : Singleton<UpgradeUI>
         towerName.text = tower.name.Replace("(Clone)", "");
         //Show tower range
         SpawnRangeIndicator(tower.GetComponent<BaseTower>());
+        UpdateUpgradeButton(tower.GetComponent<BaseTower>());
 
-        //Upgrade Button
-        if (tower.GetComponent<BaseTower>().GetCostOfUpgrading() != -1)
-        {
-            upgradeButton.text = "Upgrade: " + tower.GetComponent<BaseTower>().GetCostOfUpgrading().ToString();
-            upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = true;
-        }
-        else
-        {
-            upgradeButton.text = "Fully Upgraded";
-            upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = false;
-        }
         //Stats
         TowerUpgrade ctu = tower.GetComponent<BaseTower>().GetTowerUpgrade();
         TowerUpgrade ntu = tower.GetComponent<BaseTower>().GetTowerUpgrade(true);
@@ -144,6 +134,20 @@ public class UpgradeUI : Singleton<UpgradeUI>
             projectileBox.SetActive(false);
         }
 
+    }
+    public void UpdateUpgradeButton(BaseTower tower)
+    {
+        //Upgrade Button
+        if (tower.GetComponent<BaseTower>().GetCostOfUpgrading() != -1)
+        {
+            upgradeButton.text = "Upgrade: " + tower.GetComponent<BaseTower>().GetCostOfUpgrading().ToString();
+            upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = true;
+        }
+        else
+        {
+            upgradeButton.text = "Fully Upgraded";
+            upgradeButton.transform.parent.GetComponent<UnityEngine.UI.Button>().interactable = false;
+        }
     }
 
     public void Upgrade()
