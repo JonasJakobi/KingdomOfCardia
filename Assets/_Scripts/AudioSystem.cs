@@ -82,10 +82,29 @@ public class AudioSystem : SingletonPersistent<AudioSystem>
         musicSource.volume = musicSlider.value * volumeSlider.value;
         originalVolume = musicSlider.value * volumeSlider.value;
     }
-
+    /// <summary>
+    /// Change pitch to new pitch forever
+    /// </summary>
+    /// <param name="pitch"></param>
     public void ChangePitch(float pitch)
     {
         musicSource.pitch = pitch;
+
+    }
+    /// <summary>
+    /// Changes pitch and then back to original after duration
+    /// </summary>
+    /// <param name="pitch"></param>
+    /// <param name="duration"></param>
+    public void ChangePitch(float pitch, float duration)
+    {
+        ChangePitch(pitch);
+        StartCoroutine(ChangePitchBack(duration));
+    }
+    private IEnumerator ChangePitchBack(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ChangePitch(originalPitch);
     }
 
     public IEnumerator FadeOutMusic(float fadeOutTime, AudioClip newMusic, bool randomPitch)

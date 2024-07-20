@@ -71,6 +71,10 @@ public class Enemy : MonoBehaviour
         GridManager.Instance.RegisterEnemyAtTile(this, Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
         animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
         RandomSoundChance();
 
     }
@@ -125,7 +129,6 @@ public class Enemy : MonoBehaviour
             slowLeft = 0;
             movementSpeed = originalMovementSpeed;
             slowAmount = 0;
-            AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch);
             StartCoroutine(ChangeColor(originalColor, false, 0.0f));
         }
 
@@ -302,9 +305,8 @@ public class Enemy : MonoBehaviour
     }
     private void OnDestroy()
     {
-        var splatter = Instantiate(splatterPrefab, transform);
-        splatter.transform.SetParent(null);
-        Destroy(splatter, 1);
+        var splatter = Instantiate(splatterPrefab, transform.position, Quaternion.identity);
+        Destroy(splatter, 0.5f);
         AudioSystem.Instance.PlaySplash();
         RoundManager.Instance.DefeatEnemy();
         Debug.Log("Gegner besiegt!");
@@ -357,7 +359,6 @@ public class Enemy : MonoBehaviour
             StartCoroutine(ChangeColor(freezeColor, false, 0.0f));
             if (musicEffect)
             {
-                AudioSystem.Instance.ChangePitch(AudioSystem.Instance.originalPitch - (0.75f * slow));
 
             }
         }

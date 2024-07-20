@@ -63,7 +63,9 @@ public class CardEffect : ScriptableObject
         {
             enemy.SlowEnemy(slow, duration, true);
         }
+        AudioSystem.Instance.ChangePitch(0.4f, duration);
     }
+
 
     //Increase player gold by amount in percent
     public void MultiplyGold(int amount)
@@ -122,6 +124,7 @@ public class CardEffect : ScriptableObject
         {
             enemy.SlowMovementAndAttack(slow, duration);
         }
+        AudioSystem.Instance.ChangePitch(0.4f, duration);
     }
 
 
