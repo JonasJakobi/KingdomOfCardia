@@ -23,14 +23,16 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
 
     public float slowAmount = 1;
     [SerializeField] private AudioClip projectileHitSound;
+    [SerializeField] private BaseTower originTower;
 
     private void Update()
     {
         transform.position += transform.up * movementSpeed * Time.deltaTime;
     }
 
-    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats)
+    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats, BaseTower originTower)
     {
+        this.originTower = originTower;
         movementSpeed = towerStats.projectileSpeed;
         damage = towerStats.damage;
         lifetime = towerStats.projectileLifetime;
@@ -60,7 +62,10 @@ public class CollidingProjectile : MonoBehaviour, IProjectile
                 other.gameObject.GetComponentInChildren<Enemy>().SlowEnemy(slowAmount, 1.5f, false);
             }
 
-            other.gameObject.GetComponentInChildren<Enemy>().TakeDamage(damage);
+            if (other.gameObject.GetComponentInChildren<Enemy>().TakeDamage(damage))
+            {
+                originTower.IncreaseEnemiesKilled();
+            }
             if (projectileHitSound != null)
             {
                 AudioSystem.Instance.PlayProjectileSound(projectileHitSound);

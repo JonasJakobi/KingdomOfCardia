@@ -79,7 +79,12 @@ public class DebugManager : Singleton<DebugManager>
 
             if (tile.GetBuilding() != null && tile.GetBuilding().GetComponent<Nexus>() == null)
             {
+                if (UpgradeUI.Instance.selected == tile)
+                {
+                    UpgradeUI.Instance.Unselect();
+                }
                 tile.GetBuilding().GetComponent<BaseTower>().DestroyTower();
+
             }
         }
         if (Input.GetKeyDown(KeyCode.Delete))

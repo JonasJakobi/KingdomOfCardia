@@ -10,9 +10,11 @@ public class ProjectileTower : BaseTower
 {
     [SerializeField]
     GameObject projectilePrefab;
+
     [SerializeField]
     GameObject projectileSpawnPoint;
     [SerializeField] Enemy currentTarget;
+    [SerializeField] private BaseTower originTower;
 
     [SerializeField] private float attackDelayTimer = 0;
 
@@ -89,7 +91,7 @@ public class ProjectileTower : BaseTower
         }
         var m = Instantiate(projectilePrefab, pos, Quaternion.identity);
         var rot = Quaternion.LookRotation(Vector3.forward, currentTarget.transform.position - projectileSpawnPoint.transform.position);
-        m.GetComponent<IProjectile>().SetValues(currentTarget, rot, currentUpgrade);
+        m.GetComponent<IProjectile>().SetValues(currentTarget, rot, currentUpgrade, this);
     }
 
     private void OnDrawGizmos()

@@ -8,13 +8,13 @@ using DG.Tweening;
 public class UpgradeUI : Singleton<UpgradeUI>
 {
 
-    public TMP_Text upgradeButton, towerName, health, damage, speed, range, projectile;
+    public TMP_Text upgradeButton, towerName, health, damage, speed, range, projectile, defeatedEnemies;
     public GameObject projectileBox;
     public GameObject rangeIndicatorPrefab;
     public GameObject rangeIndicator;
     public GameObject upgradeInfo;
     [SerializeField]
-    private Tile selected;
+    public Tile selected;
 
     [SerializeField]
     private GameObject towerPlaceUI;
@@ -90,6 +90,10 @@ public class UpgradeUI : Singleton<UpgradeUI>
         selected = null;
         upgradeInfo.SetActive(false);
         DeleteRangeIndicator();
+        if (GameManager.Instance.State.Equals(GameState.BuildMode) || GameManager.Instance.State.Equals(GameState.Starting))
+        {
+            towerPlaceUI.SetActive(true);
+        }
     }
     private void SpawnRangeIndicator(BaseTower tower)
     {
@@ -109,14 +113,14 @@ public class UpgradeUI : Singleton<UpgradeUI>
         }
     }
 
-    private void VisualiseUpgradeInfo(Tile tile)
+    public void VisualiseUpgradeInfo(Tile tile)
     {
         GameObject tower = tile.GetBuilding();
         towerName.text = tower.name.Replace("(Clone)", "");
         //Show tower range
         SpawnRangeIndicator(tower.GetComponent<BaseTower>());
         UpdateUpgradeButton(tower.GetComponent<BaseTower>());
-
+        defeatedEnemies.text = "Defeated Enemies:\n" + tower.GetComponent<BaseTower>().GetEnemiesKilled().ToString();
         //Stats
         TowerUpgrade ctu = tower.GetComponent<BaseTower>().GetTowerUpgrade();
         TowerUpgrade ntu = tower.GetComponent<BaseTower>().GetTowerUpgrade(true);

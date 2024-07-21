@@ -11,6 +11,7 @@ public class HomingProjectile : MonoBehaviour, IProjectile
     public float movementSpeed = 5f;
     public int damage = 10;
     [SerializeField] private AudioClip projectileHitSound;
+    [SerializeField] private BaseTower originTower;
 
     // Update is called once per frame
     void Update()
@@ -24,7 +25,10 @@ public class HomingProjectile : MonoBehaviour, IProjectile
 
             if (distance < 0.04f)
             {
-                target.TakeDamage(damage);
+                if (target.TakeDamage(damage))
+                {
+                    originTower.IncreaseEnemiesKilled();
+                }
                 if (projectileHitSound != null)
                 {
                     AudioSystem.Instance.PlayProjectileSound(projectileHitSound);
@@ -37,8 +41,9 @@ public class HomingProjectile : MonoBehaviour, IProjectile
             Destroy(gameObject);
         }
     }
-    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats)
+    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats, BaseTower originTower)
     {
+        this.originTower = originTower;
         target = e;
         movementSpeed = towerStats.projectileSpeed;
         this.damage = towerStats.damage;

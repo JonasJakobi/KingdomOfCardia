@@ -15,6 +15,7 @@ public class LightningProjectile : MonoBehaviour, IProjectile
     public float movementSpeed = 5f;
     public int damage = 10;
     [SerializeField] private AudioClip projectileHitSound;
+    [SerializeField] private BaseTower originTower;
 
     private void Update()
     {
@@ -25,8 +26,9 @@ public class LightningProjectile : MonoBehaviour, IProjectile
 
     }
 
-    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats)
+    public void SetValues(Enemy e, Quaternion rot, TowerUpgrade towerStats, BaseTower originTower)
     {
+        this.originTower = originTower;
         enemy = e;
         movementSpeed = towerStats.projectileSpeed;
         this.damage = towerStats.damage;
@@ -53,7 +55,10 @@ public class LightningProjectile : MonoBehaviour, IProjectile
             {
                 Debug.Log("Lightning projectile dealt damage to enemy");
             }
-            enemy.TakeDamage(damage);
+            if (enemy.TakeDamage(damage))
+            {
+                originTower.IncreaseEnemiesKilled();
+            }
             if (projectileHitSound != null)
             {
                 AudioSystem.Instance.PlayProjectileSound(projectileHitSound);

@@ -306,7 +306,7 @@ public class Enemy : MonoBehaviour
         currentTile = GridManager.Instance.GetTileAtPosition(transform.position);
     }
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
         int trueDamage = Mathf.RoundToInt(damage * Constants.Instance.damageToEnemiesMultiplier);
         RandomSoundChance();
@@ -316,8 +316,11 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             StopAllCoroutines();
-            Destroy(gameObject);
+
+            Destroy(gameObject, 0.01f);
+            return true;
         }
+        return false;
     }
     private void OnDestroy()
     {

@@ -33,6 +33,8 @@ public class BaseTower : MonoBehaviour
     public Vector3 originalScale;
     public Vector3 selectedScale;
     public bool isSelected = false;
+
+    private int enemiesKilled = 0;
     // Start is called before the first frame update
 
     [SerializeField] private GameObject placePrefab;
@@ -315,6 +317,18 @@ public class BaseTower : MonoBehaviour
         scaleTween.Kill();
         isSelected = false;
         scaleTween = transform.DOScale(originalScale, 0.3f).SetEase(Ease.InSine);
+    }
+    public void IncreaseEnemiesKilled()
+    {
+        enemiesKilled++;
+        if (UpgradeUI.Instance.selected == GridManager.Instance.GetTileAtPosition(transform.position))
+        {
+            UpgradeUI.Instance.VisualiseUpgradeInfo(GridManager.Instance.GetTileAtPosition(transform.position));
+        }
+    }
+    public int GetEnemiesKilled()
+    {
+        return enemiesKilled;
     }
 }
 
