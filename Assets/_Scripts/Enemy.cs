@@ -9,7 +9,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Renderer objectRenderer;
-
+    public bool flying = false;
 
     public Color originalColor = Color.white;
 
@@ -82,11 +82,23 @@ public class Enemy : MonoBehaviour
         RandomSoundChance();
 
     }
+
+    private void FlyingUpdate()
+    {
+        currentlyTargetedBuilding = Nexus.Instance.GetComponent<BaseTower>();
+        MoveToOrAttackBuilding();
+
+    }
     private void Update()
     {
         if (slowLeft > 0)
         {
             UpdateSlow();
+        }
+        if (flying)
+        {
+            FlyingUpdate();
+            return;
         }
 
         //If we are not on a tile, register at the tile we are on
@@ -347,6 +359,7 @@ public class Enemy : MonoBehaviour
     {
         float value = maxHealth * (damageValueRatio * attackDamage / attackCooldown);
         value = value / 1000;
+        if (flying) { value *= 1.4f; }
         return Mathf.RoundToInt(value);
 
     }

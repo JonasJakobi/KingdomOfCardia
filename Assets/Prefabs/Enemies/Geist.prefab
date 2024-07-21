@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 0}
+  flying: 1
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -283,7 +284,7 @@ MonoBehaviour:
   maxHealth: 1800
   movementSpeed: 0.7
   attackCooldown: 1.1
-  attackDamage: 270
+  attackDamage: 200
   attackRange: 0.55
   slowLeft: 0
   slowAmount: 0
