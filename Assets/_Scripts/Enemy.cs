@@ -65,6 +65,10 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         objectRenderer = GetComponent<Renderer>();
+        if (objectRenderer == null)
+        {
+            objectRenderer = GetComponentInChildren<Renderer>();
+        }
         health = maxHealth;
         originalMovementSpeed = movementSpeed;
         originalAttackDamage = attackDamage;
