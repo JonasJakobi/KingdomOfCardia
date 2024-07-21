@@ -121,7 +121,7 @@ public class UpgradeUI : Singleton<UpgradeUI>
         //Show tower range
         SpawnRangeIndicator(tower.GetComponent<BaseTower>());
         UpdateUpgradeButton(tower.GetComponent<BaseTower>());
-        defeatedEnemies.text = "Defeated Enemies:\n" + tower.GetComponent<BaseTower>().GetEnemiesKilled().ToString();
+        defeatedEnemies.text = "Besiegte Gegner:\n" + tower.GetComponent<BaseTower>().GetEnemiesKilled().ToString();
         if (tower.GetComponent<ProjectileTower>() != null)
         {
             targetingType.transform.parent.gameObject.SetActive(true);

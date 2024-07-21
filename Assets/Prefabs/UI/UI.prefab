@@ -3613,6 +3613,8 @@ MonoBehaviour:
   speed: {fileID: 3096386835920138221}
   range: {fileID: 6886027104154235085}
   projectile: {fileID: 0}
+  defeatedEnemies: {fileID: 0}
+  targetingType: {fileID: 0}
   projectileBox: {fileID: 0}
   rangeIndicatorPrefab: {fileID: 0}
   rangeIndicator: {fileID: 0}
@@ -4300,6 +4302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStartCost: 1
+  RangeIndicatorPrefab: {fileID: 0}
   towerPreviewPrefab: {fileID: 8986985184927539993, guid: 5b69a6a27b75de54aafbdf41e05d1f40, type: 3}
   towerPrefab: {fileID: 8986985184927539993, guid: 5b69a6a27b75de54aafbdf41e05d1f40, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
@@ -6623,6 +6626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStartCost: 1
+  RangeIndicatorPrefab: {fileID: 0}
   towerPreviewPrefab: {fileID: 2667876061457046568, guid: 0c5636298cdeffb4a9408e0376dca758, type: 3}
   towerPrefab: {fileID: 2667876061457046568, guid: 0c5636298cdeffb4a9408e0376dca758, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
@@ -7417,6 +7421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStartCost: 1
+  RangeIndicatorPrefab: {fileID: 0}
   towerPreviewPrefab: {fileID: 8937360665854073709, guid: 15b285690cf87cb4baa5dea66c176dad, type: 3}
   towerPrefab: {fileID: 8937360665854073709, guid: 15b285690cf87cb4baa5dea66c176dad, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
@@ -8863,6 +8868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStartCost: 1
+  RangeIndicatorPrefab: {fileID: 0}
   towerPreviewPrefab: {fileID: 8570863131761619502, guid: 6f040786a21abff40a0d3dcdb207bd8b, type: 3}
   towerPrefab: {fileID: 8570863131761619502, guid: 77c0defceb821604aa934f147d54300d, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
@@ -11654,6 +11660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStartCost: 1
+  RangeIndicatorPrefab: {fileID: 0}
   towerPreviewPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
   towerPrefab: {fileID: 759197188728652004, guid: 76d78def29d21b340b9ed782f819e97f, type: 3}
   placeableColor: {r: 0, g: 1, b: 0, a: 0.5}
