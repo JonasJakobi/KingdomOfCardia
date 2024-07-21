@@ -22,10 +22,16 @@ public class ProjectileTower : BaseTower
     [SerializeField] private AudioClip towerShootSound;
     [SerializeField] private AudioClip towerWindupSound;
     // Update is called once per frame
+    private Animator anim;
 
     protected override void Awake()
     {
         base.Awake();
+        anim = GetComponent<Animator>();
+        if (anim == null)
+        {
+            anim = GetComponentInChildren<Animator>();
+        }
     }
 
     void Update()
@@ -54,7 +60,7 @@ public class ProjectileTower : BaseTower
         {
             AudioSystem.Instance.PlayTowerSound(towerWindupSound);
         }
-        GetComponent<Animator>().SetTrigger("Attack");
+        anim.SetTrigger("Attack");
         StartCoroutine(WaitAndSpawnProjectile());
         StartCoroutine(AttackCooldown());
     }

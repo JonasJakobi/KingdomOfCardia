@@ -210,7 +210,15 @@ public class BaseTower : MonoBehaviour
         //Change the sprite if there is a new one.
         if (currentUpgrade.upgradeSprite != null)
         {
-            GetComponent<SpriteRenderer>().sprite = currentUpgrade.upgradeSprite;
+            if (GetComponent<SpriteRenderer>() != null)
+            {
+                GetComponent<SpriteRenderer>().sprite = currentUpgrade.upgradeSprite;
+
+            }
+            else
+            {
+                GetComponentInChildren<SpriteRenderer>().sprite = currentUpgrade.upgradeSprite;
+            }
         }
         if (GetComponentInChildren<TowerStars>() != null)
         {
@@ -224,7 +232,7 @@ public class BaseTower : MonoBehaviour
     }
     private void UpgradeAnimation()
     {
-        var upgradeanim = Instantiate(upgradePrefab, transform);
+        var upgradeanim = Instantiate(upgradePrefab, GetComponentInChildren<TowerStars>().starSpawnPoint);
         Destroy(upgradeanim, 0.5f);
         if (scaleTween != null)
         {

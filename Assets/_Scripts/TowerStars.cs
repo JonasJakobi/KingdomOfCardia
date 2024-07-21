@@ -5,7 +5,7 @@ public class TowerStars : MonoBehaviour
     [SerializeField]
     private Sprite[] starSprites;
 
-    private Transform starSpawnPoint;
+    public Transform starSpawnPoint;
 
     private GameObject starInstance;
 

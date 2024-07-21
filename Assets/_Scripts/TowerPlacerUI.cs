@@ -177,7 +177,15 @@ public class TowerPlacerUI : MonoBehaviour
         Tile tile = GridManager.Instance.GetTileAtPosition(GetMousePosition());
         var tower = Instantiate(towerPrefab, tile.transform.position, Quaternion.identity);
         //give the tower our decrease cost method via event or something
-        tower.GetComponent<BaseTower>().OnTowerDestroyed += DecreaseCost;
+        if (tower.GetComponent<BaseTower>() == null)
+        {
+            tower.GetComponentInChildren<BaseTower>().OnTowerDestroyed += DecreaseCost;
+        }
+        else
+        {
+            tower.GetComponent<BaseTower>().OnTowerDestroyed += DecreaseCost;
+        }
+
         AudioSystem.Instance.PlayBonkSound();
         IncreaseCost();
         UIChangeManager.Instance.towersPlaced++;
