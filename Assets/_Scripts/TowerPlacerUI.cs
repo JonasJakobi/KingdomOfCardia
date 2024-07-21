@@ -15,10 +15,11 @@ public class TowerPlacerUI : MonoBehaviour
     [SerializeField]
     private int towerStartCost = 1;
 
-
+    [SerializeField]
+    GameObject RangeIndicatorPrefab;
     [SerializeField]
     GameObject towerPreviewPrefab;
-
+    GameObject rangeIndicator;
     GameObject towerPreview;
     [SerializeField]
     public GameObject towerPrefab;
@@ -63,6 +64,7 @@ public class TowerPlacerUI : MonoBehaviour
         {
             return;
         }
+
         if (Input.GetMouseButtonDown(0))
             OnMouseDown();
 
@@ -71,7 +73,12 @@ public class TowerPlacerUI : MonoBehaviour
         if (tile == null)
         {
             if (towerPreview != null)
+            {
                 towerPreview.SetActive(false);
+                rangeIndicator.SetActive(false);
+
+            }
+
             if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.UI))
             {
                 Debug.Log("Currently not hovering over a tile so we are not doing anything here");
@@ -117,6 +124,8 @@ public class TowerPlacerUI : MonoBehaviour
         {
             isPlacingTower = true;
             towerPreview = Instantiate(towerPreviewPrefab, GetMousePosition(), Quaternion.identity);
+            rangeIndicator = Instantiate(RangeIndicatorPrefab, GetMousePosition(), Quaternion.identity);
+            rangeIndicator.transform.localScale = new Vector3(towerPrefab.GetComponent<BaseTower>().GetTowerUpgrade().range * 2, towerPrefab.GetComponent<BaseTower>().GetTowerUpgrade().range * 2, 1);
 
 
 
@@ -142,8 +151,9 @@ public class TowerPlacerUI : MonoBehaviour
         if (towerPreview.activeSelf == false)
         {
             towerPreview.SetActive(true);
+            rangeIndicator.SetActive(true);
         }
-        towerPreview.transform.position = tile.transform.position;
+
         if (towerPreview.GetComponent<SpriteRenderer>() != null)
         {
             towerPreview.GetComponent<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
@@ -151,9 +161,12 @@ public class TowerPlacerUI : MonoBehaviour
         else
         {
             towerPreview.GetComponentInChildren<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
-
         }
+
+        rangeIndicator.GetComponent<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
+
         towerPreview.transform.position = tile.transform.position;
+        rangeIndicator.transform.position = tile.transform.position;
     }
 
 
@@ -232,22 +245,24 @@ public class TowerPlacerUI : MonoBehaviour
         if (towerPreview != null)
         {
             Destroy(towerPreview);
+            Destroy(rangeIndicator);
         }
 
     }
 
     private void OnMouseDown()
     {
-        if (!isPlacingTower)
-        {
-            return;
-
-        }
         if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             StopPlacingTower();
             return;
         }
+        if (!isPlacingTower)
+        {
+            return;
+
+        }
+
 
         var placeAnim = Instantiate(placePrefab, transform);
         Destroy(placeAnim, 1);

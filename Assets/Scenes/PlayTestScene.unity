@@ -1524,7 +1524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -169.94006, y: -20.276001}
+  m_AnchoredPosition: {x: -169.94006, y: -20.276062}
   m_SizeDelta: {x: 920, y: -433.6842}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &497249508
@@ -4492,6 +4492,7 @@ MonoBehaviour:
   activeWave: 0
   waveValue: 0
   gridManager: {fileID: 2070240996}
+  livingEnemies: []
 --- !u!1 &1281545348
 GameObject:
   m_ObjectHideFlags: 0
@@ -8731,7 +8732,7 @@ PrefabInstance:
     - target: {fileID: 116666364731169066, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: rangeIndicatorPrefab
       value: 
-      objectReference: {fileID: 2788479500664461125, guid: 4adad373fa625214ab683a48590d2c24, type: 3}
+      objectReference: {fileID: 3297607645450232535, guid: 00bace6d55a68ac4681de045ac1fda7c, type: 3}
     - target: {fileID: 204999982757558041, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9424,6 +9425,10 @@ PrefabInstance:
       propertyPath: towerPreviewPrefab
       value: 
       objectReference: {fileID: 2667876061457046568, guid: f64bd438c2b00cd488485b41a141ad85, type: 3}
+    - target: {fileID: 3650293025517007694, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: RangeIndicatorPrefab
+      value: 
+      objectReference: {fileID: 3297607645450232535, guid: 00bace6d55a68ac4681de045ac1fda7c, type: 3}
     - target: {fileID: 3668756317939713669, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10228,6 +10233,10 @@ PrefabInstance:
       propertyPath: towerPreviewPrefab
       value: 
       objectReference: {fileID: 759197188728652004, guid: e7e3afdccf2ab944c9da00414c3eff15, type: 3}
+    - target: {fileID: 6794474538767203592, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: RangeIndicatorPrefab
+      value: 
+      objectReference: {fileID: 3297607645450232535, guid: 00bace6d55a68ac4681de045ac1fda7c, type: 3}
     - target: {fileID: 6833928856363027095, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10292,6 +10301,10 @@ PrefabInstance:
       propertyPath: towerPreviewPrefab
       value: 
       objectReference: {fileID: 8570863131761619502, guid: 77c0defceb821604aa934f147d54300d, type: 3}
+    - target: {fileID: 7088200981957123617, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: RangeIndicatorPrefab
+      value: 
+      objectReference: {fileID: 3297607645450232535, guid: 00bace6d55a68ac4681de045ac1fda7c, type: 3}
     - target: {fileID: 7133619635444040577, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -76.05298
@@ -10464,6 +10477,10 @@ PrefabInstance:
       propertyPath: towerPreviewPrefab
       value: 
       objectReference: {fileID: 1264701238348325846, guid: dd668a50b0e9fbe4093b0026eb5ff3f4, type: 3}
+    - target: {fileID: 7710982517468776544, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: RangeIndicatorPrefab
+      value: 
+      objectReference: {fileID: 3297607645450232535, guid: 00bace6d55a68ac4681de045ac1fda7c, type: 3}
     - target: {fileID: 7763413909739805713, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 136.85
@@ -10622,6 +10639,10 @@ PrefabInstance:
       propertyPath: towerPreviewPrefab
       value: 
       objectReference: {fileID: 8986985184927539993, guid: 1e133ab9a9ddb8643b1866fcb6acf2fe, type: 3}
+    - target: {fileID: 8593577739567360366, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: RangeIndicatorPrefab
+      value: 
+      objectReference: {fileID: 3297607645450232535, guid: 00bace6d55a68ac4681de045ac1fda7c, type: 3}
     - target: {fileID: 8595933990075014905, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
