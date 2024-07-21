@@ -574,7 +574,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104397487}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -906,6 +906,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 713754466}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1882473561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1882473562}
+  - component: {fileID: 1882473564}
+  - component: {fileID: 1882473563}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1882473562
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882473561}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 581880040}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2, y: 476}
+  m_SizeDelta: {x: 880, y: 163}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1882473563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882473561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 5d019b05c80395348a2790d16add2dc5, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1882473564
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882473561}
+  m_CullTransparentMesh: 1
 --- !u!82 &1953306485 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1322669520929995713, guid: 6b5a49453c1ce914f91a5e30e1b1b8c4, type: 3}
@@ -924,6 +999,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1535863867}
     m_Modifications:
+    - target: {fileID: 462238176164640434, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 597.4666
+      objectReference: {fileID: 0}
+    - target: {fileID: 462238176164640434, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -320.73578
+      objectReference: {fileID: 0}
     - target: {fileID: 834303355443053430, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
       propertyPath: skipText
       value: 
@@ -936,33 +1019,133 @@ PrefabInstance:
 
 
 
+
+
+
+
         2D Artist
 
 
-        Animators
+
+        Animator
+
 
 
         Music
 
 
+
         Audio
 
 
-        Special
-        Thanks
 
 
-        <u>Assets from the Internet </u>
+        <u>Playtesters</u>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <u>Assets
+        from the Internet </u>
 
 
         Anvil Sound Effect
+
+
+        Particle FX
+
+
+        Icons
+
+
+        DoTween
+
+
+
+
+        <u>Very
+        Important Statistics</u>
+
+
+        251
+
+
+        37
+
+
+        5.188
+
+
+        About
+        7
+
+
+
+        At least 34
+
+
+
+        25
+
+
+        291
+
+
+        9
+
+
+
+
+        <u>Special
+        Thanks</u>
+
+
+        Martin Rolfs
+
+
+        Nepomuk
+
+
+
+        Tammo Werner
+
+
+        My
+        Fan
+
+
+        Instant Noodles
+
+
+        Coffee
+
+
+        My sleeping schedule
+
+
+        You
+
+
+
+
+
 
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 4785809874673057056, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
       propertyPath: m_margin.x
-      value: -161.77559
+      value: 3.7689056
       objectReference: {fileID: 0}
     - target: {fileID: 4785809874673057056, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
       propertyPath: m_fontStyle
@@ -1008,6 +1191,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5560373509944329735, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 606.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5560373509944329735, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 325.29236
+      objectReference: {fileID: 0}
     - target: {fileID: 5771286664789409279, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
       propertyPath: m_Name
       value: CreditParent
@@ -1016,39 +1207,145 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Jonas Jakobi
 
+
         Ove Klasen
 
+
         Neele Kohle
+
 
         Lea
         Radke
 
 
+
         Lea Radke
 
 
+
         Lea Radke
+
 
 
         Suno AI
+
 
 
         Ove
         Klasen
 
 
-        Playtesters?
+
+
+        Tom Kaden
+
+
+        Martin Rolfs
+
+
+        Valentino Gaudeck
+
+
+        Emil
+        Kocher
+
+
+        <b>The "Aktuelle Forschungsthemen der Medieninformatik"
+        Playtesters</b>
+
+
 
 
 
 
         Benboncan
 
+
+        Raphael Hatencia
+
+
+        FreePik
+
+
+        Daniele
+        Giardini
+
+
+
+
+
+
+        Cups of Coffee needed
+
+
+        Instant Noodles eaten
+
+
+        Lines
+        of Code written
+
+
+        Nullpointer exceptions upon exiting PlayMode
+
+
+        Lifesaving
+        conversations with ChatGPT
+
+
+        Branches created on GitHub
+
+
+        Git
+        Commits
+
+
+        Recycled Google Presentations in the same file
+
+
+
+
+
+        For
+        the Game''s Title
+
+
+        For being an incredible snail and model
+
+
+        For
+        the Unity helpdesk
+
+
+        For keeping me alive in the heat
+
+
+        For
+        being cheap & yummy
+
+
+        For being a sleep substitute
+
+
+        For
+        never existing in the first place
+
+
+        For playing the game!
+
+
+
+
+
+
 '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4516685240577708739, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5335804099004141362, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1882473562}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df30ad770d4873e4c84e2591845540a8, type: 3}
 --- !u!1660057539 &9223372036854775807
