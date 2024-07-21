@@ -9930,6 +9930,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: IncreaseHandSize
       objectReference: {fileID: 0}
+    - target: {fileID: 305519004569255903, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 640654257438837496, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -11251,8 +11255,20 @@ PrefabInstance:
       value: -6.866848
       objectReference: {fileID: 0}
     - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 89.5427
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60.0632
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 41.1953
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -20.276001
+      value: 27.1778
       objectReference: {fileID: 0}
     - target: {fileID: 5907971227123585435, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_fontSize
