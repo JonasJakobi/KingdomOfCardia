@@ -142,7 +142,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public void TutorialCheck()
     {
-        if (tutorialScript.tutorialSkipped == false && tutorialDisabledPermanently == false)
+        if (tutorialScript.tutorialSkipped == false && tutorialDisabledPermanently == false && warningQueued == false)
         {
             tutorialParent.SetActive(true);
             tutorialScript.ReactivateTutorial();
@@ -162,6 +162,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
         {
             tutorialParent.SetActive(true);
             tutorialScript.ShowWarning();
+            warningQueued = false;
         }
     }
 
