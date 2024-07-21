@@ -35,7 +35,10 @@ public class UpgradeUI : Singleton<UpgradeUI>
         //hovering over tower
         if (tile != null && tile.GetBuilding() != null && tile.GetBuilding().GetComponent<BaseTower>().isSelectable)
         {
-            SpawnRangeIndicator(tile.GetBuilding().GetComponent<BaseTower>());
+            if (tile == selected || selected == null)
+            {
+                SpawnRangeIndicator(tile.GetBuilding().GetComponent<BaseTower>());
+            }
 
             if (Input.GetMouseButtonDown(0) && selected != tile)
             {
