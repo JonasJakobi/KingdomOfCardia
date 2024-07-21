@@ -146,11 +146,11 @@ public class Tutorial : MonoBehaviour
                 break;
 
             case 4:
-                typeSentence = StartCoroutine(TypeSentence("Wir müssen nun mit unserem verbliebenem <b>Gold</b> einen <b>Zauberer</b> rekrutieren, sodass wir diese <i>erste Bedrohung</i> erfolgreich abwehren können."));
+                typeSentence = StartCoroutine(TypeSentence("Wir müssen nun mit unserem verbliebenem <b>Gold</b> ein paar <b>Einheiten</b> rekrutieren, sodass wir diese <i>erste Bedrohung</i> erfolgreich abwehren können."));
                 break;
 
             case 5:
-                typeSentence = StartCoroutine(TypeSentence("<b>Achtung:</b> Während eines aktiven <i>Angriffes</i> können wir weder Einheiten rekrutieren noch Gebäude errichten."));
+                typeSentence = StartCoroutine(TypeSentence("<b>Achtung:</b> Während eines aktiven <i>Angriffes</i> können wir weder Einheiten rekrutieren noch Gebäude errichten. Und baue <b>NIEMALS</b> den gesamten Weg zum Turm zu!"));
                 break;
             case 6:
                 IncrementTutorialStep();
@@ -179,7 +179,7 @@ public class Tutorial : MonoBehaviour
                 tutorialParent.SetActive(false);
                 return;
             case 20:
-                typeSentence = StartCoroutine(TypeSentence("Whoops, da habe ich wohl doch etwas vergessen zu erwähnen."));
+                typeSentence = StartCoroutine(TypeSentence("Du hast eben den gesamten Weg blockiert..."));
                 break;
             case 21:
                 typeSentence = StartCoroutine(TypeSentence("Wenn die <i>Monster</i> keinen Weg zu dem <b>Schneckenturm</b> finden, drehen sie durch und greifen einfach andere Türme an!"));
@@ -188,7 +188,7 @@ public class Tutorial : MonoBehaviour
                 typeSentence = StartCoroutine(TypeSentence("Sei also stets vorsichtig beim Planen der nächsten Verteidigung und <i>entferne</i> notfalls bestehende Einheiten wieder."));
                 break;
             case 23:
-                typeSentence = StartCoroutine(TypeSentence("Das müsste jetzt aber wirklich alles gewesen sein? Viel Erfolg!"));
+                typeSentence = StartCoroutine(TypeSentence("Halte dich in Zukunft besser an meine Worte!"));
                 break;
             case 24:
                 warningShowed = true;
