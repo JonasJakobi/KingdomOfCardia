@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d320ba2bdf5bb4c49bf5f5c28d7230e0, type: 3}
-  m_Name: RitterBase 10
+  m_Name: RitterBase 12
   m_EditorClassIdentifier: 
   health: 8000
-  cost: 50000
-  damage: 700
+  cost: 800000
+  damage: 2800
   range: 3
   attackSpeed: 1.15
-  projectileSpeed: 2.8
-  projectileLifetime: 0.6
-  maxEnemiesHittable: 100
+  projectileSpeed: 3
+  projectileLifetime: 0.9
+  maxEnemiesHittable: 200
   upgradeName: Base Ritter
   upgradeSprite: {fileID: 0}
   starLevel: 1
