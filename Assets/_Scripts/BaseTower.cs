@@ -10,6 +10,7 @@ using System;
 /// </summary>
 public class BaseTower : MonoBehaviour
 {
+    [SerializeField] private int maxHealth = 100;
     [SerializeField] private int health = 100;
     [SerializeField] private int temporaryHealth = 0;
     private int activeShieldAmount = 0;
@@ -139,9 +140,11 @@ public class BaseTower : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(int addetHealth)
+    public void ChangeHealth(int addedHealth)
     {
-        health += addetHealth;
+        health += addedHealth;
+        maxHealth += addedHealth;
+        UIChangeManager.Instance.UpdateHP();
     }
 
     public void ShieldThisBaseTower(int healthAmount, float duration)
@@ -189,7 +192,7 @@ public class BaseTower : MonoBehaviour
 
     public int GetMaxHealth()
     {
-        return currentUpgrade.health;
+        return maxHealth;
     }
 
 
@@ -206,6 +209,8 @@ public class BaseTower : MonoBehaviour
         currentUpgrade = upgradePath.upgrades[currentLevel];
         var maxHealthDiff = currentUpgrade.health - maxHealthBefore;
         health += maxHealthDiff; //Only 'heal' our tower by the amount of health we gained
+        maxHealth = currentUpgrade.health;
+        UIChangeManager.Instance.UpdateHP();
 
         //Change the sprite if there is a new one.
         if (currentUpgrade.upgradeSprite != null)

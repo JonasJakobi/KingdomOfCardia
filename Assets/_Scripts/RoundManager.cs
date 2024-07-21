@@ -229,11 +229,11 @@ public class RoundManager : Singleton<RoundManager>
         }
 
         //sprite �nderung des Nexus
-        if (round == 30)
+        if (round == 25)
         {
             Nexus.Instance.ChangeNexus(false);
         }
-        else if (round == 15)
+        else if (round == 12)
         {
             Nexus.Instance.ChangeNexus(true);
         }
