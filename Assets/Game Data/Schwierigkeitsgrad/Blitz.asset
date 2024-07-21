@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerCostGrowthRate: 2
   damageToEnemiesMultiplier: 0.4
-  damageToEnemiesMultiplierDecreasePerRound: 0.027
-  damageToTowersMultiplier: 2
+  damageToEnemiesMultiplierDecreasePerRound: 0.025
+  damageToTowersMultiplier: 1.8
   enemyMoveSpeedMultiplier: 2.5
   startMoney: 18

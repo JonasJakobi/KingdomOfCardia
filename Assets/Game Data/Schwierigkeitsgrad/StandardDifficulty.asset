@@ -15,6 +15,6 @@ MonoBehaviour:
   towerCostGrowthRate: 1.7
   damageToEnemiesMultiplier: 0.75
   damageToEnemiesMultiplierDecreasePerRound: 0.027
-  damageToTowersMultiplier: 0.85
-  enemyMoveSpeedMultiplier: 1.1
+  damageToTowersMultiplier: 0.75
+  enemyMoveSpeedMultiplier: 1.04
   startMoney: 24
