@@ -17,4 +17,4 @@ MonoBehaviour:
   damageToEnemiesMultiplierDecreasePerRound: 0.027
   damageToTowersMultiplier: 0.85
   enemyMoveSpeedMultiplier: 1.1
-  startMoney: 18
+  startMoney: 24
