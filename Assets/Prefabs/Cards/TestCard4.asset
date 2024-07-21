@@ -15,7 +15,7 @@ MonoBehaviour:
   cardType: 0
   cardName: Vier
   description: Vier gewinnt!
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: c9d74c432a5d8a64b967b5ef6de09e53, type: 3}
   effect: {fileID: 11400000, guid: a4511ad898004014fa1e6bababc53d79, type: 2}
   valueOfCard: 4
   duration: 0
