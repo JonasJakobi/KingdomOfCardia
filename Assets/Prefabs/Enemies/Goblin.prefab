@@ -412,13 +412,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 0}
+  flying: 0
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   reduceColor: {r: 1, g: 0, b: 1, a: 1}
   overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  enemySound: {fileID: 0}
-  enemySoundChance: 0.2
+  enemySound: {fileID: 8300000, guid: 49a1e7ed85d003149933e907c2451e89, type: 3}
+  enemySoundChance: 0.15
   maxHealth: 1200
   movementSpeed: 1
   attackCooldown: 1.2

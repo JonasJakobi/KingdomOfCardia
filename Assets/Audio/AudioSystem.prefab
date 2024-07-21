@@ -70,7 +70,7 @@ MonoBehaviour:
   enemySoundSource3: {fileID: 9159610660435993240}
   towerSoundSource: {fileID: 1322669520929995713}
   projectileSoundSource: {fileID: 8216784283999744767}
-  anvilSoundSource: {fileID: 0}
+  anvilSoundSource: {fileID: 1322669520929995713}
   dialogueSource: {fileID: 8216784283999744767}
   backgroundMusic: {fileID: 8300000, guid: 8335194611634ba46a90a5ee622ccf9a, type: 3}
   menuMusic: {fileID: 8300000, guid: 3d85a8bc5ba88b748a924bbc9c5f0b25, type: 3}
@@ -81,8 +81,8 @@ MonoBehaviour:
   bonkSound: {fileID: 8300000, guid: a6573f0d64613a94daba5e47e6e48049, type: 3}
   basicSplash: {fileID: 8300000, guid: d5f88a7fbbfd43049978ec9e3707af03, type: 3}
   dramaticBoom: {fileID: 8300000, guid: 9073535e2852fa94db5ef4a3bc0db85e, type: 3}
-  anvilSound: {fileID: 0}
-  sellSound: {fileID: 0}
+  anvilSound: {fileID: 8300000, guid: 4c6cee4ab1b8e584cacebc7f6ce039ad, type: 3}
+  sellSound: {fileID: 8300000, guid: 17d6ce432646edb4d8bf0570492e399a, type: 3}
   plopp: {fileID: 8300000, guid: 831b3ac92af21cf45b71222dac3c3c85, type: 3}
   dialogueSound: {fileID: 8300000, guid: c0558c2eb0d601e4f93a7bfb30eb3cd5, type: 3}
 --- !u!82 &3146287058507271818
