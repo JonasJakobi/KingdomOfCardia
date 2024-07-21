@@ -168,7 +168,7 @@ public class GridManager : Singleton<GridManager>
 
     }
 
-    public Enemy FindEnemy(float x, float y, int maxDistance, TargetingType targetingType = TargetingType.Closest)
+    public Enemy FindEnemy(float x, float y, int maxDistance, TargetingType targetingType = TargetingType.Nächsten)
     {
         Enemy bestEnemySoFar = null;
         double bestValueSoFar = float.MaxValue;
@@ -187,7 +187,7 @@ public class GridManager : Singleton<GridManager>
             }
             switch (targetingType)
             {
-                case TargetingType.First:
+                case TargetingType.Ersten:
                     float nexusDistance = Vector3.Distance(enemy.transform.position, nexusPos);
                     if (nexusDistance < bestValueSoFar)
                     {
@@ -195,14 +195,14 @@ public class GridManager : Singleton<GridManager>
                         bestEnemySoFar = enemy;
                     }
                     break;
-                case TargetingType.Closest:
+                case TargetingType.Nächsten:
                     if (distance < bestValueSoFar)
                     {
                         bestValueSoFar = distance;
                         bestEnemySoFar = enemy;
                     }
                     break;
-                case TargetingType.Strongest:
+                case TargetingType.Stärksten:
                     if (1 / enemy.health < bestValueSoFar)
                     {
                         bestValueSoFar = 1 / enemy.health;
@@ -298,7 +298,8 @@ public class GridManager : Singleton<GridManager>
 }
 public enum TargetingType
 {
-    First,
-    Closest,
-    Strongest
+    Ersten,
+    Nächsten,
+    Stärksten
+
 }

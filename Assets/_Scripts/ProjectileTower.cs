@@ -20,7 +20,7 @@ public class ProjectileTower : BaseTower
 
     [SerializeField] private bool canAttack = true;
     [SerializeField]
-    private TargetingType targetingType;
+    public TargetingType targetingType;
     [SerializeField] private AudioClip towerShootSound;
     [SerializeField] private AudioClip towerWindupSound;
     // Update is called once per frame
@@ -105,6 +105,15 @@ public class ProjectileTower : BaseTower
         canAttack = false;
         yield return new WaitForSeconds(currentUpgrade.attackSpeed);
         canAttack = true;
+    }
+
+    public void NextTargetingType()
+    {
+        targetingType = (TargetingType)(((int)targetingType + 1) % Enum.GetValues(typeof(TargetingType)).Length);
+    }
+    public void PreviousTargetingType()
+    {
+        targetingType = (TargetingType)(((int)targetingType - 1 + Enum.GetValues(typeof(TargetingType)).Length) % Enum.GetValues(typeof(TargetingType)).Length);
     }
 
 

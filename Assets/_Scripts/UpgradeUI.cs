@@ -4,11 +4,12 @@ using UnityEngine;
 using TMPro;
 using System;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class UpgradeUI : Singleton<UpgradeUI>
 {
 
-    public TMP_Text upgradeButton, towerName, health, damage, speed, range, projectile, defeatedEnemies;
+    public TMP_Text upgradeButton, towerName, health, damage, speed, range, projectile, defeatedEnemies, targetingType;
     public GameObject projectileBox;
     public GameObject rangeIndicatorPrefab;
     public GameObject rangeIndicator;
@@ -121,6 +122,15 @@ public class UpgradeUI : Singleton<UpgradeUI>
         SpawnRangeIndicator(tower.GetComponent<BaseTower>());
         UpdateUpgradeButton(tower.GetComponent<BaseTower>());
         defeatedEnemies.text = "Defeated Enemies:\n" + tower.GetComponent<BaseTower>().GetEnemiesKilled().ToString();
+        if (tower.GetComponent<ProjectileTower>() != null)
+        {
+            targetingType.transform.parent.gameObject.SetActive(true);
+            targetingType.text = tower.GetComponent<ProjectileTower>().targetingType.ToString();
+        }
+        else
+        {
+            targetingType.transform.parent.gameObject.SetActive(false);
+        }
         //Stats
         TowerUpgrade ctu = tower.GetComponent<BaseTower>().GetTowerUpgrade();
         TowerUpgrade ntu = tower.GetComponent<BaseTower>().GetTowerUpgrade(true);
@@ -169,6 +179,16 @@ public class UpgradeUI : Singleton<UpgradeUI>
         {
             towerPlaceUI.SetActive(true);
         }
+    }
+    public void NextTargetingType()
+    {
+        selected.GetBuilding().GetComponent<ProjectileTower>().NextTargetingType();
+        VisualiseUpgradeInfo(selected);
+    }
+    public void PreviousTargetingType()
+    {
+        selected.GetBuilding().GetComponent<ProjectileTower>().PreviousTargetingType();
+        VisualiseUpgradeInfo(selected);
     }
 
 }
