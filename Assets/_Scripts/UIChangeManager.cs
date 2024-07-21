@@ -52,6 +52,11 @@ public class UIChangeManager : Singleton<UIChangeManager>
         StartTutorial();
     }
 
+    public void DisableTutorialPermanently()
+    {
+        ConsistentSettings.tutorialEnabled = false;
+    }
+
     public void UpdateRound()
     {
         RoundText.text = "Runde " + RoundManager.Instance.round.ToString();
