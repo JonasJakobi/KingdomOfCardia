@@ -120,7 +120,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &8792186859224162199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 0}
+  flying: 0
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -243,7 +244,7 @@ BoxCollider2D:
   m_Offset: {x: -0.49268508, y: 2.048354}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6749994, y: 0.042349756}
+    pivot: {x: 0.6735734, y: 0.016595667}
     oldSize: {x: 7.7, y: 4.66}
     newSize: {x: 7.7, y: 4.66}
     adaptiveTilingThreshold: 0.5

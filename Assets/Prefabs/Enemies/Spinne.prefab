@@ -120,7 +120,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &6827960776634030707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRenderer: {fileID: 1655297174215765763}
+  flying: 0
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   freezeColor: {r: 0, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
