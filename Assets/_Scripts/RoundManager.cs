@@ -28,8 +28,8 @@ public class RoundManager : Singleton<RoundManager>
 
     [Header("Round Statistics")]
     public int round = 1;
-    [SerializeField] private int roundValue = 1;
-    [SerializeField] private int roundValueLeft = 0;
+    [SerializeField] private long roundValue = 1;
+    [SerializeField] private long roundValueLeft = 0;
     [SerializeField] private int enemyCount = 0;
     [SerializeField] private int enemiesSpawned;
     public int enemiesDefeated;
@@ -52,7 +52,7 @@ public class RoundManager : Singleton<RoundManager>
     public float waveChance = 25.0f;
     [SerializeField] private bool waveQueued = false;
     [SerializeField] bool activeWave = false;
-    [SerializeField] private int waveValue = 0;
+    [SerializeField] private long waveValue = 0;
 
     public GameObject gridManager;
 
@@ -74,9 +74,9 @@ public class RoundManager : Singleton<RoundManager>
     {
         if (roundValueLeft > 0)
         {
-            int maxValue = (roundValueLeft <= 3) ? 1 : roundValueLeft / 3;
+            long maxValue = (roundValueLeft <= 3) ? 1 : roundValueLeft / 3;
             //generate random value between 1 and maxValue but have chances be higher towards max value
-            int randVal = Random.Range(1, maxValue + 1);
+            long randVal = (long)Random.Range(1, maxValue + 1);
             StartCoroutine(SpawnDelayCoroutine(randVal));
             roundValueLeft = roundValueLeft - randVal;
         }
@@ -110,7 +110,7 @@ public class RoundManager : Singleton<RoundManager>
     }
 
     //Spawn an enemy
-    private void SpawnEnemy(int enemyValue)
+    private void SpawnEnemy(long enemyValue)
     {
         GameObject enemyPrefab = null;
         int randomIndex = Random.Range(0, spawnPoints.Count);
@@ -152,7 +152,7 @@ public class RoundManager : Singleton<RoundManager>
         }
     }
 
-    private GameObject ChooseEnemeyPrefab(int enemyValue)
+    private GameObject ChooseEnemeyPrefab(long enemyValue)
     {
         ShuffleEnemiesArray();
         return EnemyPrefabs.OrderBy(x => Mathf.Abs(x.GetComponentInChildren<Enemy>().GetValue() - enemyValue)).First(); //closest value to our wanted value, shuffled randomly
@@ -206,7 +206,7 @@ public class RoundManager : Singleton<RoundManager>
     private void QueueWave()
     {
         waveQueued = true;
-        waveValue = Random.Range((roundValue / 3), (roundValue / 2));
+        waveValue = (long)Random.Range((roundValue / 3), (roundValue / 2));
         roundValueLeft -= waveValue;
     }
 
@@ -260,7 +260,7 @@ public class RoundManager : Singleton<RoundManager>
         enemiesDefeated++;
     }
 
-    private IEnumerator SpawnDelayCoroutine(int randVal)
+    private IEnumerator SpawnDelayCoroutine(long randVal)
     {
         float maxDelay = maxSpawnTime;
         enemyCount++;
