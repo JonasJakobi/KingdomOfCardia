@@ -24,12 +24,20 @@ public class CardEffect : ScriptableObject
     public DamageType damageType;
     public int multiplier = 1;
 
-    public void DealDamage(int damage)
+    public void DealDamage(int targetNumber)
     {
+        int counter = 0;
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
-            enemy.TakeDamage(damage * multiplier); // cardData.damageAmount sollte den Schaden der Karte enthalten
+            counter++;
+            if (counter >= targetNumber)
+            {
+                enemy.TakeDamage(enemy.maxHealth * 10000); // cardData.damageAmount sollte den Schaden der Karte enthalten
+                counter = 0;
+
+            }
+
         }
     }
 

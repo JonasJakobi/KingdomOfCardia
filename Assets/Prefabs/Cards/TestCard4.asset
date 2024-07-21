@@ -17,5 +17,6 @@ MonoBehaviour:
   description: Vier gewinnt!
   artwork: {fileID: 0}
   effect: {fileID: 11400000, guid: a4511ad898004014fa1e6bababc53d79, type: 2}
-  valueOfCard: 300
+  valueOfCard: 4
   duration: 0
+  cardSound: {fileID: 0}
