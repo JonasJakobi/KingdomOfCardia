@@ -255,7 +255,7 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   reduceColor: {r: 1, g: 0, b: 1, a: 1}
   overallSlow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  enemySound: {fileID: 0}
+  enemySound: {fileID: 8300000, guid: c1c24545323b8bb498265503617b100f, type: 3}
   enemySoundChance: 0.2
   maxHealth: 1000
   movementSpeed: 0.9
