@@ -71,9 +71,6 @@ public class CardManager : Singleton<CardManager>
         // Karte zum Deck hinzufügen
         AddCardToDeck(selectedCardUI.cardData);
 
-        UIChangeManager.Instance.TutorialCheck();
-        UIChangeManager.Instance.WarningCheck();
-
         // Entfernen der angezeigten Karten
         DiscardSelection();
     }
@@ -241,6 +238,9 @@ public class CardManager : Singleton<CardManager>
         displayedCards.Clear();
         cardSelectionBackground.SetActive(false);
         skipCardButton.SetActive(false);
+        UIChangeManager.Instance.TutorialCheck();
+        UIChangeManager.Instance.WarningCheck();
+        UIChangeManager.Instance.SnailUpgradeCheck();
     }
 
     public void DrawNewCards()

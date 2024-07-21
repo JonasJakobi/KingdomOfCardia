@@ -37,11 +37,12 @@ public class Nexus : Singleton<Nexus>
     //Aufgerufen im Roundmanager nach runde 15 und 30
     public void ChangeNexus(bool second)
     {
-        if(second)
+        if (second)
         {
             nexus1.SetActive(false);
             nexus2.SetActive(true);
             transform.GetComponent<BaseTower>().ChangeHealth(50000);
+            UIChangeManager.Instance.QueueSnailUpgrade();
         }
         else
         {

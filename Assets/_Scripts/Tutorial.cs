@@ -17,6 +17,7 @@ public class Tutorial : MonoBehaviour
     public bool tutorialSkipped = true;
     public bool warningShowed = false;
     private int lastTutorialStep;
+    public bool snailUpgraded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +80,16 @@ public class Tutorial : MonoBehaviour
         {
             lastTutorialStep = tutorialStep;
             tutorialStep = 20;
+            SwitchTutotialDialogue();
+        }
+    }
+
+    public void ShowSnailUpgrade()
+    {
+        if (snailUpgraded == false)
+        {
+            lastTutorialStep = tutorialStep;
+            tutorialStep = 30;
             SwitchTutotialDialogue();
         }
     }
@@ -175,7 +186,7 @@ public class Tutorial : MonoBehaviour
                 typeSentence = StartCoroutine(TypeSentence("Mehr kann ich dir nicht beibringen. Viel Erfolg..."));
                 break;
             case 13:
-                tutorialSkipped = true;
+                //tutorialSkipped = true;
                 tutorialParent.SetActive(false);
                 return;
             case 20:
@@ -192,6 +203,21 @@ public class Tutorial : MonoBehaviour
                 break;
             case 24:
                 warningShowed = true;
+                tutorialStep = lastTutorialStep;
+                SwitchTutotialDialogue();
+                tutorialParent.SetActive(false);
+                return;
+            case 30:
+                typeSentence = StartCoroutine(TypeSentence("Du hast dich so gut angestellt, dass sich die <b>Schnecke</b> aus ihrem Haus traut!"));
+                break;
+            case 31:
+                typeSentence = StartCoroutine(TypeSentence("Das bedeutet, dass sie sich mit einem <i>Moralboost</i> komplett geheilt hat und auch mehr Schaden einstecken kann."));
+                break;
+            case 32:
+                typeSentence = StartCoroutine(TypeSentence("Wenn Du dich weiterhin so gut anstellst, könntest du sogar die <b>finale Form</b> der Schnecke erreichen!"));
+                break;
+            case 33:
+                snailUpgraded = true;
                 tutorialStep = lastTutorialStep;
                 SwitchTutotialDialogue();
                 tutorialParent.SetActive(false);

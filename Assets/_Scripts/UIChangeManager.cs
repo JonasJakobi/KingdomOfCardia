@@ -34,6 +34,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
 
     public bool tutorialDisabledPermanently = false;
     public bool warningQueued = false;
+    public bool upgradeQueued = false;
     public GameObject tutorialParent;
     public Tutorial tutorialScript;
     public GameObject speedButtons;
@@ -168,6 +169,26 @@ public class UIChangeManager : Singleton<UIChangeManager>
             tutorialParent.SetActive(true);
             tutorialScript.ShowWarning();
             warningQueued = false;
+        }
+    }
+
+    public void QueueSnailUpgrade()
+    {
+        if (tutorialScript.snailUpgraded == false && upgradeQueued == false)
+        {
+            upgradeQueued = true;
+            Debug.Log("Schnegge queue");
+        }
+    }
+
+    public void SnailUpgradeCheck()
+    {
+        if (tutorialScript.snailUpgraded == false && upgradeQueued)
+        {
+            tutorialParent.SetActive(true);
+            tutorialScript.ShowSnailUpgrade();
+            upgradeQueued = false;
+            Debug.Log("Schnegge tutorial now!");
         }
     }
 
