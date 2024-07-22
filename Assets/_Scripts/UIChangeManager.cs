@@ -40,7 +40,7 @@ public class UIChangeManager : Singleton<UIChangeManager>
     public GameObject speedButtons;
     public GameObject startRoundButton;
 
-    public int damageDealt = 0;
+    public long damageDealt = 0;
 
     public int towersPlaced = 0;
 
