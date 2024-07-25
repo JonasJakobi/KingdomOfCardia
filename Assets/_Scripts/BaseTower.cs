@@ -94,11 +94,19 @@ public class BaseTower : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (SceneChangeManager.Instance.SwitchingScene)
+        {
+            return;
+        }
         StopAllCoroutines();
         if (GridManager.Instance != null)
         {
             var tileHere = GridManager.Instance.GetTileAtPosition(transform.position);
-            tileHere.SetHasBuilding(false, this.gameObject);
+            if (tileHere != null)
+            {
+                tileHere.SetHasBuilding(false, this.gameObject);
+            }
+
         }
         var placers = FindObjectsOfType<TowerPlacerUI>();
 

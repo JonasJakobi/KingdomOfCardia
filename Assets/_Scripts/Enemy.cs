@@ -335,11 +335,16 @@ public class Enemy : MonoBehaviour
     }
     private void OnDestroy()
     {
+        //if exiting playmode / stopping the game, we might not have these references anymore
+        if (SceneChangeManager.Instance == null || SceneChangeManager.Instance.SwitchingScene)
+        {
+            return;
+        }
         var splatter = Instantiate(splatterPrefab, transform.position, Quaternion.identity);
         Destroy(splatter, 0.5f);
+
         AudioSystem.Instance.PlaySplash();
         RoundManager.Instance.DefeatEnemy(this);
-        Debug.Log("Gegner besiegt!");
         currentTile.UnregisterEnemy(this);
         MoneyManager.Instance.AddMoney(GetValue());
     }

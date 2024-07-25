@@ -156,7 +156,7 @@ public class GridManager : Singleton<GridManager>
     {
         if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         {
-            Debug.LogError("Cant register enemy at " + x + y + " , Tile out of bounds, registerint at closest point instead");
+            Debug.Log("Cant register enemy at " + x + y + " , Tile out of bounds, registerint at closest point instead");
             //put at closest tile?
             grid[Mathf.Clamp(x, 0, WIDTH - 1), Mathf.Clamp(y, 0, HEIGHT - 1)].RegisterEnemy(enemy);
             return;

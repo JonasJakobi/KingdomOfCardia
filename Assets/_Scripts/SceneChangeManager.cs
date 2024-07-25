@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChangeManager : Singleton<SceneChangeManager>
+public class SceneChangeManager : SingletonPersistent<SceneChangeManager>
 {
+    public bool SwitchingScene = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        SwitchingScene = false;
     }
+    private void OnEnable()
+    {
+        SwitchingScene = false;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -19,10 +25,12 @@ public class SceneChangeManager : Singleton<SceneChangeManager>
 
     public void SwitchSceneByName(string sceneName)
     {
+        SwitchingScene = true;
         // Überprüfe, ob die Szene existiert und lade die Szene
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
             SceneManager.LoadScene(sceneName);
+            SwitchingScene = false;
         }
         else
         {

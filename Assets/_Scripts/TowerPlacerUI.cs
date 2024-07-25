@@ -163,7 +163,6 @@ public class TowerPlacerUI : MonoBehaviour
             towerPreview.GetComponentInChildren<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
         }
 
-        rangeIndicator.GetComponent<SpriteRenderer>().color = isBuildable ? placeableColor : notPlaceableColor;
 
         towerPreview.transform.position = tile.transform.position;
         rangeIndicator.transform.position = tile.transform.position;
@@ -209,7 +208,10 @@ public class TowerPlacerUI : MonoBehaviour
     private void DecreaseCost()
     {
         placedTowerAmount--;
-        MoneyManager.Instance.AddMoney(Convert.ToInt32(towerCost / 2)); // refund half of the cost
+        if (MoneyManager.Instance != null)
+        {
+            MoneyManager.Instance.AddMoney(Convert.ToInt32(towerCost / 2)); // refund half of the cost
+        }
         if (placedTowerAmount > 1)//starting from 3th tower, they get more and more expensive.
         {
             towerCost = towerCost / Constants.Instance.towerCostGrowthRate;

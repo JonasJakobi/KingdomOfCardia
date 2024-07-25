@@ -26,6 +26,10 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
 
     private void GenerateFlowField(bool toGoal = true)
     {
+        if (GridManager.Instance == null || GameObject.FindGameObjectWithTag("Goal") == null) // exiting playmode
+        {
+            return;
+        }
         if (DebugManager.Instance.IsDebugModeActive(DebugManager.DebugModes.General))
         {
             Debug.Log("Regenerating Flow Field...");
