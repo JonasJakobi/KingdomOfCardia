@@ -70,6 +70,7 @@ public class Tutorial : MonoBehaviour
     {
         tutorialSkipped = true;
         warningShowed = true;
+        snailUpgraded = true;
         AudioSystem.Instance.PlayBonkSound();
         tutorialParent.SetActive(false);
     }
