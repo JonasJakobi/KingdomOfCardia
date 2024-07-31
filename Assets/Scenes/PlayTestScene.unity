@@ -1468,6 +1468,7 @@ MonoBehaviour:
   tutorialStep: 0
   tutorialSkipped: 0
   warningShowed: 0
+  snailUpgraded: 0
 --- !u!114 &276152916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4419,6 +4420,7 @@ MonoBehaviour:
   upgradeUI: {fileID: 1965405605}
   tutorialDisabledPermanently: 0
   warningQueued: 0
+  upgradeQueued: 0
   tutorialParent: {fileID: 962081419}
   tutorialScript: {fileID: 276152915}
   speedButtons: {fileID: 2110410037}
@@ -6544,18 +6546,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7111492955326007783}
-        m_TargetAssemblyTypeName: SceneChangeManager, Assembly-CSharp
-        m_MethodName: SwitchSceneByName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: PlayTestScene
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1073000486}
         m_TargetAssemblyTypeName: UIChangeManager, Assembly-CSharp
         m_MethodName: DisableTutorialPermanently
@@ -6566,6 +6556,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7111492955326007783}
+        m_TargetAssemblyTypeName: SceneChangeManager, Assembly-CSharp
+        m_MethodName: SwitchSceneByName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayTestScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1498407664
@@ -11329,11 +11331,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 6.6236
+      value: 6.623657
       objectReference: {fileID: 0}
     - target: {fileID: 5880510495441286205, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.7355
+      value: 5.7354736
       objectReference: {fileID: 0}
     - target: {fileID: 5907971227123585435, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_fontSize
@@ -11349,7 +11351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6000097980049525178, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -17.60147
+      value: -17.60144
       objectReference: {fileID: 0}
     - target: {fileID: 6086008390723171332, guid: 0bda57dbcb144c745862417a5b96a6c2, type: 3}
       propertyPath: m_IsActive
@@ -12193,6 +12195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b01be3ddc37baa4d824d8c8acb4d59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SwitchingScene: 0
 --- !u!1 &7496799228756297071
 GameObject:
   m_ObjectHideFlags: 0
