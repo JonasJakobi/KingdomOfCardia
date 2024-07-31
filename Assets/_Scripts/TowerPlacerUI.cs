@@ -223,15 +223,15 @@ public class TowerPlacerUI : MonoBehaviour
     {
         if (towerCost < 1000)
         {
-            return Convert.ToInt32(towerCost).ToString();
+            return Convert.ToInt64(towerCost).ToString();
         }
         else if (towerCost < 1000000)
         {
-            return Convert.ToInt32((towerCost / 1000)).ToString(".0") + "k";
+            return Convert.ToInt64((towerCost / 1000)).ToString(".0") + "k";
         }
         else
         {
-            return Convert.ToInt32((towerCost / 1000000)).ToString(".0") + "M";
+            return Convert.ToInt64((towerCost / 1000000)).ToString(".0") + "M";
         }
     }
 

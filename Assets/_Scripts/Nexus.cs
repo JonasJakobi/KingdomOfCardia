@@ -12,7 +12,7 @@ public class Nexus : Singleton<Nexus>
     private void FixedUpdate()
     {
         damagingIndex++;
-        if (damagingIndex >= 10)
+        if (damagingIndex >= 50)
         {
             damagingIndex = 0;
             DealDamage();
@@ -28,7 +28,7 @@ public class Nexus : Singleton<Nexus>
         {
             if (tile.enemies.Count > 0)
             {
-                tile.enemies.ForEach(e => e.TakeDamage(1));
+                tile.enemies.ForEach(e => e.TakeDamage(7));
             }
         }
         GridManager.Instance.GetTileAtPosition(transform.position).enemies.ForEach(e => e.TakeDamage(1));

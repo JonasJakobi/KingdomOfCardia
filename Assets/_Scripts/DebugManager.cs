@@ -144,7 +144,7 @@ public class DebugManager : Singleton<DebugManager>
         var allTiles = FindObjectsOfType<FlowFieldTile>();
         foreach (FlowFieldTile tile in allTiles)
         {
-            if (tile.GetNexusMovementVector() != Vector3.zero)
+            if (tile.GetNexusMovementVector() != new Vector3(-1, -1, -1))
             {
                 GameObject arrow = Instantiate(arrowPrefab, tile.transform.position, Quaternion.identity);
                 allArrows.Add(arrow);
@@ -170,7 +170,7 @@ public class DebugManager : Singleton<DebugManager>
         var allTiles = FindObjectsOfType<FlowFieldTile>();
         foreach (FlowFieldTile tile in allTiles)
         {
-            if (tile.GetTowerMovementVector() != Vector3.zero)
+            if (tile.GetTowerMovementVector() != new Vector3(-1, -1, -1))
             {
                 GameObject arrow = Instantiate(arrowPrefab, tile.transform.position, Quaternion.identity);
                 allArrows.Add(arrow);

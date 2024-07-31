@@ -9,18 +9,13 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
     List<FlowFieldTile> flowFieldTiles = new List<FlowFieldTile>();
     FlowFieldTile goalTile;
     // Start is called before the first frame update
-    void Start()
+
+
+    public void InitializeFlowField(List<FlowFieldTile> tiles)
     {
-        //Initialize all tiles and the goal.
-        FlowFieldTile[] tiles = FindObjectsOfType<FlowFieldTile>();
-        foreach (FlowFieldTile tile in tiles)
-        {
-            flowFieldTiles.Add(tile);
-        }
+        flowFieldTiles = tiles;
         GenerateFlowField(false);
         GenerateFlowField(true);
-
-
     }
 
 
@@ -43,7 +38,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
         // Set the assigned cost of all tiles to 0
         foreach (FlowFieldTile tile in flowFieldTiles)
         {
-            SetTileVector(tile, Vector3.zero, toGoal);
+            SetTileVector(tile, new Vector3(-1, -1, -1), toGoal);
             tile.SetAssignedCost(10000);
             if (!toGoal && tile.tile.HasBuilding())
             {
@@ -103,7 +98,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
             }
             else
             {
-                SetTileVector(tile, Vector3.zero, toGoal);
+                SetTileVector(tile, new Vector3(-1, -1, -1), toGoal);
                 // If there is no best neighbour, the tile is the goal tile
                 tile.transform.GetChild(1).gameObject.SetActive(false);
             }
@@ -113,7 +108,7 @@ public class FlowFieldGenerator : Singleton<FlowFieldGenerator>
         {
             if (!tile.tile.IsWalkable())
             {
-                SetTileVector(tile, Vector3.zero, toGoal);
+                SetTileVector(tile, new Vector3(-1, -1, -1), toGoal);
             }
         }
     }

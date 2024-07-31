@@ -89,6 +89,7 @@ public class GridManager : Singleton<GridManager>
                     //Small chance for mountain, otherwise normal tile
                     if ((!hasNeighbouringMountain && Random.Range(0, 100) < mountainChance * 10) || (hasNeighbouringMountain && Random.Range(0, 100) < mountainChance * mountainChanceMultiplier))
                     {
+
                         grid[x, y] = Instantiate(mountainTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                         grid[x, y].name = $"Tile {x} {y}";
                         grid[x, y].transform.parent = transform;
@@ -96,6 +97,7 @@ public class GridManager : Singleton<GridManager>
                     }
                     else if ((!hasNeighbouringForest && Random.Range(0, 100) < forestChance * 10) || ((hasNeighbouringForest || hasNeighbouringMountain) && Random.Range(0, 100) < forestChance * forestChanceMultiplier))
                     {
+
                         grid[x, y] = Instantiate(forestTilePrefab, new Vector3(x + startX, y + startY, 0), Quaternion.identity).GetComponent<Tile>();
                         grid[x, y].name = $"Tile {x} {y}";
                         grid[x, y].transform.parent = transform;
@@ -111,6 +113,16 @@ public class GridManager : Singleton<GridManager>
             }
         }
         camera.position = new Vector3((WIDTH / 2) + 2, (HEIGHT / 2), -10);
+        //Generate list of all FlowFieldTiles from grid[,,]
+        List<FlowFieldTile> flowFieldTiles = new List<FlowFieldTile>();
+        foreach (Tile tile in grid)
+        {
+            if (tile != null)
+            {
+                flowFieldTiles.Add(tile.GetComponent<FlowFieldTile>());
+            }
+        }
+        FlowFieldGenerator.Instance.InitializeFlowField(flowFieldTiles);
 
     }
 

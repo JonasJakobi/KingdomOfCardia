@@ -121,7 +121,7 @@ public class Enemy : MonoBehaviour
         var nexusVector = currentTile.flowFieldTile.GetNexusMovementVector();
         var buildingVector = currentTile.flowFieldTile.GetTowerMovementVector();
 
-        if (nexusVector != Vector3.zero)//move towards nexus if possible
+        if (nexusVector != new Vector3(-1, -1, -1))//move towards nexus if possible
         {
             animator.SetBool("Attack", false);
             MoveInDirection((nexusVector - transform.position).normalized, movementSpeed);
@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
                 transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
             }
         }
-        else if (buildingVector != Vector3.zero)//move towards building if possible
+        else if (buildingVector != new Vector3(-1, -1, -1))//move towards building if possible
         {
             animator.SetBool("Attack", false);
             MoveInDirection((buildingVector - transform.position).normalized, movementSpeed);
